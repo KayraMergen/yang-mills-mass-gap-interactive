@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Yang–Mills kütle aralığı için varsayımsal gauge-indirgenmiş spektral koersivite programının etkileşimli anlatımı." />
+  <meta name="color-scheme" content="dark light" />
+  <title>Yang–Mills Kütle Aralığı — Etkileşimli İspat Programı</title>
+  <style>
+    :root{
+      --bg:#0a0d12; --panel:#11161f; --panel2:#171e29; --text:#eef2f7; --muted:#9eabbc;
+      --line:#2b3543; --accent:#86b7ff; --accent2:#b9d5ff; --green:#68d391; --amber:#f3bf67;
+      --red:#ff7f86; --violet:#b8a0ff; --shadow:0 14px 40px rgba(0,0,0,.22);
+      --radius:18px; --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+      --sans:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:
+      radial-gradient(circle at 20% -10%,rgba(134,183,255,.13),transparent 38rem),
+      radial-gradient(circle at 90% 10%,rgba(184,160,255,.08),transparent 30rem),
+      var(--bg);color:var(--text);font-family:var(--sans);line-height:1.55}
+    button,input{font:inherit}
+    button{cursor:pointer}
+    a{color:inherit}
+    .wrap{width:min(1180px,calc(100% - 28px));margin:auto}
+    header{position:sticky;top:0;z-index:30;background:rgba(10,13,18,.86);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:66px}
+    .brand{display:flex;align-items:center;gap:10px;min-width:0}
+    .brand-mark{width:32px;height:32px;border-radius:10px;border:1px solid var(--line);display:grid;place-items:center;background:var(--panel)}
+    .brand-text{font-weight:760;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .nav-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+    .btn,.tab{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:12px;min-height:42px;padding:8px 12px}
+    .btn:hover,.tab:hover{border-color:#45546a}
+    .btn.primary,.tab.active{background:rgba(134,183,255,.14);border-color:rgba(134,183,255,.55)}
+    .btn.ghost{background:transparent}
+    .btn:focus-visible,.tab:focus-visible,input:focus-visible{outline:3px solid rgba(134,183,255,.35);outline-offset:2px}
+    main{padding:42px 0 84px}
+    .hero{display:grid;grid-template-columns:1.25fr .75fr;gap:22px;align-items:stretch}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.025),transparent),var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+    .hero-card{padding:34px}
+    .eyebrow{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+    .pill{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:999px;padding:5px 10px;color:var(--muted);font-size:.8rem;background:rgba(255,255,255,.02)}
+    .dot{width:9px;height:9px;border-radius:50%;background:var(--amber)}
+    h1{font-size:clamp(2.15rem,6vw,4.9rem);line-height:.98;letter-spacing:-.045em;margin:0 0 18px;max-width:12ch}
+    h2{font-size:clamp(1.45rem,3vw,2.15rem);letter-spacing:-.02em;margin:0 0 10px}
+    h3{font-size:1.02rem;margin:0 0 8px}
+    p{margin:0}
+    .lead{font-size:1.08rem;color:#ccd5e1;max-width:72ch}
+    .equation{font-family:var(--mono);font-size:clamp(1rem,2.2vw,1.32rem);padding:16px;border-radius:14px;border:1px solid var(--line);background:#0b0f15;overflow-wrap:anywhere}
+    .status-grid{display:grid;gap:12px}
+    .status{padding:14px;border-radius:14px;border:1px solid var(--line);background:var(--panel2)}
+    .status strong{display:block;margin-bottom:3px}
+    .muted{color:var(--muted)}
+    .small{font-size:.88rem}
+    .warning{border-color:rgba(243,191,103,.42);background:rgba(243,191,103,.06)}
+    .tabs{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0}
+    .view{display:none}
+    .view.active{display:block}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .step-layout{display:grid;grid-template-columns:.82fr 1.18fr;gap:18px}
+    .steps{display:grid;gap:9px}
+    .step-btn{text-align:left;width:100%;border:1px solid var(--line);border-radius:13px;background:var(--panel2);color:var(--text);padding:14px}
+    .step-btn.active{border-color:var(--accent);background:rgba(134,183,255,.10)}
+    .step-num{color:var(--accent);font-family:var(--mono);font-weight:750}
+    .bar{height:8px;background:#0a0d12;border:1px solid var(--line);border-radius:999px;overflow:hidden;margin:12px 0 18px}
+    .bar>span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--violet));width:16.7%;transition:width .25s ease}
+    .detail-box{min-height:250px}
+    .detail-box .equation{margin:16px 0}
+    .tag{display:inline-flex;align-items:center;border-radius:999px;border:1px solid var(--line);padding:5px 9px;font-size:.8rem}
+    .tag.established{border-color:rgba(104,211,145,.45);color:#a6efc0}
+    .tag.hypothesis{border-color:rgba(243,191,103,.5);color:#ffd38a}
+    .tag.target{border-color:rgba(134,183,255,.5);color:#b9d5ff}
+    .flow{overflow:auto;padding-bottom:4px}
+    .flow-row{display:flex;align-items:center;min-width:880px}
+    .flow-node{width:150px;min-height:108px;border:1px solid var(--line);background:var(--panel2);border-radius:16px;padding:13px;display:flex;flex-direction:column;justify-content:center;text-align:center}
+    .flow-node.risk{border-color:rgba(243,191,103,.55)}
+    .arrow{width:62px;height:2px;background:var(--line);position:relative;flex:none}
+    .arrow:after{content:"";position:absolute;right:-1px;top:-4px;border-left:8px solid var(--line);border-top:5px solid transparent;border-bottom:5px solid transparent}
+    .spectrum{margin-top:18px;border:1px solid var(--line);border-radius:16px;padding:18px;background:#0b0f15}
+    .axis{position:relative;height:94px;margin:16px 8px 2px}
+    .axis-line{position:absolute;left:0;right:0;top:50px;height:2px;background:#526074}
+    .tick{position:absolute;top:35px;width:2px;height:32px;background:#d9e2ee}
+    .vacuum{left:0}
+    .deltaTick{left:42%}
+    .forbidden{position:absolute;left:3px;top:49px;height:2px;width:calc(42% - 5px);border-top:2px dashed var(--red)}
+    .axis-label{position:absolute;top:0;font-size:.83rem;color:var(--muted);transform:translateX(-50%);text-align:center}
+    .axis-label.v{left:0;transform:none}
+    .axis-label.d{left:42%}
+    .axis-label.tail{right:0;transform:none}
+    .controls{display:grid;gap:14px;margin-top:16px}
+    label{font-weight:650}
+    input[type="range"]{width:100%;accent-color:var(--accent)}
+    .range-row{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}
+    output{font-family:var(--mono);border:1px solid var(--line);background:#0b0f15;border-radius:10px;padding:5px 9px;min-width:74px;text-align:center}
+    .result{padding:14px;border-radius:14px;border:1px solid var(--line);background:var(--panel2)}
+    .result.good{border-color:rgba(104,211,145,.5)}
+    .result.bad{border-color:rgba(255,127,134,.55)}
+    .rg-metric{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+    .metric{padding:12px;border-radius:13px;border:1px solid var(--line);background:#0b0f15}
+    .metric b{display:block;font-family:var(--mono);font-size:1.05rem;margin-top:2px}
+    .falsify-list{display:grid;gap:10px}
+    .falsify-btn{text-align:left;color:var(--text);background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:15px}
+    .falsify-btn.active{border-color:var(--red);background:rgba(255,127,134,.07)}
+    .sources{display:grid;gap:12px}
+    .source{border-left:3px solid var(--line);padding-left:14px}
+    footer{margin-top:34px;padding-top:24px;border-top:1px solid var(--line);color:var(--muted);font-size:.86rem}
+    .math-hidden .math-block{display:none!important}
+    .presenting header{display:none}
+    .presenting main{padding-top:18px}
+    .presenting .tabs{position:sticky;top:0;z-index:10;background:rgba(10,13,18,.95);padding:10px 0}
+    .toast{position:fixed;right:18px;bottom:18px;max-width:340px;background:#11161f;border:1px solid var(--line);border-radius:12px;padding:12px 14px;box-shadow:var(--shadow);opacity:0;transform:translateY(8px);pointer-events:none;transition:.2s;z-index:90}
+    .toast.show{opacity:1;transform:none}
+    .lang-en [data-lang="tr"]{display:none!important}
+    body:not(.lang-en) [data-lang="en"]{display:none!important}
+    .kbd{font-family:var(--mono);border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;padding:1px 6px;font-size:.78rem}
+    @media (max-width:880px){.hero,.step-layout,.grid2{grid-template-columns:1fr}.grid3{grid-template-columns:1fr}.rg-metric{grid-template-columns:1fr}.hero-card{padding:24px}}
+    @media (max-width:620px){.wrap{width:min(100% - 18px,1180px)}.nav{align-items:flex-start;padding:10px 0}.brand-text{display:none}.nav-actions{gap:6px}.btn{padding:7px 9px}.card{padding:17px}.hero-card{padding:22px}main{padding-top:24px}.tabs{display:grid;grid-template-columns:1fr 1fr}.tab{width:100%}}
+    @media print{header,.tabs,.nav-actions,.btn{display:none!important}body{background:white;color:#111}.card{box-shadow:none;background:white;border-color:#ccc}.muted{color:#555}.view{display:block!important;break-inside:avoid}.equation,.metric,.spectrum{background:white;color:#111}.flow-node{background:white}.wrap{width:100%}main{padding:0}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">YM</div>
+      <div class="brand-text">
+        <span data-lang="tr">Yang–Mills Kütle Aralığı</span>
+        <span data-lang="en">Yang–Mills Mass Gap</span>
+      </div>
+    </div>
+    <div class="nav-actions">
+      <button class="btn ghost" id="langBtn" type="button" title="Dil değiştir">EN</button>
+      <button class="btn ghost" id="mathBtn" type="button">
+        <span data-lang="tr">Matematik: açık</span><span data-lang="en">Math: on</span>
+      </button>
+      <button class="btn ghost" id="presentBtn" type="button">
+        <span data-lang="tr">Sunum modu</span><span data-lang="en">Present</span>
+      </button>
+      <button class="btn primary" id="shareBtn" type="button">
+        <span data-lang="tr">Paylaş</span><span data-lang="en">Share</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <article class="card hero-card">
+      <div class="eyebrow">
+        <span class="pill"><span class="dot"></span><span data-lang="tr">Varsayımsal araştırma programı</span><span data-lang="en">Hypothetical research program</span></span>
+        <span class="pill">Gauge invariance • RG • Spectral coercivity</span>
+      </div>
+      <h1>
+        <span data-lang="tr">Kütle nereden geliyor?</span>
+        <span data-lang="en">Where does mass come from?</span>
+      </h1>
+      <p class="lead">
+        <span data-lang="tr">Bu etkileşimli anlatı, Yang–Mills kütle açıklığını “kütlenin kaynağı” sorusundan ziyade, vakumdan farklı fiziksel spektral bileşenlerin neden sıfıra keyfî biçimde yaklaşamadığı problemi olarak kurar.</span>
+        <span data-lang="en">This interactive narrative treats the Yang–Mills mass gap not as “where mass comes from,” but as the problem of why physical spectral components distinct from the vacuum cannot approach zero energy arbitrarily closely.</span>
+      </p>
+      <div class="equation math-block" style="margin-top:22px">
+        P⊥ H P⊥ ≥ C<sub>G</sub> Λ<sub>YM</sub> · P⊥ &gt; 0
+      </div>
+      <p class="small muted" style="margin-top:10px">
+        <span data-lang="tr">Bu eşitsizlik sunumun varsayımsal çekirdek teoremidir; kanıtlanmış bir sonuç değildir.</span>
+        <span data-lang="en">This inequality is the presentation's hypothetical core theorem; it is not a proved result.</span>
+      </p>
+    </article>
+
+    <aside class="card status-grid">
+      <div class="status warning">
+        <strong data-lang="tr">Bilimsel statü</strong><strong data-lang="en">Scientific status</strong>
+        <span class="small muted" data-lang="tr">Milenyum Problemi çözülmüş değildir. Bu uygulama bir kanıt değil, açık ispat borçları olan bir programdır.</span>
+        <span class="small muted" data-lang="en">The Millennium Problem remains open. This app presents a proof program with explicit unresolved obligations, not a proof.</span>
+      </div>
+      <div class="status">
+        <strong data-lang="tr">Hedef</strong><strong data-lang="en">Target</strong>
+        <span class="small muted">Spec(H) ∩ (0, Δ) = ∅, &nbsp; Δ &gt; 0</span>
+      </div>
+      <div class="status">
+        <strong data-lang="tr">Kritik yeni halka</strong><strong data-lang="en">Critical new link</strong>
+        <span class="small muted" data-lang="tr">RG coarse-graining'in düşük enerjili fiziksel modları gizleyemeyeceğini kanıtlayan geri-yansıtım ilkesi.</span>
+        <span class="small muted" data-lang="en">A reflection-back principle preventing RG coarse-graining from hiding low-energy physical modes.</span>
+      </div>
+    </aside>
+  </section>
+
+  <nav class="tabs" aria-label="Uygulama bölümleri">
+    <button class="tab active" type="button" data-view="chain"><span data-lang="tr">İspat zinciri</span><span data-lang="en">Proof chain</span></button>
+    <button class="tab" type="button" data-view="spectrum"><span data-lang="tr">Spektrum laboratuvarı</span><span data-lang="en">Spectrum lab</span></button>
+    <button class="tab" type="button" data-view="rg"><span data-lang="tr">RG laboratuvarı</span><span data-lang="en">RG lab</span></button>
+    <button class="tab" type="button" data-view="falsify"><span data-lang="tr">Çürütme testleri</span><span data-lang="en">Falsification</span></button>
+    <button class="tab" type="button" data-view="sources"><span data-lang="tr">Kaynak & statü</span><span data-lang="en">Sources & status</span></button>
+  </nav>
+
+  <section class="view active" id="view-chain">
+    <div class="step-layout">
+      <div class="card">
+        <h2 data-lang="tr">Altı halkalı program</h2><h2 data-lang="en">Six-link program</h2>
+        <p class="muted small" data-lang="tr">Bir halkaya dokun; sağdaki panel o adımın yükümlülüğünü açar.</p>
+        <p class="muted small" data-lang="en">Select a link; the panel on the right expands its proof obligation.</p>
+        <div class="steps" id="steps" style="margin-top:16px"></div>
+      </div>
+      <div class="card detail-box">
+        <div class="small muted" id="stepCounter">1 / 6</div>
+        <h2 id="stepTitle" style="margin-top:4px"></h2>
+        <div class="bar"><span id="stepProgress"></span></div>
+        <p id="stepBody"></p>
+        <div class="equation math-block" id="stepEq"></div>
+        <span class="tag" id="stepTag"></span>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:18px">
+      <h3 data-lang="tr">Programın mantıksal akışı</h3><h3 data-lang="en">Logical flow of the program</h3>
+      <div class="flow" style="margin-top:14px">
+        <div class="flow-row">
+          <div class="flow-node"><b>Gauge</b><span class="small muted" data-lang="tr">fiziksel sektör</span><span class="small muted" data-lang="en">physical sector</span></div>
+          <div class="arrow"></div>
+          <div class="flow-node"><b>Λ<sub>YM</sub> &gt; 0</b><span class="small muted" data-lang="tr">dinamik ölçek</span><span class="small muted" data-lang="en">dynamic scale</span></div>
+          <div class="arrow"></div>
+          <div class="flow-node"><b>Gap</b><span class="small muted" data-lang="tr">kaba ölçek</span><span class="small muted" data-lang="en">coarse scale</span></div>
+          <div class="arrow"></div>
+          <div class="flow-node risk"><b>RG ↩</b><span class="small muted" data-lang="tr">geri-yansıtım</span><span class="small muted" data-lang="en">reflection-back</span></div>
+          <div class="arrow"></div>
+          <div class="flow-node"><b>Continuum</b><span class="small muted">Spec(H) ∩ (0,Δ)=∅</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="view-spectrum">
+    <div class="grid2">
+      <article class="card">
+        <h2 data-lang="tr">Mass gap ne değildir?</h2><h2 data-lang="en">What the mass gap is not</h2>
+        <p data-lang="tr">Vakuma norm bakımından yakın durumların yasaklanması değildir. Vakum ile başka bir durumun süperpozisyonu vakuma normca keyfî derecede yaklaşabilir.</p>
+        <p data-lang="en">It does not forbid states that are norm-close to the vacuum. A superposition of the vacuum with another state can approach the vacuum arbitrarily closely in norm.</p>
+        <div class="equation math-block" style="margin-top:16px">ψ<sub>ε</sub> = √(1−ε²) Ω + ε φ</div>
+        <div class="controls">
+          <div>
+            <label for="epsilon">ε — <span data-lang="tr">vakum dışı bileşen</span><span data-lang="en">non-vacuum component</span></label>
+            <div class="range-row">
+              <input id="epsilon" type="range" min="0" max="1" value="0.25" step="0.01">
+              <output id="epsilonOut">0.25</output>
+            </div>
+          </div>
+          <div class="result" id="epsilonResult"></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2 data-lang="tr">Doğru hedef: spektral boşluk</h2><h2 data-lang="en">Correct target: a spectral gap</h2>
+        <p data-lang="tr">Vakum bileşeni çıkarıldıktan sonra fiziksel spektral sektörde pozitif enerji alt sınırı aranır.</p>
+        <p data-lang="en">After projecting out the vacuum component, one seeks a positive lower energy bound in the physical spectral sector.</p>
+        <div class="spectrum">
+          <div class="axis">
+            <div class="axis-line"></div>
+            <div class="tick vacuum"></div>
+            <div class="tick deltaTick" id="deltaTick"></div>
+            <div class="forbidden" id="forbidden"></div>
+            <div class="axis-label v">0<br><span data-lang="tr">Vakum</span><span data-lang="en">Vacuum</span></div>
+            <div class="axis-label d" id="deltaLabel">Δ</div>
+            <div class="axis-label tail"><span data-lang="tr">fiziksel spektrum →</span><span data-lang="en">physical spectrum →</span></div>
+          </div>
+        </div>
+        <div class="controls">
+          <div>
+            <label for="delta">Δ — <span data-lang="tr">normalize edilmiş varsayımsal gap</span><span data-lang="en">normalized hypothetical gap</span></label>
+            <div class="range-row">
+              <input id="delta" type="range" min="0" max="1" value="0.42" step="0.01">
+              <output id="deltaOut">0.42</output>
+            </div>
+          </div>
+          <div class="result" id="deltaResult"></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="view" id="view-rg">
+    <div class="grid2">
+      <article class="card">
+        <h2 data-lang="tr">RG geri-yansıtım oyuncağı</h2><h2 data-lang="en">RG reflection-back toy model</h2>
+        <p class="muted small" data-lang="tr">Bu panel bir kanıt değildir; sunumdaki varsayımsal eşitsizliğin mantığını sezgisel olarak gösteren normalize edilmiş bir oyuncak modeldir.</p>
+        <p class="muted small" data-lang="en">This is not a proof. It is a normalized toy model for the logic of the hypothetical inequality in the presentation.</p>
+        <div class="equation math-block" style="margin-top:16px">𝔈<sub>f</sub>(ψ) ≥ Z · 𝔈<sub>c</sub>(Rψ) − ε<sub>R</sub> ‖ψ‖²</div>
+        <div class="controls">
+          <div>
+            <label for="z">Z — <span data-lang="tr">enerji aktarım katsayısı</span><span data-lang="en">energy-transfer coefficient</span></label>
+            <div class="range-row"><input id="z" type="range" min="0" max="1.5" value="0.85" step="0.01"><output id="zOut">0.85</output></div>
+          </div>
+          <div>
+            <label for="ec">𝔈<sub>c</sub> — <span data-lang="tr">kaba ölçek enerji formu</span><span data-lang="en">coarse-scale energy form</span></label>
+            <div class="range-row"><input id="ec" type="range" min="0" max="1.5" value="0.8" step="0.01"><output id="ecOut">0.80</output></div>
+          </div>
+          <div>
+            <label for="residual">ε<sub>R</sub> — <span data-lang="tr">RG kusuru</span><span data-lang="en">RG defect</span></label>
+            <div class="range-row"><input id="residual" type="range" min="0" max="1.5" value="0.12" step="0.01"><output id="residualOut">0.12</output></div>
+          </div>
+        </div>
+      </article>
+      <article class="card">
+        <h2 data-lang="tr">Alt sınırın kaderi</h2><h2 data-lang="en">Fate of the lower bound</h2>
+        <div class="rg-metric">
+          <div class="metric"><span class="small muted">Z·𝔈<sub>c</sub></span><b id="grossBound">0.68</b></div>
+          <div class="metric"><span class="small muted">− ε<sub>R</sub></span><b id="loss">−0.12</b></div>
+          <div class="metric"><span class="small muted" data-lang="tr">Net alt sınır</span><span class="small muted" data-lang="en">Net bound</span><b id="netBound">0.56</b></div>
+        </div>
+        <div class="result good" id="rgResult" style="margin-top:16px"></div>
+        <p class="small muted" style="margin-top:12px" data-lang="tr">Programın ihtiyacı: bu alt sınırın RG adımları ve continuum limiti boyunca sıfıra çökmesini engelleyen uniform kontrol.</p>
+        <p class="small muted" style="margin-top:12px" data-lang="en">The program needs uniform control preventing this lower bound from collapsing to zero across RG steps and the continuum limit.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="view" id="view-falsify">
+    <div class="grid2">
+      <article class="card">
+        <h2 data-lang="tr">Programı ne çürütür?</h2><h2 data-lang="en">What would falsify the program?</h2>
+        <p class="muted small" data-lang="tr">Bir ölçüt seç; sağ panel başarısızlığın neden temel olduğunu açıklar.</p>
+        <p class="muted small" data-lang="en">Select a criterion; the panel explains why that failure is fundamental.</p>
+        <div class="falsify-list" id="falsifyList" style="margin-top:14px"></div>
+      </article>
+      <article class="card">
+        <h2 id="falsifyTitle"></h2>
+        <p id="falsifyBody"></p>
+        <div class="result bad" style="margin-top:18px">
+          <strong data-lang="tr">Sonuç:</strong><strong data-lang="en">Consequence:</strong>
+          <span id="falsifyConsequence"></span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="view" id="view-sources">
+    <div class="grid2">
+      <article class="card">
+        <h2 data-lang="tr">Kaynak ve kapsam</h2><h2 data-lang="en">Source and scope</h2>
+        <div class="sources" style="margin-top:16px">
+          <div class="source"><b>Clay Mathematics Institute</b><div class="muted small">Yang–Mills &amp; the Mass Gap — <span data-lang="tr">resmî problem</span><span data-lang="en">official problem</span></div></div>
+          <div class="source"><b>Arthur Jaffe &amp; Edward Witten</b><div class="muted small">“Quantum Yang–Mills Theory” — <span data-lang="tr">resmî problem tanımı</span><span data-lang="en">official problem statement</span></div></div>
+          <div class="source"><b data-lang="tr">Bu uygulamanın kaynak sunumu</b><b data-lang="en">Source presentation for this app</b><div class="muted small">“Yang–Mills Kütle Aralığı — Gauge-İndirgenmiş Spektral Koersivite Programı”</div></div>
+        </div>
+      </article>
+      <article class="card warning">
+        <h2 data-lang="tr">Statü uyarısı</h2><h2 data-lang="en">Status warning</h2>
+        <p data-lang="tr">Sunum ve bu uygulama, Yang–Mills problemini çözmüş olduğunu iddia etmez. “Temsil-Yansıtıcı Koersivite Lemması” ve continuum'a uniform taşıma zinciri varsayımsal araştırma hedefleridir.</p>
+        <p data-lang="en">Neither the presentation nor this app claims to solve the Yang–Mills problem. The “Representation-Reflective Coercivity Lemma” and the uniform continuum-transfer chain are hypothetical research targets.</p>
+        <div class="equation math-block" style="margin-top:16px">Δ ≥ C<sub>G</sub> Λ<sub>YM</sub> &gt; 0 &nbsp; — <span data-lang="tr">hedef sonuç</span><span data-lang="en">target result</span></div>
+      </article>
+    </div>
+  </section>
+
+  <footer>
+    <div data-lang="tr">Tek dosyalık bağımsız web uygulaması • Sunum içeriğinden türetilmiştir • JavaScript yalnızca yerel etkileşimler için kullanılır.</div>
+    <div data-lang="en">Single-file standalone web app • Derived from the presentation • JavaScript is used only for local interactions.</div>
+    <div style="margin-top:8px" class="small">
+      <span data-lang="tr">Kısayollar: <span class="kbd">←</span> <span class="kbd">→</span> bölüm değiştirir; sunum modunda daha temiz görünüm sağlar.</span>
+      <span data-lang="en">Shortcuts: <span class="kbd">←</span> <span class="kbd">→</span> change sections; presentation mode simplifies the layout.</span>
+    </div>
+  </footer>
+</main>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(() => {
+  const body = document.body;
+  const tabs = [...document.querySelectorAll('.tab')];
+  const views = [...document.querySelectorAll('.view')];
+  const toast = document.getElementById('toast');
+  let currentView = 0;
+  let currentStep = 0;
+  let currentFalsify = 0;
+
+  const tr = {
+    copied:'Bağlantı panoya kopyalandı.',
+    shareUnavailable:'Paylaşım API’si kullanılamadı. Tarayıcı adresini kopyalayabilirsin.',
+    mathOn:'Matematik: açık', mathOff:'Matematik: kapalı',
+    present:'Sunum modu', exitPresent:'Sunumdan çık',
+    epsilon:(e,dist)=>`ε = ${e.toFixed(2)} iken vakum dışı bileşen küçüldükçe durum vakuma norm bakımından yaklaşır. Bu, mass gap ile çelişmez. Bu oyuncak gösterimde vakum dışı genlik ${dist.toFixed(2)}.`,
+    gap:(d)=>d<=0.001?'Δ = 0 seçildi: yasak spektral bant çöktü. Bu durumda pozitif mass gap gösterilmiş olmaz.':`Δ = ${d.toFixed(2)}: (0, Δ) aralığı “yasak bant” olarak gösteriliyor. Sayı fiziksel bir tahmin değil; yalnızca normalize edilmiş görselleştirme parametresi.`,
+    rgGood:(v)=>`Normalize edilmiş oyuncak modelde net alt sınır ${v.toFixed(2)} > 0. Bu, istenen koersivite mantığını görselleştirir; gerçek teori için uniform bir ispat gerekir.`,
+    rgBad:(v)=>`Net alt sınır ${v.toFixed(2)} ≤ 0. Kusur terimi alt sınırı yok ediyor; bu durumda oyuncak model pozitif koersiviteyi koruyamıyor.`
+  };
+  const en = {
+    copied:'Link copied to the clipboard.',
+    shareUnavailable:'The Web Share API is unavailable. You can copy the browser address.',
+    mathOn:'Math: on', mathOff:'Math: off',
+    present:'Present', exitPresent:'Exit presentation',
+    epsilon:(e,dist)=>`At ε = ${e.toFixed(2)}, reducing the non-vacuum component makes the state norm-close to the vacuum. This does not contradict a mass gap. In this toy display the non-vacuum amplitude is ${dist.toFixed(2)}.`,
+    gap:(d)=>d<=0.001?'Δ = 0: the forbidden spectral band collapses. A positive mass gap is not represented.':`Δ = ${d.toFixed(2)}: the interval (0, Δ) is shown as the forbidden band. This is not a physical estimate, only a normalized visualization parameter.`,
+    rgGood:(v)=>`In the normalized toy model, the net lower bound is ${v.toFixed(2)} > 0. This visualizes the desired coercivity logic; the real theory still requires a uniform proof.`,
+    rgBad:(v)=>`The net lower bound is ${v.toFixed(2)} ≤ 0. The defect term erases the bound, so the toy model no longer preserves positive coercivity.`
+  };
+  const L = () => body.classList.contains('lang-en') ? en : tr;
+  const showToast = msg => {toast.textContent=msg;toast.classList.add('show');clearTimeout(showToast.t);showToast.t=setTimeout(()=>toast.classList.remove('show'),2200)};
+
+  const stepData = [
+    {
+      tr:{t:'I — Gauge-indirgenmiş teori',b:'Ham konfigürasyon uzayındaki gauge tekrarlarını fiziksel ayrımdan ayır. Fiziksel Hilbert uzayı ℋ_phys ve tekil vakum Ω üzerinde çalış.',tag:'Kurulması gereken yapı'},
+      en:{t:'I — Gauge-reduced theory',b:'Separate gauge redundancy from physical distinction in the raw configuration space. Work on a physical Hilbert space ℋ_phys with a unique vacuum Ω.',tag:'Structure to be constructed'},
+      eq:'𝒬 = 𝒜 / 𝒢',cls:'target'
+    },
+    {
+      tr:{t:'II — Dinamik ölçek',b:'Asimptotik özgürlük boyutsuz kuplajdan Λ_YM ölçeğini üretir. Fakat pozitif bir ölçeğin varlığı tek başına spektral gap değildir.',tag:'Yerleşik fikir → eksik köprü'},
+      en:{t:'II — Dynamical scale',b:'Asymptotic freedom generates a scale Λ_YM from the dimensionless coupling. But a positive scale alone is not a spectral gap.',tag:'Established idea → missing bridge'},
+      eq:'Λ_YM = μ · exp(−∫ dg / β(g))',cls:'established'
+    },
+    {
+      tr:{t:'III — Kaba-ölçek gap',b:'Gauge-invariant transfer operatörü üzerinde kaba veya sonlu ölçekte pozitif gap elde et. Bu, continuum sonucunun yalnızca başlangıç girdisidir.',tag:'Başlangıç girdisi'},
+      en:{t:'III — Coarse-scale gap',b:'Obtain a positive gap for a gauge-invariant transfer operator at coarse or finite scale. This is only an input to the continuum argument.',tag:'Starting input'},
+      eq:'gap(Hₐ,ᴸ) > 0  [coarse scale]',cls:'target'
+    },
+    {
+      tr:{t:'IV — RG geri-yansıtımı',b:'Coarse-graining düşük enerjili fiziksel modu gizleyememeli. Rψ kaba ölçekte vakuma düşse bile ince ölçekte gizli enerji→0 fiziksel mod kalmadığını göster.',tag:'Varsayımsal yeni lemma'},
+      en:{t:'IV — RG reflection-back',b:'Coarse-graining must not hide a low-energy physical mode. Even if Rψ falls into the coarse vacuum sector, rule out a hidden fine-scale physical mode with energy tending to zero.',tag:'Hypothetical new lemma'},
+      eq:'𝔈_f(ψ) ≥ Z · 𝔈_c(Rψ) − ε_R ‖ψ‖²',cls:'hypothesis'
+    },
+    {
+      tr:{t:'V — Uniform koersivite',b:'Gap alt sınırını yeniden-normalleştirilmiş yörüngenin tamamında kontrol et; a→0 ve L→∞ limitlerinde sönmesine izin verme.',tag:'En ağır analitik taşıma'},
+      en:{t:'V — Uniform coercivity',b:'Control the gap lower bound along the entire renormalized trajectory and prevent it from vanishing as a→0 and L→∞.',tag:'Heaviest analytic transfer'},
+      eq:'P⊥ Hₐ,ᴸ P⊥ ≥ (c_G Λ_YM − r(a,L)) P⊥',cls:'hypothesis'
+    },
+    {
+      tr:{t:'VI — Continuum + OS',b:'Euclidean limit, reflection positivity ve locality korunur; OS yeniden-kurma ile ℋ_phys, Ω ve H elde edilir ve koersivite limitte kalır.',tag:'Hedef sonuç'},
+      en:{t:'VI — Continuum + OS',b:'Preserve the Euclidean limit, reflection positivity and locality; use OS reconstruction to obtain ℋ_phys, Ω and H while retaining coercivity in the limit.',tag:'Target result'},
+      eq:'Spec(H) ∩ (0, C_G Λ_YM) = ∅',cls:'target'
+    }
+  ];
+
+  const falsifyData = [
+    {
+      tr:{t:'Gap continuum’da çöker',b:'Finite-kafes gap a→0 limitinde sıfıra gidiyorsa, kaba ölçekteki pozitif gap continuum teoriye taşınamaz.',c:'Programın uniform alt sınır iddiası başarısız olur.'},
+      en:{t:'The gap collapses in the continuum',b:'If the finite-lattice gap tends to zero as a→0, the positive coarse-scale gap cannot be carried to the continuum theory.',c:'The claimed uniform lower bound fails.'}
+    },
+    {
+      tr:{t:'RG fiziksel modu örter',b:'Rψ kaba ölçekte vakuma düşerken ince ölçekte enerji→0 fiziksel mod kalabiliyorsa, geri-yansıtım lemması yanlıştır.',c:'Programın merkezi yeni halkası kırılır.'},
+      en:{t:'RG hides a physical mode',b:'If Rψ falls into the coarse vacuum while a fine-scale physical mode with energy→0 survives, the reflection-back lemma is false.',c:'The central new link in the program breaks.'}
+    },
+    {
+      tr:{t:'Λ_YM gap’i kontrol etmez',b:'Dinamik ölçek mevcut olsa bile pozitif spektral koersivite sabiti kurulamazsa “ölçek var” ile “gap var” arasındaki köprü çöker.',c:'Dimensional transmutation mass gap sonucuna yetmez.'},
+      en:{t:'Λ_YM does not control the gap',b:'Even if a dynamical scale exists, failure to establish positive spectral coercivity destroys the bridge from “a scale exists” to “a gap exists.”',c:'Dimensional transmutation is not enough for a mass gap.'}
+    },
+    {
+      tr:{t:'Vakum / aksiyom yapısı bozulur',b:'Tekillik, pozitif enerji, reflection positivity veya OS yeniden-kurma şartları kurulamıyorsa Clay hedefinin varlık kısmı sağlanmaz.',c:'Gap benzeri bir kafes sonucu olsa bile Milenyum Problemi çözülmüş olmaz.'},
+      en:{t:'Vacuum / axiom structure fails',b:'If uniqueness, positive energy, reflection positivity or OS reconstruction cannot be established, the existence side of the Clay target fails.',c:'A lattice gap-like result alone would not solve the Millennium Problem.'}
+    },
+    {
+      tr:{t:'Gauge artefaktı sızar',b:'Kanıt global gauge seçimine bağımlı kalıyorsa ölçülen şey fiziksel gap yerine temsil kaynaklı yapay bir gap olabilir.',c:'Fiziksel spektrum yerine temsil artefaktı ölçülmüş olabilir.'},
+      en:{t:'Gauge artefacts leak in',b:'If the argument depends on a global gauge choice, the measured gap may be representational rather than physical.',c:'The result may concern a representation artefact rather than the physical spectrum.'}
+    }
+  ];
+
+  function langObj(obj){ return body.classList.contains('lang-en') ? obj.en : obj.tr; }
+
+  function renderSteps(){
+    const box=document.getElementById('steps'); box.innerHTML='';
+    stepData.forEach((s,i)=>{
+      const d=langObj(s);
+      const b=document.createElement('button');
+      b.type='button'; b.className='step-btn'+(i===currentStep?' active':'');
+      b.innerHTML=`<span class="step-num">${String(i+1).padStart(2,'0')}</span><br><b>${d.t}</b><div class="small muted">${d.tag}</div>`;
+      b.addEventListener('click',()=>{currentStep=i;renderSteps();renderStepDetail();});
+      box.appendChild(b);
+    });
+  }
+  function renderStepDetail(){
+    const s=stepData[currentStep],d=langObj(s);
+    document.getElementById('stepCounter').textContent=`${currentStep+1} / ${stepData.length}`;
+    document.getElementById('stepTitle').textContent=d.t;
+    document.getElementById('stepBody').textContent=d.b;
+    document.getElementById('stepEq').innerHTML=s.eq;
+    const tag=document.getElementById('stepTag'); tag.textContent=d.tag; tag.className='tag '+s.cls;
+    document.getElementById('stepProgress').style.width=((currentStep+1)/stepData.length*100)+'%';
+  }
+  function renderFalsify(){
+    const box=document.getElementById('falsifyList');box.innerHTML='';
+    falsifyData.forEach((x,i)=>{
+      const d=langObj(x);const b=document.createElement('button');b.type='button';b.className='falsify-btn'+(i===currentFalsify?' active':'');
+      b.innerHTML=`<b>${d.t}</b>`;
+      b.addEventListener('click',()=>{currentFalsify=i;renderFalsify();renderFalsifyDetail();});
+      box.appendChild(b);
+    });
+    renderFalsifyDetail();
+  }
+  function renderFalsifyDetail(){
+    const d=langObj(falsifyData[currentFalsify]);
+    document.getElementById('falsifyTitle').textContent=d.t;
+    document.getElementById('falsifyBody').textContent=d.b;
+    document.getElementById('falsifyConsequence').textContent=' '+d.c;
+  }
+  function switchView(idx){
+    currentView=(idx+views.length)%views.length;
+    tabs.forEach((t,i)=>t.classList.toggle('active',i===currentView));
+    views.forEach((v,i)=>v.classList.toggle('active',i===currentView));
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  tabs.forEach((t,i)=>t.addEventListener('click',()=>switchView(i)));
+
+  document.getElementById('langBtn').addEventListener('click',()=>{
+    body.classList.toggle('lang-en');
+    document.documentElement.lang=body.classList.contains('lang-en')?'en':'tr';
+    document.getElementById('langBtn').textContent=body.classList.contains('lang-en')?'TR':'EN';
+    renderSteps(); renderStepDetail(); renderFalsify(); updateEpsilon(); updateDelta(); updateRG();
+    const mathOn=!body.classList.contains('math-hidden');
+    document.getElementById('mathBtn').textContent=mathOn?L().mathOn:L().mathOff;
+    document.getElementById('presentBtn').textContent=body.classList.contains('presenting')?L().exitPresent:L().present;
+  });
+
+  document.getElementById('mathBtn').addEventListener('click',()=>{
+    body.classList.toggle('math-hidden');
+    document.getElementById('mathBtn').textContent=body.classList.contains('math-hidden')?L().mathOff:L().mathOn;
+  });
+
+  document.getElementById('presentBtn').addEventListener('click',()=>{
+    body.classList.toggle('presenting');
+    document.getElementById('presentBtn').textContent=body.classList.contains('presenting')?L().exitPresent:L().present;
+  });
+
+  document.getElementById('shareBtn').addEventListener('click',async()=>{
+    const data={title:document.title,text:document.querySelector('.lead [data-lang="'+(body.classList.contains('lang-en')?'en':'tr')+'"]').textContent,url:location.href};
+    try{
+      if(navigator.share){await navigator.share(data);}
+      else if(navigator.clipboard){await navigator.clipboard.writeText(location.href);showToast(L().copied);}
+      else showToast(L().shareUnavailable);
+    }catch(e){ if(e && e.name!=='AbortError') showToast(L().shareUnavailable); }
+  });
+
+  function updateEpsilon(){
+    const e=Number(document.getElementById('epsilon').value);
+    document.getElementById('epsilonOut').value=e.toFixed(2);
+    document.getElementById('epsilonResult').textContent=L().epsilon(e,e);
+  }
+  document.getElementById('epsilon').addEventListener('input',updateEpsilon);
+
+  function updateDelta(){
+    const d=Number(document.getElementById('delta').value);
+    document.getElementById('deltaOut').value=d.toFixed(2);
+    const pct=Math.max(0,Math.min(86,d*86));
+    document.getElementById('deltaTick').style.left=pct+'%';
+    document.getElementById('deltaLabel').style.left=pct+'%';
+    document.getElementById('forbidden').style.width=Math.max(0,pct)+'%';
+    const r=document.getElementById('deltaResult');r.textContent=L().gap(d);r.className='result '+(d>0?'good':'bad');
+  }
+  document.getElementById('delta').addEventListener('input',updateDelta);
+
+  function updateRG(){
+    const z=Number(document.getElementById('z').value), ec=Number(document.getElementById('ec').value), eps=Number(document.getElementById('residual').value);
+    const gross=z*ec, net=gross-eps;
+    document.getElementById('zOut').value=z.toFixed(2);document.getElementById('ecOut').value=ec.toFixed(2);document.getElementById('residualOut').value=eps.toFixed(2);
+    document.getElementById('grossBound').textContent=gross.toFixed(2);document.getElementById('loss').textContent='−'+eps.toFixed(2);document.getElementById('netBound').textContent=net.toFixed(2);
+    const r=document.getElementById('rgResult');r.textContent=net>0?L().rgGood(net):L().rgBad(net);r.className='result '+(net>0?'good':'bad');
+  }
+  ['z','ec','residual'].forEach(id=>document.getElementById(id).addEventListener('input',updateRG));
+
+  document.addEventListener('keydown',e=>{
+    if(e.target && /input|textarea|select/i.test(e.target.tagName)) return;
+    if(e.key==='ArrowRight') switchView(currentView+1);
+    if(e.key==='ArrowLeft') switchView(currentView-1);
+  });
+
+  renderSteps();renderStepDetail();renderFalsify();updateEpsilon();updateDelta();updateRG();
+})();
+</script>
+</body>
+</html>
