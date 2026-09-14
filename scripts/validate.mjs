@@ -42,3 +42,8 @@ for (const file of [
 }
 
 console.log('v5 structural publication/audit checks passed.');
+
+if (html.includes('V4 odağı') || html.includes('V4 focus') || html.includes('INTERACTIVE RESEARCH CONSOLE v4')) {
+  console.error('Stale V4 labeling detected in live UI/export metadata.');
+  process.exit(1);
+}

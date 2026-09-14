@@ -15,3 +15,9 @@ A new visitor should be able to identify within the first viewport:
 Use the Concept DOI when referring to the evolving project as a whole.
 
 Use the exact v5.0.1 DOI when reproducing or citing the archived v5.0.1 snapshot.
+
+## Version consistency
+
+The live UI must not contain stale major-version labels such as `V4 focus`.
+Local report exports must identify the current website/repository build.
+Zenodo archive versioning remains independent and is explicitly labeled.

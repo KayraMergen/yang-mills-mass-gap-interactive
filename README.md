@@ -1,6 +1,6 @@
 # Yang–Mills Mass Gap — Interactive Research Console
 
-**Current website/repository version: v5.1.0**
+**Current website/repository version: v5.1.1**
 
 [![DOI](https://zenodo.org/badge/1369033161.svg)](https://doi.org/10.5281/zenodo.22739745)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0001--9217--0917-A6CE39?logo=orcid&logoColor=white)](https://orcid.org/0009-0001-9217-0917)

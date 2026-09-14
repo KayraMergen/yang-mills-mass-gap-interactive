@@ -2,6 +2,20 @@
 
 All notable changes to the project are documented here.
 
+## [5.1.1] — 2026-09-14
+
+### Fixed
+- removed stale `V4 focus` wording from the live status panel;
+- synchronized the methodology strip with the academic landing/audit layer;
+- corrected the exported local status report header and filename to the current site version;
+- synchronized visible site/repository version markers to v5.1.1.
+
+### Note
+This is a website/repository polish patch only. It does **not** create a new
+Zenodo archive. The exact archived release remains v5.0.1
+(`10.5281/zenodo.22739746`), and the project/all-versions DOI remains
+`10.5281/zenodo.22739745`.
+
 ## [5.1.0] — 2026-09-14
 
 ### Added
