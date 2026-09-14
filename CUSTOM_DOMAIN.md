@@ -1,21 +1,32 @@
-# Custom Domain Deployment
+# Custom Domain
 
-Do **not** add an active `CNAME` file until you own and control the domain.
+## Canonical public site
 
-GitHub recommends verifying a custom domain before attaching it to a Pages
-site, to reduce domain-takeover risk.
+https://www.yangmillsresearch.org/
 
-## When you have a domain
+## DNS
 
-1. Verify the domain under your GitHub account's **Settings → Pages**.
-2. Add the DNS verification TXT record requested by GitHub.
-3. Configure DNS for the desired apex or subdomain.
-4. Add the custom domain to this repository's Pages settings.
-5. Keep the verification TXT record in DNS.
-6. Enable HTTPS after GitHub provisions the certificate.
+Cloudflare DNS is configured in DNS-only mode.
 
-The current site remains:
-https://kayramergen.github.io/yang-mills-mass-gap-interactive/
+Apex `A` records:
 
-Official GitHub documentation:
-https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site
+- `185.199.108.153`
+- `185.199.109.153`
+- `185.199.110.153`
+- `185.199.111.153`
+
+`www`:
+
+- `CNAME www -> KayraMergen.github.io`
+
+The GitHub Pages ownership-verification TXT record must remain in DNS.
+
+## GitHub Pages
+
+- Custom domain: `www.yangmillsresearch.org`
+- Domain ownership: verified
+- HTTPS certificate: approved
+- HTTPS enforcement: enabled
+
+The root domain `yangmillsresearch.org` is configured alongside `www` so GitHub
+Pages can handle the canonical redirect.

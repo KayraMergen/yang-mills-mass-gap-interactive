@@ -1,11 +1,11 @@
 # Yang–Mills Mass Gap — Interactive Research Console
 
-**Current website/repository version: v5.1.1**
+**Current website/repository version: v5.1.2**
 
 [![DOI](https://zenodo.org/badge/1369033161.svg)](https://doi.org/10.5281/zenodo.22739745)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0001--9217--0917-A6CE39?logo=orcid&logoColor=white)](https://orcid.org/0009-0001-9217-0917)
 
-Public site: https://kayramergen.github.io/yang-mills-mass-gap-interactive/
+Public site: https://www.yangmillsresearch.org/
 
 This repository hosts an interactive research/audit console for a **hypothetical**
 gauge-reduced spectral-coercivity program related to the Yang–Mills mass-gap
@@ -82,3 +82,13 @@ See [`CITATION.cff`](CITATION.cff) for machine-readable metadata.
 
 The homepage surfaces these identifiers prominently so that visitors can verify
 the project's archival and author-identity chain immediately.
+
+## Canonical website
+
+The canonical public address is:
+
+https://www.yangmillsresearch.org/
+
+The custom domain is verified and served through GitHub Pages with HTTPS
+enforced. The GitHub Pages project URL is retained only as deployment history,
+not as the preferred public address.

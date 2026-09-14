@@ -1,7 +1,7 @@
 {
   "name": "Yang–Mills Mass Gap — Interactive Research Console",
   "short_name": "YM Research Console",
-  "start_url": "./",
+  "start_url": "https://www.yangmillsresearch.org/",
   "display": "standalone",
   "background_color": "#081018",
   "theme_color": "#091018",

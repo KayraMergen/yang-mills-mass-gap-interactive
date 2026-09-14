@@ -2,6 +2,9 @@ import fs from 'node:fs';
 
 const html = fs.readFileSync('index.html', 'utf8');
 const required = [
+  'v5.1.2 • Custom Domain & Canonical Layer',
+  '<meta name="version" content="5.1.2" />',
+  'https://www.yangmillsresearch.org/',
   'ORCID: 0009-0001-9217-0917',
   'id="heroCiteBtn"',
   'Interactive Research Console',
@@ -33,7 +36,8 @@ for (const file of [
   'LICENSE',
   'CONTENT-LICENSE.md',
   'ZENODO.md',
-  'LANDING_QA.md'
+  'LANDING_QA.md',
+  'CNAME'
 ]) {
   if (!fs.existsSync(file)) {
     console.error(`Missing required repository file: ${file}`);
@@ -45,5 +49,11 @@ console.log('v5 structural publication/audit checks passed.');
 
 if (html.includes('V4 odağı') || html.includes('V4 focus') || html.includes('INTERACTIVE RESEARCH CONSOLE v4')) {
   console.error('Stale V4 labeling detected in live UI/export metadata.');
+  process.exit(1);
+}
+
+const cname = fs.readFileSync('CNAME', 'utf8').trim();
+if (cname !== 'www.yangmillsresearch.org') {
+  console.error('CNAME must be www.yangmillsresearch.org');
   process.exit(1);
 }

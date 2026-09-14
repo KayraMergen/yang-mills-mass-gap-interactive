@@ -21,3 +21,10 @@ Use the exact v5.0.1 DOI when reproducing or citing the archived v5.0.1 snapshot
 The live UI must not contain stale major-version labels such as `V4 focus`.
 Local report exports must identify the current website/repository build.
 Zenodo archive versioning remains independent and is explicitly labeled.
+
+## Canonical-domain checks
+
+The public metadata must advertise `https://www.yangmillsresearch.org/` consistently in the HTML
+canonical URL, OpenGraph metadata, JSON-LD, README, robots.txt and sitemap.xml.
+
+The repository must retain a `CNAME` file containing `www.yangmillsresearch.org`.

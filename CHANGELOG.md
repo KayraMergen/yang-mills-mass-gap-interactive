@@ -2,6 +2,20 @@
 
 All notable changes to the project are documented here.
 
+## [5.1.2] — 2026-09-14
+
+### Changed
+- migrated the canonical public URL to `https://www.yangmillsresearch.org/`;
+- synchronized canonical link, OpenGraph URL, JSON-LD, README, CFF, sitemap,
+  robots and web-manifest metadata;
+- added a tracked `CNAME` file for persistent GitHub Pages custom-domain configuration;
+- documented verified Cloudflare DNS and enforced HTTPS.
+
+### Note
+No scientific claim changed and no new Zenodo archive was created. The exact
+archived v5.0.1 DOI remains `10.5281/zenodo.22739746` and the project/all-versions DOI
+remains `10.5281/zenodo.22739745`.
+
 ## [5.1.1] — 2026-09-14
 
 ### Fixed
