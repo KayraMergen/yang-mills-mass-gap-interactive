@@ -17,4 +17,4 @@ This is the public website/repository release identity for the v6 research inter
 
 ## DOI / archive distinction
 
-The exact archived Zenodo release remains **v5.0.1**, DOI `10.5281/zenodo.22739746`. The project-level Concept DOI remains `10.5281/zenodo.22739745`. No version-specific v6 DOI is claimed by this website release. `CITATION.cff` intentionally continues to describe the exact archived v5.0.1 software release until a separately authorized archival release is created.
+The exact archived Zenodo release is **v6.0.0**, DOI `10.5281/zenodo.22754261`. The project-level Concept DOI remains `10.5281/zenodo.22739745`. The historical v5.0.1 archive remains available at `10.5281/zenodo.22739746`. `CITATION.cff`, the in-app citation/BibTeX export, and release metadata identify the v6.0.0 exact archive without changing the scientific status of the Yang–Mills problem.

@@ -14,7 +14,7 @@ problem.
 > **Scientific status:** the Yang–Mills existence and mass-gap problem remains open.
 > This project does **not** claim a proof.
 
-## v5 publication layer
+## Publication layer
 
 - source-linked citation/provenance system
 - `CITATION.cff` and BibTeX export
@@ -64,11 +64,12 @@ is treated separately; see [`CONTENT-LICENSE.md`](CONTENT-LICENSE.md).
 
 Preferred software citation:
 
-> Baran Çolakoğlu (2026). *Yang–Mills Mass Gap — Interactive Research Console*, v5.0.1.  
-> Zenodo. DOI: [10.5281/zenodo.22739746](https://doi.org/10.5281/zenodo.22739746)  
+> Baran Çolakoğlu (2026). *Yang–Mills Mass Gap — Interactive Research Console*, v6.0.0.  
+> Zenodo. DOI: [10.5281/zenodo.22754261](https://doi.org/10.5281/zenodo.22754261)  
 > ORCID: https://orcid.org/0009-0001-9217-0917
 
-- **Exact archived release (v5.0.1):** [10.5281/zenodo.22739746](https://doi.org/10.5281/zenodo.22739746)
+- **Exact archived release (v6.0.0):** [10.5281/zenodo.22754261](https://doi.org/10.5281/zenodo.22754261)
+- **Previous exact archive (v5.0.1):** [10.5281/zenodo.22739746](https://doi.org/10.5281/zenodo.22739746)
 - **All versions / concept DOI:** [10.5281/zenodo.22739745](https://doi.org/10.5281/zenodo.22739745)
 
 See [`CITATION.cff`](CITATION.cff) for machine-readable metadata.
@@ -78,7 +79,8 @@ See [`CITATION.cff`](CITATION.cff) for machine-readable metadata.
 - Author: Baran Çolakoğlu
 - ORCID: https://orcid.org/0009-0001-9217-0917
 - Project / all-versions DOI: https://doi.org/10.5281/zenodo.22739745
-- Exact archived v5.0.1 DOI: https://doi.org/10.5281/zenodo.22739746
+- Exact archived v6.0.0 DOI: https://doi.org/10.5281/zenodo.22754261
+- Previous exact v5.0.1 DOI: https://doi.org/10.5281/zenodo.22739746
 
 The homepage surfaces these identifiers prominently so that visitors can verify
 the project's archival and author-identity chain immediately.
@@ -95,7 +97,7 @@ not as the preferred public address.
 
 ## v6 research interface
 
-The public website now runs the v6 research interface, including exact scalar models, research-grade interactive instruments, reproducibility records, and advanced T0 sweep analysis. The exact Zenodo archive remains v5.0.1 until a separately authorized archival release is created; the Concept DOI continues to identify the evolving project.
+The public website runs the v6 research interface, including exact scalar models, research-grade interactive instruments, reproducibility records, and advanced T0 sweep analysis. Version v6.0.0 is archived at DOI `10.5281/zenodo.22754261`; the Concept DOI continues to identify the evolving project across versions.
 
 The foundation adds a single reviewed dependency registry, exact scaled-integer scalar evaluators, complete scenario serialization, truthful single-step RG semantics, persistent result scope, and model/state regression tests. Run:
 
