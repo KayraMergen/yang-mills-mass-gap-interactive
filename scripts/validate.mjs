@@ -11,7 +11,9 @@ const required = [
   'id="downloadBibBtn"',
   'https://www.claymath.org/millennium/yang-mills-the-maths-gap/',
   'https://doi.org/10.1007/BF01645738',
-  'https://doi.org/10.1007/BF01608978'
+  'https://doi.org/10.1007/BF01608978',
+  'https://doi.org/10.5281/zenodo.22739746',
+  'https://doi.org/10.5281/zenodo.22739745'
 ];
 
 const missing = required.filter(x => !html.includes(x));
@@ -27,7 +29,8 @@ for (const file of [
   'SCIENTIFIC_REVIEW.md',
   'CONTRIBUTING.md',
   'LICENSE',
-  'CONTENT-LICENSE.md'
+  'CONTENT-LICENSE.md',
+  'ZENODO.md'
 ]) {
   if (!fs.existsSync(file)) {
     console.error(`Missing required repository file: ${file}`);

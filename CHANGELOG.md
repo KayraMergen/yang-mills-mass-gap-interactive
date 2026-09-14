@@ -2,6 +2,13 @@
 
 All notable changes to the project are documented here.
 
+## Post-release metadata — 2026-09-14
+
+- registered Zenodo archive DOI for v5.0.1: `10.5281/zenodo.22739746`;
+- recorded project/all-versions concept DOI: `10.5281/zenodo.22739745`;
+- added Zenodo DOI badge, DOI-aware citation metadata, JSON-LD identifiers and BibTeX DOI;
+- no mathematical or scientific claim changed.
+
 ## [5.0.1] — 2026-09-14
 
 ### Changed

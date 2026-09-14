@@ -2,6 +2,9 @@
 
 **Current release: v5.0.1**
 
+[![DOI](https://zenodo.org/badge/1369033161.svg)](https://doi.org/10.5281/zenodo.22739745)
+[![ORCID](https://img.shields.io/badge/ORCID-0009--0001--9217--0917-A6CE39?logo=orcid&logoColor=white)](https://orcid.org/0009-0001-9217-0917)
+
 Public site: https://kayramergen.github.io/yang-mills-mass-gap-interactive/
 
 This repository hosts an interactive research/audit console for a **hypothetical**
@@ -62,7 +65,10 @@ is treated separately; see [`CONTENT-LICENSE.md`](CONTENT-LICENSE.md).
 Preferred software citation:
 
 > Baran Çolakoğlu (2026). *Yang–Mills Mass Gap — Interactive Research Console*, v5.0.1.  
-> ORCID: https://orcid.org/0009-0001-9217-0917  
-> https://github.com/KayraMergen/yang-mills-mass-gap-interactive
+> Zenodo. DOI: [10.5281/zenodo.22739746](https://doi.org/10.5281/zenodo.22739746)  
+> ORCID: https://orcid.org/0009-0001-9217-0917
+
+- **Exact archived release (v5.0.1):** [10.5281/zenodo.22739746](https://doi.org/10.5281/zenodo.22739746)
+- **All versions / concept DOI:** [10.5281/zenodo.22739745](https://doi.org/10.5281/zenodo.22739745)
 
 See [`CITATION.cff`](CITATION.cff) for machine-readable metadata.
