@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata from this file."
+title: "Yang–Mills Mass Gap — Interactive Research Console"
+type: software
+version: 5.0.0
+date-released: 2026-09-14
+authors:
+  - name: "KayraMergen"
+repository-code: "https://github.com/KayraMergen/yang-mills-mass-gap-interactive"
+url: "https://kayramergen.github.io/yang-mills-mass-gap-interactive/"
+license: MIT
+keywords:
+  - Yang-Mills
+  - mass gap
+  - mathematical physics
+  - proof architecture
+  - scientific audit

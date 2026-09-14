@@ -1,0 +1,9 @@
+{
+  "name": "Yang–Mills Mass Gap — Interactive Research Console",
+  "short_name": "YM Research Console",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#081018",
+  "theme_color": "#091018",
+  "description": "Interactive proof-architecture and audit console for a hypothetical Yang–Mills mass-gap research program."
+}

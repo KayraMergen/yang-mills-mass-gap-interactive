@@ -1,23 +1,58 @@
-# Yang–Mills Kütle Aralığı — Etkileşimli Web Uygulaması
+# Yang–Mills Mass Gap — Interactive Research Console
 
-Bu klasör tek dosyalık, bağımsız bir web uygulaması içerir.
+**Current release: v5.0.0**
 
-## Dosya
-- `index.html` — bütün HTML, CSS ve JavaScript tek dosyadadır.
+Public site: https://kayramergen.github.io/yang-mills-mass-gap-interactive/
 
-## Yerelde açma
-`index.html` dosyasına çift tıklaman yeterli. İnternet bağlantısı gerekmez.
+This repository hosts an interactive research/audit console for a **hypothetical**
+gauge-reduced spectral-coercivity program related to the Yang–Mills mass-gap
+problem.
 
-## GitHub Pages ile herkese açık yayınlama
-1. GitHub'da yeni bir repository oluştur.
-2. `index.html` dosyasını repository'nin kök dizinine yükle.
-3. Repository içinde **Settings → Pages** bölümünü aç.
-4. Yayın kaynağı olarak ana branch'in kök dizinini seç.
-5. GitHub sana herkese açık bir `https://...github.io/.../` adresi verecektir.
+> **Scientific status:** the Yang–Mills existence and mass-gap problem remains open.
+> This project does **not** claim a proof.
 
-## Netlify / Vercel
-`index.html` dosyasını içeren klasörü statik site olarak yükleyebilirsin. Build adımı gerekmez.
+## v5 publication layer
 
-## Bilimsel statü
-Bu uygulama Yang–Mills Milenyum Probleminin çözülmüş olduğunu iddia etmez.
-Sunumdaki “Temsil-Yansıtıcı Koersivite Lemması” ve continuum'a uniform taşıma zinciri varsayımsal araştırma hedefleridir.
+- source-linked citation/provenance system
+- `CITATION.cff` and BibTeX export
+- explicit epistemic levels: E0 / E1 / H1 / T0
+- methodology and scientific-review documentation
+- structured GitHub issue forms for mathematical objections and software bugs
+- semantic versioning and release notes
+- code/content licensing split
+- automated repository quality checks
+- `robots.txt`, `sitemap.xml`, web manifest, custom 404, `.nojekyll`
+- custom-domain deployment guide
+
+## Core research-console modules
+
+1. Overview
+2. Proof Dependency Graph
+3. Assumption Lab
+4. Spectrum Lab
+5. RG Transfer Console
+6. Proof Debt / Quality Gates
+7. Falsification Tests
+8. Source & Provenance Map
+9. Methodology
+10. Scientific Review
+
+## Local use
+
+Open `index.html` directly in a browser. No build step is required.
+
+## Scientific provenance
+
+See:
+- [`REFERENCES.md`](REFERENCES.md)
+- [`METHODOLOGY.md`](METHODOLOGY.md)
+- [`SCIENTIFIC_REVIEW.md`](SCIENTIFIC_REVIEW.md)
+
+## Contributing
+
+See [`CONTRIBUTING.md`](CONTRIBUTING.md).
+
+## License
+
+Software source code is released under the MIT License. Research exposition/content
+is treated separately; see [`CONTENT-LICENSE.md`](CONTENT-LICENSE.md).

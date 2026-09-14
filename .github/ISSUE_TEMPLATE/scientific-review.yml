@@ -1,0 +1,56 @@
+name: Scientific review
+description: Challenge a mathematical claim, inference, definition, source mapping, or epistemic label.
+title: "[Scientific review]: "
+labels:
+  - scientific-review
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for auditing the research program. Please make the objection independently checkable.
+  - type: input
+    id: target
+    attributes:
+      label: Target
+      description: Node, lemma, equation, definition, slide/source mapping, or exact UI claim.
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Review category
+      options:
+        - Mathematical error
+        - Missing hypothesis
+        - Source / provenance error
+        - Epistemic overclaim
+        - Terminology / definition issue
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: objection
+    attributes:
+      label: Objection
+      description: State the issue precisely.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence or derivation
+      description: Primary source, calculation, counterexample, or derivation.
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Downstream proof-chain impact
+      description: Which nodes or conclusions become unavailable?
+    validations:
+      required: true
+  - type: textarea
+    id: resolution
+    attributes:
+      label: Proposed resolution
+      description: Correction, extra hypothesis, status downgrade, new proof debt, or removal.

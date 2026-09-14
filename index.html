@@ -5,12 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Yang–Mills kütle aralığı için gauge-indirgenmiş spektral koersivite programının profesyonel etkileşimli araştırma konsolu." />
   <meta name="application-name" content="Yang–Mills Research Console" />
+  <meta name="version" content="5.0.0" />
+  <meta name="author" content="KayraMergen" />
+  <link rel="canonical" href="https://kayramergen.github.io/yang-mills-mass-gap-interactive/" />
   <meta name="theme-color" content="#091018" />
   <meta property="og:title" content="Yang–Mills Mass Gap — Interactive Research Console" />
   <meta property="og:description" content="Proof graph, assumption lab, RG transfer analysis, falsification tests and source map for a hypothetical Yang–Mills mass-gap research program." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kayramergen.github.io/yang-mills-mass-gap-interactive/" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23091018'/%3E%3Cpath d='M14 17h9l9 14 9-14h9L37 40v9H27v-9z' fill='%2399c7ff'/%3E%3C/svg%3E" />
   <title>Yang–Mills Mass Gap — Interactive Research Console</title>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Yang–Mills Mass Gap — Interactive Research Console",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Web",
+    "softwareVersion": "5.0.0",
+    "url": "https://kayramergen.github.io/yang-mills-mass-gap-interactive/",
+    "codeRepository": "https://github.com/KayraMergen/yang-mills-mass-gap-interactive",
+    "description": "An interactive proof-architecture and audit console for a hypothetical gauge-reduced spectral-coercivity program for the Yang–Mills mass gap.",
+    "citation": [
+      "https://www.claymath.org/millennium/yang-mills-the-maths-gap/",
+      "https://www.claymath.org/library/monographs/MPPc.pdf",
+      "https://doi.org/10.1007/BF01645738",
+      "https://doi.org/10.1007/BF01608978"
+    ]
+  }
+  </script>
   <style>
     :root{
       --bg:#081018;
@@ -229,6 +253,24 @@
     details[open] summary{border-bottom:1px solid var(--line)}
     .details-body{padding:13px;color:#ccd7e3;font-size:.87rem}
 
+    .citation-panel{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;border:1px solid rgba(153,199,255,.42);background:var(--accentSoft);border-radius:14px;padding:14px;margin-bottom:14px}
+    .citation-panel .cite-text{font-family:var(--mono);font-size:.8rem;color:#dceaff;overflow-wrap:anywhere}
+    .cite-actions{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+    .ref-link{display:inline-flex;align-items:center;gap:6px;margin-top:9px;color:var(--accent2);font-size:.79rem;font-weight:720}
+    .ref-link:hover{text-decoration:underline}
+    .citation-badge{font-family:var(--mono);display:inline-flex;border:1px solid rgba(153,199,255,.45);border-radius:7px;padding:2px 6px;color:var(--accent2);font-size:.7rem;margin-right:5px}
+    .method-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .method-card{border:1px solid var(--line);background:var(--panel3);border-radius:13px;padding:14px}
+    .method-card .level{font-family:var(--mono);font-size:.72rem;color:var(--accent2)}
+    .method-card h3{margin-top:4px}
+    .method-card p{margin-top:6px;color:var(--muted);font-size:.84rem}
+    .review-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .review-box{border:1px solid var(--line);background:var(--panel3);border-radius:14px;padding:15px}
+    .review-box h3{margin-bottom:6px}
+    .review-box p{color:var(--muted);font-size:.84rem}
+    .review-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .release-strip{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:10px 12px;border:1px solid var(--line);border-radius:11px;background:var(--panel3);margin-bottom:14px}
+    .release-strip .version{font-family:var(--mono);color:var(--accent2);font-weight:800}
     .source-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
     .source-card{border:1px solid var(--line);border-radius:12px;background:var(--panel3);padding:13px}
     .source-card .slide{font-family:var(--mono);font-size:.74rem;color:var(--accent2)}
@@ -256,7 +298,7 @@
       .hero-grid,.proof-grid,.lab-layout{grid-template-columns:1fr}
       .brief-cards{grid-template-columns:repeat(2,1fr)}
     }
-    @media (max-width:760px){
+    @media (max-width:760px){.citation-panel,.method-grid,.review-grid{grid-template-columns:1fr}.cite-actions{justify-content:flex-start}
       .topbar{align-items:flex-start}
       .brandcopy{display:none}
       .workspace{width:min(100% - 14px,1440px)}
@@ -300,6 +342,7 @@
       <button class="btn ghost" id="langBtn" type="button">EN</button>
       <button class="btn ghost optional-mobile" id="mathBtn" type="button"><span data-lang="tr">Matematik: açık</span><span data-lang="en">Math: on</span></button>
       <button class="btn ghost optional-mobile" id="presentationBtn" type="button"><span data-lang="tr">Sunum</span><span data-lang="en">Present</span></button>
+      <a class="btn ghost optional-mobile" href="https://github.com/KayraMergen/yang-mills-mass-gap-interactive" target="_blank" rel="noopener">GitHub</a>
       <button class="btn primary" id="shareBtn" type="button"><span data-lang="tr">Paylaş</span><span data-lang="en">Share</span></button>
     </div>
   </header>
@@ -316,6 +359,8 @@
         <button class="navbtn" data-view="audit" type="button"><span class="nav-kicker">06</span><span class="nav-name"><span data-lang="tr">İspat Borçları</span><span data-lang="en">Proof Debts</span></span></button>
         <button class="navbtn" data-view="falsify" type="button"><span class="nav-kicker">07</span><span class="nav-name"><span data-lang="tr">Çürütme Testleri</span><span data-lang="en">Falsification</span></span></button>
         <button class="navbtn" data-view="sources" type="button"><span class="nav-kicker">08</span><span class="nav-name"><span data-lang="tr">Kaynak Haritası</span><span data-lang="en">Source Map</span></span></button>
+        <button class="navbtn" data-view="methodology" type="button"><span class="nav-kicker">09</span><span class="nav-name"><span data-lang="tr">Metodoloji</span><span data-lang="en">Methodology</span></span></button>
+        <button class="navbtn" data-view="review" type="button"><span class="nav-kicker">10</span><span class="nav-name"><span data-lang="tr">Bilimsel İnceleme</span><span data-lang="en">Scientific Review</span></span></button>
       </nav>
       <div class="side-status">
         <strong data-lang="tr">Bilimsel statü</strong><strong data-lang="en">Scientific status</strong>
@@ -359,7 +404,7 @@
           <div class="brief-card"><div class="num">04</div><strong>Continuum + OS</strong><p data-lang="tr">Gap ve aksiyomlar birlikte limite taşınmalı.</p><p data-lang="en">The gap and axioms must survive the limit together.</p></div>
         </div>
 
-        <div class="footer"><span>v4 • Interactive Research Console</span><span><span class="kbd">←</span> <span class="kbd">→</span> <span data-lang="tr">bölüm değiştirir</span><span data-lang="en">switch sections</span></span></div>
+        <div class="footer"><span>v5.0.0 • Publication & Scientific Audit Layer</span><span><span class="kbd">←</span> <span class="kbd">→</span> <span data-lang="tr">bölüm değiştirir</span><span data-lang="en">switch sections</span></span></div>
       </section>
 
       <section class="view" id="view-graph">
@@ -556,16 +601,110 @@
       </section>
 
       <section class="view" id="view-sources">
-        <div class="section-title"><div><h2 data-lang="tr">Kaynak ve provenans haritası</h2><h2 data-lang="en">Source and provenance map</h2><p data-lang="tr">Her ana iddianın kaynak sunumdaki yerini ve epistemik statüsünü ayrı tut.</p><p data-lang="en">Keep each major claim tied to its source location and epistemic status.</p></div></div>
+        <div class="section-title"><div><h2 data-lang="tr">Kaynak, atıf ve provenans haritası</h2><h2 data-lang="en">References, citation and provenance</h2><p data-lang="tr">Resmî problem tanımı, kullanılan klasik yeniden-kurma çerçevesi ve uygulamadaki varsayımsal katman birbirinden ayrılır.</p><p data-lang="en">The official problem statement, classical reconstruction framework, and hypothetical layer of the app are kept distinct.</p></div></div>
+
+        <div class="citation-panel">
+          <div>
+            <strong data-lang="tr">Bu yazılımı atıfla kullan</strong><strong data-lang="en">Cite this software</strong>
+            <div class="cite-text" id="projectCitation">KayraMergen (2026). Yang–Mills Mass Gap — Interactive Research Console, v5.0.0. https://github.com/KayraMergen/yang-mills-mass-gap-interactive</div>
+          </div>
+          <div class="cite-actions">
+            <button class="btn" id="copyCitationBtn" type="button"><span data-lang="tr">Atıfı kopyala</span><span data-lang="en">Copy citation</span></button>
+            <button class="btn" id="downloadBibBtn" type="button">BibTeX</button>
+            <a class="btn" href="https://github.com/KayraMergen/yang-mills-mass-gap-interactive/blob/main/CITATION.cff" target="_blank" rel="noopener">CITATION.cff</a>
+          </div>
+        </div>
+
         <div class="source-grid">
-          <div class="source-card"><div class="slide">SLIDE 2</div><strong data-lang="tr">Hedef teorem</strong><strong data-lang="en">Target theorem</strong><p>Spec(H) ∩ (0, Δ) = ∅, Δ &gt; 0</p><span class="status-chip target" data-lang="tr">Resmî hedef</span><span class="status-chip target" data-lang="en">Official target</span></div>
-          <div class="source-card"><div class="slide">SLIDE 4</div><strong data-lang="tr">Norm yakınlığı ≠ gap</strong><strong data-lang="en">Norm closeness ≠ gap</strong><p data-lang="tr">Vakum-ortogonal spektral destek vurgusu.</p><p data-lang="en">Vacuum-orthogonal spectral support.</p><span class="status-chip est" data-lang="tr">Kavramsal düzeltme</span><span class="status-chip est" data-lang="en">Conceptual correction</span></div>
-          <div class="source-card"><div class="slide">SLIDE 5</div><strong data-lang="tr">Çekirdek koersivite hedefi</strong><strong data-lang="en">Core coercivity target</strong><p class="mono">P⊥HP⊥ ≥ CGΛYM P⊥</p><span class="status-chip hyp" data-lang="tr">Varsayımsal</span><span class="status-chip hyp" data-lang="en">Hypothetical</span></div>
-          <div class="source-card"><div class="slide">SLIDE 6</div><strong>Λ<sub>YM</sub> ≠ gap</strong><p data-lang="tr">Boyut dönüşümünden spektral alt sınıra eksik köprü.</p><p data-lang="en">Missing bridge from dimensional transmutation to spectral lower bound.</p><span class="status-chip target" data-lang="tr">Açık ispat borcu</span><span class="status-chip target" data-lang="en">Open proof debt</span></div>
-          <div class="source-card"><div class="slide">SLIDE 9</div><strong>RG reflection-back</strong><p class="mono">Ef(ψ) ≥ Z Ec(Rψ) − εR ||ψ||²</p><span class="status-chip hyp" data-lang="tr">Merkez varsayımsal lemma</span><span class="status-chip hyp" data-lang="en">Central hypothetical lemma</span></div>
-          <div class="source-card"><div class="slide">SLIDE 10–11</div><strong data-lang="tr">Uniform limit + OS</strong><strong data-lang="en">Uniform limit + OS</strong><p data-lang="tr">a→0, L→∞ ve yeniden-kurma.</p><p data-lang="en">a→0, L→∞ and reconstruction.</p><span class="status-chip target" data-lang="tr">Gerekli taşıma</span><span class="status-chip target" data-lang="en">Required transfer</span></div>
-          <div class="source-card"><div class="slide">SLIDE 12</div><strong data-lang="tr">Altı halkalı ispat zinciri</strong><strong data-lang="en">Six-link proof chain</strong><p data-lang="tr">Programın tek zincirde toplanmış hâli.</p><p data-lang="en">The program assembled into a single chain.</p><span class="status-chip target" data-lang="tr">Mimari</span><span class="status-chip target" data-lang="en">Architecture</span></div>
-          <div class="source-card"><div class="slide">SLIDE 13–15</div><strong data-lang="tr">Çürütme + statü</strong><strong data-lang="en">Falsification + status</strong><p data-lang="tr">Başarısızlık ölçütleri ve açık-problem uyarısı.</p><p data-lang="en">Failure criteria and open-problem warning.</p><span class="status-chip est" data-lang="tr">Metodolojik çerçeve</span><span class="status-chip est" data-lang="en">Methodological frame</span></div>
+          <div class="source-card">
+            <div class="slide"><span class="citation-badge">R1</span>OFFICIAL PROBLEM</div>
+            <strong>Clay Mathematics Institute — Yang–Mills &amp; the Mass Gap</strong>
+            <p data-lang="tr">Problemin güncel resmî sayfası ve açık-problem statüsü.</p><p data-lang="en">Current official problem page and open-problem status.</p>
+            <span class="status-chip target" data-lang="tr">Birincil kaynak</span><span class="status-chip target" data-lang="en">Primary source</span><br>
+            <a class="ref-link" href="https://www.claymath.org/millennium/yang-mills-the-maths-gap/" target="_blank" rel="noopener">Open official Clay page ↗</a>
+          </div>
+          <div class="source-card">
+            <div class="slide"><span class="citation-badge">R2</span>OFFICIAL DESCRIPTION</div>
+            <strong>Arthur Jaffe &amp; Edward Witten — “Quantum Yang–Mills Theory”</strong>
+            <p data-lang="tr">Milenyum Probleminin resmî teknik problem tanımı.</p><p data-lang="en">Official technical statement of the Millennium Problem.</p>
+            <span class="status-chip target" data-lang="tr">Birincil kaynak</span><span class="status-chip target" data-lang="en">Primary source</span><br>
+            <a class="ref-link" href="https://www.claymath.org/library/monographs/MPPc.pdf" target="_blank" rel="noopener">Open official PDF ↗</a>
+          </div>
+          <div class="source-card">
+            <div class="slide"><span class="citation-badge">R3</span>DOI: 10.1007/BF01645738</div>
+            <strong>K. Osterwalder &amp; R. Schrader (1973)</strong>
+            <p>“Axioms for Euclidean Green's functions.” Commun. Math. Phys. 31, 83–112.</p>
+            <span class="status-chip est" data-lang="tr">Klasik yeniden-kurma çerçevesi</span><span class="status-chip est" data-lang="en">Classical reconstruction framework</span><br>
+            <a class="ref-link" href="https://doi.org/10.1007/BF01645738" target="_blank" rel="noopener">Open DOI ↗</a>
+          </div>
+          <div class="source-card">
+            <div class="slide"><span class="citation-badge">R4</span>DOI: 10.1007/BF01608978</div>
+            <strong>K. Osterwalder &amp; R. Schrader (1975)</strong>
+            <p>“Axioms for Euclidean Green's functions II.” Commun. Math. Phys. 42, 281–305.</p>
+            <span class="status-chip est" data-lang="tr">Klasik yeniden-kurma çerçevesi</span><span class="status-chip est" data-lang="en">Classical reconstruction framework</span><br>
+            <a class="ref-link" href="https://doi.org/10.1007/BF01608978" target="_blank" rel="noopener">Open DOI ↗</a>
+          </div>
+          <div class="source-card">
+            <div class="slide">SOURCE PRESENTATION • SLIDES 5, 9, 10–12</div>
+            <strong data-lang="tr">Gauge-indirgenmiş koersivite / RG geri-yansıtımı</strong><strong data-lang="en">Gauge-reduced coercivity / RG reflection-back</strong>
+            <p data-lang="tr">Uygulamanın yeni teknik köprüleri kaynak sunumdan gelir; dış kaynaklarda kanıtlanmış teorem olarak sunulmaz.</p><p data-lang="en">The app's new technical bridges come from the source presentation and are not presented as externally proved theorems.</p>
+            <span class="status-chip hyp" data-lang="tr">Varsayımsal araştırma hedefi</span><span class="status-chip hyp" data-lang="en">Hypothetical research target</span>
+          </div>
+          <div class="source-card">
+            <div class="slide">SOFTWARE • v5.0.0</div>
+            <strong>Interactive Research Console</strong>
+            <p data-lang="tr">Simülatördeki sayıların tamamı düşünme/denetim amacıyla normalize edilmiş oyuncak parametrelerdir.</p><p data-lang="en">All simulator numbers are normalized toy parameters for reasoning and audit, not physical predictions.</p>
+            <span class="status-chip hyp" data-lang="tr">Araç katmanı</span><span class="status-chip hyp" data-lang="en">Tooling layer</span><br>
+            <a class="ref-link" href="https://github.com/KayraMergen/yang-mills-mass-gap-interactive" target="_blank" rel="noopener">Open repository ↗</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="view-methodology">
+        <div class="section-title"><div><h2 data-lang="tr">Metodoloji ve epistemik etiketleme</h2><h2 data-lang="en">Methodology and epistemic labeling</h2><p data-lang="tr">Uygulama, resmî problem ifadesi ile varsayımsal araştırma köprülerini aynı epistemik düzeyde göstermemek üzere tasarlanmıştır.</p><p data-lang="en">The app is designed not to place the official problem statement and hypothetical research bridges at the same epistemic level.</p></div></div>
+
+        <div class="release-strip">
+          <div><span class="version">v5.0.0</span> <span class="muted small">• publication/audit layer</span></div>
+          <div><a class="ref-link" href="https://github.com/KayraMergen/yang-mills-mass-gap-interactive/blob/main/METHODOLOGY.md" target="_blank" rel="noopener">Full methodology document ↗</a></div>
+        </div>
+
+        <div class="method-grid">
+          <div class="method-card"><div class="level">LEVEL E0</div><h3 data-lang="tr">Resmî hedef</h3><h3 data-lang="en">Official target</h3><p data-lang="tr">Clay/Jaffe–Witten problem ifadesi gibi doğrudan birincil kaynağa bağlanan içerik.</p><p data-lang="en">Content tied directly to primary sources such as the Clay/Jaffe–Witten problem statement.</p><span class="status-chip target">Official / required</span></div>
+          <div class="method-card"><div class="level">LEVEL E1</div><h3 data-lang="tr">Yerleşik matematiksel çerçeve</h3><h3 data-lang="en">Established mathematical framework</h3><p data-lang="tr">Asimptotik özgürlük, spektral dil ve Osterwalder–Schrader yeniden-kurma gibi arka plan yapıları.</p><p data-lang="en">Background structures such as asymptotic freedom, spectral language, and Osterwalder–Schrader reconstruction.</p><span class="status-chip est">Established framework</span></div>
+          <div class="method-card"><div class="level">LEVEL H1</div><h3 data-lang="tr">Varsayımsal araştırma hedefi</h3><h3 data-lang="en">Hypothetical research target</h3><p data-lang="tr">Temsil-Yansıtıcı Koersivite Lemması ve uniform continuum taşıması gibi henüz kanıtlanmamış köprüler.</p><p data-lang="en">Unproved bridges such as the Representation-Reflective Coercivity Lemma and uniform continuum transfer.</p><span class="status-chip hyp">Hypothetical</span></div>
+          <div class="method-card"><div class="level">LEVEL T0</div><h3 data-lang="tr">Oyuncak etkileşim</h3><h3 data-lang="en">Toy interaction</h3><p data-lang="tr">C_G, Λ_YM, r(a,L), Z ve ε_R slider'ları fiziksel tahmin değildir; mantık bağımlılıklarını görünür kılar.</p><p data-lang="en">C_G, Λ_YM, r(a,L), Z and ε_R sliders are not physical estimates; they expose logical dependencies.</p><span class="status-chip hyp">Visualization only</span></div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px">
+          <details open><summary data-lang="tr">Bir iddia siteye nasıl eklenir?</summary><summary data-lang="en">How is a claim admitted?</summary><div class="details-body" data-lang="tr">İddia önce E0/E1/H1/T0 sınıfına atanır; kaynak gerektiriyorsa birincil bağlantı eklenir; simülasyon çıktısı ise fiziksel sonuç olarak etiketlenemez.</div><div class="details-body" data-lang="en">A claim is first assigned E0/E1/H1/T0; primary evidence is attached where required; simulator output cannot be labeled as a physical result.</div></details>
+          <details><summary data-lang="tr">Ne “çözüm” sayılmaz?</summary><summary data-lang="en">What does not count as a solution?</summary><div class="details-body" data-lang="tr">Sadece finite-lattice gap, yalnızca Λ_YM ölçeği, clustering veya bir global gauge seçimine bağlı gap tek başına Clay hedefini kapatmaz.</div><div class="details-body" data-lang="en">A finite-lattice gap alone, Λ_YM alone, clustering alone, or a gap depending on global gauge fixing does not close the Clay target.</div></details>
+        </div>
+      </section>
+
+      <section class="view" id="view-review">
+        <div class="section-title"><div><h2 data-lang="tr">Bilimsel inceleme ve hata bildirimi</h2><h2 data-lang="en">Scientific review and issue reporting</h2><p data-lang="tr">Programı güçlendirmenin yolu yalnızca yeni fikir eklemek değil; yanlış köprüleri, kaynak hatalarını ve ispat borçlarını dışarıdan denetlenebilir kılmaktır.</p><p data-lang="en">Strengthening the program means not only adding ideas but making bad bridges, source errors, and proof debts externally auditable.</p></div></div>
+
+        <div class="review-grid">
+          <div class="review-box">
+            <h3 data-lang="tr">Matematiksel / bilimsel itiraz gönder</h3><h3 data-lang="en">Submit a mathematical / scientific objection</h3>
+            <p data-lang="tr">Bir lemma, çıkarım, tanım veya kaynak eşlemesi konusunda sorun görüyorsan yapılandırılmış bilimsel inceleme formunu aç.</p><p data-lang="en">If you identify a problem in a lemma, inference, definition, or source mapping, open the structured scientific-review form.</p>
+            <div class="review-actions"><a class="btn primary" href="https://github.com/KayraMergen/yang-mills-mass-gap-interactive/issues/new?template=scientific-review.yml" target="_blank" rel="noopener"><span data-lang="tr">Bilimsel inceleme aç ↗</span><span data-lang="en">Open scientific review ↗</span></a></div>
+          </div>
+          <div class="review-box">
+            <h3 data-lang="tr">Yazılım hatası bildir</h3><h3 data-lang="en">Report a software bug</h3>
+            <p data-lang="tr">Kırık buton, yanlış URL durumu, mobil görünüm veya tarayıcı problemi için ayrı bug formu kullan.</p><p data-lang="en">Use the separate bug form for broken controls, URL-state errors, mobile layout, or browser issues.</p>
+            <div class="review-actions"><a class="btn" href="https://github.com/KayraMergen/yang-mills-mass-gap-interactive/issues/new?template=bug-report.yml" target="_blank" rel="noopener"><span data-lang="tr">Bug bildir ↗</span><span data-lang="en">Report bug ↗</span></a></div>
+          </div>
+          <div class="review-box">
+            <h3 data-lang="tr">Katkı protokolü</h3><h3 data-lang="en">Contribution protocol</h3>
+            <p data-lang="tr">Yeni bilimsel içerik, mevcut epistemik sınıflandırmayı ve kaynak/provenans kurallarını korumalıdır.</p><p data-lang="en">New scientific content should preserve the epistemic classification and provenance rules.</p>
+            <div class="review-actions"><a class="btn" href="https://github.com/KayraMergen/yang-mills-mass-gap-interactive/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">CONTRIBUTING.md ↗</a></div>
+          </div>
+          <div class="review-box">
+            <h3 data-lang="tr">Sürüm ve değişiklik geçmişi</h3><h3 data-lang="en">Version and change history</h3>
+            <p data-lang="tr">Yayınlanmış sürümlerin hangi bilimsel veya yazılımsal değişiklikleri içerdiğini changelog üzerinden izle.</p><p data-lang="en">Track scientific and software changes across released versions through the changelog.</p>
+            <div class="review-actions"><a class="btn" href="https://github.com/KayraMergen/yang-mills-mass-gap-interactive/blob/main/CHANGELOG.md" target="_blank" rel="noopener">CHANGELOG.md ↗</a><a class="btn" href="https://github.com/KayraMergen/yang-mills-mass-gap-interactive/releases" target="_blank" rel="noopener">Releases ↗</a></div>
+          </div>
         </div>
       </section>
     </main>
@@ -615,6 +754,9 @@
     currentView=(idx+views.length)%views.length;
     nav.forEach((b,i)=>b.classList.toggle('active',i===currentView));
     views.forEach((v,i)=>v.classList.toggle('active',i===currentView));
+    const q=new URLSearchParams(location.search);
+    q.set('view',nav[currentView].dataset.view);
+    history.replaceState(null,'',location.pathname+'?'+q.toString());
     if(scroll) window.scrollTo({top:0,behavior:'smooth'});
   }
   nav.forEach((b,i)=>b.addEventListener('click',()=>switchView(i)));
@@ -635,6 +777,19 @@
     body.classList.toggle('presentation');
     document.getElementById('presentationBtn').textContent=body.classList.contains('presentation')?L().exitPresent:L().present;
   });
+  const PROJECT_CITATION='KayraMergen (2026). Yang–Mills Mass Gap — Interactive Research Console, v5.0.0. https://github.com/KayraMergen/yang-mills-mass-gap-interactive';
+  const PROJECT_BIBTEX=`@software{kayramergen_yang_mills_console_2026,
+  author  = {KayraMergen},
+  title   = {Yang--Mills Mass Gap --- Interactive Research Console},
+  year    = {2026},
+  version = {5.0.0},
+  url     = {https://github.com/KayraMergen/yang-mills-mass-gap-interactive}
+}`;
+  async function copyText(value){
+    try{await navigator.clipboard.writeText(value);showToast(L().copied);}
+    catch{showToast(L().copyFail);}
+  }
+
   document.getElementById('shareBtn').addEventListener('click',async()=>{
     const data={title:document.title,text:'Yang–Mills Mass Gap — Interactive Research Console',url:location.href};
     try{
@@ -769,7 +924,7 @@
 
   function updateURLState(s){
     const q=new URLSearchParams(location.search);
-    q.set('v','4');q.set('a',ids.map(id=>document.getElementById(id).checked?'1':'0').join(''));
+    q.set('v','5');q.set('a',ids.map(id=>document.getElementById(id).checked?'1':'0').join(''));
     q.set('cg',s.g.toFixed(2));q.set('lym',s.l.toFixed(2));q.set('r',s.r.toFixed(2));
     history.replaceState(null,'',location.pathname+'?'+q.toString());
   }
@@ -825,6 +980,14 @@
     const d=langObj(falsify[currentF]);document.getElementById('fTitle').textContent=d.t;document.getElementById('fBody').textContent=d.b;document.getElementById('fConsequence').textContent=d.c;
   }
 
+  const copyCitationBtn=document.getElementById('copyCitationBtn');
+  if(copyCitationBtn) copyCitationBtn.addEventListener('click',()=>copyText(PROJECT_CITATION));
+  const downloadBibBtn=document.getElementById('downloadBibBtn');
+  if(downloadBibBtn) downloadBibBtn.addEventListener('click',()=>{
+    const blob=new Blob([PROJECT_BIBTEX],{type:'application/x-bibtex;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');
+    a.href=url;a.download='yang_mills_research_console_v5.bib';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  });
+
   document.getElementById('exportBtn').addEventListener('click',()=>{
     const s=labState(),lang=isEn()?'EN':'TR';
     const report=[
@@ -858,6 +1021,9 @@
   });
 
   loadURLState();buildRG();renderNode();renderLab();renderSpectrum();renderRG();renderFalsify();
+  const initialView=new URLSearchParams(location.search).get('view');
+  const initialIndex=nav.findIndex(x=>x.dataset.view===initialView);
+  if(initialIndex>=0) switchView(initialIndex,false);
 })();
 </script>
 </body>
