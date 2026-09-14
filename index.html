@@ -3,636 +3,572 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Yang–Mills kütle aralığı için gauge-indirgenmiş spektral koersivite programının etkileşimli anlatımı." />
-  <meta property="og:title" content="Yang–Mills Kütle Aralığı — Etkileşimli İspat Programı" />
-  <meta property="og:description" content="Gauge invariance, RG, spektral gap ve varsayımsal geri-yansıtım lemması üzerine etkileşimli bilimsel anlatı." />
+  <meta name="description" content="Yang–Mills kütle aralığı için gauge-indirgenmiş spektral koersivite programının profesyonel etkileşimli araştırma konsolu." />
+  <meta name="application-name" content="Yang–Mills Research Console" />
+  <meta name="theme-color" content="#091018" />
+  <meta property="og:title" content="Yang–Mills Mass Gap — Interactive Research Console" />
+  <meta property="og:description" content="Proof graph, assumption lab, RG transfer analysis, falsification tests and source map for a hypothetical Yang–Mills mass-gap research program." />
   <meta property="og:type" content="website" />
-  <meta name="theme-color" content="#0a0d12" />
-  <meta name="application-name" content="Yang–Mills Proof Logic v3" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2311161f'/%3E%3Cpath d='M13 18h10l9 14 9-14h10L37 40v10H27V40z' fill='%2386b7ff'/%3E%3C/svg%3E" />
-  <title>Yang–Mills Kütle Aralığı — Etkileşimli İspat Programı</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23091018'/%3E%3Cpath d='M14 17h9l9 14 9-14h9L37 40v9H27v-9z' fill='%2399c7ff'/%3E%3C/svg%3E" />
+  <title>Yang–Mills Mass Gap — Interactive Research Console</title>
   <style>
     :root{
-      --bg:#080b10; --panel:#10151d; --panel2:#151c26; --panel3:#0b1017; --text:#edf2f8; --muted:#9aa8ba;
-      --line:#2a3544; --line2:#3a495d; --accent:#86b7ff; --accentSoft:rgba(134,183,255,.13);
-      --green:#69d391; --amber:#f3bf67; --red:#ff7f86; --violet:#b8a0ff; --cyan:#6ed7e7;
-      --shadow:0 16px 42px rgba(0,0,0,.25); --radius:18px;
+      --bg:#081018;
+      --bg2:#0b141f;
+      --panel:#101b27;
+      --panel2:#132130;
+      --panel3:#0d1722;
+      --text:#edf4fb;
+      --muted:#97a8bc;
+      --line:#263648;
+      --line2:#3a4f67;
+      --accent:#99c7ff;
+      --accent2:#c4ddff;
+      --accentSoft:rgba(153,199,255,.10);
+      --green:#72d49b;
+      --greenSoft:rgba(114,212,155,.09);
+      --amber:#f1bd68;
+      --amberSoft:rgba(241,189,104,.08);
+      --red:#ff858b;
+      --redSoft:rgba(255,133,139,.08);
+      --violet:#bba7ff;
+      --cyan:#78d7e8;
+      --shadow:0 18px 55px rgba(0,0,0,.26);
+      --radius:16px;
       --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
       --sans:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
-      margin:0;color:var(--text);font-family:var(--sans);line-height:1.55;
+      margin:0;
+      color:var(--text);
+      font-family:var(--sans);
+      line-height:1.55;
       background:
-        radial-gradient(circle at 16% -10%,rgba(134,183,255,.13),transparent 34rem),
-        radial-gradient(circle at 86% 6%,rgba(184,160,255,.08),transparent 28rem),
+        radial-gradient(circle at 14% -10%,rgba(153,199,255,.12),transparent 34rem),
+        radial-gradient(circle at 90% 0%,rgba(187,167,255,.075),transparent 30rem),
         var(--bg);
     }
-    button,input{font:inherit}
+    button,input,select,textarea{font:inherit}
     button{cursor:pointer}
-    a{color:inherit}
-    .wrap{width:min(1200px,calc(100% - 28px));margin:auto}
-    header{
-      position:sticky;top:0;z-index:40;background:rgba(8,11,16,.88);backdrop-filter:blur(16px);
+    a{color:inherit;text-decoration:none}
+    code,.mono{font-family:var(--mono)}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .app-shell{min-height:100vh}
+    .topbar{
+      position:sticky;top:0;z-index:50;
+      display:flex;align-items:center;justify-content:space-between;gap:16px;
+      min-height:68px;padding:10px 18px;
+      background:rgba(8,16,24,.9);backdrop-filter:blur(18px);
       border-bottom:1px solid rgba(255,255,255,.06)
     }
-    .nav{display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:68px}
-    .brand{display:flex;align-items:center;gap:10px;min-width:0}
-    .brand-mark{width:34px;height:34px;border-radius:11px;border:1px solid var(--line);display:grid;place-items:center;background:var(--panel);font-weight:800;font-size:.82rem}
-    .brand-text{font-weight:780;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .nav-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
-    .btn,.tab,.mini-btn{
-      border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:12px;min-height:42px;padding:8px 12px;
-      transition:border-color .15s ease,background .15s ease,transform .15s ease;
+    .brand{display:flex;align-items:center;gap:11px;min-width:0}
+    .brandmark{width:36px;height:36px;display:grid;place-items:center;border-radius:10px;border:1px solid var(--line);background:var(--panel3);font-weight:850;font-size:.78rem;letter-spacing:.04em}
+    .brandcopy{min-width:0}
+    .brandtitle{font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .brandsub{color:var(--muted);font-size:.77rem;margin-top:1px}
+    .top-actions{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+    .btn,.navbtn,.segbtn{
+      border:1px solid var(--line);background:var(--panel);color:var(--text);
+      border-radius:10px;min-height:40px;padding:8px 11px;
+      transition:border-color .15s ease,background .15s ease,transform .15s ease
     }
-    .btn:hover,.tab:hover,.mini-btn:hover{border-color:var(--line2)}
-    .btn.primary,.tab.active,.mini-btn.active{background:var(--accentSoft);border-color:rgba(134,183,255,.58)}
+    .btn:hover,.navbtn:hover,.segbtn:hover{border-color:var(--line2)}
+    .btn.primary,.navbtn.active,.segbtn.active{background:var(--accentSoft);border-color:rgba(153,199,255,.56)}
     .btn.ghost{background:transparent}
-    .btn:focus-visible,.tab:focus-visible,.mini-btn:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid rgba(134,183,255,.32);outline-offset:2px}
-    main{padding:40px 0 84px}
-    .hero{display:grid;grid-template-columns:1.25fr .75fr;gap:20px;align-items:stretch}
-    .card{background:linear-gradient(180deg,rgba(255,255,255,.025),transparent),var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
-    .hero-card{padding:34px}
-    .eyebrow{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
-    .pill{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:999px;padding:5px 10px;color:var(--muted);font-size:.8rem;background:rgba(255,255,255,.02)}
-    .dot{width:9px;height:9px;border-radius:50%;background:var(--amber)}
-    h1{font-size:clamp(2.2rem,6vw,5rem);line-height:.98;letter-spacing:-.048em;margin:0 0 18px;max-width:12ch}
-    h2{font-size:clamp(1.45rem,3vw,2.15rem);letter-spacing:-.025em;margin:0 0 10px}
-    h3{font-size:1.04rem;margin:0 0 8px}
-    p{margin:0}
-    .lead{font-size:1.07rem;color:#cbd5e1;max-width:72ch}
-    .equation{font-family:var(--mono);font-size:clamp(.98rem,2vw,1.3rem);padding:16px;border-radius:14px;border:1px solid var(--line);background:var(--panel3);overflow-wrap:anywhere}
-    .status-grid{display:grid;gap:12px}
-    .status{padding:14px;border-radius:14px;border:1px solid var(--line);background:var(--panel2)}
-    .status strong{display:block;margin-bottom:3px}
-    .muted{color:var(--muted)}
-    .small{font-size:.88rem}
-    .warning{border-color:rgba(243,191,103,.42);background:rgba(243,191,103,.055)}
-    .hero-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}
-    .tabs{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 14px}
-    .section-progress{display:flex;gap:7px;align-items:center;margin-bottom:24px}
-    .section-progress span{height:4px;flex:1;max-width:82px;border-radius:999px;background:var(--line)}
-    .section-progress span.active{background:linear-gradient(90deg,var(--accent),var(--violet))}
+    .btn.danger{border-color:rgba(255,133,139,.46);background:var(--redSoft)}
+    .btn:focus-visible,.navbtn:focus-visible,.segbtn:focus-visible,input:focus-visible,summary:focus-visible{
+      outline:3px solid rgba(153,199,255,.3);outline-offset:2px
+    }
+
+    .workspace{
+      width:min(1440px,calc(100% - 24px));margin:0 auto;
+      display:grid;grid-template-columns:232px minmax(0,1fr);gap:18px;
+      padding:18px 0 72px
+    }
+    .sidebar{
+      position:sticky;top:86px;align-self:start;
+      border:1px solid var(--line);background:rgba(16,27,39,.78);
+      border-radius:var(--radius);padding:12px;box-shadow:var(--shadow)
+    }
+    .side-label{color:var(--muted);font-size:.73rem;text-transform:uppercase;letter-spacing:.12em;padding:6px 8px 8px}
+    .side-nav{display:grid;gap:5px}
+    .navbtn{text-align:left;width:100%;background:transparent;padding:10px 11px}
+    .navbtn .nav-kicker{font-size:.72rem;color:var(--muted);display:block}
+    .navbtn .nav-name{font-size:.91rem;font-weight:720;display:block;margin-top:1px}
+    .side-status{margin-top:12px;padding:11px;border-radius:12px;border:1px solid rgba(241,189,104,.42);background:var(--amberSoft)}
+    .side-status strong{font-size:.82rem;display:block}
+    .side-status p{margin:4px 0 0;color:var(--muted);font-size:.77rem}
+
+    .main{min-width:0}
     .view{display:none}
     .view.active{display:block}
-    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .card{
+      border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.018),transparent),var(--panel);
+      border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)
+    }
+    .card.flat{box-shadow:none}
+    .eyebrow{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+    .pill,.status-chip{
+      display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:999px;
+      padding:5px 9px;font-size:.76rem;color:var(--muted);background:rgba(255,255,255,.018)
+    }
+    .dot{width:8px;height:8px;border-radius:50%;background:var(--amber)}
+    .status-chip.est{border-color:rgba(114,212,155,.42);color:#a9ebc2}
+    .status-chip.hyp{border-color:rgba(241,189,104,.48);color:#ffd391}
+    .status-chip.target{border-color:rgba(153,199,255,.5);color:#c5ddff}
+    h1{font-size:clamp(2.35rem,5.5vw,5.2rem);line-height:.98;letter-spacing:-.052em;margin:0;max-width:12ch}
+    h2{font-size:clamp(1.45rem,2.6vw,2.1rem);letter-spacing:-.025em;margin:0}
+    h3{font-size:1.02rem;margin:0}
+    p{margin:0}
+    .lead{font-size:1.06rem;color:#ccd7e3;max-width:78ch}
+    .muted{color:var(--muted)}
+    .small{font-size:.85rem}
+    .hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+    .hero-main{padding:30px}
+    .hero-main .lead{margin-top:17px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+    .equation{
+      font-family:var(--mono);font-size:clamp(.98rem,2vw,1.28rem);padding:15px 16px;
+      border-radius:13px;border:1px solid var(--line);background:var(--panel3);overflow-wrap:anywhere
+    }
+    .hero-equation{margin-top:20px}
+    .stat-stack{display:grid;gap:10px}
+    .stat{padding:13px;border:1px solid var(--line);background:var(--panel2);border-radius:13px}
+    .stat .k{font-size:.73rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+    .stat .v{font-weight:800;margin-top:3px}
+    .stat .d{color:var(--muted);font-size:.8rem;margin-top:3px}
+    .warning{border-color:rgba(241,189,104,.42);background:var(--amberSoft)}
+    .section-title{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin-bottom:14px}
+    .section-title p{color:var(--muted);font-size:.85rem;max-width:68ch}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
     .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-    .step-layout{display:grid;grid-template-columns:.82fr 1.18fr;gap:18px}
-    .steps{display:grid;gap:9px}
-    .step-btn{text-align:left;width:100%;border:1px solid var(--line);border-radius:13px;background:var(--panel2);color:var(--text);padding:14px}
-    .step-btn.active{border-color:var(--accent);background:var(--accentSoft)}
-    .step-num{color:var(--accent);font-family:var(--mono);font-weight:760}
-    .bar{height:8px;background:#080b10;border:1px solid var(--line);border-radius:999px;overflow:hidden;margin:12px 0 18px}
-    .bar>span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--violet));width:16.7%;transition:width .25s ease}
-    .detail-box{min-height:260px}
-    .detail-box .equation{margin:16px 0}
-    .tag{display:inline-flex;align-items:center;border-radius:999px;border:1px solid var(--line);padding:5px 9px;font-size:.8rem}
-    .tag.established{border-color:rgba(105,211,145,.45);color:#a7efc1}
-    .tag.hypothesis{border-color:rgba(243,191,103,.5);color:#ffd38a}
-    .tag.target{border-color:rgba(134,183,255,.5);color:#bbd6ff}
-    .flow{overflow:auto;padding-bottom:4px}
-    .flow-row{display:flex;align-items:center;min-width:930px}
-    .flow-node{width:154px;min-height:108px;border:1px solid var(--line);background:var(--panel2);border-radius:16px;padding:13px;display:flex;flex-direction:column;justify-content:center;text-align:center}
-    .flow-node.risk{border-color:rgba(243,191,103,.55)}
-    .arrow{width:62px;height:2px;background:var(--line);position:relative;flex:none}
-    .arrow:after{content:"";position:absolute;right:-1px;top:-4px;border-left:8px solid var(--line);border-top:5px solid transparent;border-bottom:5px solid transparent}
-    .spectrum{margin-top:18px;border:1px solid var(--line);border-radius:16px;padding:18px;background:var(--panel3)}
-    .axis{position:relative;height:104px;margin:16px 8px 2px}
-    .axis-line{position:absolute;left:0;right:0;top:56px;height:2px;background:#536176}
-    .tick{position:absolute;top:39px;width:2px;height:36px;background:#dae3ef}
-    .vacuum{left:0}.deltaTick{left:42%}
-    .forbidden{position:absolute;left:3px;top:55px;height:2px;width:42%;border-top:2px dashed var(--red)}
-    .axis-label{position:absolute;top:0;font-size:.83rem;color:var(--muted);transform:translateX(-50%);text-align:center}
-    .axis-label.v{left:0;transform:none}.axis-label.d{left:42%}.axis-label.tail{right:0;transform:none}
-    .controls{display:grid;gap:14px;margin-top:16px}
-    label{font-weight:650}
-    input[type="range"]{width:100%;accent-color:var(--accent)}
-    .range-row{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}
-    output{font-family:var(--mono);border:1px solid var(--line);background:var(--panel3);border-radius:10px;padding:5px 9px;min-width:74px;text-align:center}
-    .result{padding:14px;border-radius:14px;border:1px solid var(--line);background:var(--panel2)}
-    .result.good{border-color:rgba(105,211,145,.5)}
-    .result.bad{border-color:rgba(255,127,134,.55)}
-    .result.warn{border-color:rgba(243,191,103,.52)}
-    .metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
-    .metric{padding:12px;border-radius:13px;border:1px solid var(--line);background:var(--panel3)}
-    .metric b{display:block;font-family:var(--mono);font-size:1.05rem;margin-top:2px}
-    .lab-switch{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
-    .gauge-stage{
-      position:relative;min-height:260px;border:1px solid var(--line);border-radius:16px;background:
-      radial-gradient(circle at 50% 50%,rgba(134,183,255,.08),transparent 34%),
-      linear-gradient(rgba(255,255,255,.015),rgba(255,255,255,.015)),var(--panel3);overflow:hidden
-    }
-    .orbit{position:absolute;left:50%;top:50%;width:210px;height:130px;border:1px dashed #58687c;border-radius:50%;transform:translate(-50%,-50%) rotate(-10deg)}
-    .vacuum-point{position:absolute;left:50%;top:50%;width:14px;height:14px;border-radius:50%;background:var(--accent);transform:translate(-50%,-50%);box-shadow:0 0 0 8px rgba(134,183,255,.08)}
-    .state-point{position:absolute;width:16px;height:16px;border-radius:50%;background:var(--amber);transform:translate(-50%,-50%);transition:left .18s ease,top .18s ease}
-    .physical-ray{position:absolute;left:50%;top:50%;height:2px;width:110px;background:linear-gradient(90deg,var(--cyan),transparent);transform-origin:left center;transform:rotate(18deg)}
-    .legend{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;font-size:.82rem;color:var(--muted)}
-    .legend span{display:flex;align-items:center;gap:6px}.legend i{width:9px;height:9px;border-radius:50%;display:inline-block}
-    .bridge{display:grid;gap:10px;margin-top:16px}
-    .bridge-row{display:grid;grid-template-columns:1fr 46px 1fr 46px 1fr;gap:8px;align-items:center}
-    .bridge-box{padding:14px;border:1px solid var(--line);border-radius:14px;background:var(--panel3);text-align:center}
-    .bridge-arrow{text-align:center;color:var(--muted);font-size:1.35rem}
-    .rg-track{margin-top:16px;display:grid;grid-template-columns:repeat(7,1fr);gap:8px;align-items:end}
-    .rg-step{height:120px;border:1px solid var(--line);border-radius:12px;background:var(--panel3);display:flex;align-items:end;padding:6px}
-    .rg-fill{width:100%;border-radius:8px;background:linear-gradient(180deg,var(--accent),rgba(134,183,255,.22));height:50%;transition:height .25s ease}
-    .rg-step.active{border-color:var(--accent)}
-    .sim-layout{display:grid;grid-template-columns:.86fr 1.14fr;gap:18px}
-    .sim-controls{display:grid;gap:10px}
+    .stack{display:grid;gap:14px}
+
+    .brief-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
+    .brief-card{padding:14px;border-radius:13px;border:1px solid var(--line);background:var(--panel3)}
+    .brief-card .num{font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+    .brief-card strong{display:block;margin-top:3px}
+    .brief-card p{color:var(--muted);font-size:.8rem;margin-top:5px}
+
+    .proof-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}
+    .graph-wrap{border:1px solid var(--line);border-radius:14px;background:var(--panel3);padding:10px;overflow:auto}
+    .proof-svg{width:100%;min-width:820px;height:auto;display:block}
+    .proof-svg .edge{stroke:#425469;stroke-width:2;fill:none}
+    .proof-svg .edge.hot{stroke:var(--accent)}
+    .proof-svg .node rect{fill:#12202d;stroke:#34485e;stroke-width:1.4}
+    .proof-svg .node:hover rect{stroke:#5f7b99}
+    .proof-svg .node.active rect{stroke:var(--accent);stroke-width:2}
+    .proof-svg .node.ok rect{stroke:rgba(114,212,155,.72)}
+    .proof-svg .node.fail rect{stroke:rgba(255,133,139,.78)}
+    .proof-svg text{fill:var(--text);font-family:var(--sans)}
+    .proof-svg .sub{fill:var(--muted);font-size:12px}
+    .proof-svg .id{fill:var(--accent2);font-size:11px;font-family:var(--mono)}
+    .node-inspector{display:grid;gap:12px}
+    .inspector-block{padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--panel3)}
+    .inspector-label{font-size:.71rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+    .inspector-value{margin-top:4px}
+    .dependency-list{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+    .dependency-list span{font-family:var(--mono);font-size:.73rem;border:1px solid var(--line);border-radius:999px;padding:3px 7px;color:var(--muted)}
+
+    .lab-layout{display:grid;grid-template-columns:.86fr 1.14fr;gap:16px}
+    .preset-row{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0 4px}
+    .assumptions{display:grid;gap:9px;margin-top:12px}
     .assumption{
-      display:grid;grid-template-columns:auto 1fr;gap:11px;align-items:start;
-      border:1px solid var(--line);border-radius:14px;padding:13px;background:var(--panel2)
+      display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;padding:12px;
+      border:1px solid var(--line);border-radius:12px;background:var(--panel2)
     }
-    .assumption input{width:20px;height:20px;margin-top:2px;accent-color:var(--accent)}
-    .assumption .a-title{font-weight:760}
-    .assumption .a-desc{font-size:.84rem;color:var(--muted);margin-top:2px}
-    .preset-row{display:flex;flex-wrap:wrap;gap:7px;margin:13px 0 3px}
-    .sim-params{display:grid;gap:12px;margin-top:16px}
-    .logic-graph{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-    .logic-node{
-      position:relative;min-height:126px;border:1px solid var(--line);border-radius:15px;
-      padding:13px;background:var(--panel3);transition:.18s ease
-    }
-    .logic-node.ok{border-color:rgba(105,211,145,.58);background:rgba(105,211,145,.055)}
-    .logic-node.fail{border-color:rgba(255,127,134,.58);background:rgba(255,127,134,.055)}
-    .logic-node.wait{border-color:rgba(243,191,103,.5);background:rgba(243,191,103,.045)}
-    .logic-node .node-id{font-family:var(--mono);font-size:.76rem;color:var(--muted)}
-    .logic-node .node-title{font-weight:780;margin-top:3px}
-    .logic-node .node-state{font-size:.82rem;margin-top:8px}
-    .logic-node.ok .node-state{color:#a7efc1}
-    .logic-node.fail .node-state{color:#ffadb1}
-    .logic-node.wait .node-state{color:#ffd38a}
-    .logic-arrowline{
-      grid-column:1/-1;display:flex;align-items:center;gap:9px;color:var(--muted);font-size:.82rem;
-      padding:2px 4px
-    }
-    .logic-arrowline:before,.logic-arrowline:after{content:"";height:1px;background:var(--line);flex:1}
-    .sim-verdict{
-      margin-top:14px;border:1px solid var(--line);border-radius:16px;padding:16px;background:var(--panel2)
-    }
-    .sim-verdict.ok{border-color:rgba(105,211,145,.58)}
-    .sim-verdict.fail{border-color:rgba(255,127,134,.58)}
-    .sim-verdict.wait{border-color:rgba(243,191,103,.52)}
-    .verdict-title{font-size:1.12rem;font-weight:800}
-    .blockers{display:grid;gap:7px;margin-top:11px}
-    .blocker{padding:9px 11px;border-left:3px solid var(--red);background:rgba(255,127,134,.04);border-radius:0 10px 10px 0;font-size:.86rem}
-    .trace{margin-top:14px;border:1px solid var(--line);border-radius:14px;background:var(--panel3);padding:13px;font-family:var(--mono);font-size:.82rem;line-height:1.65;white-space:pre-wrap}
-    .sim-note{font-size:.82rem;color:var(--muted);margin-top:11px}
-    .falsify-list{display:grid;gap:10px}
-    .falsify-btn{text-align:left;color:var(--text);background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:15px}
-    .falsify-btn.active{border-color:var(--red);background:rgba(255,127,134,.07)}
-    details{border:1px solid var(--line);border-radius:14px;background:var(--panel2);padding:0}
-    summary{list-style:none;padding:15px;cursor:pointer;font-weight:730}
+    .assumption input{width:19px;height:19px;margin-top:2px;accent-color:var(--accent)}
+    .assumption .title{font-weight:760}
+    .assumption .desc{font-size:.8rem;color:var(--muted);margin-top:2px}
+    .controls{display:grid;gap:12px;margin-top:15px}
+    label{font-weight:660}
+    .range-row{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}
+    input[type="range"]{width:100%;accent-color:var(--accent)}
+    output{font-family:var(--mono);border:1px solid var(--line);background:var(--panel3);border-radius:9px;padding:5px 8px;min-width:72px;text-align:center}
+    .metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+    .metric{padding:11px;border:1px solid var(--line);border-radius:11px;background:var(--panel3)}
+    .metric span{font-size:.75rem;color:var(--muted)}
+    .metric b{display:block;font-family:var(--mono);font-size:1.04rem;margin-top:2px}
+    .verdict{margin-top:12px;padding:14px;border:1px solid var(--line);border-radius:13px;background:var(--panel2)}
+    .verdict.ok{border-color:rgba(114,212,155,.54);background:var(--greenSoft)}
+    .verdict.fail{border-color:rgba(255,133,139,.54);background:var(--redSoft)}
+    .verdict.wait{border-color:rgba(241,189,104,.5);background:var(--amberSoft)}
+    .verdict h3{margin-bottom:4px}
+    .blockers{display:grid;gap:7px;margin-top:10px}
+    .blocker{padding:8px 10px;border-left:3px solid var(--red);background:rgba(255,133,139,.04);border-radius:0 9px 9px 0;font-size:.82rem}
+    .trace{margin-top:12px;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--panel3);font-family:var(--mono);font-size:.78rem;white-space:pre-wrap;line-height:1.62;overflow:auto}
+    .share-state{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+
+    .spectrum-stage{border:1px solid var(--line);border-radius:14px;background:var(--panel3);padding:16px}
+    .spectrum-axis{position:relative;height:105px;margin-top:15px}
+    .axis-line{position:absolute;left:0;right:0;top:58px;height:2px;background:#50627a}
+    .tick{position:absolute;top:40px;width:2px;height:38px;background:#d8e2ee}
+    .forbidden{position:absolute;left:2px;top:57px;border-top:2px dashed var(--red);width:42%}
+    .axis-label{position:absolute;top:2px;font-size:.8rem;color:var(--muted);transform:translateX(-50%);text-align:center}
+    .axis-label.v{left:0;transform:none}
+    .axis-label.d{left:42%}
+    .axis-label.tail{right:0;transform:none}
+
+    .rg-track{display:grid;grid-template-columns:repeat(8,1fr);gap:7px;margin-top:14px}
+    .rg-step{height:132px;border:1px solid var(--line);border-radius:11px;background:var(--panel3);display:flex;align-items:end;padding:6px}
+    .rg-fill{width:100%;height:8%;border-radius:7px;background:linear-gradient(180deg,var(--accent),rgba(153,199,255,.20));transition:height .25s ease}
+    .rg-step.active{border-color:var(--accent)}
+    .rg-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:12px}
+
+    .audit-table{width:100%;border-collapse:collapse;margin-top:12px;font-size:.83rem}
+    .audit-table th,.audit-table td{padding:10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+    .audit-table th{color:var(--muted);font-weight:650}
+    .audit-table td:first-child{font-family:var(--mono);color:var(--accent2)}
+    .audit-table tr:last-child td{border-bottom:none}
+
+    details{border:1px solid var(--line);border-radius:12px;background:var(--panel2)}
+    summary{cursor:pointer;padding:13px;font-weight:760;list-style:none}
     summary::-webkit-details-marker{display:none}
     details[open] summary{border-bottom:1px solid var(--line)}
-    .details-body{padding:15px;color:#cbd5e1}
-    .sources{display:grid;gap:12px}
-    .source{border-left:3px solid var(--line);padding-left:14px}
-    footer{margin-top:34px;padding-top:24px;border-top:1px solid var(--line);color:var(--muted);font-size:.86rem}
+    .details-body{padding:13px;color:#ccd7e3;font-size:.87rem}
+
+    .source-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .source-card{border:1px solid var(--line);border-radius:12px;background:var(--panel3);padding:13px}
+    .source-card .slide{font-family:var(--mono);font-size:.74rem;color:var(--accent2)}
+    .source-card strong{display:block;margin-top:4px}
+    .source-card p{font-size:.8rem;color:var(--muted);margin-top:4px}
+    .source-card .status-chip{margin-top:8px}
+
+    .footer{margin-top:18px;padding:16px 4px 0;border-top:1px solid var(--line);color:var(--muted);font-size:.78rem;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .kbd{font-family:var(--mono);border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:1px 5px;font-size:.72rem}
     .math-hidden .math-block{display:none!important}
-    .presenting header{display:none}
-    .presenting main{padding-top:18px}
-    .presenting .tabs{position:sticky;top:0;z-index:20;background:rgba(8,11,16,.96);padding:10px 0}
-    .presenting .hero{grid-template-columns:1fr}
-    .presenting .status-grid{grid-template-columns:repeat(3,1fr)}
-    .toast{position:fixed;right:18px;bottom:18px;max-width:340px;background:#11161f;border:1px solid var(--line);border-radius:12px;padding:12px 14px;box-shadow:var(--shadow);opacity:0;transform:translateY(8px);pointer-events:none;transition:.2s;z-index:90}
+    .presentation .sidebar{display:none}
+    .presentation .workspace{grid-template-columns:1fr;width:min(1240px,calc(100% - 24px))}
+    .presentation .topbar{position:static}
+    .toast{position:fixed;right:16px;bottom:16px;z-index:90;max-width:360px;padding:11px 13px;border-radius:11px;border:1px solid var(--line);background:var(--panel);box-shadow:var(--shadow);opacity:0;transform:translateY(8px);pointer-events:none;transition:.2s}
     .toast.show{opacity:1;transform:none}
-    .tourbox{
-      position:fixed;left:18px;bottom:18px;z-index:80;max-width:380px;background:#11161f;border:1px solid rgba(134,183,255,.5);
-      border-radius:15px;padding:15px;box-shadow:var(--shadow);display:none
-    }
-    .tourbox.show{display:block}
-    .tour-actions{display:flex;justify-content:space-between;gap:8px;margin-top:12px}
     .lang-en [data-lang="tr"]{display:none!important}
     body:not(.lang-en) [data-lang="en"]{display:none!important}
-    .kbd{font-family:var(--mono);border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;padding:1px 6px;font-size:.78rem}
+
+    @media (max-width:1120px){
+      .workspace{grid-template-columns:1fr}
+      .sidebar{position:static;display:flex;gap:7px;overflow:auto;padding:8px}
+      .side-label,.side-status{display:none}
+      .side-nav{display:flex;gap:7px}
+      .navbtn{min-width:170px}
+      .hero-grid,.proof-grid,.lab-layout{grid-template-columns:1fr}
+      .brief-cards{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:760px){
+      .topbar{align-items:flex-start}
+      .brandcopy{display:none}
+      .workspace{width:min(100% - 14px,1440px)}
+      .top-actions{gap:5px}
+      .btn{padding:7px 9px}
+      .hero-main{padding:22px}
+      .grid2,.grid3,.source-grid{grid-template-columns:1fr}
+      .brief-cards{grid-template-columns:1fr}
+      .metric-grid,.rg-summary{grid-template-columns:1fr 1fr}
+      .rg-track{grid-template-columns:repeat(8,72px);overflow:auto}
+    }
+    @media (max-width:480px){
+      .metric-grid,.rg-summary{grid-template-columns:1fr}
+      .top-actions .optional-mobile{display:none}
+      .hero-main{padding:18px}
+      h1{font-size:2.35rem}
+    }
     @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
-    @media (max-width:900px){.hero,.step-layout,.grid2,.sim-layout{grid-template-columns:1fr}.logic-graph{grid-template-columns:1fr 1fr}.grid3{grid-template-columns:1fr}.metric-grid{grid-template-columns:1fr}.presenting .status-grid{grid-template-columns:1fr}.hero-card{padding:25px}.bridge-row{grid-template-columns:1fr}.bridge-arrow{transform:rotate(90deg)}}
-    @media (max-width:640px){.logic-graph{grid-template-columns:1fr}.wrap{width:min(100% - 18px,1200px)}.nav{align-items:flex-start;padding:10px 0}.brand-text{display:none}.nav-actions{gap:6px}.btn{padding:7px 9px}.card{padding:17px}.hero-card{padding:21px}main{padding-top:24px}.tabs{display:grid;grid-template-columns:1fr 1fr}.tab{width:100%}.rg-track{grid-template-columns:repeat(7,72px);overflow:auto}.tourbox{left:9px;right:9px;max-width:none}}
-    @media print{header,.tabs,.section-progress,.nav-actions,.btn,.tourbox{display:none!important}body{background:white;color:#111}.card{box-shadow:none;background:white;border-color:#ccc}.muted{color:#555}.view{display:block!important;break-inside:avoid}.equation,.metric,.spectrum,.gauge-stage,.bridge-box{background:white;color:#111}.flow-node{background:white}.wrap{width:100%}main{padding:0}}
+    @media print{
+      .topbar,.sidebar,.btn,.segbtn{display:none!important}
+      body{background:white;color:#111}
+      .workspace{display:block;width:100%;padding:0}
+      .view{display:block!important}
+      .card{box-shadow:none;background:white;border-color:#ccc}
+      .muted{color:#555}
+      .equation,.trace,.metric,.source-card,.brief-card{background:white;color:#111}
+    }
   </style>
 </head>
 <body>
-<header>
-  <div class="wrap nav">
+<div class="app-shell">
+  <header class="topbar">
     <div class="brand">
-      <div class="brand-mark" aria-hidden="true">YM</div>
-      <div class="brand-text"><span data-lang="tr">Yang–Mills Kütle Aralığı</span><span data-lang="en">Yang–Mills Mass Gap</span></div>
+      <div class="brandmark">YM</div>
+      <div class="brandcopy">
+        <div class="brandtitle">Yang–Mills Mass Gap — Interactive Research Console</div>
+        <div class="brandsub"><span data-lang="tr">Gauge-indirgenmiş spektral koersivite programı</span><span data-lang="en">Gauge-reduced spectral coercivity program</span></div>
+      </div>
     </div>
-    <div class="nav-actions">
+    <div class="top-actions">
       <button class="btn ghost" id="langBtn" type="button">EN</button>
-      <button class="btn ghost" id="mathBtn" type="button"><span data-lang="tr">Matematik: açık</span><span data-lang="en">Math: on</span></button>
-      <button class="btn ghost" id="presentBtn" type="button"><span data-lang="tr">Sunum modu</span><span data-lang="en">Present</span></button>
+      <button class="btn ghost optional-mobile" id="mathBtn" type="button"><span data-lang="tr">Matematik: açık</span><span data-lang="en">Math: on</span></button>
+      <button class="btn ghost optional-mobile" id="presentationBtn" type="button"><span data-lang="tr">Sunum</span><span data-lang="en">Present</span></button>
       <button class="btn primary" id="shareBtn" type="button"><span data-lang="tr">Paylaş</span><span data-lang="en">Share</span></button>
     </div>
-  </div>
-</header>
+  </header>
 
-<main class="wrap">
-  <section class="hero">
-    <article class="card hero-card">
-      <div class="eyebrow">
-        <span class="pill"><span class="dot"></span><span data-lang="tr">Varsayımsal araştırma programı</span><span data-lang="en">Hypothetical research program</span></span>
-        <span class="pill">Gauge invariance • RG • Spectral coercivity</span>
-      </div>
-      <h1><span data-lang="tr">Kütle nereden geliyor?</span><span data-lang="en">Where does mass come from?</span></h1>
-      <p class="lead">
-        <span data-lang="tr">Buradaki program kütle açıklığını “kütlenin kaynağı” sorusundan ziyade, vakumdan farklı fiziksel spektral bileşenlerin neden sıfıra keyfî biçimde yaklaşamadığı problemi olarak kurar.</span>
-        <span data-lang="en">This program treats the mass gap not as “where mass comes from,” but as the problem of why physical spectral components distinct from the vacuum cannot approach zero energy arbitrarily closely.</span>
-      </p>
-      <div class="equation math-block" style="margin-top:22px">P⊥ H P⊥ ≥ C<sub>G</sub> Λ<sub>YM</sub> · P⊥ &gt; 0</div>
-      <p class="small muted" style="margin-top:10px">
-        <span data-lang="tr">Bu eşitsizlik varsayımsal çekirdek teoremdir; kanıtlanmış bir sonuç değildir.</span>
-        <span data-lang="en">This is the hypothetical core theorem; it is not a proved result.</span>
-      </p>
-      <div class="hero-actions">
-        <button class="btn primary" id="tourBtn" type="button"><span data-lang="tr">Rehberli turu başlat</span><span data-lang="en">Start guided tour</span></button>
-        <button class="btn" id="jumpLabsBtn" type="button"><span data-lang="tr">Laboratuvarlara git</span><span data-lang="en">Jump to labs</span></button>
-      </div>
-    </article>
-
-    <aside class="card status-grid">
-      <div class="status warning">
+  <div class="workspace">
+    <aside class="sidebar">
+      <div class="side-label"><span data-lang="tr">Araştırma konsolu</span><span data-lang="en">Research console</span></div>
+      <nav class="side-nav" aria-label="Main sections">
+        <button class="navbtn active" data-view="overview" type="button"><span class="nav-kicker">01</span><span class="nav-name"><span data-lang="tr">Genel Bakış</span><span data-lang="en">Overview</span></span></button>
+        <button class="navbtn" data-view="graph" type="button"><span class="nav-kicker">02</span><span class="nav-name"><span data-lang="tr">İspat Grafiği</span><span data-lang="en">Proof Graph</span></span></button>
+        <button class="navbtn" data-view="lab" type="button"><span class="nav-kicker">03</span><span class="nav-name"><span data-lang="tr">Varsayım Laboratuvarı</span><span data-lang="en">Assumption Lab</span></span></button>
+        <button class="navbtn" data-view="spectrum" type="button"><span class="nav-kicker">04</span><span class="nav-name"><span data-lang="tr">Spektrum</span><span data-lang="en">Spectrum</span></span></button>
+        <button class="navbtn" data-view="rg" type="button"><span class="nav-kicker">05</span><span class="nav-name">RG Transfer</span></button>
+        <button class="navbtn" data-view="audit" type="button"><span class="nav-kicker">06</span><span class="nav-name"><span data-lang="tr">İspat Borçları</span><span data-lang="en">Proof Debts</span></span></button>
+        <button class="navbtn" data-view="falsify" type="button"><span class="nav-kicker">07</span><span class="nav-name"><span data-lang="tr">Çürütme Testleri</span><span data-lang="en">Falsification</span></span></button>
+        <button class="navbtn" data-view="sources" type="button"><span class="nav-kicker">08</span><span class="nav-name"><span data-lang="tr">Kaynak Haritası</span><span data-lang="en">Source Map</span></span></button>
+      </nav>
+      <div class="side-status">
         <strong data-lang="tr">Bilimsel statü</strong><strong data-lang="en">Scientific status</strong>
-        <span class="small muted" data-lang="tr">Milenyum Problemi çözülmüş değildir. Bu uygulama bir kanıt değil, açık ispat borçları olan bir programdır.</span>
-        <span class="small muted" data-lang="en">The Millennium Problem remains open. This app is not a proof; it is a program with explicit proof obligations.</span>
-      </div>
-      <div class="status"><strong data-lang="tr">Hedef</strong><strong data-lang="en">Target</strong><span class="small muted">Spec(H) ∩ (0, Δ) = ∅, &nbsp; Δ &gt; 0</span></div>
-      <div class="status">
-        <strong data-lang="tr">Kritik yeni halka</strong><strong data-lang="en">Critical new link</strong>
-        <span class="small muted" data-lang="tr">RG coarse-graining'in düşük enerjili fiziksel modları gizleyemeyeceğini kanıtlayan geri-yansıtım ilkesi.</span>
-        <span class="small muted" data-lang="en">A reflection-back principle preventing RG coarse-graining from hiding low-energy physical modes.</span>
+        <p data-lang="tr">Açık problem. Bu uygulama kanıt iddiasında bulunmaz.</p>
+        <p data-lang="en">Open problem. This app does not claim a proof.</p>
       </div>
     </aside>
-  </section>
 
-  <nav class="tabs" aria-label="Uygulama bölümleri">
-    <button class="tab active" type="button" data-view="chain"><span data-lang="tr">İspat zinciri</span><span data-lang="en">Proof chain</span></button>
-    <button class="tab" type="button" data-view="sim"><span data-lang="tr">Mantık simülatörü</span><span data-lang="en">Logic simulator</span></button>
-    <button class="tab" type="button" data-view="gauge"><span data-lang="tr">Gauge laboratuvarı</span><span data-lang="en">Gauge lab</span></button>
-    <button class="tab" type="button" data-view="spectrum"><span data-lang="tr">Spektrum laboratuvarı</span><span data-lang="en">Spectrum lab</span></button>
-    <button class="tab" type="button" data-view="bridge"><span data-lang="tr">Λ → gap köprüsü</span><span data-lang="en">Λ → gap bridge</span></button>
-    <button class="tab" type="button" data-view="rg"><span data-lang="tr">RG laboratuvarı</span><span data-lang="en">RG lab</span></button>
-    <button class="tab" type="button" data-view="debts"><span data-lang="tr">İspat borçları</span><span data-lang="en">Proof debts</span></button>
-    <button class="tab" type="button" data-view="falsify"><span data-lang="tr">Çürütme testleri</span><span data-lang="en">Falsification</span></button>
-    <button class="tab" type="button" data-view="sources"><span data-lang="tr">Kaynak & statü</span><span data-lang="en">Sources & status</span></button>
-  </nav>
-  <div class="section-progress" id="sectionProgress" aria-hidden="true"></div>
-
-  <section class="view active" id="view-chain">
-    <div class="step-layout">
-      <div class="card">
-        <h2 data-lang="tr">Altı halkalı program</h2><h2 data-lang="en">Six-link program</h2>
-        <p class="muted small" data-lang="tr">Bir halkaya dokun; sağdaki panel o adımın ispat yükümlülüğünü açar.</p>
-        <p class="muted small" data-lang="en">Select a link; the panel expands its proof obligation.</p>
-        <div class="steps" id="steps" style="margin-top:16px"></div>
-      </div>
-      <div class="card detail-box">
-        <div class="small muted" id="stepCounter">1 / 6</div>
-        <h2 id="stepTitle" style="margin-top:4px"></h2>
-        <div class="bar"><span id="stepProgress"></span></div>
-        <p id="stepBody"></p>
-        <div class="equation math-block" id="stepEq"></div>
-        <span class="tag" id="stepTag"></span>
-      </div>
-    </div>
-    <div class="card" style="margin-top:18px">
-      <h3 data-lang="tr">Programın mantıksal akışı</h3><h3 data-lang="en">Logical flow of the program</h3>
-      <div class="flow" style="margin-top:14px">
-        <div class="flow-row">
-          <div class="flow-node"><b>Gauge</b><span class="small muted" data-lang="tr">fiziksel sektör</span><span class="small muted" data-lang="en">physical sector</span></div>
-          <div class="arrow"></div>
-          <div class="flow-node"><b>Λ<sub>YM</sub> &gt; 0</b><span class="small muted" data-lang="tr">dinamik ölçek</span><span class="small muted" data-lang="en">dynamic scale</span></div>
-          <div class="arrow"></div>
-          <div class="flow-node"><b>Gap</b><span class="small muted" data-lang="tr">kaba ölçek</span><span class="small muted" data-lang="en">coarse scale</span></div>
-          <div class="arrow"></div>
-          <div class="flow-node risk"><b>RG ↩</b><span class="small muted" data-lang="tr">geri-yansıtım</span><span class="small muted" data-lang="en">reflection-back</span></div>
-          <div class="arrow"></div>
-          <div class="flow-node"><b>Continuum</b><span class="small muted">Spec(H) ∩ (0,Δ)=∅</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="view" id="view-sim">
-    <div class="sim-layout">
-      <article class="card">
-        <h2 data-lang="tr">Varsayımsal ispat mantığı simülatörü</h2>
-        <h2 data-lang="en">Hypothetical proof-logic simulator</h2>
-        <p class="muted small" data-lang="tr">Bu bir fizik simülasyonu veya kanıt değildir. Kaynak sunumdaki ispat zincirini mantıksal bağımlılıklar hâlinde oynatır: hangi varsayım düşerse hangi sonuç artık çıkarılamıyor?</p>
-        <p class="muted small" data-lang="en">This is neither a physics simulation nor a proof. It turns the proof chain in the source presentation into logical dependencies: if an assumption fails, which conclusions are no longer licensed?</p>
-
-        <div class="preset-row">
-          <button class="mini-btn active proof-preset" type="button" data-preset="intact"><span data-lang="tr">Zincir sağlam</span><span data-lang="en">Chain intact</span></button>
-          <button class="mini-btn proof-preset" type="button" data-preset="rgfail"><span data-lang="tr">RG modu gizliyor</span><span data-lang="en">RG hides mode</span></button>
-          <button class="mini-btn proof-preset" type="button" data-preset="collapse"><span data-lang="tr">Continuum gap çöküyor</span><span data-lang="en">Gap collapses</span></button>
-          <button class="mini-btn proof-preset" type="button" data-preset="gaugefail"><span data-lang="tr">Gauge artefaktı</span><span data-lang="en">Gauge artefact</span></button>
-          <button class="mini-btn proof-preset" type="button" data-preset="osfail"><span data-lang="tr">OS başarısız</span><span data-lang="en">OS fails</span></button>
-          <button class="mini-btn proof-preset" type="button" data-preset="bridgezero"><span data-lang="tr">Λ var, köprü yok</span><span data-lang="en">Λ, no bridge</span></button>
+    <main class="main">
+      <section class="view active" id="view-overview">
+        <div class="hero-grid">
+          <article class="card hero-main">
+            <div class="eyebrow">
+              <span class="status-chip hyp"><span class="dot"></span><span data-lang="tr">Varsayımsal araştırma programı</span><span data-lang="en">Hypothetical research program</span></span>
+              <span class="pill">Yang–Mills • RG • Spectral gap • OS reconstruction</span>
+            </div>
+            <h1><span data-lang="tr">Kütle aralığını bir spektral alt sınır problemi olarak oku.</span><span data-lang="en">Read the mass gap as a spectral lower-bound problem.</span></h1>
+            <p class="lead">
+              <span data-lang="tr">Programın ana fikri, “kütle nereden geldi?” sorusundan ziyade vakumdan farklı fiziksel spektral bileşenlerin neden sıfıra keyfî biçimde yaklaşamadığını açıklayacak gauge-indirgenmiş bir koersivite mekanizması kurmaktır.</span>
+              <span data-lang="en">The program asks not “where does mass come from?” but how a gauge-reduced coercivity mechanism could prevent physical spectral components distinct from the vacuum from approaching zero energy arbitrarily closely.</span>
+            </p>
+            <div class="equation hero-equation math-block">P⊥ H P⊥ ≥ C<sub>G</sub> Λ<sub>YM</sub> · P⊥ &gt; 0</div>
+            <div class="hero-actions">
+              <button class="btn primary" id="openLabBtn" type="button"><span data-lang="tr">Varsayım laboratuvarını aç</span><span data-lang="en">Open assumption lab</span></button>
+              <button class="btn" id="openGraphBtn" type="button"><span data-lang="tr">İspat grafiğini incele</span><span data-lang="en">Inspect proof graph</span></button>
+              <button class="btn ghost" id="exportBtn" type="button"><span data-lang="tr">Durum raporu indir</span><span data-lang="en">Export status report</span></button>
+            </div>
+          </article>
+          <aside class="card stat-stack">
+            <div class="stat warning"><div class="k" data-lang="tr">Statü</div><div class="k" data-lang="en">Status</div><div class="v" data-lang="tr">Açık Milenyum Problemi</div><div class="v" data-lang="en">Open Millennium Problem</div><div class="d" data-lang="tr">Buradaki lemalar araştırma hedefidir.</div><div class="d" data-lang="en">The new lemmas here are research targets.</div></div>
+            <div class="stat"><div class="k" data-lang="tr">Hedef spektrum</div><div class="k" data-lang="en">Target spectrum</div><div class="v mono">Spec(H) ∩ (0, Δ) = ∅</div><div class="d">Δ &gt; 0</div></div>
+            <div class="stat"><div class="k" data-lang="tr">Merkez risk</div><div class="k" data-lang="en">Central risk</div><div class="v">RG reflection-back</div><div class="d" data-lang="tr">Coarse-graining düşük enerjili fiziksel modu gizliyor mu?</div><div class="d" data-lang="en">Can coarse-graining hide a low-energy physical mode?</div></div>
+            <div class="stat"><div class="k" data-lang="tr">V4 odağı</div><div class="k" data-lang="en">V4 focus</div><div class="v" data-lang="tr">Denetlenebilir ispat mimarisi</div><div class="v" data-lang="en">Auditable proof architecture</div><div class="d" data-lang="tr">Bağımlılıklar, kırılma noktaları, kaynak haritası.</div><div class="d" data-lang="en">Dependencies, failure points, provenance map.</div></div>
+          </aside>
         </div>
 
-        <div class="sim-controls" id="proofAssumptions" style="margin-top:14px">
-          <label class="assumption">
-            <input type="checkbox" id="aGauge" checked>
-            <span><span class="a-title">A1 — <span data-lang="tr">Gauge-indirgenmiş fiziksel sektör</span><span data-lang="en">Gauge-reduced physical sector</span></span>
-            <span class="a-desc" data-lang="tr">Gauge tekrarları fiziksel spektrumdan ayrılabiliyor; ℋ_phys ve Ω anlamlı.</span>
-            <span class="a-desc" data-lang="en">Gauge redundancy is separated from the physical spectrum; ℋ_phys and Ω are meaningful.</span></span>
-          </label>
-          <label class="assumption">
-            <input type="checkbox" id="aScale" checked>
-            <span><span class="a-title">A2 — Λ<sub>YM</sub> &gt; 0</span>
-            <span class="a-desc" data-lang="tr">Renormalizasyon akışından pozitif dinamik ölçek mevcut.</span>
-            <span class="a-desc" data-lang="en">A positive dynamical scale is available from the renormalization flow.</span></span>
-          </label>
-          <label class="assumption">
-            <input type="checkbox" id="aCoarse" checked>
-            <span><span class="a-title">A3 — <span data-lang="tr">Kaba-ölçek fiziksel gap</span><span data-lang="en">Coarse-scale physical gap</span></span>
-            <span class="a-desc" data-lang="tr">Gauge-invariant transfer operatöründe başlangıç gap girdisi var.</span>
-            <span class="a-desc" data-lang="en">A starting gap input exists for a gauge-invariant transfer operator.</span></span>
-          </label>
-          <label class="assumption">
-            <input type="checkbox" id="aReflect" checked>
-            <span><span class="a-title">A4 — <span data-lang="tr">RG geri-yansıtımı</span><span data-lang="en">RG reflection-back</span></span>
-            <span class="a-desc" data-lang="tr">Coarse-graining, ince ölçekteki düşük enerjili fiziksel modu örtemiyor.</span>
-            <span class="a-desc" data-lang="en">Coarse-graining cannot hide a low-energy physical mode at fine scale.</span></span>
-          </label>
-          <label class="assumption">
-            <input type="checkbox" id="aUniform" checked>
-            <span><span class="a-title">A5 — <span data-lang="tr">Uniform koersivite / kusur kontrolü</span><span data-lang="en">Uniform coercivity / defect control</span></span>
-            <span class="a-desc" data-lang="tr">r(a,L) ve RG kusurları continuum limitinde pozitif alt sınırı yok etmiyor.</span>
-            <span class="a-desc" data-lang="en">r(a,L) and RG defects do not erase the positive lower bound in the continuum limit.</span></span>
-          </label>
-          <label class="assumption">
-            <input type="checkbox" id="aOS" checked>
-            <span><span class="a-title">A6 — <span data-lang="tr">Continuum + OS yeniden-kurma</span><span data-lang="en">Continuum + OS reconstruction</span></span>
-            <span class="a-desc" data-lang="tr">Limit teori, locality/reflection positivity ile ℋ_phys, Ω ve H'yi veriyor.</span>
-            <span class="a-desc" data-lang="en">The limit theory yields ℋ_phys, Ω and H with locality/reflection positivity.</span></span>
-          </label>
+        <div class="brief-cards">
+          <div class="brief-card"><div class="num">01</div><strong data-lang="tr">Fiziksel sektör</strong><strong data-lang="en">Physical sector</strong><p data-lang="tr">Gauge tekrarını fiziksel ayrımdan ayır.</p><p data-lang="en">Separate gauge redundancy from physical distinction.</p></div>
+          <div class="brief-card"><div class="num">02</div><strong>Λ<sub>YM</sub></strong><p data-lang="tr">Dinamik ölçek var; fakat bu tek başına gap değil.</p><p data-lang="en">A dynamical scale exists; that alone is not a gap.</p></div>
+          <div class="brief-card"><div class="num">03</div><strong data-lang="tr">Geri-yansıtım</strong><strong data-lang="en">Reflection-back</strong><p data-lang="tr">RG düşük enerjili fiziksel modu örtememeli.</p><p data-lang="en">RG must not hide low-energy physical modes.</p></div>
+          <div class="brief-card"><div class="num">04</div><strong>Continuum + OS</strong><p data-lang="tr">Gap ve aksiyomlar birlikte limite taşınmalı.</p><p data-lang="en">The gap and axioms must survive the limit together.</p></div>
         </div>
 
-        <div class="sim-params">
-          <div>
-            <label for="simCG">C<sub>G</sub> — <span data-lang="tr">varsayımsal koersivite katsayısı</span><span data-lang="en">hypothetical coercivity coefficient</span></label>
-            <div class="range-row"><input id="simCG" type="range" min="0" max="1.2" value="0.65" step="0.01"><output id="simCGOut">0.65</output></div>
-          </div>
-          <div>
-            <label for="simLambda">Λ<sub>YM</sub> — <span data-lang="tr">normalize edilmiş ölçek</span><span data-lang="en">normalized scale</span></label>
-            <div class="range-row"><input id="simLambda" type="range" min="0" max="1.5" value="1.00" step="0.01"><output id="simLambdaOut">1.00</output></div>
-          </div>
-          <div>
-            <label for="simResidual">r(a,L) — <span data-lang="tr">normalize edilmiş artık/kusur bütçesi</span><span data-lang="en">normalized residual/defect budget</span></label>
-            <div class="range-row"><input id="simResidual" type="range" min="0" max="1.2" value="0.12" step="0.01"><output id="simResidualOut">0.12</output></div>
-          </div>
-        </div>
-        <p class="sim-note" data-lang="tr">Sayısal değerler fiziksel tahmin değildir; yalnızca sunumdaki <span class="math-block">c<sub>G</sub>Λ<sub>YM</sub>−r(a,L)</span> yapısının mantıksal rolünü görünür kılar.</p>
-        <p class="sim-note" data-lang="en">The numerical values are not physical estimates; they only expose the logical role of <span class="math-block">c<sub>G</sub>Λ<sub>YM</sub>−r(a,L)</span> from the presentation.</p>
-      </article>
+        <div class="footer"><span>v4 • Interactive Research Console</span><span><span class="kbd">←</span> <span class="kbd">→</span> <span data-lang="tr">bölüm değiştirir</span><span data-lang="en">switch sections</span></span></div>
+      </section>
 
-      <article class="card">
-        <h2 data-lang="tr">Bağımlılık grafiği</h2><h2 data-lang="en">Dependency graph</h2>
-        <div class="logic-graph" id="logicGraph" style="margin-top:14px">
-          <div class="logic-node" data-node="n1"><div class="node-id">N1</div><div class="node-title" data-lang="tr">Fiziksel sektör</div><div class="node-title" data-lang="en">Physical sector</div><div class="node-state"></div></div>
-          <div class="logic-node" data-node="n2"><div class="node-id">N2</div><div class="node-title">Λ<sub>YM</sub> &gt; 0</div><div class="node-state"></div></div>
-          <div class="logic-node" data-node="n3"><div class="node-id">N3</div><div class="node-title" data-lang="tr">Kaba gap + köprü</div><div class="node-title" data-lang="en">Coarse gap + bridge</div><div class="node-state"></div></div>
-          <div class="logic-arrowline"><span data-lang="tr">RG boyunca geri-yansıtım ve uniform taşıma</span><span data-lang="en">Reflection-back and uniform transfer across RG</span></div>
-          <div class="logic-node" data-node="n4"><div class="node-id">N4</div><div class="node-title" data-lang="tr">RG fiziksel engeli örtemiyor</div><div class="node-title" data-lang="en">RG cannot hide physical obstruction</div><div class="node-state"></div></div>
-          <div class="logic-node" data-node="n5"><div class="node-id">N5</div><div class="node-title" data-lang="tr">Uniform pozitif alt sınır</div><div class="node-title" data-lang="en">Uniform positive lower bound</div><div class="node-state"></div></div>
-          <div class="logic-node" data-node="n6"><div class="node-id">N6</div><div class="node-title" data-lang="tr">Continuum spektral gap</div><div class="node-title" data-lang="en">Continuum spectral gap</div><div class="node-state"></div></div>
+      <section class="view" id="view-graph">
+        <div class="section-title">
+          <div><h2 data-lang="tr">İspat bağımlılık grafiği</h2><h2 data-lang="en">Proof dependency graph</h2><p data-lang="tr">Her düğümün rolünü, statüsünü, bağımlılıklarını ve başarısız olursa zincirde neyi kırdığını denetle.</p><p data-lang="en">Inspect each node's role, status, dependencies, and downstream failure effect.</p></div>
+          <span class="status-chip target"><span data-lang="tr">Kaynak-temelli mimari</span><span data-lang="en">Source-grounded architecture</span></span>
         </div>
+        <div class="proof-grid">
+          <article class="card">
+            <div class="graph-wrap">
+              <svg class="proof-svg" viewBox="0 0 920 470" role="img" aria-label="Yang-Mills hypothetical proof dependency graph">
+                <defs>
+                  <marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#425469"/></marker>
+                </defs>
+                <g class="edges">
+                  <path class="edge" d="M180 105 H355" marker-end="url(#arrow)"/>
+                  <path class="edge" d="M180 225 H355" marker-end="url(#arrow)"/>
+                  <path class="edge" d="M505 165 H665" marker-end="url(#arrow)"/>
+                  <path class="edge" d="M745 220 V315" marker-end="url(#arrow)"/>
+                  <path class="edge" d="M505 365 H665" marker-end="url(#arrow)"/>
+                </g>
+                <g class="node" data-node="n1" tabindex="0">
+                  <rect x="30" y="65" width="150" height="80" rx="14"/><text class="id" x="48" y="88">N1</text><text x="48" y="111" font-size="15" font-weight="700">Physical sector</text><text class="sub" x="48" y="130">Gauge reduction</text>
+                </g>
+                <g class="node" data-node="n2" tabindex="0">
+                  <rect x="30" y="185" width="150" height="80" rx="14"/><text class="id" x="48" y="208">N2</text><text x="48" y="231" font-size="15" font-weight="700">ΛYM &gt; 0</text><text class="sub" x="48" y="250">Dynamic scale</text>
+                </g>
+                <g class="node" data-node="n3" tabindex="0">
+                  <rect x="355" y="125" width="150" height="80" rx="14"/><text class="id" x="373" y="148">N3</text><text x="373" y="171" font-size="15" font-weight="700">Coarse gap</text><text class="sub" x="373" y="190">+ coercivity bridge</text>
+                </g>
+                <g class="node" data-node="n4" tabindex="0">
+                  <rect x="665" y="125" width="160" height="95" rx="14"/><text class="id" x="683" y="148">N4</text><text x="683" y="171" font-size="15" font-weight="700">RG reflection-back</text><text class="sub" x="683" y="190">No hidden soft mode</text><text class="sub" x="683" y="207">[hypothetical]</text>
+                </g>
+                <g class="node" data-node="n5" tabindex="0">
+                  <rect x="355" y="325" width="150" height="80" rx="14"/><text class="id" x="373" y="348">N5</text><text x="373" y="371" font-size="15" font-weight="700">Uniform coercivity</text><text class="sub" x="373" y="390">a→0, L→∞</text>
+                </g>
+                <g class="node" data-node="n6" tabindex="0">
+                  <rect x="665" y="315" width="160" height="90" rx="14"/><text class="id" x="683" y="338">N6</text><text x="683" y="361" font-size="15" font-weight="700">Continuum + OS</text><text class="sub" x="683" y="380">ℋphys, Ω, H</text><text class="sub" x="683" y="397">⇒ spectral gap</text>
+                </g>
+              </svg>
+            </div>
+          </article>
+          <aside class="card node-inspector" id="nodeInspector">
+            <div>
+              <div class="eyebrow"><span class="status-chip target" id="nodeStatus">Target</span></div>
+              <h2 id="nodeTitle">Physical sector</h2>
+              <p class="muted small" id="nodeSummary" style="margin-top:6px"></p>
+            </div>
+            <div class="inspector-block"><div class="inspector-label" data-lang="tr">Matematiksel rol</div><div class="inspector-label" data-lang="en">Mathematical role</div><div class="inspector-value mono" id="nodeFormula"></div></div>
+            <div class="inspector-block"><div class="inspector-label" data-lang="tr">Bağımlılıklar</div><div class="inspector-label" data-lang="en">Dependencies</div><div class="dependency-list" id="nodeDeps"></div></div>
+            <div class="inspector-block"><div class="inspector-label" data-lang="tr">Başarısız olursa</div><div class="inspector-label" data-lang="en">If it fails</div><div class="inspector-value" id="nodeFailure"></div></div>
+            <div class="inspector-block"><div class="inspector-label" data-lang="tr">Kaynak sunum</div><div class="inspector-label" data-lang="en">Source presentation</div><div class="inspector-value" id="nodeSource"></div></div>
+          </aside>
+        </div>
+      </section>
 
-        <div class="metric-grid">
-          <div class="metric"><span class="small muted">C<sub>G</sub>Λ<sub>YM</sub></span><b id="simGross">0.65</b></div>
-          <div class="metric"><span class="small muted">r(a,L)</span><b id="simLoss">0.12</b></div>
-          <div class="metric"><span class="small muted" data-lang="tr">Aday alt sınır</span><span class="small muted" data-lang="en">Candidate bound</span><b id="simNet">0.53</b></div>
+      <section class="view" id="view-lab">
+        <div class="section-title">
+          <div><h2 data-lang="tr">Varsayım laboratuvarı</h2><h2 data-lang="en">Assumption lab</h2><p data-lang="tr">Bu fizik simülasyonu değildir. İspat zincirindeki mantıksal bağımlılıkları, kırılma noktalarını ve aday alt sınırın davranışını denetler.</p><p data-lang="en">This is not a physics simulation. It audits logical dependencies, breakpoints, and the behavior of the candidate lower bound.</p></div>
+          <button class="btn" id="resetLabBtn" type="button"><span data-lang="tr">Sıfırla</span><span data-lang="en">Reset</span></button>
         </div>
+        <div class="lab-layout">
+          <article class="card">
+            <h3 data-lang="tr">Senaryo</h3><h3 data-lang="en">Scenario</h3>
+            <div class="preset-row">
+              <button class="segbtn active preset" data-preset="intact" type="button"><span data-lang="tr">Zincir sağlam</span><span data-lang="en">Chain intact</span></button>
+              <button class="segbtn preset" data-preset="rgfail" type="button"><span data-lang="tr">RG modu gizliyor</span><span data-lang="en">RG hides mode</span></button>
+              <button class="segbtn preset" data-preset="collapse" type="button"><span data-lang="tr">Gap çöküyor</span><span data-lang="en">Gap collapses</span></button>
+              <button class="segbtn preset" data-preset="gaugefail" type="button"><span data-lang="tr">Gauge artefaktı</span><span data-lang="en">Gauge artefact</span></button>
+              <button class="segbtn preset" data-preset="osfail" type="button"><span data-lang="tr">OS başarısız</span><span data-lang="en">OS fails</span></button>
+              <button class="segbtn preset" data-preset="bridgezero" type="button"><span data-lang="tr">Λ var, köprü yok</span><span data-lang="en">Λ, no bridge</span></button>
+            </div>
 
-        <div class="sim-verdict" id="simVerdict">
-          <div class="verdict-title" id="simVerdictTitle"></div>
-          <div class="small muted" id="simVerdictBody" style="margin-top:5px"></div>
-          <div class="blockers" id="simBlockers"></div>
-        </div>
+            <div class="assumptions">
+              <label class="assumption"><input id="aGauge" type="checkbox" checked><span><span class="title">A1 — <span data-lang="tr">Gauge-indirgenmiş fiziksel sektör</span><span data-lang="en">Gauge-reduced physical sector</span></span><span class="desc" data-lang="tr">Gauge tekrarı fiziksel spektrumdan ayrılıyor.</span><span class="desc" data-lang="en">Gauge redundancy is separated from the physical spectrum.</span></span></label>
+              <label class="assumption"><input id="aScale" type="checkbox" checked><span><span class="title">A2 — Λ<sub>YM</sub> &gt; 0</span><span class="desc" data-lang="tr">Pozitif dinamik ölçek mevcut.</span><span class="desc" data-lang="en">A positive dynamical scale is available.</span></span></label>
+              <label class="assumption"><input id="aCoarse" type="checkbox" checked><span><span class="title">A3 — <span data-lang="tr">Kaba-ölçek fiziksel gap</span><span data-lang="en">Coarse-scale physical gap</span></span><span class="desc" data-lang="tr">Gauge-invariant transfer operatöründe başlangıç gap girdisi.</span><span class="desc" data-lang="en">Starting gap input in a gauge-invariant transfer operator.</span></span></label>
+              <label class="assumption"><input id="aReflect" type="checkbox" checked><span><span class="title">A4 — RG reflection-back</span><span class="desc" data-lang="tr">Coarse-graining gizli düşük enerjili fiziksel modu örtemiyor.</span><span class="desc" data-lang="en">Coarse-graining cannot hide a low-energy physical mode.</span></span></label>
+              <label class="assumption"><input id="aUniform" type="checkbox" checked><span><span class="title">A5 — <span data-lang="tr">Uniform koersivite</span><span data-lang="en">Uniform coercivity</span></span><span class="desc" data-lang="tr">Kusurlar limitte pozitif alt sınırı yok etmiyor.</span><span class="desc" data-lang="en">Defects do not erase the positive bound in the limit.</span></span></label>
+              <label class="assumption"><input id="aOS" type="checkbox" checked><span><span class="title">A6 — Continuum + OS</span><span class="desc" data-lang="tr">Limit teori ℋphys, Ω ve H'yi kuruyor.</span><span class="desc" data-lang="en">The limit theory reconstructs ℋphys, Ω and H.</span></span></label>
+            </div>
 
-        <div class="trace" id="simTrace"></div>
-      </article>
-    </div>
-  </section>
+            <div class="controls">
+              <div><label for="cG">C<sub>G</sub></label><div class="range-row"><input id="cG" type="range" min="0" max="1.2" value="0.65" step="0.01"><output id="cGOut">0.65</output></div></div>
+              <div><label for="lambda">Λ<sub>YM</sub></label><div class="range-row"><input id="lambda" type="range" min="0" max="1.5" value="1.00" step="0.01"><output id="lambdaOut">1.00</output></div></div>
+              <div><label for="residual">r(a,L)</label><div class="range-row"><input id="residual" type="range" min="0" max="1.2" value="0.12" step="0.01"><output id="residualOut">0.12</output></div></div>
+            </div>
+          </article>
 
-  <section class="view" id="view-gauge">
-    <div class="grid2">
-      <article class="card">
-        <h2 data-lang="tr">Gauge yönü ≠ fiziksel yön</h2><h2 data-lang="en">Gauge direction ≠ physical direction</h2>
-        <p data-lang="tr">Bu oyuncak görselleştirme, ham konfigürasyon uzayındaki hareketin iki farklı anlam taşıyabileceğini ayırır: aynı gauge yörüngesi üzerinde kalmak veya gerçekten fiziksel sektörde ayrılmak.</p>
-        <p data-lang="en">This toy visualization separates two meanings of motion in raw configuration space: remaining on the same gauge orbit or moving into a genuinely distinct physical sector.</p>
-        <div class="gauge-stage" id="gaugeStage" style="margin-top:16px">
-          <div class="orbit"></div>
-          <div class="physical-ray"></div>
-          <div class="vacuum-point" aria-label="reference configuration"></div>
-          <div class="state-point" id="statePoint" aria-label="moving configuration"></div>
+          <article class="card">
+            <div class="metric-grid">
+              <div class="metric"><span>C<sub>G</sub>Λ<sub>YM</sub></span><b id="gross">0.65</b></div>
+              <div class="metric"><span>r(a,L)</span><b id="loss">0.12</b></div>
+              <div class="metric"><span data-lang="tr">Aday alt sınır</span><span data-lang="en">Candidate bound</span><b id="net">0.53</b></div>
+            </div>
+            <div class="verdict ok" id="verdict">
+              <h3 id="verdictTitle"></h3>
+              <p class="small muted" id="verdictBody"></p>
+              <div class="blockers" id="blockers"></div>
+            </div>
+            <div class="trace" id="trace"></div>
+            <div class="share-state">
+              <button class="btn" id="copyScenarioBtn" type="button"><span data-lang="tr">Senaryo linkini kopyala</span><span data-lang="en">Copy scenario link</span></button>
+              <button class="btn" id="copyTraceBtn" type="button"><span data-lang="tr">Mantık izini kopyala</span><span data-lang="en">Copy logic trace</span></button>
+            </div>
+            <p class="small muted" style="margin-top:10px" data-lang="tr">Sayısal değerler fiziksel tahmin değildir; yalnızca ispat mimarisindeki <span class="math-block mono">C_G Λ_YM − r(a,L)</span> rolünü görünür kılar.</p>
+            <p class="small muted" style="margin-top:10px" data-lang="en">Numerical values are not physical estimates; they only expose the role of <span class="math-block mono">C_G Λ_YM − r(a,L)</span> in the proof architecture.</p>
+          </article>
         </div>
-        <div class="legend">
-          <span><i style="background:var(--accent)"></i><span data-lang="tr">Referans sınıf</span><span data-lang="en">Reference class</span></span>
-          <span><i style="background:var(--amber)"></i><span data-lang="tr">Hareket eden temsil</span><span data-lang="en">Moving representative</span></span>
-          <span><i style="background:var(--cyan)"></i><span data-lang="tr">Fiziksel ayrım yönü</span><span data-lang="en">Physical distinction direction</span></span>
-        </div>
-      </article>
-      <article class="card">
-        <div class="controls">
-          <div>
-            <label for="gaugeMove"><span data-lang="tr">Gauge yörüngesi boyunca hareket</span><span data-lang="en">Move along gauge orbit</span></label>
-            <div class="range-row"><input id="gaugeMove" type="range" min="0" max="360" value="35" step="1"><output id="gaugeMoveOut">35°</output></div>
-          </div>
-          <div>
-            <label for="physicalMove"><span data-lang="tr">Fiziksel ayrım miktarı</span><span data-lang="en">Physical displacement</span></label>
-            <div class="range-row"><input id="physicalMove" type="range" min="0" max="1" value="0" step="0.01"><output id="physicalMoveOut">0.00</output></div>
-          </div>
-        </div>
-        <div class="metric-grid">
-          <div class="metric"><span class="small muted" data-lang="tr">Gauge-invariant tanık</span><span class="small muted" data-lang="en">Gauge-invariant witness</span><b id="witnessValue">0.00</b></div>
-          <div class="metric"><span class="small muted" data-lang="tr">Temsil değişimi</span><span class="small muted" data-lang="en">Representative motion</span><b id="repMotion">35°</b></div>
-          <div class="metric"><span class="small muted" data-lang="tr">Fiziksel ayrım</span><span class="small muted" data-lang="en">Physical difference</span><b id="physDiff">0.00</b></div>
-        </div>
-        <div class="result" id="gaugeResult" style="margin-top:16px"></div>
-      </article>
-    </div>
-  </section>
+      </section>
 
-  <section class="view" id="view-spectrum">
-    <div class="grid2">
-      <article class="card">
-        <h2 data-lang="tr">Mass gap ne değildir?</h2><h2 data-lang="en">What the mass gap is not</h2>
-        <p data-lang="tr">Vakuma norm bakımından yakın durumların yasaklanması değildir. Vakum ile başka bir durumun süperpozisyonu vakuma normca keyfî derecede yaklaşabilir.</p>
-        <p data-lang="en">It does not forbid states norm-close to the vacuum. A superposition of the vacuum with another state can approach the vacuum arbitrarily closely in norm.</p>
-        <div class="equation math-block" style="margin-top:16px">ψ<sub>ε</sub> = √(1−ε²) Ω + ε φ</div>
-        <div class="controls">
-          <div>
-            <label for="epsilon">ε — <span data-lang="tr">vakum dışı bileşen</span><span data-lang="en">non-vacuum component</span></label>
-            <div class="range-row"><input id="epsilon" type="range" min="0" max="1" value="0.25" step="0.01"><output id="epsilonOut">0.25</output></div>
-          </div>
-          <div class="result" id="epsilonResult"></div>
+      <section class="view" id="view-spectrum">
+        <div class="section-title"><div><h2 data-lang="tr">Spektrum laboratuvarı</h2><h2 data-lang="en">Spectrum lab</h2><p data-lang="tr">Norm yakınlığı ile spektral boşluğu ayır; vakum-ortogonal sektördeki pozitif alt sınırın ne demek olduğunu gör.</p><p data-lang="en">Separate norm closeness from a spectral gap and inspect the positive lower bound in the vacuum-orthogonal sector.</p></div></div>
+        <div class="grid2">
+          <article class="card">
+            <h3 data-lang="tr">Vakuma normca yaklaşmak gap'i bozmaz</h3><h3 data-lang="en">Norm closeness to vacuum does not destroy the gap</h3>
+            <div class="equation math-block" style="margin-top:12px">ψ<sub>ε</sub> = √(1−ε²) Ω + ε φ</div>
+            <div class="controls">
+              <div><label for="epsilon">ε</label><div class="range-row"><input id="epsilon" type="range" min="0" max="1" value="0.25" step="0.01"><output id="epsilonOut">0.25</output></div></div>
+            </div>
+            <div class="verdict wait" id="epsilonVerdict"><h3 data-lang="tr">Yorum</h3><h3 data-lang="en">Interpretation</h3><p class="small muted" id="epsilonText"></p></div>
+          </article>
+          <article class="card">
+            <h3 data-lang="tr">Yasak spektral bant</h3><h3 data-lang="en">Forbidden spectral band</h3>
+            <div class="spectrum-stage">
+              <div class="spectrum-axis">
+                <div class="axis-line"></div><div class="tick" style="left:0"></div><div class="tick" id="deltaTick" style="left:42%"></div><div class="forbidden" id="forbidden"></div>
+                <div class="axis-label v">0<br><span data-lang="tr">Vakum</span><span data-lang="en">Vacuum</span></div>
+                <div class="axis-label d" id="deltaLabel">Δ</div>
+                <div class="axis-label tail"><span data-lang="tr">fiziksel spektrum →</span><span data-lang="en">physical spectrum →</span></div>
+              </div>
+            </div>
+            <div class="controls">
+              <div><label for="delta">Δ</label><div class="range-row"><input id="delta" type="range" min="0" max="1" value="0.42" step="0.01"><output id="deltaOut">0.42</output></div></div>
+            </div>
+            <div class="verdict ok" id="deltaVerdict"><h3 data-lang="tr">Spektral yorum</h3><h3 data-lang="en">Spectral interpretation</h3><p class="small muted" id="deltaText"></p></div>
+          </article>
         </div>
-      </article>
-      <article class="card">
-        <h2 data-lang="tr">Doğru hedef: spektral boşluk</h2><h2 data-lang="en">Correct target: spectral gap</h2>
-        <p data-lang="tr">Vakum bileşeni çıkarıldıktan sonra fiziksel spektral sektörde pozitif enerji alt sınırı aranır.</p>
-        <p data-lang="en">After projecting out the vacuum, seek a positive lower energy bound in the physical spectral sector.</p>
-        <div class="spectrum">
-          <div class="axis">
-            <div class="axis-line"></div><div class="tick vacuum"></div><div class="tick deltaTick" id="deltaTick"></div>
-            <div class="forbidden" id="forbidden"></div>
-            <div class="axis-label v">0<br><span data-lang="tr">Vakum</span><span data-lang="en">Vacuum</span></div>
-            <div class="axis-label d" id="deltaLabel">Δ</div>
-            <div class="axis-label tail"><span data-lang="tr">fiziksel spektrum →</span><span data-lang="en">physical spectrum →</span></div>
-          </div>
-        </div>
-        <div class="controls">
-          <div>
-            <label for="delta">Δ — <span data-lang="tr">normalize edilmiş varsayımsal gap</span><span data-lang="en">normalized hypothetical gap</span></label>
-            <div class="range-row"><input id="delta" type="range" min="0" max="1" value="0.42" step="0.01"><output id="deltaOut">0.42</output></div>
-          </div>
-          <div class="result" id="deltaResult"></div>
-        </div>
-      </article>
-    </div>
-  </section>
+      </section>
 
-  <section class="view" id="view-bridge">
-    <div class="grid2">
-      <article class="card">
-        <h2 data-lang="tr">Λ<sub>YM</sub> varlığı neden yetmez?</h2><h2 data-lang="en">Why isn't Λ<sub>YM</sub> enough?</h2>
-        <p data-lang="tr">Boyut dönüşümü bir fiziksel ölçek üretir; fakat sunumun açıkça vurguladığı eksik iş, bu ölçeği fiziksel Hamiltonyen üzerinde pozitif bir spektral alt sınıra bağlamaktır.</p>
-        <p data-lang="en">Dimensional transmutation generates a physical scale, but the missing task is to connect that scale to a positive lower spectral bound for the physical Hamiltonian.</p>
-        <div class="bridge">
-          <div class="bridge-row">
-            <div class="bridge-box"><b>Λ<sub>YM</sub> &gt; 0</b><div class="small muted" data-lang="tr">dinamik ölçek</div><div class="small muted" data-lang="en">dynamic scale</div></div>
-            <div class="bridge-arrow">→</div>
-            <div class="bridge-box"><b>κ &gt; 0 ?</b><div class="small muted" data-lang="tr">koersivite köprüsü</div><div class="small muted" data-lang="en">coercivity bridge</div></div>
-            <div class="bridge-arrow">→</div>
-            <div class="bridge-box"><b>Δ ≥ κΛ</b><div class="small muted" data-lang="tr">spektral alt sınır</div><div class="small muted" data-lang="en">spectral lower bound</div></div>
-          </div>
+      <section class="view" id="view-rg">
+        <div class="section-title"><div><h2>RG Transfer Console</h2><p data-lang="tr">Varsayımsal geri-yansıtım eşitsizliğinde enerji aktarımı ve kusur bütçesinin alt sınıra etkisini izle.</p><p data-lang="en">Track how energy transfer and the defect budget affect the lower bound in the hypothetical reflection-back inequality.</p></div></div>
+        <div class="grid2">
+          <article class="card">
+            <div class="equation math-block">𝔈<sub>f</sub>(ψ) ≥ Z · 𝔈<sub>c</sub>(Rψ) − ε<sub>R</sub> ‖ψ‖²</div>
+            <div class="controls">
+              <div><label for="z">Z</label><div class="range-row"><input id="z" type="range" min="0" max="1.5" value="0.85" step="0.01"><output id="zOut">0.85</output></div></div>
+              <div><label for="ec">𝔈<sub>c</sub></label><div class="range-row"><input id="ec" type="range" min="0" max="1.5" value="0.80" step="0.01"><output id="ecOut">0.80</output></div></div>
+              <div><label for="epsR">ε<sub>R</sub></label><div class="range-row"><input id="epsR" type="range" min="0" max="1.5" value="0.12" step="0.01"><output id="epsROut">0.12</output></div></div>
+            </div>
+            <div class="hero-actions"><button class="btn primary" id="runRG" type="button"><span data-lang="tr">RG adımlarını çalıştır</span><span data-lang="en">Run RG steps</span></button><button class="btn" id="resetRG" type="button"><span data-lang="tr">Sıfırla</span><span data-lang="en">Reset</span></button></div>
+          </article>
+          <article class="card">
+            <div class="rg-summary">
+              <div class="metric"><span>Z·𝔈<sub>c</sub></span><b id="rgGross">0.68</b></div>
+              <div class="metric"><span>ε<sub>R</sub></span><b id="rgLoss">0.12</b></div>
+              <div class="metric"><span data-lang="tr">Net alt sınır</span><span data-lang="en">Net bound</span><b id="rgNet">0.56</b></div>
+              <div class="metric"><span data-lang="tr">Durum</span><span data-lang="en">Status</span><b id="rgStatus">POS</b></div>
+            </div>
+            <div class="rg-track" id="rgTrack"></div>
+            <div class="verdict ok" id="rgVerdict" style="margin-top:12px"><h3 data-lang="tr">RG yorumu</h3><h3 data-lang="en">RG interpretation</h3><p class="small muted" id="rgText"></p></div>
+          </article>
         </div>
-      </article>
-      <article class="card">
-        <div class="controls">
-          <div>
-            <label for="lambdaVal">Λ — <span data-lang="tr">normalize edilmiş dinamik ölçek</span><span data-lang="en">normalized dynamical scale</span></label>
-            <div class="range-row"><input id="lambdaVal" type="range" min="0" max="1.5" value="1.00" step="0.01"><output id="lambdaOut">1.00</output></div>
-          </div>
-          <div>
-            <label for="kappaVal">κ — <span data-lang="tr">varsayımsal koersivite katsayısı</span><span data-lang="en">hypothetical coercivity coefficient</span></label>
-            <div class="range-row"><input id="kappaVal" type="range" min="0" max="1" value="0.55" step="0.01"><output id="kappaOut">0.55</output></div>
-          </div>
-        </div>
-        <div class="metric-grid">
-          <div class="metric"><span class="small muted">Λ</span><b id="lambdaMetric">1.00</b></div>
-          <div class="metric"><span class="small muted">κ</span><b id="kappaMetric">0.55</b></div>
-          <div class="metric"><span class="small muted">κΛ</span><b id="gapMetric">0.55</b></div>
-        </div>
-        <div class="result good" id="bridgeResult" style="margin-top:16px"></div>
-      </article>
-    </div>
-  </section>
+      </section>
 
-  <section class="view" id="view-rg">
-    <div class="grid2">
-      <article class="card">
-        <h2 data-lang="tr">RG geri-yansıtım oyuncağı</h2><h2 data-lang="en">RG reflection-back toy model</h2>
-        <p class="muted small" data-lang="tr">Bu panel bir kanıt değildir; varsayımsal eşitsizliğin mantığını normalize edilmiş bir oyuncak modelde gösterir.</p>
-        <p class="muted small" data-lang="en">This is not a proof; it visualizes the logic of the hypothetical inequality in a normalized toy model.</p>
-        <div class="equation math-block" style="margin-top:16px">𝔈<sub>f</sub>(ψ) ≥ Z · 𝔈<sub>c</sub>(Rψ) − ε<sub>R</sub> ‖ψ‖²</div>
-        <div class="controls">
-          <div><label for="z">Z</label><div class="range-row"><input id="z" type="range" min="0" max="1.5" value="0.85" step="0.01"><output id="zOut">0.85</output></div></div>
-          <div><label for="ec">𝔈<sub>c</sub></label><div class="range-row"><input id="ec" type="range" min="0" max="1.5" value="0.80" step="0.01"><output id="ecOut">0.80</output></div></div>
-          <div><label for="residual">ε<sub>R</sub></label><div class="range-row"><input id="residual" type="range" min="0" max="1.5" value="0.12" step="0.01"><output id="residualOut">0.12</output></div></div>
+      <section class="view" id="view-audit">
+        <div class="section-title"><div><h2 data-lang="tr">İspat borcu ve kalite kapıları</h2><h2 data-lang="en">Proof debt and quality gates</h2><p data-lang="tr">Profesyonel bir araştırma programı yalnızca iddia üretmez; hangi kapıların kapanmadığını görünür tutar.</p><p data-lang="en">A professional research program does not just make claims; it keeps unresolved gates explicit.</p></div></div>
+        <article class="card">
+          <table class="audit-table">
+            <thead><tr><th>ID</th><th data-lang="tr">Kapı</th><th data-lang="en">Gate</th><th data-lang="tr">Gerekli çıktı</th><th data-lang="en">Required output</th><th data-lang="tr">Statü</th><th data-lang="en">Status</th></tr></thead>
+            <tbody>
+              <tr><td>G1</td><td data-lang="tr">Fiziksel sektör</td><td data-lang="en">Physical sector</td><td data-lang="tr">Gauge artefaktından bağımsız ℋphys, Ω</td><td data-lang="en">Gauge-independent ℋphys, Ω</td><td><span class="status-chip target" data-lang="tr">Gerekli</span><span class="status-chip target" data-lang="en">Required</span></td></tr>
+              <tr><td>G2</td><td data-lang="tr">Dinamik ölçek</td><td data-lang="en">Dynamical scale</td><td>Λ<sub>YM</sub> &gt; 0</td><td>Λ<sub>YM</sub> &gt; 0</td><td><span class="status-chip est" data-lang="tr">Yerleşik fikir</span><span class="status-chip est" data-lang="en">Established idea</span></td></tr>
+              <tr><td>G3</td><td data-lang="tr">Kaba gap</td><td data-lang="en">Coarse gap</td><td data-lang="tr">Gauge-invariant başlangıç gap'i</td><td data-lang="en">Gauge-invariant starting gap</td><td><span class="status-chip target" data-lang="tr">Gerekli</span><span class="status-chip target" data-lang="en">Required</span></td></tr>
+              <tr><td>G4</td><td>RG reflection-back</td><td>RG reflection-back</td><td data-lang="tr">Gizli düşük enerjili mod yokluğu</td><td data-lang="en">No hidden low-energy mode</td><td><span class="status-chip hyp" data-lang="tr">Varsayımsal lemma</span><span class="status-chip hyp" data-lang="en">Hypothetical lemma</span></td></tr>
+              <tr><td>G5</td><td data-lang="tr">Uniform koersivite</td><td data-lang="en">Uniform coercivity</td><td class="mono">cGΛYM − r(a,L) &gt; 0</td><td class="mono">cGΛYM − r(a,L) &gt; 0</td><td><span class="status-chip hyp" data-lang="tr">Varsayımsal taşıma</span><span class="status-chip hyp" data-lang="en">Hypothetical transfer</span></td></tr>
+              <tr><td>G6</td><td>Continuum + OS</td><td>Continuum + OS</td><td data-lang="tr">Limit teori + spektral gap</td><td data-lang="en">Limit theory + spectral gap</td><td><span class="status-chip target" data-lang="tr">Gerekli</span><span class="status-chip target" data-lang="en">Required</span></td></tr>
+            </tbody>
+          </table>
+        </article>
+      </section>
+
+      <section class="view" id="view-falsify">
+        <div class="section-title"><div><h2 data-lang="tr">Çürütme ve kırılma testleri</h2><h2 data-lang="en">Falsification and break tests</h2><p data-lang="tr">Araştırma programının profesyonel olması için başarısızlık koşulları da en az hedef teorem kadar açık olmalıdır.</p><p data-lang="en">A professional research program should make failure conditions as explicit as the target theorem.</p></div></div>
+        <div class="grid2">
+          <article class="card stack" id="falsifyList"></article>
+          <article class="card">
+            <div class="eyebrow"><span class="status-chip hyp"><span data-lang="tr">Failure analysis</span><span data-lang="en">Failure analysis</span></span></div>
+            <h2 id="fTitle"></h2>
+            <p class="muted small" id="fBody" style="margin-top:8px"></p>
+            <div class="verdict fail" style="margin-top:14px"><h3 data-lang="tr">Zincir etkisi</h3><h3 data-lang="en">Chain effect</h3><p class="small muted" id="fConsequence"></p></div>
+          </article>
         </div>
-        <div class="hero-actions">
-          <button class="btn primary" id="rgRunBtn" type="button"><span data-lang="tr">7 RG adımını çalıştır</span><span data-lang="en">Run 7 RG steps</span></button>
-          <button class="btn" id="rgResetBtn" type="button"><span data-lang="tr">Sıfırla</span><span data-lang="en">Reset</span></button>
+      </section>
+
+      <section class="view" id="view-sources">
+        <div class="section-title"><div><h2 data-lang="tr">Kaynak ve provenans haritası</h2><h2 data-lang="en">Source and provenance map</h2><p data-lang="tr">Her ana iddianın kaynak sunumdaki yerini ve epistemik statüsünü ayrı tut.</p><p data-lang="en">Keep each major claim tied to its source location and epistemic status.</p></div></div>
+        <div class="source-grid">
+          <div class="source-card"><div class="slide">SLIDE 2</div><strong data-lang="tr">Hedef teorem</strong><strong data-lang="en">Target theorem</strong><p>Spec(H) ∩ (0, Δ) = ∅, Δ &gt; 0</p><span class="status-chip target" data-lang="tr">Resmî hedef</span><span class="status-chip target" data-lang="en">Official target</span></div>
+          <div class="source-card"><div class="slide">SLIDE 4</div><strong data-lang="tr">Norm yakınlığı ≠ gap</strong><strong data-lang="en">Norm closeness ≠ gap</strong><p data-lang="tr">Vakum-ortogonal spektral destek vurgusu.</p><p data-lang="en">Vacuum-orthogonal spectral support.</p><span class="status-chip est" data-lang="tr">Kavramsal düzeltme</span><span class="status-chip est" data-lang="en">Conceptual correction</span></div>
+          <div class="source-card"><div class="slide">SLIDE 5</div><strong data-lang="tr">Çekirdek koersivite hedefi</strong><strong data-lang="en">Core coercivity target</strong><p class="mono">P⊥HP⊥ ≥ CGΛYM P⊥</p><span class="status-chip hyp" data-lang="tr">Varsayımsal</span><span class="status-chip hyp" data-lang="en">Hypothetical</span></div>
+          <div class="source-card"><div class="slide">SLIDE 6</div><strong>Λ<sub>YM</sub> ≠ gap</strong><p data-lang="tr">Boyut dönüşümünden spektral alt sınıra eksik köprü.</p><p data-lang="en">Missing bridge from dimensional transmutation to spectral lower bound.</p><span class="status-chip target" data-lang="tr">Açık ispat borcu</span><span class="status-chip target" data-lang="en">Open proof debt</span></div>
+          <div class="source-card"><div class="slide">SLIDE 9</div><strong>RG reflection-back</strong><p class="mono">Ef(ψ) ≥ Z Ec(Rψ) − εR ||ψ||²</p><span class="status-chip hyp" data-lang="tr">Merkez varsayımsal lemma</span><span class="status-chip hyp" data-lang="en">Central hypothetical lemma</span></div>
+          <div class="source-card"><div class="slide">SLIDE 10–11</div><strong data-lang="tr">Uniform limit + OS</strong><strong data-lang="en">Uniform limit + OS</strong><p data-lang="tr">a→0, L→∞ ve yeniden-kurma.</p><p data-lang="en">a→0, L→∞ and reconstruction.</p><span class="status-chip target" data-lang="tr">Gerekli taşıma</span><span class="status-chip target" data-lang="en">Required transfer</span></div>
+          <div class="source-card"><div class="slide">SLIDE 12</div><strong data-lang="tr">Altı halkalı ispat zinciri</strong><strong data-lang="en">Six-link proof chain</strong><p data-lang="tr">Programın tek zincirde toplanmış hâli.</p><p data-lang="en">The program assembled into a single chain.</p><span class="status-chip target" data-lang="tr">Mimari</span><span class="status-chip target" data-lang="en">Architecture</span></div>
+          <div class="source-card"><div class="slide">SLIDE 13–15</div><strong data-lang="tr">Çürütme + statü</strong><strong data-lang="en">Falsification + status</strong><p data-lang="tr">Başarısızlık ölçütleri ve açık-problem uyarısı.</p><p data-lang="en">Failure criteria and open-problem warning.</p><span class="status-chip est" data-lang="tr">Metodolojik çerçeve</span><span class="status-chip est" data-lang="en">Methodological frame</span></div>
         </div>
-      </article>
-      <article class="card">
-        <h2 data-lang="tr">Alt sınırın kaderi</h2><h2 data-lang="en">Fate of the lower bound</h2>
-        <div class="metric-grid">
-          <div class="metric"><span class="small muted">Z·𝔈<sub>c</sub></span><b id="grossBound">0.68</b></div>
-          <div class="metric"><span class="small muted">− ε<sub>R</sub></span><b id="loss">−0.12</b></div>
-          <div class="metric"><span class="small muted" data-lang="tr">Net alt sınır</span><span class="small muted" data-lang="en">Net bound</span><b id="netBound">0.56</b></div>
-        </div>
-        <div class="rg-track" id="rgTrack"></div>
-        <div class="result good" id="rgResult" style="margin-top:16px"></div>
-      </article>
-    </div>
-  </section>
-
-  <section class="view" id="view-debts">
-    <div class="card">
-      <h2 data-lang="tr">İspat borcu haritası</h2><h2 data-lang="en">Proof-debt map</h2>
-      <p class="muted" data-lang="tr">Aşağıdaki maddelerden herhangi biri kapanmadan program bir çözüm sayılmaz.</p>
-      <p class="muted" data-lang="en">The program is not a solution until every obligation below is closed.</p>
-      <div class="grid2" style="margin-top:16px">
-        <details open><summary>1 — <span data-lang="tr">Teorinin varlığı</span><span data-lang="en">Existence of the theory</span></summary><div class="details-body"><span data-lang="tr">ℝ⁴ üzerinde gayri-trivial kuantum Yang–Mills teorisini aksiyomatik olarak kurmak gerekir.</span><span data-lang="en">Construct a non-trivial quantum Yang–Mills theory on ℝ⁴ axiomatically.</span></div></details>
-        <details><summary>2 — <span data-lang="tr">Fiziksel sektör</span><span data-lang="en">Physical sector</span></summary><div class="details-body"><span data-lang="tr">Gauge artefaktlarını gerçek fiziksel uyarımlardan ayırmak gerekir.</span><span data-lang="en">Separate gauge artefacts from genuine physical excitations.</span></div></details>
-        <details><summary>3 — <span data-lang="tr">Ölçek → spektrum köprüsü</span><span data-lang="en">Scale → spectrum bridge</span></summary><div class="details-body"><span data-lang="tr">Λ<sub>YM</sub> varlığından pozitif spektral alt sınıra geçiş ayrıca kanıtlanmalıdır.</span><span data-lang="en">The passage from Λ<sub>YM</sub> to a positive spectral lower bound must be proved separately.</span></div></details>
-        <details><summary>4 — <span data-lang="tr">Temsil-Yansıtıcı Koersivite</span><span data-lang="en">Representation-Reflective Coercivity</span></summary><div class="details-body"><span data-lang="tr">Coarse-graining'in düşük enerjili fiziksel modu gizleyemeyeceğini göstermek programın merkezi varsayımsal lemmasıdır.</span><span data-lang="en">Showing that coarse-graining cannot hide a low-energy physical mode is the central hypothetical lemma.</span></div></details>
-        <details><summary>5 — <span data-lang="tr">Uniform limit kontrolü</span><span data-lang="en">Uniform limit control</span></summary><div class="details-body"><span data-lang="tr">Gap alt sınırı a→0 ve L→∞ limitlerinde korunmalıdır.</span><span data-lang="en">The gap lower bound must survive the a→0 and L→∞ limits.</span></div></details>
-        <details><summary>6 — <span data-lang="tr">OS yeniden-kurma</span><span data-lang="en">OS reconstruction</span></summary><div class="details-body"><span data-lang="tr">Reflection positivity, locality ve limit teorisi fiziksel Hilbert uzayına taşınmalıdır.</span><span data-lang="en">Reflection positivity, locality and the limit theory must reconstruct the physical Hilbert space.</span></div></details>
-      </div>
-    </div>
-  </section>
-
-  <section class="view" id="view-falsify">
-    <div class="grid2">
-      <article class="card">
-        <h2 data-lang="tr">Programı ne çürütür?</h2><h2 data-lang="en">What would falsify the program?</h2>
-        <p class="muted small" data-lang="tr">Bir ölçüt seç; sağ panel başarısızlığın neden temel olduğunu açıklar.</p>
-        <p class="muted small" data-lang="en">Select a criterion; the panel explains why that failure is fundamental.</p>
-        <div class="falsify-list" id="falsifyList" style="margin-top:14px"></div>
-      </article>
-      <article class="card">
-        <h2 id="falsifyTitle"></h2>
-        <p id="falsifyBody"></p>
-        <div class="result bad" style="margin-top:18px"><strong data-lang="tr">Sonuç:</strong><strong data-lang="en">Consequence:</strong><span id="falsifyConsequence"></span></div>
-      </article>
-    </div>
-  </section>
-
-  <section class="view" id="view-sources">
-    <div class="grid2">
-      <article class="card">
-        <h2 data-lang="tr">Kaynak ve kapsam</h2><h2 data-lang="en">Source and scope</h2>
-        <div class="sources" style="margin-top:16px">
-          <div class="source"><b>Clay Mathematics Institute</b><div class="muted small">Yang–Mills &amp; the Mass Gap — <span data-lang="tr">resmî problem</span><span data-lang="en">official problem</span></div></div>
-          <div class="source"><b>Arthur Jaffe &amp; Edward Witten</b><div class="muted small">“Quantum Yang–Mills Theory” — <span data-lang="tr">resmî problem tanımı</span><span data-lang="en">official problem statement</span></div></div>
-          <div class="source"><b data-lang="tr">Kaynak sunum</b><b data-lang="en">Source presentation</b><div class="muted small">“Yang–Mills Kütle Aralığı — Gauge-İndirgenmiş Spektral Koersivite Programı”</div></div>
-        </div>
-      </article>
-      <article class="card warning">
-        <h2 data-lang="tr">Statü uyarısı</h2><h2 data-lang="en">Status warning</h2>
-        <p data-lang="tr">Bu uygulama Yang–Mills problemini çözmüş olduğunu iddia etmez. “Temsil-Yansıtıcı Koersivite Lemması” ve continuum'a uniform taşıma zinciri varsayımsal araştırma hedefleridir.</p>
-        <p data-lang="en">This app does not claim to solve the Yang–Mills problem. The “Representation-Reflective Coercivity Lemma” and uniform continuum-transfer chain are hypothetical research targets.</p>
-        <div class="equation math-block" style="margin-top:16px">Δ ≥ C<sub>G</sub> Λ<sub>YM</sub> &gt; 0 — <span data-lang="tr">hedef sonuç</span><span data-lang="en">target result</span></div>
-      </article>
-    </div>
-  </section>
-
-  <footer>
-    <div data-lang="tr">v3 • Tek dosyalık bağımsız web uygulaması • Sunum içeriğinden türetilmiştir • JavaScript yalnızca yerel etkileşimler için kullanılır.</div>
-    <div data-lang="en">v3 • Single-file standalone web app • Derived from the presentation • JavaScript is used only for local interactions.</div>
-    <div style="margin-top:8px" class="small">
-      <span data-lang="tr">Kısayollar: <span class="kbd">←</span> <span class="kbd">→</span> bölüm değiştirir.</span>
-      <span data-lang="en">Shortcuts: <span class="kbd">←</span> <span class="kbd">→</span> change sections.</span>
-    </div>
-  </footer>
-</main>
-
-<div class="tourbox" id="tourbox" role="dialog" aria-live="polite">
-  <div class="small muted" id="tourCount"></div>
-  <h3 id="tourTitle" style="margin-top:4px"></h3>
-  <p class="small" id="tourBody"></p>
-  <div class="tour-actions">
-    <button class="mini-btn" id="tourClose" type="button"><span data-lang="tr">Kapat</span><span data-lang="en">Close</span></button>
-    <div>
-      <button class="mini-btn" id="tourPrev" type="button">←</button>
-      <button class="mini-btn active" id="tourNext" type="button">→</button>
-    </div>
+      </section>
+    </main>
   </div>
 </div>
 
@@ -641,271 +577,287 @@
 <script>
 (() => {
   const body=document.body;
-  const tabs=[...document.querySelectorAll('.tab')];
+  const nav=[...document.querySelectorAll('.navbtn')];
   const views=[...document.querySelectorAll('.view')];
   const toast=document.getElementById('toast');
-  let currentView=0,currentStep=0,currentFalsify=0,rgTimer=null,rgStage=0,tourIndex=0;
+  let currentView=0,currentNode='n1',currentF=0,rgTimer=null,rgStage=0;
 
-  const tr={
-    copied:'Bağlantı panoya kopyalandı.',
-    shareUnavailable:'Paylaşım API’si kullanılamadı. Tarayıcı adresini kopyalayabilirsin.',
-    mathOn:'Matematik: açık',mathOff:'Matematik: kapalı',present:'Sunum modu',exitPresent:'Sunumdan çık',
-    epsilon:(e)=>`ε = ${e.toFixed(2)}. Vakum dışı bileşen küçüldükçe durum vakuma norm bakımından yaklaşabilir. Bu, mass gap ile çelişmez.`,
-    gap:(d)=>d<=.001?'Δ = 0: yasak spektral bant çöktü; pozitif gap gösterimi yok.':`Δ = ${d.toFixed(2)}: (0, Δ) aralığı yasak spektral bant olarak gösteriliyor. Bu değer fiziksel tahmin değildir.`,
-    gaugeSame:(g)=>`Temsil gauge yörüngesi üzerinde ${g}° hareket etti; gauge-invariant tanık değişmedi. Ham konfigürasyondaki hareket fiziksel fark olmak zorunda değildir.`,
-    gaugeDiff:(p)=>`Fiziksel ayrım ${p.toFixed(2)} seviyesine çıktı; gauge-invariant tanık artık değişiyor. Oyuncak modelde fiziksel ayrım bu yönde temsil ediliyor.`,
-    bridgeGood:(v)=>`κ > 0 olduğunda oyuncak köprü Δ ≥ κΛ biçiminde pozitif bir alt sınır üretiyor: ${v.toFixed(2)}. Gerçek problemde κ'nın pozitif ve uniform olması kanıtlanmalıdır.`,
-    bridgeZero:'Λ pozitif olsa bile κ = 0 ise bu oyuncak modelde gap alt sınırı sıfırdır. Bu, “ölçek var” ⇒ “gap var” çıkarımının otomatik olmadığını gösterir.',
-    rgGood:(v)=>`Net alt sınır ${v.toFixed(2)} > 0. Oyuncak model koersivite mantığını koruyor; gerçek teori için RG adımları boyunca uniform kontrol gerekir.`,
-    rgBad:(v)=>`Net alt sınır ${v.toFixed(2)} ≤ 0. Kusur terimi alt sınırı yok ediyor; oyuncak model pozitif koersiviteyi koruyamıyor.`,
-    simOk:(v)=>`Zincir bu oyuncak mantık modelinde kapanıyor. Aday continuum alt sınırı ${v.toFixed(2)} > 0.`,
-    simBroken:'Zincir kırık: hedef spektral sonuç bu varsayımlar altında çıkarılamıyor.',
-    simIncomplete:'Sayısal alt sınır pozitif görünse bile mantıksal ispat yükümlülüklerinden en az biri eksik.'
+  const text={
+    tr:{
+      copied:'Panoya kopyalandı.',
+      copyFail:'Panoya kopyalama desteklenmiyor.',
+      mathOn:'Matematik: açık', mathOff:'Matematik: kapalı',
+      present:'Sunum', exitPresent:'Sunumdan çık',
+      eps:e=>`ε = ${e.toFixed(2)}. Vakum dışı bileşen küçüldükçe durum vakuma norm bakımından yaklaşabilir. Mass gap ise norm mesafesi değil, vakum-ortogonal spektral destek üzerinde sorulur.`,
+      delta:d=>d>0?`Δ = ${d.toFixed(2)}. Oyuncak gösterimde (0, Δ) aralığı fiziksel spektrumdan boş bırakılıyor.`:'Δ = 0. Yasak spektral bant çöktü; pozitif gap gösterimi yok.',
+      rg:v=>v>0?`Net alt sınır ${v.toFixed(2)} > 0. Oyuncak model koersivite mantığını koruyor; gerçek teori için uniform kontrol ayrıca kanıtlanmalıdır.`:`Net alt sınır ${v.toFixed(2)} ≤ 0. Kusur bütçesi alt sınırı yok ediyor.`,
+      labOk:v=>`Oyuncak mantık modelinde zincir kapanıyor. Aday alt sınır ${v.toFixed(2)} > 0.`,
+      labBroken:'Hedef continuum spektral gap sonucu bu varsayımlar altında çıkarılamıyor.'
+    },
+    en:{
+      copied:'Copied to clipboard.',
+      copyFail:'Clipboard copy is unavailable.',
+      mathOn:'Math: on', mathOff:'Math: off',
+      present:'Present', exitPresent:'Exit presentation',
+      eps:e=>`ε = ${e.toFixed(2)}. As the non-vacuum component shrinks, the state can become norm-close to the vacuum. The mass gap concerns vacuum-orthogonal spectral support, not norm distance.`,
+      delta:d=>d>0?`Δ = ${d.toFixed(2)}. In the toy display, the interval (0, Δ) is left empty of physical spectrum.`:'Δ = 0. The forbidden spectral band collapses; no positive gap is represented.',
+      rg:v=>v>0?`The net lower bound is ${v.toFixed(2)} > 0. The toy model preserves the coercivity logic; uniform control in the real theory still requires proof.`:`The net lower bound is ${v.toFixed(2)} ≤ 0. The defect budget destroys the bound.`,
+      labOk:v=>`The chain closes in the toy logic model. Candidate lower bound: ${v.toFixed(2)} > 0.`,
+      labBroken:'The target continuum spectral-gap conclusion is not licensed under these assumptions.'
+    }
   };
-  const en={
-    copied:'Link copied to clipboard.',
-    shareUnavailable:'The Web Share API is unavailable. Copy the browser address instead.',
-    mathOn:'Math: on',mathOff:'Math: off',present:'Present',exitPresent:'Exit presentation',
-    epsilon:(e)=>`ε = ${e.toFixed(2)}. As the non-vacuum component shrinks, the state can become norm-close to the vacuum. This does not contradict a mass gap.`,
-    gap:(d)=>d<=.001?'Δ = 0: the forbidden band collapses; no positive gap is represented.':`Δ = ${d.toFixed(2)}: the interval (0, Δ) is displayed as the forbidden spectral band. This is not a physical estimate.`,
-    gaugeSame:(g)=>`The representative moved ${g}° along the gauge orbit while the gauge-invariant witness remained unchanged. Motion in raw configuration space need not be physical difference.`,
-    gaugeDiff:(p)=>`Physical displacement reached ${p.toFixed(2)}, and the gauge-invariant witness now changes. The toy model represents genuine physical distinction along this direction.`,
-    bridgeGood:(v)=>`For κ > 0, the toy bridge produces a positive bound Δ ≥ κΛ = ${v.toFixed(2)}. In the real problem, positivity and uniformity of κ must be proved.`,
-    bridgeZero:'Even with Λ > 0, κ = 0 gives zero gap bound in this toy model. This shows why “a scale exists” does not automatically imply “a gap exists.”',
-    rgGood:(v)=>`The net lower bound is ${v.toFixed(2)} > 0. The toy model preserves the coercivity logic; the real theory needs uniform control across RG steps.`,
-    rgBad:(v)=>`The net lower bound is ${v.toFixed(2)} ≤ 0. The defect term destroys the bound, so the toy model no longer preserves positive coercivity.`,
-    simOk:(v)=>`The chain closes in this toy logic model. The candidate continuum lower bound is ${v.toFixed(2)} > 0.`,
-    simBroken:'The chain is broken: the target spectral conclusion is not licensed under these assumptions.',
-    simIncomplete:'The numerical bound may look positive, but at least one logical proof obligation is missing.'
-  };
-  const L=()=>body.classList.contains('lang-en')?en:tr;
-  const langObj=o=>body.classList.contains('lang-en')?o.en:o.tr;
+  const L=()=>body.classList.contains('lang-en')?text.en:text.tr;
+  const isEn=()=>body.classList.contains('lang-en');
+  const langObj=o=>isEn()?o.en:o.tr;
   const showToast=msg=>{toast.textContent=msg;toast.classList.add('show');clearTimeout(showToast.t);showToast.t=setTimeout(()=>toast.classList.remove('show'),2200)};
 
-  const stepData=[
-    {tr:{t:'I — Gauge-indirgenmiş teori',b:'Ham konfigürasyon uzayındaki gauge tekrarlarını fiziksel ayrımdan ayır. Fiziksel Hilbert uzayı ℋ_phys ve tekil vakum Ω üzerinde çalış.',tag:'Kurulması gereken yapı'},en:{t:'I — Gauge-reduced theory',b:'Separate gauge redundancy from physical distinction in raw configuration space. Work on a physical Hilbert space ℋ_phys with a unique vacuum Ω.',tag:'Structure to be constructed'},eq:'𝒬 = 𝒜 / 𝒢',cls:'target'},
-    {tr:{t:'II — Dinamik ölçek',b:'Asimptotik özgürlük boyutsuz kuplajdan Λ_YM ölçeğini üretir. Fakat pozitif bir ölçeğin varlığı tek başına spektral gap değildir.',tag:'Yerleşik fikir → eksik köprü'},en:{t:'II — Dynamical scale',b:'Asymptotic freedom generates Λ_YM from the dimensionless coupling. But a positive scale alone is not a spectral gap.',tag:'Established idea → missing bridge'},eq:'Λ_YM = μ · exp(−∫ dg / β(g))',cls:'established'},
-    {tr:{t:'III — Kaba-ölçek gap',b:'Gauge-invariant transfer operatörü üzerinde kaba veya sonlu ölçekte pozitif gap elde et. Bu continuum sonucunun yalnızca başlangıç girdisidir.',tag:'Başlangıç girdisi'},en:{t:'III — Coarse-scale gap',b:'Obtain a positive gap for a gauge-invariant transfer operator at coarse or finite scale. This is only an input to the continuum argument.',tag:'Starting input'},eq:'gap(Hₐ,ᴸ) > 0  [coarse scale]',cls:'target'},
-    {tr:{t:'IV — RG geri-yansıtımı',b:'Coarse-graining düşük enerjili fiziksel modu gizleyememeli. Rψ kaba ölçekte vakuma düşse bile ince ölçekte gizli enerji→0 fiziksel mod kalmadığını göster.',tag:'Varsayımsal yeni lemma'},en:{t:'IV — RG reflection-back',b:'Coarse-graining must not hide a low-energy physical mode. Even if Rψ falls into the coarse vacuum, rule out a hidden fine-scale mode with energy tending to zero.',tag:'Hypothetical new lemma'},eq:'𝔈_f(ψ) ≥ Z · 𝔈_c(Rψ) − ε_R ‖ψ‖²',cls:'hypothesis'},
-    {tr:{t:'V — Uniform koersivite',b:'Gap alt sınırını yeniden-normalleştirilmiş yörüngenin tamamında kontrol et; a→0 ve L→∞ limitlerinde sönmesine izin verme.',tag:'En ağır analitik taşıma'},en:{t:'V — Uniform coercivity',b:'Control the gap lower bound across the entire renormalized trajectory and prevent it from vanishing as a→0 and L→∞.',tag:'Heaviest analytic transfer'},eq:'P⊥ Hₐ,ᴸ P⊥ ≥ (c_G Λ_YM − r(a,L)) P⊥',cls:'hypothesis'},
-    {tr:{t:'VI — Continuum + OS',b:'Euclidean limit, reflection positivity ve locality korunur; OS yeniden-kurma ile ℋ_phys, Ω ve H elde edilir ve koersivite limitte kalır.',tag:'Hedef sonuç'},en:{t:'VI — Continuum + OS',b:'Preserve the Euclidean limit, reflection positivity and locality; use OS reconstruction to obtain ℋ_phys, Ω and H while retaining coercivity.',tag:'Target result'},eq:'Spec(H) ∩ (0, C_G Λ_YM) = ∅',cls:'target'}
-  ];
-
-  const falsifyData=[
-    {tr:{t:'Gap continuum’da çöker',b:'Finite-kafes gap a→0 limitinde sıfıra gidiyorsa, kaba ölçekteki pozitif gap continuum teoriye taşınamaz.',c:'Programın uniform alt sınır iddiası başarısız olur.'},en:{t:'The gap collapses in the continuum',b:'If the finite-lattice gap tends to zero as a→0, the positive coarse-scale gap cannot be carried to the continuum theory.',c:'The claimed uniform lower bound fails.'}},
-    {tr:{t:'RG fiziksel modu örter',b:'Rψ kaba ölçekte vakuma düşerken ince ölçekte enerji→0 fiziksel mod kalabiliyorsa geri-yansıtım lemması yanlıştır.',c:'Programın merkezi yeni halkası kırılır.'},en:{t:'RG hides a physical mode',b:'If Rψ falls into the coarse vacuum while a fine-scale physical mode with energy→0 survives, the reflection-back lemma is false.',c:'The central new link breaks.'}},
-    {tr:{t:'Λ_YM gap’i kontrol etmez',b:'Dinamik ölçek mevcut olsa bile pozitif spektral koersivite sabiti kurulamazsa “ölçek var” ile “gap var” arasındaki köprü çöker.',c:'Dimensional transmutation mass gap sonucuna yetmez.'},en:{t:'Λ_YM does not control the gap',b:'Even if a dynamical scale exists, failure to establish positive spectral coercivity destroys the bridge from scale to gap.',c:'Dimensional transmutation is not enough.'}},
-    {tr:{t:'Vakum / aksiyom yapısı bozulur',b:'Tekillik, pozitif enerji, reflection positivity veya OS yeniden-kurma şartları kurulamıyorsa Clay hedefinin varlık kısmı sağlanmaz.',c:'Bir kafes gap sonucu tek başına yeterli olmaz.'},en:{t:'Vacuum / axiom structure fails',b:'If uniqueness, positive energy, reflection positivity or OS reconstruction cannot be established, the existence side fails.',c:'A lattice gap alone would not be enough.'}},
-    {tr:{t:'Gauge artefaktı sızar',b:'Kanıt global gauge seçimine bağımlı kalıyorsa ölçülen şey fiziksel gap yerine temsil kaynaklı yapay bir gap olabilir.',c:'Fiziksel spektrum yerine temsil artefaktı ölçülmüş olabilir.'},en:{t:'Gauge artefacts leak in',b:'If the argument depends on a global gauge choice, the measured gap may be representational rather than physical.',c:'The result may concern a representation artefact.'}}
-  ];
-
-  const tourData=[
-    {view:0,tr:{t:'1. Problemi doğru yere koy',b:'İlk hedef “kütle nereden geliyor?” değil; vakum-ortogonal fiziksel spektrumda pozitif alt sınır kurmak.'},en:{t:'1. Put the problem in the right place',b:'The first target is not “where mass comes from,” but a positive lower bound in the vacuum-orthogonal physical spectrum.'}},
-    {view:1,tr:{t:'3. Zinciri boz ve sonucu izle',b:'Mantık simülatöründe varsayımları kapat veya artık terimini büyüt. Hangi halkanın continuum gap sonucunu engellediğini canlı gör.'},en:{t:'3. Break the chain and watch the consequence',b:'In the logic simulator, disable assumptions or enlarge the residual term. See which link blocks the continuum-gap conclusion.'}},
-    {view:2,tr:{t:'3. Gauge tekrarını fiziksel farktan ayır',b:'Ham konfigürasyon uzayındaki her hareket fiziksel değildir. Gauge laboratuvarında bunu doğrudan gör.'},en:{t:'3. Separate gauge redundancy from physical difference',b:'Not every motion in raw configuration space is physical. The gauge lab makes this distinction explicit.'}},
-    {view:3,tr:{t:'4. Norm yakınlığı ile spektral gap’i karıştırma',b:'Bir durum vakuma normca yaklaşabilir; gap vakum-ortogonal spektral destekte aranır.'},en:{t:'4. Do not confuse norm closeness with a spectral gap',b:'A state can be norm-close to the vacuum; the gap is sought in the vacuum-orthogonal spectral support.'}},
-    {view:4,tr:{t:'5. Λ tek başına yetmez',b:'Dinamik ölçek üretimi ile pozitif spektral alt sınır arasında ayrıca bir koersivite köprüsü gerekir.'},en:{t:'5. Λ alone is not enough',b:'A separate coercivity bridge is needed between dynamical scale generation and a positive spectral lower bound.'}},
-    {view:5,tr:{t:'6. En riskli yeni halka: RG geri-yansıtımı',b:'Coarse-graining düşük enerjili fiziksel modu gizleyememeli; programın varsayımsal yeniliği burada.'},en:{t:'6. Riskiest new link: RG reflection-back',b:'Coarse-graining must not hide a low-energy physical mode; this is the hypothetical novelty of the program.'}},
-    {view:6,tr:{t:'7. İspat borçlarını kapat',b:'Varlık, fiziksel sektör, uniform limit ve OS yeniden-kurma birlikte tamamlanmadan çözüm yok.'},en:{t:'7. Close the proof debts',b:'There is no solution until existence, the physical sector, uniform limits and OS reconstruction are all secured.'}},
-    {view:7,tr:{t:'8. Programı çürütülebilir tut',b:'Gerçek bir araştırma programı hangi durumda çökeceğini açıkça söylemelidir.'},en:{t:'8. Keep the program falsifiable',b:'A real research program must state clearly what would make it fail.'}},
-    {view:8,tr:{t:'9. Statüyü unutma',b:'Bu çalışma Milenyum Problemini çözmüş olduğunu iddia etmiyor; teknik hedefleri açık bir varsayımsal program sunuyor.'},en:{t:'9. Keep the status explicit',b:'This work does not claim to solve the Millennium Problem; it presents a hypothetical program with explicit technical targets.'}}
-  ];
-
-  function renderProgress(){
-    const p=document.getElementById('sectionProgress');p.innerHTML='';
-    views.forEach((_,i)=>{const s=document.createElement('span');if(i===currentView)s.classList.add('active');p.appendChild(s);});
+  function switchView(idx,scroll=true){
+    currentView=(idx+views.length)%views.length;
+    nav.forEach((b,i)=>b.classList.toggle('active',i===currentView));
+    views.forEach((v,i)=>v.classList.toggle('active',i===currentView));
+    if(scroll) window.scrollTo({top:0,behavior:'smooth'});
   }
-  function renderSteps(){
-    const box=document.getElementById('steps');box.innerHTML='';
-    stepData.forEach((s,i)=>{const d=langObj(s),b=document.createElement('button');b.type='button';b.className='step-btn'+(i===currentStep?' active':'');b.innerHTML=`<span class="step-num">${String(i+1).padStart(2,'0')}</span><br><b>${d.t}</b><div class="small muted">${d.tag}</div>`;b.addEventListener('click',()=>{currentStep=i;renderSteps();renderStepDetail();});box.appendChild(b);});
-  }
-  function renderStepDetail(){
-    const s=stepData[currentStep],d=langObj(s);document.getElementById('stepCounter').textContent=`${currentStep+1} / ${stepData.length}`;document.getElementById('stepTitle').textContent=d.t;document.getElementById('stepBody').textContent=d.b;document.getElementById('stepEq').innerHTML=s.eq;const tag=document.getElementById('stepTag');tag.textContent=d.tag;tag.className='tag '+s.cls;document.getElementById('stepProgress').style.width=((currentStep+1)/stepData.length*100)+'%';
-  }
-  function renderFalsify(){
-    const box=document.getElementById('falsifyList');box.innerHTML='';
-    falsifyData.forEach((x,i)=>{const d=langObj(x),b=document.createElement('button');b.type='button';b.className='falsify-btn'+(i===currentFalsify?' active':'');b.innerHTML=`<b>${d.t}</b>`;b.addEventListener('click',()=>{currentFalsify=i;renderFalsify();renderFalsifyDetail();});box.appendChild(b);});renderFalsifyDetail();
-  }
-  function renderFalsifyDetail(){const d=langObj(falsifyData[currentFalsify]);document.getElementById('falsifyTitle').textContent=d.t;document.getElementById('falsifyBody').textContent=d.b;document.getElementById('falsifyConsequence').textContent=' '+d.c;}
-  function switchView(idx,scroll=true){currentView=(idx+views.length)%views.length;tabs.forEach((t,i)=>t.classList.toggle('active',i===currentView));views.forEach((v,i)=>v.classList.toggle('active',i===currentView));renderProgress();if(scroll)window.scrollTo({top:0,behavior:'smooth'});}
-  tabs.forEach((t,i)=>t.addEventListener('click',()=>switchView(i)));
+  nav.forEach((b,i)=>b.addEventListener('click',()=>switchView(i)));
 
   document.getElementById('langBtn').addEventListener('click',()=>{
-    body.classList.toggle('lang-en');document.documentElement.lang=body.classList.contains('lang-en')?'en':'tr';document.getElementById('langBtn').textContent=body.classList.contains('lang-en')?'TR':'EN';renderSteps();renderStepDetail();renderFalsify();renderProofSim();updateGauge();updateEpsilon();updateDelta();updateBridge();updateRG();renderTour();document.getElementById('mathBtn').textContent=body.classList.contains('math-hidden')?L().mathOff:L().mathOn;document.getElementById('presentBtn').textContent=body.classList.contains('presenting')?L().exitPresent:L().present;
+    body.classList.toggle('lang-en');
+    document.documentElement.lang=isEn()?'en':'tr';
+    document.getElementById('langBtn').textContent=isEn()?'TR':'EN';
+    document.getElementById('mathBtn').textContent=body.classList.contains('math-hidden')?L().mathOff:L().mathOn;
+    document.getElementById('presentationBtn').textContent=body.classList.contains('presentation')?L().exitPresent:L().present;
+    renderNode(); renderLab(); renderSpectrum(); renderRG(); renderFalsify();
   });
-  document.getElementById('mathBtn').addEventListener('click',()=>{body.classList.toggle('math-hidden');document.getElementById('mathBtn').textContent=body.classList.contains('math-hidden')?L().mathOff:L().mathOn;});
-  document.getElementById('presentBtn').addEventListener('click',()=>{body.classList.toggle('presenting');document.getElementById('presentBtn').textContent=body.classList.contains('presenting')?L().exitPresent:L().present;});
-  document.getElementById('shareBtn').addEventListener('click',async()=>{const data={title:document.title,text:document.querySelector('.lead [data-lang="'+(body.classList.contains('lang-en')?'en':'tr')+'"]').textContent,url:location.href};try{if(navigator.share)await navigator.share(data);else if(navigator.clipboard){await navigator.clipboard.writeText(location.href);showToast(L().copied);}else showToast(L().shareUnavailable);}catch(e){if(e&&e.name!=='AbortError')showToast(L().shareUnavailable);}});
-  document.getElementById('jumpLabsBtn').addEventListener('click',()=>switchView(2));
+  document.getElementById('mathBtn').addEventListener('click',()=>{
+    body.classList.toggle('math-hidden');
+    document.getElementById('mathBtn').textContent=body.classList.contains('math-hidden')?L().mathOff:L().mathOn;
+  });
+  document.getElementById('presentationBtn').addEventListener('click',()=>{
+    body.classList.toggle('presentation');
+    document.getElementById('presentationBtn').textContent=body.classList.contains('presentation')?L().exitPresent:L().present;
+  });
+  document.getElementById('shareBtn').addEventListener('click',async()=>{
+    const data={title:document.title,text:'Yang–Mills Mass Gap — Interactive Research Console',url:location.href};
+    try{
+      if(navigator.share) await navigator.share(data);
+      else if(navigator.clipboard){await navigator.clipboard.writeText(location.href);showToast(L().copied);}
+      else showToast(L().copyFail);
+    }catch(e){ if(e && e.name!=='AbortError') showToast(L().copyFail); }
+  });
 
-  const proofIds=['aGauge','aScale','aCoarse','aReflect','aUniform','aOS'];
-  const proofPresets={
-    intact:{checks:[1,1,1,1,1,1],cG:.65,lambda:1.00,residual:.12},
-    rgfail:{checks:[1,1,1,0,1,1],cG:.65,lambda:1.00,residual:.12},
-    collapse:{checks:[1,1,1,1,1,1],cG:.65,lambda:1.00,residual:.72},
-    gaugefail:{checks:[0,1,1,1,1,1],cG:.65,lambda:1.00,residual:.12},
-    osfail:{checks:[1,1,1,1,1,0],cG:.65,lambda:1.00,residual:.12},
-    bridgezero:{checks:[1,1,1,1,1,1],cG:0,lambda:1.00,residual:0}
+  document.getElementById('openLabBtn').addEventListener('click',()=>switchView(2));
+  document.getElementById('openGraphBtn').addEventListener('click',()=>switchView(1));
+
+  const nodes={
+    n1:{status:'target',tr:{title:'Fiziksel sektör',summary:'Gauge tekrarlarını fiziksel farktan ayıran sektör ve tekil vakum.',failure:'Gauge artefaktı fiziksel gap sanılabilir.',source:'Slayt 3, 7, 8'},en:{title:'Physical sector',summary:'A sector separating gauge redundancy from physical distinction, with a unique vacuum.',failure:'A gauge artefact may be mistaken for a physical gap.',source:'Slides 3, 7, 8'},formula:'𝒬 = 𝒜 / 𝒢 → ℋ_phys, Ω',deps:[]},
+    n2:{status:'est',tr:{title:'Dinamik ölçek',summary:'Asimptotik özgürlükten doğan pozitif Λ_YM ölçeği.',failure:'Spektral alt sınırın boyutlu referansı kaybolur.',source:'Slayt 6'},en:{title:'Dynamical scale',summary:'Positive Λ_YM generated by asymptotic freedom.',failure:'The dimensional reference for the spectral bound is lost.',source:'Slide 6'},formula:'Λ_YM = μ · exp(−∫ dg/β(g))',deps:[]},
+    n3:{status:'target',tr:{title:'Kaba gap + koersivite köprüsü',summary:'Gauge-invariant kaba ölçekte gap girdisi ve Λ_YM ile spektrum arasında pozitif köprü.',failure:'“Λ var” ile “gap var” arasındaki çıkarım kapanmaz.',source:'Slayt 5, 6, 10'},en:{title:'Coarse gap + coercivity bridge',summary:'A gauge-invariant coarse gap input plus a positive bridge from Λ_YM to the spectrum.',failure:'The implication from “scale exists” to “gap exists” does not close.',source:'Slides 5, 6, 10'},formula:'gap(H_a,L) ≥ c_G Λ_YM − r(a,L)',deps:['N1','N2']},
+    n4:{status:'hyp',tr:{title:'RG reflection-back',summary:'Coarse-graining düşük enerjili fiziksel modu gizleyemiyor.',failure:'Kaba ölçekte vakum görünen bir durum ince ölçekte yumuşak fiziksel mod saklayabilir.',source:'Slayt 9, 12'},en:{title:'RG reflection-back',summary:'Coarse-graining cannot hide a low-energy physical mode.',failure:'A state appearing vacuum-like at coarse scale may hide a fine-scale soft physical mode.',source:'Slides 9, 12'},formula:'𝔈_f(ψ) ≥ Z·𝔈_c(Rψ) − ε_R‖ψ‖²',deps:['N3']},
+    n5:{status:'hyp',tr:{title:'Uniform koersivite',summary:'Pozitif alt sınır RG yörüngesi ve a→0, L→∞ limitleri boyunca sönmüyor.',failure:'Finite-kafes gap continuum limitinde sıfıra çöker.',source:'Slayt 10, 12'},en:{title:'Uniform coercivity',summary:'The positive lower bound survives the RG trajectory and the a→0, L→∞ limits.',failure:'The finite-lattice gap collapses to zero in the continuum limit.',source:'Slides 10, 12'},formula:'P⊥H_a,L P⊥ ≥ (c_GΛ_YM−r)P⊥',deps:['N4']},
+    n6:{status:'target',tr:{title:'Continuum + OS',summary:'Reflection positivity, locality ve limit teori ile ℋ_phys, Ω ve H yeniden kuruluyor.',failure:'Clay hedefinin varlık/aksiyom kısmı sağlanmaz.',source:'Slayt 8, 11, 12'},en:{title:'Continuum + OS',summary:'Reflection positivity, locality and the limit theory reconstruct ℋ_phys, Ω and H.',failure:'The existence/axiomatic part of the Clay target is not met.',source:'Slides 8, 11, 12'},formula:'Spec(H) ∩ (0, C_GΛ_YM) = ∅',deps:['N5']}
   };
-  function proofState(){
-    const a=Object.fromEntries(proofIds.map(id=>[id,document.getElementById(id).checked]));
-    const cG=Number(document.getElementById('simCG').value),lam=Number(document.getElementById('simLambda').value),r=Number(document.getElementById('simResidual').value);
-    const gross=cG*lam,net=gross-r;
-    const n1=a.aGauge;
-    const n2=a.aScale && lam>0;
-    const n3=n1 && n2 && a.aCoarse && cG>0 && gross>0;
-    const n4=n3 && a.aReflect;
-    const n5=n4 && a.aUniform && net>0;
-    const n6=n5 && a.aOS;
-    return {a,cG,lam,r,gross,net,n:[n1,n2,n3,n4,n5,n6]};
+  const statusNames={
+    target:{tr:'Gerekli yapı',en:'Required structure'},
+    est:{tr:'Yerleşik fikir',en:'Established idea'},
+    hyp:{tr:'Varsayımsal',en:'Hypothetical'}
+  };
+  function renderNode(){
+    const n=nodes[currentNode],d=langObj(n);
+    document.querySelectorAll('.proof-svg .node').forEach(el=>el.classList.toggle('active',el.dataset.node===currentNode));
+    const s=document.getElementById('nodeStatus');s.className='status-chip '+n.status;s.textContent=isEn()?statusNames[n.status].en:statusNames[n.status].tr;
+    document.getElementById('nodeTitle').textContent=d.title;
+    document.getElementById('nodeSummary').textContent=d.summary;
+    document.getElementById('nodeFormula').textContent=n.formula;
+    document.getElementById('nodeFailure').textContent=d.failure;
+    document.getElementById('nodeSource').textContent=d.source;
+    const deps=document.getElementById('nodeDeps');deps.innerHTML='';
+    if(n.deps.length===0){const x=document.createElement('span');x.textContent=isEn()?'root input':'kök girdi';deps.appendChild(x);}
+    else n.deps.forEach(dep=>{const x=document.createElement('span');x.textContent=dep;deps.appendChild(x);});
   }
-  function renderProofSim(){
-    const s=proofState(),isEn=body.classList.contains('lang-en');
-    document.getElementById('simCGOut').value=s.cG.toFixed(2);
-    document.getElementById('simLambdaOut').value=s.lam.toFixed(2);
-    document.getElementById('simResidualOut').value=s.r.toFixed(2);
-    document.getElementById('simGross').textContent=s.gross.toFixed(2);
-    document.getElementById('simLoss').textContent=s.r.toFixed(2);
-    document.getElementById('simNet').textContent=s.net.toFixed(2);
+  document.querySelectorAll('.proof-svg .node').forEach(el=>{
+    const activate=()=>{currentNode=el.dataset.node;renderNode();};
+    el.addEventListener('click',activate);
+    el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();activate();}});
+  });
 
-    const failReasonsTR=[
-      !s.a.aGauge?'A1: fiziksel sektör/gauge indirgeme yok.':null,
-      (!s.a.aScale || s.lam<=0)?'A2: pozitif Λ_YM girdisi yok.':null,
-      !s.a.aCoarse?'A3: kaba-ölçek fiziksel gap girdisi yok.':null,
-      s.cG<=0?'Koersivite katsayısı C_G pozitif değil; Λ ile gap arasında köprü kurulamadı.':null,
-      !s.a.aReflect?'A4: RG geri-yansıtım lemması yok; coarse-graining gizli düşük enerjili modu örtebilir.':null,
-      !s.a.aUniform?'A5: uniform kusur/koersivite kontrolü yok.':null,
-      s.net<=0?`c_GΛ_YM−r(a,L) = ${s.net.toFixed(2)} ≤ 0; aday alt sınır continuum'a pozitif taşınmıyor.`:null,
-      !s.a.aOS?'A6: continuum + OS yeniden-kurma yok.':null
+  const ids=['aGauge','aScale','aCoarse','aReflect','aUniform','aOS'];
+  const presets={
+    intact:{c:[1,1,1,1,1,1],g:.65,l:1,r:.12},
+    rgfail:{c:[1,1,1,0,1,1],g:.65,l:1,r:.12},
+    collapse:{c:[1,1,1,1,1,1],g:.65,l:1,r:.75},
+    gaugefail:{c:[0,1,1,1,1,1],g:.65,l:1,r:.12},
+    osfail:{c:[1,1,1,1,1,0],g:.65,l:1,r:.12},
+    bridgezero:{c:[1,1,1,1,1,1],g:0,l:1,r:0}
+  };
+  function labState(){
+    const c=Object.fromEntries(ids.map(id=>[id,document.getElementById(id).checked]));
+    const g=Number(document.getElementById('cG').value),l=Number(document.getElementById('lambda').value),r=Number(document.getElementById('residual').value);
+    const gross=g*l,net=gross-r;
+    const n1=c.aGauge,n2=c.aScale&&l>0,n3=n1&&n2&&c.aCoarse&&g>0&&gross>0,n4=n3&&c.aReflect,n5=n4&&c.aUniform&&net>0,n6=n5&&c.aOS;
+    return {c,g,l,r,gross,net,n:[n1,n2,n3,n4,n5,n6]};
+  }
+  function renderLab(){
+    const s=labState();
+    document.getElementById('cGOut').value=s.g.toFixed(2);document.getElementById('lambdaOut').value=s.l.toFixed(2);document.getElementById('residualOut').value=s.r.toFixed(2);
+    document.getElementById('gross').textContent=s.gross.toFixed(2);document.getElementById('loss').textContent=s.r.toFixed(2);document.getElementById('net').textContent=s.net.toFixed(2);
+    const reasonsTR=[
+      !s.c.aGauge?'A1 — Fiziksel sektör kurulmadı.':null,
+      (!s.c.aScale||s.l<=0)?'A2 — Pozitif Λ_YM girdisi yok.':null,
+      !s.c.aCoarse?'A3 — Kaba-ölçek fiziksel gap girdisi yok.':null,
+      s.g<=0?'C_G pozitif değil; Λ ile spektrum arasında koersivite köprüsü yok.':null,
+      !s.c.aReflect?'A4 — RG geri-yansıtımı yok; gizli düşük enerjili mod dışlanamıyor.':null,
+      !s.c.aUniform?'A5 — Uniform koersivite/kusur kontrolü yok.':null,
+      s.net<=0?`C_GΛ_YM−r(a,L) = ${s.net.toFixed(2)} ≤ 0.`:null,
+      !s.c.aOS?'A6 — Continuum + OS yeniden-kurma yok.':null
     ].filter(Boolean);
-    const failReasonsEN=[
-      !s.a.aGauge?'A1: no physical-sector / gauge-reduction construction.':null,
-      (!s.a.aScale || s.lam<=0)?'A2: no positive Λ_YM input.':null,
-      !s.a.aCoarse?'A3: no coarse-scale physical gap input.':null,
-      s.cG<=0?'The coercivity coefficient C_G is not positive; there is no bridge from Λ to the gap.':null,
-      !s.a.aReflect?'A4: no RG reflection-back lemma; coarse-graining may hide a low-energy mode.':null,
-      !s.a.aUniform?'A5: no uniform defect/coercivity control.':null,
-      s.net<=0?`c_GΛ_YM−r(a,L) = ${s.net.toFixed(2)} ≤ 0; the candidate lower bound does not remain positive.`:null,
-      !s.a.aOS?'A6: no continuum + OS reconstruction.':null
+    const reasonsEN=[
+      !s.c.aGauge?'A1 — Physical sector not constructed.':null,
+      (!s.c.aScale||s.l<=0)?'A2 — No positive Λ_YM input.':null,
+      !s.c.aCoarse?'A3 — No coarse-scale physical gap input.':null,
+      s.g<=0?'C_G is not positive; there is no coercivity bridge from Λ to the spectrum.':null,
+      !s.c.aReflect?'A4 — No RG reflection-back; a hidden low-energy mode cannot be excluded.':null,
+      !s.c.aUniform?'A5 — No uniform coercivity/defect control.':null,
+      s.net<=0?`C_GΛ_YM−r(a,L) = ${s.net.toFixed(2)} ≤ 0.`:null,
+      !s.c.aOS?'A6 — No continuum + OS reconstruction.':null
     ].filter(Boolean);
-    const reasons=isEn?failReasonsEN:failReasonsTR;
-
-    const nodeLabelsTR=['fiziksel sektör kuruldu','pozitif ölçek mevcut','kaba gap + koersivite köprüsü','RG geri-yansıtımı geçiyor','uniform pozitif alt sınır','continuum gap sonucu lisanslı'];
-    const nodeLabelsEN=['physical sector constructed','positive scale available','coarse gap + coercivity bridge','RG reflection-back passes','uniform positive lower bound','continuum gap conclusion licensed'];
-    const nodeLabels=isEn?nodeLabelsEN:nodeLabelsTR;
-
-    [...document.querySelectorAll('.logic-node')].forEach((el,i)=>{
-      const ok=s.n[i];
-      let blocked=false;
-      if(i>0 && !s.n[i] && s.n.slice(0,i).some(v=>!v)) blocked=true;
-      el.classList.remove('ok','fail','wait');
-      el.classList.add(ok?'ok':(blocked?'wait':'fail'));
-      const state=el.querySelector('.node-state');
-      state.textContent=ok?(isEn?'✓ available':'✓ kullanılabilir'):(blocked?(isEn?'… upstream broken':'… önceki halka kırık'):(isEn?'✕ failed':'✕ başarısız'));
-      el.title=nodeLabels[i];
-    });
-
-    const verdict=document.getElementById('simVerdict'),title=document.getElementById('simVerdictTitle'),bodyEl=document.getElementById('simVerdictBody'),blockers=document.getElementById('simBlockers');
-    verdict.classList.remove('ok','fail','wait');
-    blockers.innerHTML='';
-    if(s.n[5]){
-      verdict.classList.add('ok');
-      title.textContent=isEn?'Chain closes in the toy logic model':'Oyuncak mantık modelinde zincir kapanıyor';
-      bodyEl.textContent=L().simOk(s.net);
-    }else{
-      verdict.classList.add(reasons.length?'fail':'wait');
-      title.textContent=isEn?'Target conclusion unavailable':'Hedef sonuç çıkarılamıyor';
-      bodyEl.textContent=reasons.length?L().simBroken:L().simIncomplete;
-      reasons.slice(0,5).forEach(txt=>{const d=document.createElement('div');d.className='blocker';d.textContent=txt;blockers.appendChild(d);});
-    }
-
-    const yn=x=>x?(isEn?'YES':'EVET'):(isEn?'NO':'HAYIR');
-    const traceTR=[
-      `N1 fiziksel sektör       = ${yn(s.n[0])}`,
-      `N2 Λ_YM > 0             = ${yn(s.n[1])}`,
-      `C_G Λ_YM                = ${s.gross.toFixed(2)}`,
-      `N3 kaba gap + köprü      = ${yn(s.n[2])}`,
-      `N4 RG geri-yansıtımı     = ${yn(s.n[3])}`,
-      `C_GΛ_YM - r(a,L)         = ${s.net.toFixed(2)}`,
-      `N5 uniform koersivite    = ${yn(s.n[4])}`,
-      `N6 continuum + OS        = ${yn(s.n[5])}`,
+    const reasons=isEn()?reasonsEN:reasonsTR;
+    const v=document.getElementById('verdict');v.className='verdict '+(s.n[5]?'ok':'fail');
+    document.getElementById('verdictTitle').textContent=s.n[5]?(isEn()?'Chain closes in the toy logic model':'Oyuncak mantık modelinde zincir kapanıyor'):(isEn()?'Target conclusion unavailable':'Hedef sonuç çıkarılamıyor');
+    document.getElementById('verdictBody').textContent=s.n[5]?L().labOk(s.net):L().labBroken;
+    const b=document.getElementById('blockers');b.innerHTML='';reasons.slice(0,6).forEach(x=>{const d=document.createElement('div');d.className='blocker';d.textContent=x;b.appendChild(d);});
+    const yn=x=>x?(isEn()?'YES':'EVET'):(isEn()?'NO':'HAYIR');
+    const lines=isEn()?[
+      `N1 physical sector     = ${yn(s.n[0])}`,
+      `N2 Λ_YM > 0           = ${yn(s.n[1])}`,
+      `N3 coarse gap+bridge   = ${yn(s.n[2])}`,
+      `N4 RG reflection-back  = ${yn(s.n[3])}`,
+      `N5 uniform coercivity  = ${yn(s.n[4])}`,
+      `N6 continuum + OS      = ${yn(s.n[5])}`,
       ``,
-      s.n[5]?`⇒ Spec(H) ∩ (0, ${s.net.toFixed(2)}) = ∅  [OYUNCAK MANTIK ÇIKTISI]`:`⇒ Continuum spektral gap sonucu lisanslanmadı.`
-    ];
-    const traceEN=[
-      `N1 physical sector       = ${yn(s.n[0])}`,
-      `N2 Λ_YM > 0             = ${yn(s.n[1])}`,
-      `C_G Λ_YM                = ${s.gross.toFixed(2)}`,
-      `N3 coarse gap + bridge   = ${yn(s.n[2])}`,
-      `N4 RG reflection-back    = ${yn(s.n[3])}`,
-      `C_GΛ_YM - r(a,L)         = ${s.net.toFixed(2)}`,
-      `N5 uniform coercivity    = ${yn(s.n[4])}`,
-      `N6 continuum + OS        = ${yn(s.n[5])}`,
+      `C_GΛ_YM               = ${s.gross.toFixed(2)}`,
+      `r(a,L)                = ${s.r.toFixed(2)}`,
+      `candidate bound       = ${s.net.toFixed(2)}`,
       ``,
-      s.n[5]?`⇒ Spec(H) ∩ (0, ${s.net.toFixed(2)}) = ∅  [TOY LOGIC OUTPUT]`:`⇒ Continuum spectral-gap conclusion is not licensed.`
+      s.n[5]?`⇒ Spec(H) ∩ (0, ${s.net.toFixed(2)}) = ∅  [TOY LOGIC OUTPUT]`:`⇒ target continuum spectral-gap conclusion not licensed`
+    ]:[
+      `N1 fiziksel sektör    = ${yn(s.n[0])}`,
+      `N2 Λ_YM > 0           = ${yn(s.n[1])}`,
+      `N3 kaba gap+köprü     = ${yn(s.n[2])}`,
+      `N4 RG geri-yansıtımı  = ${yn(s.n[3])}`,
+      `N5 uniform koersivite = ${yn(s.n[4])}`,
+      `N6 continuum + OS     = ${yn(s.n[5])}`,
+      ``,
+      `C_GΛ_YM              = ${s.gross.toFixed(2)}`,
+      `r(a,L)               = ${s.r.toFixed(2)}`,
+      `aday alt sınır        = ${s.net.toFixed(2)}`,
+      ``,
+      s.n[5]?`⇒ Spec(H) ∩ (0, ${s.net.toFixed(2)}) = ∅  [OYUNCAK MANTIK ÇIKTISI]`:`⇒ hedef continuum spektral gap sonucu lisanslanmadı`
     ];
-    document.getElementById('simTrace').textContent=(isEn?traceEN:traceTR).join('\n');
+    document.getElementById('trace').textContent=lines.join('\n');
+    updateURLState(s);
   }
-  proofIds.forEach(id=>document.getElementById(id).addEventListener('change',()=>{document.querySelectorAll('.proof-preset').forEach(b=>b.classList.remove('active'));renderProofSim();}));
-  ['simCG','simLambda','simResidual'].forEach(id=>document.getElementById(id).addEventListener('input',()=>{document.querySelectorAll('.proof-preset').forEach(b=>b.classList.remove('active'));renderProofSim();}));
-  document.querySelectorAll('.proof-preset').forEach(btn=>btn.addEventListener('click',()=>{
-    const p=proofPresets[btn.dataset.preset];if(!p)return;
-    proofIds.forEach((id,i)=>document.getElementById(id).checked=!!p.checks[i]);
-    document.getElementById('simCG').value=p.cG;document.getElementById('simLambda').value=p.lambda;document.getElementById('simResidual').value=p.residual;
-    document.querySelectorAll('.proof-preset').forEach(b=>b.classList.toggle('active',b===btn));renderProofSim();
-  }));
-
-  function updateGauge(){
-    const g=Number(document.getElementById('gaugeMove').value),p=Number(document.getElementById('physicalMove').value),a=g*Math.PI/180;
-    const cx=50,cy=50,rx=31,ry=20;
-    let x=cx+rx*Math.cos(a),y=cy+ry*Math.sin(a);
-    x+=p*18*Math.cos(.32);y+=p*18*Math.sin(.32);
-    const point=document.getElementById('statePoint');point.style.left=x+'%';point.style.top=y+'%';
-    document.getElementById('gaugeMoveOut').value=Math.round(g)+'°';document.getElementById('physicalMoveOut').value=p.toFixed(2);document.getElementById('witnessValue').textContent=(p*p).toFixed(2);document.getElementById('repMotion').textContent=Math.round(g)+'°';document.getElementById('physDiff').textContent=p.toFixed(2);
-    const r=document.getElementById('gaugeResult');r.textContent=p<.005?L().gaugeSame(Math.round(g)):L().gaugeDiff(p);r.className='result '+(p<.005?'good':'warn');
+  function applyPreset(name){
+    const p=presets[name];if(!p)return;
+    ids.forEach((id,i)=>document.getElementById(id).checked=!!p.c[i]);
+    document.getElementById('cG').value=p.g;document.getElementById('lambda').value=p.l;document.getElementById('residual').value=p.r;
+    document.querySelectorAll('.preset').forEach(x=>x.classList.toggle('active',x.dataset.preset===name));
+    renderLab();
   }
-  ['gaugeMove','physicalMove'].forEach(id=>document.getElementById(id).addEventListener('input',updateGauge));
+  document.querySelectorAll('.preset').forEach(b=>b.addEventListener('click',()=>applyPreset(b.dataset.preset)));
+  ids.forEach(id=>document.getElementById(id).addEventListener('change',()=>{document.querySelectorAll('.preset').forEach(x=>x.classList.remove('active'));renderLab();}));
+  ['cG','lambda','residual'].forEach(id=>document.getElementById(id).addEventListener('input',()=>{document.querySelectorAll('.preset').forEach(x=>x.classList.remove('active'));renderLab();}));
+  document.getElementById('resetLabBtn').addEventListener('click',()=>applyPreset('intact'));
 
-  function updateEpsilon(){const e=Number(document.getElementById('epsilon').value);document.getElementById('epsilonOut').value=e.toFixed(2);document.getElementById('epsilonResult').textContent=L().epsilon(e);}
-  document.getElementById('epsilon').addEventListener('input',updateEpsilon);
-
-  function updateDelta(){const d=Number(document.getElementById('delta').value);document.getElementById('deltaOut').value=d.toFixed(2);const pct=Math.max(0,Math.min(86,d*86));document.getElementById('deltaTick').style.left=pct+'%';document.getElementById('deltaLabel').style.left=pct+'%';document.getElementById('forbidden').style.width=pct+'%';const r=document.getElementById('deltaResult');r.textContent=L().gap(d);r.className='result '+(d>0?'good':'bad');}
-  document.getElementById('delta').addEventListener('input',updateDelta);
-
-  function updateBridge(){const l=Number(document.getElementById('lambdaVal').value),k=Number(document.getElementById('kappaVal').value),g=l*k;document.getElementById('lambdaOut').value=l.toFixed(2);document.getElementById('kappaOut').value=k.toFixed(2);document.getElementById('lambdaMetric').textContent=l.toFixed(2);document.getElementById('kappaMetric').textContent=k.toFixed(2);document.getElementById('gapMetric').textContent=g.toFixed(2);const r=document.getElementById('bridgeResult');r.textContent=k<=.001?L().bridgeZero:L().bridgeGood(g);r.className='result '+(k<=.001?'warn':'good');}
-  ['lambdaVal','kappaVal'].forEach(id=>document.getElementById(id).addEventListener('input',updateBridge));
-
-  function buildRGTrack(){
-    const track=document.getElementById('rgTrack');track.innerHTML='';
-    for(let i=0;i<7;i++){const step=document.createElement('div');step.className='rg-step';step.dataset.i=i;const fill=document.createElement('div');fill.className='rg-fill';fill.style.height='8%';step.appendChild(fill);track.appendChild(step);}
+  function updateURLState(s){
+    const q=new URLSearchParams(location.search);
+    q.set('v','4');q.set('a',ids.map(id=>document.getElementById(id).checked?'1':'0').join(''));
+    q.set('cg',s.g.toFixed(2));q.set('lym',s.l.toFixed(2));q.set('r',s.r.toFixed(2));
+    history.replaceState(null,'',location.pathname+'?'+q.toString());
   }
-  function updateRG(){
-    const z=Number(document.getElementById('z').value),ec=Number(document.getElementById('ec').value),eps=Number(document.getElementById('residual').value),gross=z*ec,net=gross-eps;
-    document.getElementById('zOut').value=z.toFixed(2);document.getElementById('ecOut').value=ec.toFixed(2);document.getElementById('residualOut').value=eps.toFixed(2);document.getElementById('grossBound').textContent=gross.toFixed(2);document.getElementById('loss').textContent='−'+eps.toFixed(2);document.getElementById('netBound').textContent=net.toFixed(2);
-    const r=document.getElementById('rgResult');r.textContent=net>0?L().rgGood(net):L().rgBad(net);r.className='result '+(net>0?'good':'bad');
-    if(!rgTimer)paintRG(rgStage);
+  function loadURLState(){
+    const q=new URLSearchParams(location.search),a=q.get('a');
+    if(a&&/^[01]{6}$/.test(a)) ids.forEach((id,i)=>document.getElementById(id).checked=a[i]==='1');
+    const set=(key,id,min,max)=>{const v=Number(q.get(key));if(Number.isFinite(v))document.getElementById(id).value=Math.min(max,Math.max(min,v));};
+    set('cg','cG',0,1.2);set('lym','lambda',0,1.5);set('r','residual',0,1.2);
   }
-  ['z','ec','residual'].forEach(id=>document.getElementById(id).addEventListener('input',()=>{stopRG();rgStage=0;paintRG(0);updateRG();}));
+  document.getElementById('copyScenarioBtn').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(location.href);showToast(L().copied);}catch{showToast(L().copyFail);}});
+  document.getElementById('copyTraceBtn').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(document.getElementById('trace').textContent);showToast(L().copied);}catch{showToast(L().copyFail);}});
 
+  function renderSpectrum(){
+    const e=Number(document.getElementById('epsilon').value),d=Number(document.getElementById('delta').value);
+    document.getElementById('epsilonOut').value=e.toFixed(2);document.getElementById('epsilonText').textContent=L().eps(e);
+    document.getElementById('deltaOut').value=d.toFixed(2);document.getElementById('deltaText').textContent=L().delta(d);
+    const pct=Math.max(0,Math.min(86,d*86));document.getElementById('deltaTick').style.left=pct+'%';document.getElementById('deltaLabel').style.left=pct+'%';document.getElementById('forbidden').style.width=pct+'%';
+    document.getElementById('deltaVerdict').className='verdict '+(d>0?'ok':'fail');
+  }
+  document.getElementById('epsilon').addEventListener('input',renderSpectrum);
+  document.getElementById('delta').addEventListener('input',renderSpectrum);
+
+  function buildRG(){
+    const t=document.getElementById('rgTrack');t.innerHTML='';
+    for(let i=0;i<8;i++){const s=document.createElement('div');s.className='rg-step';s.dataset.i=i;const f=document.createElement('div');f.className='rg-fill';s.appendChild(f);t.appendChild(s);}
+  }
+  function renderRG(){
+    const z=Number(document.getElementById('z').value),ec=Number(document.getElementById('ec').value),eps=Number(document.getElementById('epsR').value),gross=z*ec,net=gross-eps;
+    document.getElementById('zOut').value=z.toFixed(2);document.getElementById('ecOut').value=ec.toFixed(2);document.getElementById('epsROut').value=eps.toFixed(2);
+    document.getElementById('rgGross').textContent=gross.toFixed(2);document.getElementById('rgLoss').textContent=eps.toFixed(2);document.getElementById('rgNet').textContent=net.toFixed(2);document.getElementById('rgStatus').textContent=net>0?'POS':'FAIL';
+    document.getElementById('rgText').textContent=L().rg(net);document.getElementById('rgVerdict').className='verdict '+(net>0?'ok':'fail');
+    paintRG(rgStage);
+  }
   function paintRG(stage){
-    const z=Number(document.getElementById('z').value),ec=Number(document.getElementById('ec').value),eps=Number(document.getElementById('residual').value),net=Math.max(0,z*ec-eps);
-    [...document.querySelectorAll('.rg-step')].forEach((s,i)=>{s.classList.toggle('active',i===stage);const fill=s.querySelector('.rg-fill');const decay=Math.max(0,net-(i*.045));const h=8+Math.min(92,decay*90);fill.style.height=(i<=stage?h:8)+'%';});
+    const z=Number(document.getElementById('z').value),ec=Number(document.getElementById('ec').value),eps=Number(document.getElementById('epsR').value),base=Math.max(0,z*ec-eps);
+    document.querySelectorAll('.rg-step').forEach((s,i)=>{s.classList.toggle('active',i===stage);const decay=Math.max(0,base-i*.045);s.querySelector('.rg-fill').style.height=(i<=stage?Math.min(96,8+decay*100):8)+'%';});
   }
   function stopRG(){if(rgTimer){clearInterval(rgTimer);rgTimer=null;}}
-  document.getElementById('rgRunBtn').addEventListener('click',()=>{stopRG();rgStage=0;paintRG(0);rgTimer=setInterval(()=>{rgStage++;if(rgStage>=6){rgStage=6;paintRG(rgStage);stopRG();return;}paintRG(rgStage);},420);});
-  document.getElementById('rgResetBtn').addEventListener('click',()=>{stopRG();rgStage=0;paintRG(0);});
+  ['z','ec','epsR'].forEach(id=>document.getElementById(id).addEventListener('input',()=>{stopRG();rgStage=0;renderRG();}));
+  document.getElementById('runRG').addEventListener('click',()=>{stopRG();rgStage=0;paintRG(0);rgTimer=setInterval(()=>{rgStage++;if(rgStage>=7){rgStage=7;paintRG(rgStage);stopRG();return;}paintRG(rgStage);},360);});
+  document.getElementById('resetRG').addEventListener('click',()=>{stopRG();rgStage=0;paintRG(0);});
 
-  function renderTour(){
-    const d=langObj(tourData[tourIndex]);document.getElementById('tourCount').textContent=`${tourIndex+1} / ${tourData.length}`;document.getElementById('tourTitle').textContent=d.t;document.getElementById('tourBody').textContent=d.b;switchView(tourData[tourIndex].view,false);
+  const falsify=[
+    {tr:{t:'Gap continuum’da çöker',b:'Finite-kafes gap a→0 limitinde sıfıra gidiyorsa kaba ölçekteki pozitif gap continuum teoriye taşınamaz.',c:'Uniform koersivite zinciri kırılır.'},en:{t:'Gap collapses in the continuum',b:'If the finite-lattice gap tends to zero as a→0, the positive coarse-scale gap cannot reach the continuum theory.',c:'The uniform-coercivity chain breaks.'}},
+    {tr:{t:'RG fiziksel modu örter',b:'Rψ kaba ölçekte vakuma düşerken ince ölçekte enerji→0 fiziksel mod kalabiliyorsa geri-yansıtım lemması yanlıştır.',c:'Programın merkez yeni halkası çöker.'},en:{t:'RG hides a physical mode',b:'If Rψ falls into the coarse vacuum while a fine-scale physical mode with energy→0 survives, reflection-back fails.',c:'The program’s central new link collapses.'}},
+    {tr:{t:'Λ_YM gap’i kontrol etmez',b:'Dinamik ölçek var olsa bile pozitif spektral koersivite sabiti kurulamazsa ana köprü yoktur.',c:'Dimensional transmutation tek başına mass gap vermez.'},en:{t:'Λ_YM does not control the gap',b:'Even if a dynamical scale exists, no positive spectral coercivity constant means no bridge.',c:'Dimensional transmutation alone does not yield the mass gap.'}},
+    {tr:{t:'Vakum / aksiyom yapısı bozulur',b:'Tekillik, pozitif enerji, reflection positivity veya OS yeniden-kurma kurulamazsa Clay hedefinin varlık kısmı eksik kalır.',c:'Bir kafes gap sonucu yeterli olmaz.'},en:{t:'Vacuum / axiom structure fails',b:'If uniqueness, positive energy, reflection positivity or OS reconstruction fail, the existence side remains incomplete.',c:'A lattice gap alone is not sufficient.'}},
+    {tr:{t:'Gauge artefaktı sızar',b:'Argüman global gauge seçimine bağımlı kalırsa fiziksel gap yerine temsil kaynaklı yapay bir gap ölçülmüş olabilir.',c:'Sonuç fiziksel spektruma ait olmayabilir.'},en:{t:'Gauge artefacts leak in',b:'If the argument depends on a global gauge choice, the measured gap may be representational rather than physical.',c:'The conclusion may not concern the physical spectrum.'}}
+  ];
+  function renderFalsify(){
+    const list=document.getElementById('falsifyList');list.innerHTML='';
+    falsify.forEach((x,i)=>{const d=langObj(x),b=document.createElement('button');b.className='btn '+(i===currentF?'primary':'');b.type='button';b.style.textAlign='left';b.innerHTML=`<strong>${d.t}</strong><div class="small muted" style="margin-top:3px">${d.c}</div>`;b.addEventListener('click',()=>{currentF=i;renderFalsify();});list.appendChild(b);});
+    const d=langObj(falsify[currentF]);document.getElementById('fTitle').textContent=d.t;document.getElementById('fBody').textContent=d.b;document.getElementById('fConsequence').textContent=d.c;
   }
-  document.getElementById('tourBtn').addEventListener('click',()=>{tourIndex=0;document.getElementById('tourbox').classList.add('show');renderTour();});
-  document.getElementById('tourClose').addEventListener('click',()=>document.getElementById('tourbox').classList.remove('show'));
-  document.getElementById('tourNext').addEventListener('click',()=>{tourIndex=(tourIndex+1)%tourData.length;renderTour();});
-  document.getElementById('tourPrev').addEventListener('click',()=>{tourIndex=(tourIndex-1+tourData.length)%tourData.length;renderTour();});
 
-  document.addEventListener('keydown',e=>{if(e.target&&/input|textarea|select/i.test(e.target.tagName))return;if(e.key==='ArrowRight')switchView(currentView+1);if(e.key==='ArrowLeft')switchView(currentView-1);if(e.key==='Escape')document.getElementById('tourbox').classList.remove('show');});
+  document.getElementById('exportBtn').addEventListener('click',()=>{
+    const s=labState(),lang=isEn()?'EN':'TR';
+    const report=[
+      'YANG–MILLS MASS GAP — INTERACTIVE RESEARCH CONSOLE v4',
+      'Generated locally from current simulator state',
+      '',
+      `Language: ${lang}`,
+      `A1 Gauge-reduced physical sector: ${s.c.aGauge}`,
+      `A2 Lambda_YM > 0: ${s.c.aScale}`,
+      `A3 Coarse physical gap: ${s.c.aCoarse}`,
+      `A4 RG reflection-back: ${s.c.aReflect}`,
+      `A5 Uniform coercivity: ${s.c.aUniform}`,
+      `A6 Continuum + OS: ${s.c.aOS}`,
+      '',
+      `C_G = ${s.g.toFixed(2)}`,
+      `Lambda_YM = ${s.l.toFixed(2)}`,
+      `r(a,L) = ${s.r.toFixed(2)}`,
+      `Candidate bound = ${s.net.toFixed(2)}`,
+      `Toy conclusion licensed = ${s.n[5]}`,
+      '',
+      'Scientific status: open problem; no proof claim.'
+    ].join('\n');
+    const blob=new Blob([report],{type:'text/plain;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');
+    a.href=url;a.download='yang_mills_v4_status_report.txt';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  });
 
-  buildRGTrack();renderSteps();renderStepDetail();renderFalsify();renderProofSim();renderProgress();updateGauge();updateEpsilon();updateDelta();updateBridge();updateRG();paintRG(0);
+  document.addEventListener('keydown',e=>{
+    if(e.target&&/input|textarea|select/i.test(e.target.tagName))return;
+    if(e.key==='ArrowRight')switchView(currentView+1);
+    if(e.key==='ArrowLeft')switchView(currentView-1);
+  });
+
+  loadURLState();buildRG();renderNode();renderLab();renderSpectrum();renderRG();renderFalsify();
 })();
 </script>
 </body>
