@@ -20,7 +20,7 @@ const required = [
   'https://www.claymath.org/millennium/yang-mills-the-maths-gap/',
   'https://doi.org/10.1007/BF01645738',
   'https://doi.org/10.1007/BF01608978',
-  'https://doi.org/10.5281/zenodo.22739746',
+  'https://doi.org/10.5281/zenodo.22754261',
   'https://doi.org/10.5281/zenodo.22739745',
   'assets/js/v6-core.js',
   'assets/js/v6-instrument-engine.js',
@@ -113,12 +113,12 @@ if (!core.dependencyParity().ok) {
 
 
 const citation = fs.readFileSync('CITATION.cff', 'utf8');
-if (!citation.includes('version: 5.0.1') || !citation.includes('10.5281/zenodo.22739746')) {
-  console.error('CITATION.cff must retain the exact archived v5.0.1 identity until a new archive is explicitly created.');
+if (!citation.includes('version: 6.0.0') || !citation.includes('10.5281/zenodo.22754261')) {
+  console.error('CITATION.cff must identify the exact archived v6.0.0 release.');
   process.exit(1);
 }
-if (html.includes('10.5281/zenodo.22739746') === false || html.includes('10.5281/zenodo.22739745') === false) {
-  console.error('Live release must preserve exact-archive and Concept DOI references.');
+if (html.includes('10.5281/zenodo.22754261') === false || html.includes('10.5281/zenodo.22739745') === false) {
+  console.error('Live release must preserve the v6 exact-archive and Concept DOI references.');
   process.exit(1);
 }
 

@@ -1,11 +1,3 @@
-
-## v6 Phase 7 — local parameter sweep & regime analysis (unreleased)
-
-- Added a local parameter sweep studio for the lab, spectrum, and RG T0 models.
-- Added exact affine sign-boundary reporting, interface-regime transition search, local sensitivity values, and two-parameter T0 regime maps.
-- Added CSV/JSON analysis export and apply-selected-map-point interaction.
-- Regime-map colors are explicitly scoped as interface sensitivity regimes, not physical phase diagrams or proof evidence.
-
 # Changelog
 
 All notable changes to the project are documented here.
@@ -19,7 +11,7 @@ All notable changes to the project are documented here.
 - Added a single authoritative dependency registry with interactive graph, linear dependency list, and semantic outline views.
 - Added contextual experiment records, A/B comparison, threshold event history, JSON/CSV export, and review-ready reproduction context.
 - Added advanced T0 parameter sweeps, critical-threshold detection, local sensitivity curves, and two-parameter regime maps.
-- Preserved the canonical domain, Concept DOI, ORCID, licenses, and the exact v5.0.1 Zenodo archive identity; no v6 archive DOI is claimed.
+- Archived the exact v6.0.0 software snapshot at Zenodo DOI `10.5281/zenodo.22754261` while preserving the project Concept DOI `10.5281/zenodo.22739745` and historical v5.0.1 DOI `10.5281/zenodo.22739746`.
 
 ## [Unreleased v6 foundation]
 
@@ -33,7 +25,7 @@ All notable changes to the project are documented here.
 - corrected bilingual proof-obligation table cell alignment and the custom-domain 404 return path;
 - added v6 model/state regression checks to CI.
 
-This is pre-release v6 foundation work. It does not change the archived v5.0.1 DOI and does not claim a Yang–Mills proof.
+This section documents the pre-release foundation phase that preceded v6.0.0. It does not claim a Yang–Mills proof.
 
 ## [5.1.2] — 2026-09-14
 

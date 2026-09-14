@@ -7,14 +7,14 @@ A new visitor should be able to identify within the first viewport:
 - project/all-versions DOI: `10.5281/zenodo.22739745`;
 - author ORCID: `0009-0001-9217-0917`;
 - repository link;
-- archived exact release DOI: `10.5281/zenodo.22739746`;
+- archived exact v6.0.0 release DOI: `10.5281/zenodo.22754261`;
 - a one-click citation action.
 
 ## Citation policy
 
 Use the Concept DOI when referring to the evolving project as a whole.
 
-Use the exact v5.0.1 DOI when reproducing or citing the archived v5.0.1 snapshot.
+Use the exact v6.0.0 DOI (`10.5281/zenodo.22754261`) when reproducing or citing the current archived v6.0.0 snapshot. Use `10.5281/zenodo.22739746` only for the historical v5.0.1 snapshot.
 
 ## Version consistency
 
