@@ -1,6 +1,6 @@
 # Yang–Mills Mass Gap — Interactive Research Console
 
-**Current release: v5.0.0**
+**Current release: v5.0.1**
 
 Public site: https://kayramergen.github.io/yang-mills-mass-gap-interactive/
 
@@ -56,3 +56,13 @@ See [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 Software source code is released under the MIT License. Research exposition/content
 is treated separately; see [`CONTENT-LICENSE.md`](CONTENT-LICENSE.md).
+
+## Citation
+
+Preferred software citation:
+
+> Baran Çolakoğlu (2026). *Yang–Mills Mass Gap — Interactive Research Console*, v5.0.1.  
+> ORCID: https://orcid.org/0009-0001-9217-0917  
+> https://github.com/KayraMergen/yang-mills-mass-gap-interactive
+
+See [`CITATION.cff`](CITATION.cff) for machine-readable metadata.

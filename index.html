@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Yang–Mills kütle aralığı için gauge-indirgenmiş spektral koersivite programının profesyonel etkileşimli araştırma konsolu." />
   <meta name="application-name" content="Yang–Mills Research Console" />
-  <meta name="version" content="5.0.0" />
-  <meta name="author" content="KayraMergen" />
+  <meta name="version" content="5.0.1" />
+  <meta name="author" content="Baran Çolakoğlu" />
   <link rel="canonical" href="https://kayramergen.github.io/yang-mills-mass-gap-interactive/" />
   <meta name="theme-color" content="#091018" />
   <meta property="og:title" content="Yang–Mills Mass Gap — Interactive Research Console" />
@@ -23,7 +23,13 @@
     "name": "Yang–Mills Mass Gap — Interactive Research Console",
     "applicationCategory": "EducationalApplication",
     "operatingSystem": "Web",
-    "softwareVersion": "5.0.0",
+    "softwareVersion": "5.0.1",
+    "author": {
+      "@type": "Person",
+      "name": "Baran Çolakoğlu",
+      "identifier": "https://orcid.org/0009-0001-9217-0917",
+      "sameAs": "https://orcid.org/0009-0001-9217-0917"
+    },
     "url": "https://kayramergen.github.io/yang-mills-mass-gap-interactive/",
     "codeRepository": "https://github.com/KayraMergen/yang-mills-mass-gap-interactive",
     "description": "An interactive proof-architecture and audit console for a hypothetical gauge-reduced spectral-coercivity program for the Yang–Mills mass gap.",
@@ -404,7 +410,7 @@
           <div class="brief-card"><div class="num">04</div><strong>Continuum + OS</strong><p data-lang="tr">Gap ve aksiyomlar birlikte limite taşınmalı.</p><p data-lang="en">The gap and axioms must survive the limit together.</p></div>
         </div>
 
-        <div class="footer"><span>v5.0.0 • Publication & Scientific Audit Layer</span><span><span class="kbd">←</span> <span class="kbd">→</span> <span data-lang="tr">bölüm değiştirir</span><span data-lang="en">switch sections</span></span></div>
+        <div class="footer"><span>v5.0.1 • Publication & Scientific Audit Layer</span><span><span class="kbd">←</span> <span class="kbd">→</span> <span data-lang="tr">bölüm değiştirir</span><span data-lang="en">switch sections</span></span></div>
       </section>
 
       <section class="view" id="view-graph">
@@ -606,7 +612,7 @@
         <div class="citation-panel">
           <div>
             <strong data-lang="tr">Bu yazılımı atıfla kullan</strong><strong data-lang="en">Cite this software</strong>
-            <div class="cite-text" id="projectCitation">KayraMergen (2026). Yang–Mills Mass Gap — Interactive Research Console, v5.0.0. https://github.com/KayraMergen/yang-mills-mass-gap-interactive</div>
+            <div class="cite-text" id="projectCitation">Baran Çolakoğlu (2026). Yang–Mills Mass Gap — Interactive Research Console, v5.0.1. https://github.com/KayraMergen/yang-mills-mass-gap-interactive</div>
           </div>
           <div class="cite-actions">
             <button class="btn" id="copyCitationBtn" type="button"><span data-lang="tr">Atıfı kopyala</span><span data-lang="en">Copy citation</span></button>
@@ -651,7 +657,7 @@
             <span class="status-chip hyp" data-lang="tr">Varsayımsal araştırma hedefi</span><span class="status-chip hyp" data-lang="en">Hypothetical research target</span>
           </div>
           <div class="source-card">
-            <div class="slide">SOFTWARE • v5.0.0</div>
+            <div class="slide">SOFTWARE • v5.0.1</div>
             <strong>Interactive Research Console</strong>
             <p data-lang="tr">Simülatördeki sayıların tamamı düşünme/denetim amacıyla normalize edilmiş oyuncak parametrelerdir.</p><p data-lang="en">All simulator numbers are normalized toy parameters for reasoning and audit, not physical predictions.</p>
             <span class="status-chip hyp" data-lang="tr">Araç katmanı</span><span class="status-chip hyp" data-lang="en">Tooling layer</span><br>
@@ -664,7 +670,7 @@
         <div class="section-title"><div><h2 data-lang="tr">Metodoloji ve epistemik etiketleme</h2><h2 data-lang="en">Methodology and epistemic labeling</h2><p data-lang="tr">Uygulama, resmî problem ifadesi ile varsayımsal araştırma köprülerini aynı epistemik düzeyde göstermemek üzere tasarlanmıştır.</p><p data-lang="en">The app is designed not to place the official problem statement and hypothetical research bridges at the same epistemic level.</p></div></div>
 
         <div class="release-strip">
-          <div><span class="version">v5.0.0</span> <span class="muted small">• publication/audit layer</span></div>
+          <div><span class="version">v5.0.1</span> <span class="muted small">• publication/audit layer</span></div>
           <div><a class="ref-link" href="https://github.com/KayraMergen/yang-mills-mass-gap-interactive/blob/main/METHODOLOGY.md" target="_blank" rel="noopener">Full methodology document ↗</a></div>
         </div>
 
@@ -777,12 +783,13 @@
     body.classList.toggle('presentation');
     document.getElementById('presentationBtn').textContent=body.classList.contains('presentation')?L().exitPresent:L().present;
   });
-  const PROJECT_CITATION='KayraMergen (2026). Yang–Mills Mass Gap — Interactive Research Console, v5.0.0. https://github.com/KayraMergen/yang-mills-mass-gap-interactive';
-  const PROJECT_BIBTEX=`@software{kayramergen_yang_mills_console_2026,
-  author  = {KayraMergen},
+  const PROJECT_CITATION='Baran Çolakoğlu (2026). Yang–Mills Mass Gap — Interactive Research Console, v5.0.1. https://github.com/KayraMergen/yang-mills-mass-gap-interactive';
+  const PROJECT_BIBTEX=`@software{colakoglu_yang_mills_console_2026,
+  author  = {Baran Çolakoğlu},
+  orcid   = {https://orcid.org/0009-0001-9217-0917},
   title   = {Yang--Mills Mass Gap --- Interactive Research Console},
   year    = {2026},
-  version = {5.0.0},
+  version = {5.0.1},
   url     = {https://github.com/KayraMergen/yang-mills-mass-gap-interactive}
 }`;
   async function copyText(value){

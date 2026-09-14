@@ -2,6 +2,14 @@
 
 All notable changes to the project are documented here.
 
+## [5.0.1] — 2026-09-14
+
+### Changed
+- replaced GitHub-handle-only authorship metadata with the real author name: Baran Çolakoğlu;
+- added ORCID `0009-0001-9217-0917` to `CITATION.cff` and structured web metadata;
+- synchronized in-app citation/BibTeX metadata with v5.0.1;
+- prepared metadata for the first Zenodo-archived release.
+
 ## [5.0.0] — 2026-09-14
 
 ### Added

@@ -2,10 +2,12 @@ cff-version: 1.2.0
 message: "If you use this software, please cite it using the metadata from this file."
 title: "Yang–Mills Mass Gap — Interactive Research Console"
 type: software
-version: 5.0.0
+version: 5.0.1
 date-released: 2026-09-14
 authors:
-  - name: "KayraMergen"
+  - family-names: "Çolakoğlu"
+    given-names: "Baran"
+    orcid: "https://orcid.org/0009-0001-9217-0917"
 repository-code: "https://github.com/KayraMergen/yang-mills-mass-gap-interactive"
 url: "https://kayramergen.github.io/yang-mills-mass-gap-interactive/"
 license: MIT
