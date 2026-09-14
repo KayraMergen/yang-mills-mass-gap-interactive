@@ -30,12 +30,12 @@ problem.
 ## Core research-console modules
 
 1. Overview
-2. Proof Dependency Graph
+2. Argument Map
 3. Assumption Lab
 4. Spectrum Lab
 5. RG Transfer Console
 6. Proof Debt / Quality Gates
-7. Falsification Tests
+7. Failure Modes / Falsification Criteria
 8. Source & Provenance Map
 9. Methodology
 10. Scientific Review
@@ -93,7 +93,7 @@ The custom domain is verified and served through GitHub Pages with HTTPS
 enforced. The GitHub Pages project URL is retained only as deployment history,
 not as the preferred public address.
 
-## v6 foundation work
+## v6 research interface
 
 The public website now runs the v6 research interface, including exact scalar models, research-grade interactive instruments, reproducibility records, and advanced T0 sweep analysis. The exact Zenodo archive remains v5.0.1 until a separately authorized archival release is created; the Concept DOI continues to identify the evolving project.
 
