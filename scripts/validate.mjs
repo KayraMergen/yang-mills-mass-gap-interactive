@@ -2,6 +2,8 @@ import fs from 'node:fs';
 
 const html = fs.readFileSync('index.html', 'utf8');
 const required = [
+  'ORCID: 0009-0001-9217-0917',
+  'id="heroCiteBtn"',
   'Interactive Research Console',
   'data-view="graph"',
   'data-view="lab"',
@@ -30,7 +32,8 @@ for (const file of [
   'CONTRIBUTING.md',
   'LICENSE',
   'CONTENT-LICENSE.md',
-  'ZENODO.md'
+  'ZENODO.md',
+  'LANDING_QA.md'
 ]) {
   if (!fs.existsSync(file)) {
     console.error(`Missing required repository file: ${file}`);

@@ -1,6 +1,6 @@
 # Yang–Mills Mass Gap — Interactive Research Console
 
-**Current release: v5.0.1**
+**Current website/repository version: v5.1.0**
 
 [![DOI](https://zenodo.org/badge/1369033161.svg)](https://doi.org/10.5281/zenodo.22739745)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0001--9217--0917-A6CE39?logo=orcid&logoColor=white)](https://orcid.org/0009-0001-9217-0917)
@@ -72,3 +72,13 @@ Preferred software citation:
 - **All versions / concept DOI:** [10.5281/zenodo.22739745](https://doi.org/10.5281/zenodo.22739745)
 
 See [`CITATION.cff`](CITATION.cff) for machine-readable metadata.
+
+## Academic identity
+
+- Author: Baran Çolakoğlu
+- ORCID: https://orcid.org/0009-0001-9217-0917
+- Project / all-versions DOI: https://doi.org/10.5281/zenodo.22739745
+- Exact archived v5.0.1 DOI: https://doi.org/10.5281/zenodo.22739746
+
+The homepage surfaces these identifiers prominently so that visitors can verify
+the project's archival and author-identity chain immediately.

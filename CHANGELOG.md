@@ -2,6 +2,19 @@
 
 All notable changes to the project are documented here.
 
+## [5.1.0] — 2026-09-14
+
+### Added
+- publication strip on the landing page with Concept DOI, ORCID, repository and archived-release links;
+- one-click citation copy from the hero section;
+- visible trust indicators for DOI, ORCID, CI quality audit and open-problem status;
+- stronger first-visit academic product framing.
+
+### Note
+This repository/site update does **not** create a new Zenodo release by itself.
+The currently archived exact release remains v5.0.1 (10.5281/zenodo.22739746), while the
+stable project/all-versions DOI remains 10.5281/zenodo.22739745.
+
 ## Post-release metadata — 2026-09-14
 
 - registered Zenodo archive DOI for v5.0.1: `10.5281/zenodo.22739746`;
