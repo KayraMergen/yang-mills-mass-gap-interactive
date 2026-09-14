@@ -92,3 +92,16 @@ https://www.yangmillsresearch.org/
 The custom domain is verified and served through GitHub Pages with HTTPS
 enforced. The GitHub Pages project URL is retained only as deployment history,
 not as the preferred public address.
+
+## v6 foundation work
+
+The repository includes an implementation-ready v6 specification set and a pre-release Phase 1–2 foundation. The current public release identity remains v5.1.2 until the complete v6 design, instrument, accessibility, and release gates are satisfied.
+
+The foundation adds a single reviewed dependency registry, exact scaled-integer scalar evaluators, complete scenario serialization, truthful single-step RG semantics, persistent result scope, and model/state regression tests. Run:
+
+```bash
+node scripts/test-v6-core.cjs
+node scripts/validate.mjs
+```
+
+These checks validate research-software behavior and communication only; they do not certify any mathematical claim.

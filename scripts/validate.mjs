@@ -1,4 +1,7 @@
 import fs from 'node:fs';
+import { createRequire } from 'node:module';
+const require = createRequire(import.meta.url);
+const core = require('../assets/js/v6-core.js');
 
 const html = fs.readFileSync('index.html', 'utf8');
 const required = [
@@ -18,12 +21,16 @@ const required = [
   'https://doi.org/10.1007/BF01645738',
   'https://doi.org/10.1007/BF01608978',
   'https://doi.org/10.5281/zenodo.22739746',
-  'https://doi.org/10.5281/zenodo.22739745'
+  'https://doi.org/10.5281/zenodo.22739745',
+  'assets/js/v6-core.js',
+  'Failure Modes / Falsification Criteria',
+  'Signed single-step transfer/defect budget',
+  'T0 · Derived illustrative result'
 ];
 
 const missing = required.filter(x => !html.includes(x));
 if (missing.length) {
-  console.error('Missing required publication/audit tokens:', missing);
+  console.error('Missing required publication/audit/foundation tokens:', missing);
   process.exit(1);
 }
 
@@ -37,7 +44,15 @@ for (const file of [
   'CONTENT-LICENSE.md',
   'ZENODO.md',
   'LANDING_QA.md',
-  'CNAME'
+  'CNAME',
+  'assets/js/v6-core.js',
+  'scripts/test-v6-core.cjs',
+  'V6_DESIGN_AUDIT.md',
+  'V6_INFORMATION_ARCHITECTURE.md',
+  'V6_DESIGN_SYSTEM.md',
+  'V6_EXPERIMENT_ARCHITECTURE.md',
+  'V6_IMPLEMENTATION_PLAN.md',
+  'V6_MASTER_IMPLEMENTATION_BRIEF.md'
 ]) {
   if (!fs.existsSync(file)) {
     console.error(`Missing required repository file: ${file}`);
@@ -45,10 +60,25 @@ for (const file of [
   }
 }
 
-console.log('v5 structural publication/audit checks passed.');
-
 if (html.includes('V4 odağı') || html.includes('V4 focus') || html.includes('INTERACTIVE RESEARCH CONSOLE v4')) {
   console.error('Stale V4 labeling detected in live UI/export metadata.');
+  process.exit(1);
+}
+
+if (html.includes('Run RG steps') || html.includes('RG adımlarını çalıştır') || html.includes('rgTimer') || html.includes('paintRG(')) {
+  console.error('Undefined multistage RG animation is still present.');
+  process.exit(1);
+}
+
+const renderedEdges = [...html.matchAll(/data-edge="([N0-9>]+)"/g)].map(m => m[1]).sort();
+const registryEdges = core.EDGES.map(e => `${e.from}>${e.to}`).sort();
+if (JSON.stringify(renderedEdges) !== JSON.stringify(registryEdges)) {
+  console.error('Rendered proof-map edges do not match the authoritative registry.', {renderedEdges, registryEdges});
+  process.exit(1);
+}
+
+if (!core.dependencyParity().ok) {
+  console.error('Claim dependency data and authoritative edge registry disagree.');
   process.exit(1);
 }
 
@@ -57,3 +87,5 @@ if (cname !== 'www.yangmillsresearch.org') {
   console.error('CNAME must be www.yangmillsresearch.org');
   process.exit(1);
 }
+
+console.log('v6 foundation structural/publication checks passed.');

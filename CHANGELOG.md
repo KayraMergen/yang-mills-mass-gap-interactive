@@ -2,6 +2,20 @@
 
 All notable changes to the project are documented here.
 
+## [Unreleased v6 foundation]
+
+### Scientific/model foundation
+- added exact scaled-integer evaluators for the Assumption Lab and the signed single-step RG budget;
+- fixed the missing-URL-default corruption and exact-zero sign boundary;
+- replaced the undefined multistage RG animation with an honest single-step budget;
+- centralized the N1–N6 dependency registry and corrected the N4 → N5 → N6 topology;
+- expanded scenario state to include language, selection, spectrum and RG inputs while preserving v5 compatibility;
+- added persistent open-problem scope and result-local T0 qualification;
+- corrected bilingual proof-obligation table cell alignment and the custom-domain 404 return path;
+- added v6 model/state regression checks to CI.
+
+This is pre-release v6 foundation work. It does not change the archived v5.0.1 DOI and does not claim a Yang–Mills proof.
+
 ## [5.1.2] — 2026-09-14
 
 ### Changed
