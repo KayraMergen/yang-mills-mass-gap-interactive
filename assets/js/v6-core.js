@@ -6,15 +6,15 @@
   'use strict';
 
   const SCENARIO_SCHEMA = 6;
-  const CONTENT_REVISION = 'v6-foundation-r1';
+  const CONTENT_REVISION = 'v6-instruments-r2';
   const MODEL_VERSIONS = Object.freeze({
-    lab: 'lab-scalar-1',
-    spectrum: 'spectrum-schematic-1',
-    rg: 'rg-single-step-1'
+    lab: 'lab-scalar-2',
+    spectrum: 'spectrum-schematic-2',
+    rg: 'rg-single-step-2'
   });
 
   const LAB_DEFAULTS = Object.freeze({ cg: '0.65', lym: '1.00', r: '0.12' });
-  const SPECTRUM_DEFAULTS = Object.freeze({ epsilon: '0.25', delta: '0.42' });
+  const SPECTRUM_DEFAULTS = Object.freeze({ epsilon: '0.25', delta: '0.42', mode: 'supplied' });
   const RG_DEFAULTS = Object.freeze({ z: '0.85', ec: '0.80', epsr: '0.12' });
   const ASSUMPTION_IDS = Object.freeze(['aGauge', 'aScale', 'aCoarse', 'aReflect', 'aUniform', 'aOS']);
 
@@ -116,9 +116,9 @@
 
   function parseLabInputs(values) {
     return {
-      cg: parseFixed(values.cg, {scale:100,min:0,max:1.2,defaultValue:LAB_DEFAULTS.cg}),
-      lym: parseFixed(values.lym, {scale:100,min:0,max:1.5,defaultValue:LAB_DEFAULTS.lym}),
-      r: parseFixed(values.r, {scale:100,min:0,max:1.2,defaultValue:LAB_DEFAULTS.r})
+      cg: parseFixed(values.cg, {scale:1000,min:0,max:1.2,defaultValue:LAB_DEFAULTS.cg}),
+      lym: parseFixed(values.lym, {scale:1000,min:0,max:1.5,defaultValue:LAB_DEFAULTS.lym}),
+      r: parseFixed(values.r, {scale:1000,min:0,max:1.2,defaultValue:LAB_DEFAULTS.r})
     };
   }
 
@@ -143,9 +143,9 @@
   }
 
   function evaluateRG(values) {
-    const z = parseFixed(values.z, {scale:100,min:0,max:1.5,defaultValue:RG_DEFAULTS.z});
-    const ec = parseFixed(values.ec, {scale:100,min:0,max:1.5,defaultValue:RG_DEFAULTS.ec});
-    const epsr = parseFixed(values.epsr, {scale:100,min:0,max:1.5,defaultValue:RG_DEFAULTS.epsr});
+    const z = parseFixed(values.z, {scale:1000,min:0,max:1.5,defaultValue:RG_DEFAULTS.z});
+    const ec = parseFixed(values.ec, {scale:1000,min:0,max:1.5,defaultValue:RG_DEFAULTS.ec});
+    const epsr = parseFixed(values.epsr, {scale:1000,min:0,max:1.5,defaultValue:RG_DEFAULTS.epsr});
     const gross = multiplyFixed(z, ec);
     const defect = rescaleFixed(epsr, gross.scale);
     const net = subtractFixed(gross, defect);
@@ -161,12 +161,12 @@
     const a = q.get('a');
     const assumptions = Object.fromEntries(ASSUMPTION_IDS.map((id,i)=>[id, a && /^[01]{6}$/.test(a) ? a[i] === '1' : true]));
     const lab = parseLabInputs({cg:q.get('cg'),lym:q.get('lym'),r:q.get('r')});
-    const epsilon = parseFixed(q.get('eps'), {scale:100,min:0,max:1,defaultValue:SPECTRUM_DEFAULTS.epsilon});
-    const delta = parseFixed(q.get('delta'), {scale:100,min:0,max:1,defaultValue:SPECTRUM_DEFAULTS.delta});
+    const epsilon = parseFixed(q.get('eps'), {scale:1000,min:0,max:1,defaultValue:SPECTRUM_DEFAULTS.epsilon});
+    const delta = parseFixed(q.get('delta'), {scale:1000,min:0,max:1,defaultValue:SPECTRUM_DEFAULTS.delta});
     const rg = {
-      z:parseFixed(q.get('z'),{scale:100,min:0,max:1.5,defaultValue:RG_DEFAULTS.z}),
-      ec:parseFixed(q.get('ec'),{scale:100,min:0,max:1.5,defaultValue:RG_DEFAULTS.ec}),
-      epsr:parseFixed(q.get('epsr'),{scale:100,min:0,max:1.5,defaultValue:RG_DEFAULTS.epsr})
+      z:parseFixed(q.get('z'),{scale:1000,min:0,max:1.5,defaultValue:RG_DEFAULTS.z}),
+      ec:parseFixed(q.get('ec'),{scale:1000,min:0,max:1.5,defaultValue:RG_DEFAULTS.ec}),
+      epsr:parseFixed(q.get('epsr'),{scale:1000,min:0,max:1.5,defaultValue:RG_DEFAULTS.epsr})
     };
     const node = CLAIMS[String(q.get('node') || 'N1').toUpperCase()] ? String(q.get('node') || 'N1').toLowerCase() : 'n1';
     const failure = /^\d+$/.test(q.get('f') || '') ? Math.max(0, Math.min(4, Number(q.get('f')))) : 0;
@@ -177,7 +177,7 @@
       language: q.get('lang') === 'en' ? 'en' : 'tr',
       node, failure, assumptions,
       lab:{cg:formatFixed(lab.cg),lym:formatFixed(lab.lym),r:formatFixed(lab.r)},
-      spectrum:{epsilon:formatFixed(epsilon),delta:formatFixed(delta)},
+      spectrum:{epsilon:formatFixed(epsilon),delta:formatFixed(delta),mode:q.get('sm')==='lab'?'lab':'supplied'},
       rg:{z:formatFixed(rg.z),ec:formatFixed(rg.ec),epsr:formatFixed(rg.epsr)},
       recoveries:[
         ['cg',lab.cg],['lym',lab.lym],['r',lab.r],['eps',epsilon],['delta',delta],['z',rg.z],['ec',rg.ec],['epsr',rg.epsr]
@@ -194,7 +194,7 @@
     q.set('f', String(Number.isInteger(state.failure) ? state.failure : 0));
     q.set('a', ASSUMPTION_IDS.map(id=>state.assumptions && state.assumptions[id] ? '1':'0').join(''));
     q.set('cg', String(state.lab.cg)); q.set('lym', String(state.lab.lym)); q.set('r', String(state.lab.r));
-    q.set('eps', String(state.spectrum.epsilon)); q.set('delta', String(state.spectrum.delta));
+    q.set('eps', String(state.spectrum.epsilon)); q.set('delta', String(state.spectrum.delta)); q.set('sm', state.spectrum && state.spectrum.mode==='lab' ? 'lab' : 'supplied');
     q.set('z', String(state.rg.z)); q.set('ec', String(state.rg.ec)); q.set('epsr', String(state.rg.epsr));
     q.set('model_lab', MODEL_VERSIONS.lab); q.set('model_rg', MODEL_VERSIONS.rg); q.set('model_spectrum', MODEL_VERSIONS.spectrum);
     q.set('content', CONTENT_REVISION);

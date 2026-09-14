@@ -23,6 +23,9 @@ const required = [
   'https://doi.org/10.5281/zenodo.22739746',
   'https://doi.org/10.5281/zenodo.22739745',
   'assets/js/v6-core.js',
+  'assets/js/v6-instrument-engine.js',
+  'assets/css/v6-research-shell.css',
+  'assets/css/v6-instruments.css',
   'Failure Modes / Falsification Criteria',
   'Signed single-step transfer/defect budget',
   'T0 · Derived illustrative result'
@@ -46,13 +49,22 @@ for (const file of [
   'LANDING_QA.md',
   'CNAME',
   'assets/js/v6-core.js',
+  'assets/js/v6-instrument-engine.js',
+  'assets/css/v6-research-shell.css',
+  'assets/css/v6-instruments.css',
   'scripts/test-v6-core.cjs',
+  'scripts/test-v6-phase3.cjs',
+  'scripts/test-v6-phase4.cjs',
+  'scripts/test-v6-phase5.cjs',
   'V6_DESIGN_AUDIT.md',
   'V6_INFORMATION_ARCHITECTURE.md',
   'V6_DESIGN_SYSTEM.md',
   'V6_EXPERIMENT_ARCHITECTURE.md',
   'V6_IMPLEMENTATION_PLAN.md',
-  'V6_MASTER_IMPLEMENTATION_BRIEF.md'
+  'V6_MASTER_IMPLEMENTATION_BRIEF.md',
+  'V6_PHASE3_NOTES.md',
+  'V6_PHASE4_NOTES.md',
+  'V6_PHASE5_NOTES.md'
 ]) {
   if (!fs.existsSync(file)) {
     console.error(`Missing required repository file: ${file}`);

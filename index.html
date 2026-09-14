@@ -8,9 +8,9 @@
   <meta name="version" content="5.1.2" />
   <meta name="author" content="Baran Çolakoğlu" />
   <link rel="canonical" href="https://www.yangmillsresearch.org/" />
-  <meta name="theme-color" content="#091018" />
+  <meta name="theme-color" content="#0B1118" />
   <meta property="og:title" content="Yang–Mills Mass Gap — Interactive Research Console" />
-  <meta property="og:description" content="Proof graph, assumption lab, RG transfer analysis, falsification tests and source map for a hypothetical Yang–Mills mass-gap research program." />
+  <meta property="og:description" content="Argument map, research instruments, RG transfer budget, falsification criteria and scientific audit for a hypothetical Yang–Mills mass-gap research program." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.yangmillsresearch.org/" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23091018'/%3E%3Cpath d='M14 17h9l9 14 9-14h9L37 40v9H27v-9z' fill='%2399c7ff'/%3E%3C/svg%3E" />
@@ -380,15 +380,34 @@
       .equation,.trace,.metric,.source-card,.brief-card{background:white;color:#111}
     }
   </style>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=STIX+Two+Text:wght@500;600&display=swap" rel="stylesheet">
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        processEscapes: true
+      },
+      output: { font: 'mathjax-stix2' },
+      startup: { typeset: true }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml-nofont.js"></script>
+  <link rel="stylesheet" href="assets/css/v6-research-shell.css">
+  <link rel="stylesheet" href="assets/css/v6-instruments.css">
 </head>
 <body>
+<a class="skip-link" href="#research-main"><span data-lang="tr">Ana içeriğe geç</span><span data-lang="en">Skip to research content</span></a>
 <div class="app-shell">
   <header class="topbar">
     <div class="brand">
       <div class="brandmark">YM</div>
       <div class="brandcopy">
-        <div class="brandtitle">Yang–Mills Mass Gap — Interactive Research Console</div>
-        <div class="brandsub"><span data-lang="tr">Gauge-indirgenmiş spektral koersivite programı</span><span data-lang="en">Gauge-reduced spectral coercivity program</span></div>
+        <div class="brandtitle">Yang–Mills Research</div>
+        <div class="brandsub"><span data-lang="tr">Kütle aralığı · spektral koersivite araştırma arayüzü</span><span data-lang="en">Mass gap · spectral-coercivity research interface</span></div>
       </div>
     </div>
     <div class="top-actions">
@@ -409,6 +428,9 @@
     <aside class="sidebar">
       <div class="side-label"><span data-lang="tr">Araştırma konsolu</span><span data-lang="en">Research console</span></div>
       <nav class="side-nav" aria-label="Main sections">
+        <div class="nav-group-label nav-group-program"><span data-lang="tr">Araştırma programı</span><span data-lang="en">Research program</span></div>
+        <div class="nav-group-label nav-group-instruments"><span data-lang="tr">Araştırma araçları</span><span data-lang="en">Research instruments</span></div>
+        <div class="nav-group-label nav-group-audit"><span data-lang="tr">Bilimsel denetim</span><span data-lang="en">Scientific audit</span></div>
         <button class="navbtn active" data-view="overview" type="button"><span class="nav-kicker">01</span><span class="nav-name"><span data-lang="tr">Genel Bakış</span><span data-lang="en">Overview</span></span></button>
         <button class="navbtn" data-view="graph" type="button"><span class="nav-kicker">02</span><span class="nav-name"><span data-lang="tr">Argüman Haritası</span><span data-lang="en">Argument Map</span></span></button>
         <button class="navbtn" data-view="lab" type="button"><span class="nav-kicker">03</span><span class="nav-name"><span data-lang="tr">Varsayım Laboratuvarı</span><span data-lang="en">Assumption Lab</span></span></button>
@@ -427,69 +449,80 @@
       </div>
     </aside>
 
-    <main class="main">
-      <section class="view active" id="view-overview">
-        <div class="pub-strip">
-          <div>
-            <div class="pub-meta">
-              <span><strong>v5.1.2</strong></span>
-              <a href="https://doi.org/10.5281/zenodo.22739745" target="_blank" rel="noopener">Concept DOI: 10.5281/zenodo.22739745 ↗</a>
-              <a href="https://orcid.org/0009-0001-9217-0917" target="_blank" rel="noopener">ORCID: 0009-0001-9217-0917 ↗</a>
-              <a href="https://github.com/KayraMergen/yang-mills-mass-gap-interactive" target="_blank" rel="noopener">Open source ↗</a>
-            </div>
-            <p class="small muted" style="margin-top:8px" data-lang="tr">Akademik kimlik, sürümleme, DOI ve bilimsel inceleme altyapısı etkin.</p>
-            <p class="small muted" style="margin-top:8px" data-lang="en">Academic identity, versioning, DOI and scientific-review infrastructure are active.</p>
+    <main class="main" id="research-main" tabindex="-1">
+      <section class="view active overview-refined" id="view-overview">
+        <div class="overview-masthead" aria-label="Publication identity">
+          <div class="overview-meta">
+            <span class="overview-version">v5.1.2</span><span class="sr-only">v5.1.2 • Custom Domain & Canonical Layer</span>
+            <a href="https://doi.org/10.5281/zenodo.22739745" target="_blank" rel="noopener">Concept DOI ↗</a>
+            <a href="https://orcid.org/0009-0001-9217-0917" target="_blank" rel="noopener" aria-label="ORCID: 0009-0001-9217-0917">ORCID ↗</a>
+            <a href="https://github.com/KayraMergen/yang-mills-mass-gap-interactive" target="_blank" rel="noopener">GitHub ↗</a>
           </div>
-          <div class="pub-actions">
-            <a class="btn primary" href="https://doi.org/10.5281/zenodo.22739746" target="_blank" rel="noopener"><span data-lang="tr">Arşivlenmiş v5.0.1 DOI ↗</span><span data-lang="en">Archived v5.0.1 DOI ↗</span></a>
-            <button class="btn" id="heroCiteBtn" type="button"><span data-lang="tr">Atıfı kopyala</span><span data-lang="en">Copy citation</span></button>
+          <div class="overview-meta-actions">
+            <a href="https://doi.org/10.5281/zenodo.22739746" target="_blank" rel="noopener"><span data-lang="tr">Arşiv DOI ↗</span><span data-lang="en">Archive DOI ↗</span></a>
+            <button class="overview-text-action" id="heroCiteBtn" type="button"><span data-lang="tr">Atıfı kopyala</span><span data-lang="en">Copy citation</span></button>
           </div>
         </div>
-        <div class="hero-grid">
-          <article class="card hero-main">
-            <div class="eyebrow">
-              <span class="status-chip hyp"><span class="dot"></span><span data-lang="tr">Varsayımsal araştırma programı</span><span data-lang="en">Hypothetical research program</span></span>
-              <span class="pill">Yang–Mills • RG • Spectral gap • OS reconstruction</span>
+
+        <div class="overview-hero">
+          <article class="overview-primary">
+            <div class="overview-kicker">
+              <span data-lang="tr">Varsayımsal araştırma programı</span><span data-lang="en">Hypothetical research program</span>
+              <span aria-hidden="true">·</span>
+              <span class="overview-open"><span data-lang="tr">Açık Milenyum Problemi</span><span data-lang="en">Open Millennium Problem</span></span>
             </div>
-            <h1><span data-lang="tr">Kütle aralığını bir spektral alt sınır problemi olarak oku.</span><span data-lang="en">Read the mass gap as a spectral lower-bound problem.</span></h1>
-            <p class="lead">
-              <span data-lang="tr">Programın ana fikri, “kütle nereden geldi?” sorusundan ziyade vakumdan farklı fiziksel spektral bileşenlerin neden sıfıra keyfî biçimde yaklaşamadığını açıklayacak gauge-indirgenmiş bir koersivite mekanizması kurmaktır.</span>
-              <span data-lang="en">The program asks not “where does mass come from?” but how a gauge-reduced coercivity mechanism could prevent physical spectral components distinct from the vacuum from approaching zero energy arbitrarily closely.</span>
+
+            <h1><span data-lang="tr">Kütle aralığı, spektral bir alt sınır problemi.</span><span data-lang="en">Mass gap as a spectral lower-bound problem.</span></h1>
+
+            <p class="lead overview-lead">
+              <span data-lang="tr">Merkez soru kütlenin kökeni değil; vakumdan farklı fiziksel spektral bileşenlerin enerjisinin sıfıra keyfî biçimde yaklaşmasını neyin engellediğidir.</span>
+              <span data-lang="en">The central question is not the origin of mass, but what can prevent physical spectral components distinct from the vacuum from approaching zero energy arbitrarily closely.</span>
             </p>
-            <div class="equation hero-equation math-block">P⊥ H P⊥ ≥ C<sub>G</sub> Λ<sub>YM</sub> · P⊥ &gt; 0</div>
-            <div class="hero-citation">
-              <div class="small muted" data-lang="tr">Önerilen yazılım atfı</div><div class="small muted" data-lang="en">Suggested software citation</div>
-              <div class="cite-line">Baran Çolakoğlu (2026). Yang–Mills Mass Gap — Interactive Research Console. Concept DOI: 10.5281/zenodo.22739745</div>
+
+            <div class="overview-summary" aria-label="Research summary">
+              <div class="overview-summary-item">
+                <span class="overview-summary-label"><span data-lang="tr">Hedef spektrum</span><span data-lang="en">Target spectrum</span></span>
+                <strong class="mono">Spec(H) ∩ (0, Δ) = ∅</strong>
+                <small>Δ &gt; 0</small>
+              </div>
+              <div class="overview-summary-item">
+                <span class="overview-summary-label"><span data-lang="tr">Kritik köprü</span><span data-lang="en">Critical bridge</span></span>
+                <strong>RG reflection-back</strong>
+                <small><span data-lang="tr">Düşük enerjili fiziksel modun coarse-graining altında kaybolmaması.</span><span data-lang="en">No low-energy physical mode may disappear under coarse-graining.</span></small>
+              </div>
+              <div class="overview-summary-item">
+                <span class="overview-summary-label"><span data-lang="tr">Araştırma biçimi</span><span data-lang="en">Research mode</span></span>
+                <strong><span data-lang="tr">Denetlenebilir ispat mimarisi</span><span data-lang="en">Auditable proof architecture</span></strong>
+                <small><span data-lang="tr">Bağımlılıklar · kırılma noktaları · kaynaklar</span><span data-lang="en">Dependencies · failure points · provenance</span></small>
+              </div>
             </div>
-            <div class="hero-actions">
-              <button class="btn primary" id="openLabBtn" type="button"><span data-lang="tr">Varsayım laboratuvarını aç</span><span data-lang="en">Open assumption lab</span></button>
-              <button class="btn" id="openGraphBtn" type="button"><span data-lang="tr">İspat grafiğini incele</span><span data-lang="en">Inspect proof graph</span></button>
-              <button class="btn ghost" id="exportBtn" type="button"><span data-lang="tr">Durum raporu indir</span><span data-lang="en">Export status report</span></button>
+
+            <div class="equation-shell overview-equation" data-equation-id="EQ-H1-COERCIVITY">
+              <div class="equation-meta"><span>EQ-H1-COERCIVITY</span><span class="eq-class">H1 · <span data-lang="tr">önerilen eşitsizlik</span><span data-lang="en">proposed inequality</span></span></div>
+              <div class="equation hero-equation math-block">\[P_{\perp} H P_{\perp} \ge C_G \Lambda_{\mathrm{YM}}\, P_{\perp} > 0\]</div>
+              <p class="equation-note"><span data-lang="tr">Hedef, vakum-ortogonal fiziksel sektörde pozitif bir spektral alt sınırdır. Bu ifade kanıtlanmış bir teorem değildir.</span><span data-lang="en">The target is a positive spectral lower bound on the vacuum-orthogonal physical sector. This statement is not a proved theorem.</span></p>
+            </div>
+
+            <div class="hero-actions overview-actions">
+              <button class="btn primary" id="openLabBtn" type="button"><span data-lang="tr">Varsayım laboratuvarı</span><span data-lang="en">Assumption laboratory</span></button>
+              <button class="btn" id="openGraphBtn" type="button"><span data-lang="tr">Argüman haritası</span><span data-lang="en">Argument map</span></button>
+              <button class="overview-export" id="exportBtn" type="button"><span data-lang="tr">Durum raporu ↓</span><span data-lang="en">Status report ↓</span></button>
             </div>
           </article>
-          <aside class="card stat-stack">
-            <div class="stat warning"><div class="k" data-lang="tr">Statü</div><div class="k" data-lang="en">Status</div><div class="v" data-lang="tr">Açık Milenyum Problemi</div><div class="v" data-lang="en">Open Millennium Problem</div><div class="d" data-lang="tr">Buradaki lemalar araştırma hedefidir.</div><div class="d" data-lang="en">The new lemmas here are research targets.</div></div>
-            <div class="stat"><div class="k" data-lang="tr">Hedef spektrum</div><div class="k" data-lang="en">Target spectrum</div><div class="v mono">Spec(H) ∩ (0, Δ) = ∅</div><div class="d">Δ &gt; 0</div></div>
-            <div class="stat"><div class="k" data-lang="tr">Merkez risk</div><div class="k" data-lang="en">Central risk</div><div class="v">RG reflection-back</div><div class="d" data-lang="tr">Coarse-graining düşük enerjili fiziksel modu gizliyor mu?</div><div class="d" data-lang="en">Can coarse-graining hide a low-energy physical mode?</div></div>
-            <div class="stat"><div class="k" data-lang="tr">Araştırma odağı</div><div class="k" data-lang="en">Research focus</div><div class="v" data-lang="tr">Denetlenebilir ispat mimarisi</div><div class="v" data-lang="en">Auditable proof architecture</div><div class="d" data-lang="tr">Bağımlılıklar, kırılma noktaları, kaynak haritası.</div><div class="d" data-lang="en">Dependencies, failure points, provenance map.</div></div>
-          </aside>
+
         </div>
 
-        <div class="trust-grid">
-          <div class="trust-card"><div class="t-k">DOI</div><div class="t-v">10.5281/zenodo.22739745</div><div class="t-d" data-lang="tr">Tüm sürümler / proje kaydı</div><div class="t-d" data-lang="en">All versions / project record</div></div>
-          <div class="trust-card"><div class="t-k">ORCID</div><div class="t-v">0009-0001-9217-0917</div><div class="t-d">Baran Çolakoğlu</div></div>
-          <div class="trust-card"><div class="t-k">CI</div><div class="t-v">Quality audit</div><div class="t-d" data-lang="tr">Her push'ta yapısal kontrol</div><div class="t-d" data-lang="en">Structural validation on every push</div></div>
-          <div class="trust-card"><div class="t-k" data-lang="tr">Statü</div><div class="t-k" data-lang="en">Status</div><div class="t-v" data-lang="tr">Açık problem</div><div class="t-v" data-lang="en">Open problem</div><div class="t-d" data-lang="tr">Kanıt iddiası yok</div><div class="t-d" data-lang="en">No proof claim</div></div>
+        <div class="overview-spine" aria-label="Program spine">
+          <div class="overview-spine-step"><span>01</span><strong><span data-lang="tr">Fiziksel sektör</span><span data-lang="en">Physical sector</span></strong><small><span data-lang="tr">Gauge tekrarını ayır</span><span data-lang="en">Remove gauge redundancy</span></small></div>
+          <div class="overview-spine-arrow" aria-hidden="true">→</div>
+          <div class="overview-spine-step"><span>02</span><strong>Λ<sub>YM</sub></strong><small><span data-lang="tr">Dinamik ölçek</span><span data-lang="en">Dynamical scale</span></small></div>
+          <div class="overview-spine-arrow" aria-hidden="true">→</div>
+          <div class="overview-spine-step"><span>03</span><strong><span data-lang="tr">Geri-yansıtım</span><span data-lang="en">Reflection-back</span></strong><small><span data-lang="tr">Gizli düşük mod yok</span><span data-lang="en">No hidden low mode</span></small></div>
+          <div class="overview-spine-arrow" aria-hidden="true">→</div>
+          <div class="overview-spine-step"><span>04</span><strong>Continuum + OS</strong><small><span data-lang="tr">Limite taşı</span><span data-lang="en">Carry to the limit</span></small></div>
         </div>
 
-        <div class="brief-cards">
-          <div class="brief-card"><div class="num">01</div><strong data-lang="tr">Fiziksel sektör</strong><strong data-lang="en">Physical sector</strong><p data-lang="tr">Gauge tekrarını fiziksel ayrımdan ayır.</p><p data-lang="en">Separate gauge redundancy from physical distinction.</p></div>
-          <div class="brief-card"><div class="num">02</div><strong>Λ<sub>YM</sub></strong><p data-lang="tr">Dinamik ölçek var; fakat bu tek başına gap değil.</p><p data-lang="en">A dynamical scale exists; that alone is not a gap.</p></div>
-          <div class="brief-card"><div class="num">03</div><strong data-lang="tr">Geri-yansıtım</strong><strong data-lang="en">Reflection-back</strong><p data-lang="tr">RG düşük enerjili fiziksel modu örtememeli.</p><p data-lang="en">RG must not hide low-energy physical modes.</p></div>
-          <div class="brief-card"><div class="num">04</div><strong>Continuum + OS</strong><p data-lang="tr">Gap ve aksiyomlar birlikte limite taşınmalı.</p><p data-lang="en">The gap and axioms must survive the limit together.</p></div>
-        </div>
-
-        <div class="footer"><span>v5.1.2 • Custom Domain & Canonical Layer</span><span><span class="kbd">←</span> <span class="kbd">→</span> <span data-lang="tr">bölüm değiştirir</span><span data-lang="en">switch sections</span></span></div>
+        <div class="overview-footnote"><span data-lang="tr">Bu arayüz bir kanıt sunmaz; varsayımsal programın iddialarını, araçlarını ve açık borçlarını denetlenebilir biçimde düzenler.</span><span data-lang="en">This interface does not present a proof; it organizes the hypothetical program's claims, instruments, and open obligations for inspection.</span></div>
       </section>
 
       <section class="view" id="view-graph">
@@ -497,8 +530,15 @@
           <div><h2 data-lang="tr">Argüman bağımlılık haritası</h2><h2 data-lang="en">Argument dependency map</h2><p data-lang="tr">Her düğümün rolünü, statüsünü, bağımlılıklarını ve başarısız olursa zincirde neyi kırdığını denetle.</p><p data-lang="en">Inspect each node's role, status, dependencies, and downstream failure effect.</p></div>
           <span class="status-chip target"><span data-lang="tr">Kaynak-temelli mimari</span><span data-lang="en">Source-grounded architecture</span></span>
         </div>
+        <div class="instrument-modebar" aria-label="Argument map representation">
+          <span class="instrument-mode-label"><span data-lang="tr">Görünüm</span><span data-lang="en">View</span></span>
+          <button class="segbtn active graph-mode" data-graph-mode="spatial" type="button"><span data-lang="tr">Harita</span><span data-lang="en">Map</span></button>
+          <button class="segbtn graph-mode" data-graph-mode="linear" type="button"><span data-lang="tr">Bağımlılık listesi</span><span data-lang="en">Dependency list</span></button>
+          <button class="segbtn graph-mode" data-graph-mode="outline" type="button"><span data-lang="tr">Semantik taslak</span><span data-lang="en">Semantic outline</span></button>
+        </div>
         <div class="proof-grid">
-          <article class="card">
+          <article class="card graph-surface-card">
+            <div class="graph-panel active" id="graphSpatialPanel">
             <div class="graph-wrap">
               <svg class="proof-svg" viewBox="0 0 920 470" role="img" aria-label="Yang-Mills hypothetical proof dependency graph">
                 <defs>
@@ -532,6 +572,13 @@
               </svg>
             </div>
             <div class="result-scope" id="dependencyLinear" aria-label="Dependency list"></div>
+            </div>
+            <div class="graph-panel" id="graphLinearPanel" hidden>
+              <div class="dependency-cards" id="dependencyCards" aria-live="polite"></div>
+            </div>
+            <div class="graph-panel" id="graphOutlinePanel" hidden>
+              <div class="semantic-outline" id="dependencyOutline"></div>
+            </div>
           </article>
           <aside class="card node-inspector" id="nodeInspector">
             <div>
@@ -573,18 +620,47 @@
               <label class="assumption"><input id="aOS" type="checkbox" checked><span><span class="title">A6 — Continuum + OS</span><span class="desc" data-lang="tr">Limit teori ℋphys, Ω ve H'yi kuruyor.</span><span class="desc" data-lang="en">The limit theory reconstructs ℋphys, Ω and H.</span></span></label>
             </div>
 
-            <div class="controls">
-              <div><label for="cG">C<sub>G</sub></label><div class="range-row"><input id="cG" type="range" min="0" max="1.2" value="0.65" step="0.01"><output id="cGOut">0.65</output></div></div>
-              <div><label for="lambda">Λ<sub>YM</sub></label><div class="range-row"><input id="lambda" type="range" min="0" max="1.5" value="1.00" step="0.01"><output id="lambdaOut">1.00</output></div></div>
-              <div><label for="residual">r(a,L)</label><div class="range-row"><input id="residual" type="range" min="0" max="1.2" value="0.12" step="0.01"><output id="residualOut">0.12</output></div></div>
+            <div class="precision-toolbar" data-precision-toolbar="lab">
+              <div class="precision-step-group"><span data-lang="tr">Adım</span><span data-lang="en">Step</span><button class="precision-step active" data-step-scope="lab" data-step="0.001" type="button">0.001</button><button class="precision-step" data-step-scope="lab" data-step="0.01" type="button">0.01</button><button class="precision-step" data-step-scope="lab" data-step="0.05" type="button">0.05</button></div>
+              <button class="btn compact-btn" data-capture-baseline="lab" type="button"><span data-lang="tr">Referans yakala</span><span data-lang="en">Capture baseline</span></button>
             </div>
+            <div class="controls" data-precision-scope="lab">
+              <div class="precision-control"><label for="cG">C<sub>G</sub></label><div class="range-row precision-range-row"><input id="cG" type="range" min="0" max="1.2" value="0.650" step="0.001"><div class="number-stepper"><button data-nudge-target="cG" data-direction="-1" type="button" aria-label="decrease C G">−</button><input id="cGNumber" type="number" min="0" max="1.2" value="0.650" step="0.001" inputmode="decimal"><button data-nudge-target="cG" data-direction="1" type="button" aria-label="increase C G">+</button></div><output id="cGOut" class="sr-only">0.650</output></div></div>
+              <div class="precision-control"><label for="lambda">Λ<sub>YM</sub></label><div class="range-row precision-range-row"><input id="lambda" type="range" min="0" max="1.5" value="1.000" step="0.001"><div class="number-stepper"><button data-nudge-target="lambda" data-direction="-1" type="button" aria-label="decrease Lambda YM">−</button><input id="lambdaNumber" type="number" min="0" max="1.5" value="1.000" step="0.001" inputmode="decimal"><button data-nudge-target="lambda" data-direction="1" type="button" aria-label="increase Lambda YM">+</button></div><output id="lambdaOut" class="sr-only">1.000</output></div></div>
+              <div class="precision-control"><label for="residual">r(a,L)</label><div class="range-row precision-range-row"><input id="residual" type="range" min="0" max="1.2" value="0.120" step="0.001"><div class="number-stepper"><button data-nudge-target="residual" data-direction="-1" type="button" aria-label="decrease residual">−</button><input id="residualNumber" type="number" min="0" max="1.2" value="0.120" step="0.001" inputmode="decimal"><button data-nudge-target="residual" data-direction="1" type="button" aria-label="increase residual">+</button></div><output id="residualOut" class="sr-only">0.120</output></div></div>
+            </div>
+            <div class="baseline-readout" id="labBaselineReadout"><span data-lang="tr">Yerel referans: henüz yakalanmadı.</span><span data-lang="en">Local baseline: not captured yet.</span></div>
           </article>
 
-          <article class="card">
+          <article class="card instrument-result-surface" id="labResultSurface">
+            <div class="instrument-alert" id="labAlert" data-tone="conditional">
+              <span class="instrument-alert-mark" aria-hidden="true"></span>
+              <div><strong id="labAlertTitle"></strong><span id="labAlertText"></span></div>
+            </div>
             <div class="metric-grid">
               <div class="metric"><span>C<sub>G</sub>Λ<sub>YM</sub></span><b id="gross">0.65</b></div>
               <div class="metric"><span>r(a,L)</span><b id="loss">0.12</b></div>
               <div class="metric"><span data-lang="tr">Aday alt sınır</span><span data-lang="en">Candidate bound</span><b id="net">0.53</b></div>
+            </div>
+            <div class="regime-console" id="labRegimeConsole">
+              <div class="regime-head"><span data-lang="tr">T0 marj rejimi</span><span data-lang="en">T0 margin regime</span><b id="labRegimeLabel">—</b><small id="labMarginText">—</small></div>
+              <div class="regime-ladder" id="labRegimeLadder" aria-label="Illustrative lab margin bands">
+                <span data-regime="negative">−</span><span data-regime="zero">0</span><span data-regime="blocked-positive">blocked</span><span data-regime="fragile-positive">fragile</span><span data-regime="moderate-positive">moderate</span><span data-regime="robust-positive">robust</span>
+              </div>
+              <div class="threshold-disclaimer"><span data-lang="tr">Eşikler yalnız arayüzdeki T0 hassasiyet bantlarıdır; fiziksel kritik sabitler değildir.</span><span data-lang="en">Bands are T0 interface sensitivity thresholds only; they are not physical critical constants.</span></div>
+            </div>
+            <div class="lab-chain" id="labChain" aria-label="Proof dependency state">
+              <div class="chain-node" data-chain-node="N1"><span>N1</span><b><span data-lang="tr">Fiziksel sektör</span><span data-lang="en">Physical sector</span></b></div>
+              <div class="chain-link" data-chain-edge="N1>N3"></div>
+              <div class="chain-node" data-chain-node="N2"><span>N2</span><b>Λ<sub>YM</sub></b></div>
+              <div class="chain-link" data-chain-edge="N2>N3"></div>
+              <div class="chain-node" data-chain-node="N3"><span>N3</span><b><span data-lang="tr">Köprü</span><span data-lang="en">Bridge</span></b></div>
+              <div class="chain-link" data-chain-edge="N3>N4"></div>
+              <div class="chain-node" data-chain-node="N4"><span>N4</span><b>RG</b></div>
+              <div class="chain-link" data-chain-edge="N4>N5"></div>
+              <div class="chain-node" data-chain-node="N5"><span>N5</span><b><span data-lang="tr">Uniform</span><span data-lang="en">Uniform</span></b></div>
+              <div class="chain-link" data-chain-edge="N5>N6"></div>
+              <div class="chain-node" data-chain-node="N6"><span>N6</span><b>Continuum + OS</b></div>
             </div>
             <div class="verdict ok" id="verdict">
               <h3 id="verdictTitle"></h3>
@@ -596,9 +672,17 @@
               <button class="btn" id="copyScenarioBtn" type="button"><span data-lang="tr">Senaryo linkini kopyala</span><span data-lang="en">Copy scenario link</span></button>
               <button class="btn" id="copyTraceBtn" type="button"><span data-lang="tr">Mantık izini kopyala</span><span data-lang="en">Copy logic trace</span></button>
             </div>
-            <p class="small muted" style="margin-top:10px" data-lang="tr">Sayısal değerler fiziksel tahmin değildir; yalnızca ispat mimarisindeki <span class="math-block mono">C_G Λ_YM − r(a,L)</span> rolünü görünür kılar.</p>
-            <p class="small muted" style="margin-top:10px" data-lang="en">Numerical values are not physical estimates; they only expose the role of <span class="math-block mono">C_G Λ_YM − r(a,L)</span> in the proof architecture.</p>
+            <p class="small muted" style="margin-top:10px" data-lang="tr">Sayısal değerler fiziksel tahmin değildir; yalnızca ispat mimarisindeki <span class="math-block">\(C_G\Lambda_{\mathrm{YM}}-r(a,L)\)</span> rolünü görünür kılar.</p>
+            <p class="small muted" style="margin-top:10px" data-lang="en">Numerical values are not physical estimates; they only expose the role of <span class="math-block">\(C_G\Lambda_{\mathrm{YM}}-r(a,L)\)</span> in the proof architecture.</p>
             <div class="result-scope" id="labScope"><span data-lang="tr">T0 · Türetilmiş açıklayıcı sonuç. A1–A6 varsayımsal öncülleri çözmez; uniform continuum alt sınırı kanıtlamaz.</span><span data-lang="en">T0 · Derived illustrative result. It does not discharge A1–A6 hypothetical premises or prove a uniform continuum lower bound.</span></div>
+            <details class="model-lens">
+              <summary><span data-lang="tr">Yapısal okuma</span><span data-lang="en">Structural reading</span><small id="labLensSummary"><span data-lang="tr">Nicelik ≠ çıkarım lisansı</span><span data-lang="en">Quantity ≠ inference license</span></small></summary>
+              <div class="model-lens-grid">
+                <section><h4 data-lang="tr">Koruduğu</h4><h4 data-lang="en">Preserves</h4><p data-lang="tr">Pozitif bir nicelik ile o niceliğin hangi öncül konfigürasyonu altında sonuca taşınabildiğini ayrı tutar.</p><p data-lang="en">Separates a positive quantity from the premise configuration under which it can support a downstream conclusion.</p></section>
+                <section><h4 data-lang="tr">İhmal ettiği</h4><h4 data-lang="en">Ignores</h4><p data-lang="tr">Gerçek alan konfigürasyonlarını, continuum limitini ve dinamik RG hesabını üretmez.</p><p data-lang="en">Does not produce field configurations, the continuum limit, or a dynamical RG calculation.</p></section>
+                <section><h4 data-lang="tr">Nasıl okunmalı?</h4><h4 data-lang="en">How to read it</h4><p data-lang="tr">Pozitif aday sınır, yapısal blokaj varsa yalnız aritmetik bir T0 durumudur.</p><p data-lang="en">A positive candidate bound remains only a T0 arithmetic state when the structural chain is blocked.</p></section>
+              </div>
+            </details>
           </article>
         </div>
       </section>
@@ -608,27 +692,78 @@
         <div class="grid2">
           <article class="card">
             <h3 data-lang="tr">Vakuma normca yaklaşmak gap'i bozmaz</h3><h3 data-lang="en">Norm closeness to vacuum does not destroy the gap</h3>
-            <div class="equation math-block" style="margin-top:12px">ψ<sub>ε</sub> = √(1−ε²) Ω + ε φ, &nbsp; φ ⟂ Ω, &nbsp; ‖Ω‖ = ‖φ‖ = 1</div>
-            <div class="controls">
-              <div><label for="epsilon">ε</label><div class="range-row"><input id="epsilon" type="range" min="0" max="1" value="0.25" step="0.01"><output id="epsilonOut">0.25</output></div></div>
+            <div class="equation-shell" data-equation-id="EQ-T0-MIXTURE">
+              <div class="equation-meta"><span>EQ-T0-MIXTURE</span><span class="eq-class">T0 · <span data-lang="tr">normalize örnek</span><span data-lang="en">normalized example</span></span></div>
+              <div class="equation math-block">\[\psi_{\varepsilon}=\sqrt{1-\varepsilon^2}\,\Omega+\varepsilon\phi,\qquad \phi\perp\Omega,\qquad \lVert\Omega\rVert=\lVert\phi\rVert=1\]</div>
+            </div>
+            <div class="precision-toolbar" data-precision-toolbar="spectrum">
+              <div class="precision-step-group"><span data-lang="tr">Adım</span><span data-lang="en">Step</span><button class="precision-step active" data-step-scope="spectrum" data-step="0.001" type="button">0.001</button><button class="precision-step" data-step-scope="spectrum" data-step="0.01" type="button">0.01</button><button class="precision-step" data-step-scope="spectrum" data-step="0.05" type="button">0.05</button></div>
+              <button class="btn compact-btn" data-capture-baseline="spectrum" type="button"><span data-lang="tr">Referans yakala</span><span data-lang="en">Capture baseline</span></button>
+            </div>
+            <div class="controls" data-precision-scope="spectrum">
+              <div class="precision-control"><label for="epsilon">ε</label><div class="range-row precision-range-row"><input id="epsilon" type="range" min="0" max="1" value="0.250" step="0.001"><div class="number-stepper"><button data-nudge-target="epsilon" data-direction="-1" type="button" aria-label="decrease epsilon">−</button><input id="epsilonNumber" type="number" min="0" max="1" value="0.250" step="0.001" inputmode="decimal"><button data-nudge-target="epsilon" data-direction="1" type="button" aria-label="increase epsilon">+</button></div><output id="epsilonOut" class="sr-only">0.250</output></div></div>
+            </div>
+            <div class="composition-regime"><span data-lang="tr">Bileşim rejimi</span><span data-lang="en">Composition regime</span><b id="compositionRegime">—</b></div>
+            <div class="mixture-meter" id="mixtureMeter" aria-label="Vacuum and orthogonal-component weights">
+              <div class="mixture-bar"><span class="mixture-vacuum" id="mixtureVacuum"></span><span class="mixture-orthogonal" id="mixtureOrthogonal"></span></div>
+              <div class="mixture-legend"><span><i class="vacuum-key"></i><span data-lang="tr">Vakum ağırlığı</span><span data-lang="en">Vacuum weight</span> <b id="vacuumWeight">0.94</b></span><span><i class="orthogonal-key"></i><span data-lang="tr">Ortogonal bileşen</span><span data-lang="en">Orthogonal component</span> <b id="orthogonalWeight">0.06</b></span></div>
             </div>
             <div class="verdict wait" id="epsilonVerdict"><h3 data-lang="tr">Yorum</h3><h3 data-lang="en">Interpretation</h3><p class="small muted" id="epsilonText"></p></div>
           </article>
-          <article class="card">
-            <h3 data-lang="tr">Yasak spektral bant</h3><h3 data-lang="en">Forbidden spectral band</h3>
-            <div class="spectrum-stage">
+          <article class="card spectrum-instrument" id="spectrumResultSurface">
+            <div class="instrument-surface-head">
+              <div><h3 data-lang="tr">Yasak spektral bant</h3><h3 data-lang="en">Forbidden spectral band</h3><p class="small muted"><span data-lang="tr">Δ sağlanan veya laboratuvar modeline bağlanan açıklayıcı bir sınırdır.</span><span data-lang="en">Δ is an illustrative boundary, either supplied or linked to the lab model.</span></p></div>
+              <div class="instrument-status-tag" id="spectrumStatusTag">T0 · supplied</div>
+            </div>
+            <div class="instrument-modebar compact">
+              <span class="instrument-mode-label">Δ</span>
+              <button class="segbtn active spectrum-mode" id="spectrumModeSupplied" data-spectrum-mode="supplied" type="button"><span data-lang="tr">Sağlanan</span><span data-lang="en">Supplied</span></button>
+              <button class="segbtn spectrum-mode" id="spectrumModeLab" data-spectrum-mode="lab" type="button"><span data-lang="tr">Lab'a bağlı</span><span data-lang="en">Lab-linked</span></button>
+            </div>
+            <div class="instrument-alert" id="spectrumAlert" data-tone="positive">
+              <span class="instrument-alert-mark" aria-hidden="true"></span>
+              <div><strong id="spectrumAlertTitle"></strong><span id="spectrumAlertText"></span></div>
+            </div>
+            <div class="spectrum-stage" id="spectrumStage">
+              <div class="spectrum-plot-head"><span class="mono" id="spectrumScaleLabel">E / Λ = 0 … 1.00</span><span class="small muted"><span data-lang="tr">şematik eksen</span><span data-lang="en">schematic axis</span></span></div>
               <div class="spectrum-axis">
-                <div class="axis-line"></div><div class="tick" style="left:0"></div><div class="tick" id="deltaTick" style="left:42%"></div><div class="forbidden" id="forbidden"></div>
+                <div class="axis-line"></div>
+                <div class="forbidden" id="forbidden"><span class="forbidden-label"><span data-lang="tr">yasak bant</span><span data-lang="en">excluded band</span></span></div>
+                <div class="vacuum-marker" aria-label="Vacuum at zero"><span></span></div>
+                <div class="delta-marker" id="deltaTick"><span class="delta-cap">Δ</span></div>
+                <div class="threshold-marker" id="spectrumThresholdNear"><span>0.020</span></div>
+                <div class="threshold-marker" id="spectrumThresholdNarrow"><span>0.100</span></div>
+                <div class="threshold-marker" id="spectrumThresholdOpen"><span>0.350</span></div>
+                <div class="spectrum-ray"><span class="spectrum-ray-line"></span><span class="spectrum-arrow">→</span></div>
                 <div class="axis-label v">0<br><span data-lang="tr">Vakum</span><span data-lang="en">Vacuum</span></div>
-                <div class="axis-label d" id="deltaLabel">Δ</div>
-                <div class="axis-label tail"><span data-lang="tr">fiziksel spektrum →</span><span data-lang="en">physical spectrum →</span></div>
+                <div class="axis-label d" id="deltaLabel">Δ = 0.42</div>
+                <div class="axis-label tail"><span data-lang="tr">izin verilen fiziksel spektral destek</span><span data-lang="en">allowed physical spectral support</span></div>
               </div>
             </div>
-            <div class="controls">
-              <div><label for="delta">Δ</label><div class="range-row"><input id="delta" type="range" min="0" max="1" value="0.42" step="0.01"><output id="deltaOut">0.42</output></div></div>
+            <div class="controls spectrum-controls" data-precision-scope="spectrum">
+              <div class="precision-control"><label for="delta">Δ</label><div class="range-row precision-range-row"><input id="delta" type="range" min="0" max="1" value="0.420" step="0.001"><div class="number-stepper"><button data-nudge-target="delta" data-direction="-1" type="button" aria-label="decrease Delta">−</button><input id="deltaNumber" type="number" min="0" max="1" value="0.420" step="0.001" inputmode="decimal"><button data-nudge-target="delta" data-direction="1" type="button" aria-label="increase Delta">+</button></div><output id="deltaOut" class="sr-only">0.420</output></div></div>
+            </div>
+            <div class="regime-console" id="spectrumRegimeConsole">
+              <div class="regime-head"><span data-lang="tr">Bant rejimi</span><span data-lang="en">Band regime</span><b id="spectrumRegimeLabel">—</b><small id="spectrumThresholdText">—</small></div>
+              <div class="regime-ladder spectrum-ladder" id="spectrumRegimeLadder" aria-label="Illustrative spectrum bands"><span data-regime="closed">closed</span><span data-regime="near-zero">critical</span><span data-regime="narrow">narrow</span><span data-regime="open">open</span><span data-regime="wide">wide</span></div>
+              <div class="threshold-disclaimer"><span data-lang="tr">0.020 / 0.100 / 0.350 yalnız görsel T0 rejim sınırlarıdır.</span><span data-lang="en">0.020 / 0.100 / 0.350 are visual T0 regime boundaries only.</span></div>
+            </div>
+            <div class="baseline-readout" id="spectrumBaselineReadout"><span data-lang="tr">Yerel referans: henüz yakalanmadı.</span><span data-lang="en">Local baseline: not captured yet.</span></div>
+            <div class="spectrum-ledger">
+              <div><span data-lang="tr">Kaynak</span><span data-lang="en">Origin</span><b id="deltaOrigin">supplied</b></div>
+              <div><span data-lang="tr">Görünen aralık</span><span data-lang="en">Displayed interval</span><b id="deltaInterval">(0, 0.42)</b></div>
+              <div><span data-lang="tr">Model</span><span data-lang="en">Model</span><b>spectrum-schematic-1</b></div>
             </div>
             <div class="verdict ok" id="deltaVerdict"><h3 data-lang="tr">Spektral yorum</h3><h3 data-lang="en">Spectral interpretation</h3><p class="small muted" id="deltaText"></p></div>
-            <div class="result-scope"><span data-lang="tr">T0 · Δ burada sağlanan açıklayıcı bir değerdir; Hamiltonyen spektrumu hesaplanmaz ve özdeğer üretilmez.</span><span data-lang="en">T0 · Δ is a supplied illustrative value here; no Hamiltonian spectrum or eigenvalues are computed.</span></div>
+            <div class="result-scope"><span data-lang="tr">T0 · Bu grafik Hamiltonyen spektrumu hesaplamaz ve özdeğer üretmez. Renkli bölge yalnız beyan edilen açıklayıcı aralığı gösterir.</span><span data-lang="en">T0 · This graphic does not compute a Hamiltonian spectrum or eigenvalues. The colored region only represents the declared illustrative interval.</span></div>
+            <details class="model-lens">
+              <summary><span data-lang="tr">Yapısal okuma</span><span data-lang="en">Structural reading</span><small><span data-lang="tr">Norm yakınlığı ≠ spektral ayrım</span><span data-lang="en">Norm closeness ≠ spectral separation</span></small></summary>
+              <div class="model-lens-grid">
+                <section><h4 data-lang="tr">Koruduğu</h4><h4 data-lang="en">Preserves</h4><p data-lang="tr">Vakum ile vakum-ortogonal spektral desteğin ayrımını ve yasak aralık konfigürasyonunu görünür tutar.</p><p data-lang="en">Keeps the distinction between vacuum and vacuum-orthogonal spectral support, together with the excluded-interval configuration.</p></section>
+                <section><h4 data-lang="tr">İhmal ettiği</h4><h4 data-lang="en">Ignores</h4><p data-lang="tr">Özdeğerleri, spektral ölçüyü, alan çözümünü ve dinamik oluşumu hesaplamaz.</p><p data-lang="en">Does not compute eigenvalues, the spectral measure, field solutions, or dynamical formation.</p></section>
+                <section><h4 data-lang="tr">Nasıl okunmalı?</h4><h4 data-lang="en">How to read it</h4><p data-lang="tr">Δ bir köken açıklaması değil, beyan edilen yapısal ayrımın T0 görsel sınırıdır.</p><p data-lang="en">Δ is not an origin story; it is the T0 visual boundary of the declared structural separation.</p></section>
+              </div>
+            </details>
           </article>
         </div>
       </section>
@@ -637,23 +772,67 @@
         <div class="section-title"><div><h2>RG Transfer Console</h2><p data-lang="tr">Varsayımsal geri-yansıtım eşitsizliğinde işaretli tek-adım aktarım ve kusur bütçesini incele; RG yörüngesi hesaplanmaz.</p><p data-lang="en">Inspect the signed single-step transfer and defect budget in the hypothetical reflection-back inequality; no RG trajectory is computed.</p></div></div>
         <div class="grid2">
           <article class="card">
-            <div class="equation math-block">𝔈<sub>f</sub>(ψ) ≥ Z · 𝔈<sub>c</sub>(Rψ) − ε<sub>R</sub> ‖ψ‖²</div>
-            <div class="controls">
-              <div><label for="z">Z</label><div class="range-row"><input id="z" type="range" min="0" max="1.5" value="0.85" step="0.01"><output id="zOut">0.85</output></div></div>
-              <div><label for="ec">𝔈<sub>c</sub></label><div class="range-row"><input id="ec" type="range" min="0" max="1.5" value="0.80" step="0.01"><output id="ecOut">0.80</output></div></div>
-              <div><label for="epsR">ε<sub>R</sub></label><div class="range-row"><input id="epsR" type="range" min="0" max="1.5" value="0.12" step="0.01"><output id="epsROut">0.12</output></div></div>
+            <div class="equation-shell" data-equation-id="EQ-H1-RG">
+              <div class="equation-meta"><span>EQ-H1-RG</span><span class="eq-class">H1 · <span data-lang="tr">geri-yansıtım hedefi</span><span data-lang="en">reflection-back target</span></span></div>
+              <div class="equation math-block">\[\mathcal{E}_{f}(\psi) \ge Z\,\mathcal{E}_{c}(R\psi)-\varepsilon_{R}\,\lVert\psi\rVert^2\]</div>
+              <p class="equation-note"><span data-lang="tr">v6 burada yalnız işaretli tek-adım aktarım/kusur bütçesini gösterir; çok-ölçekli RG akışı hesaplamaz.</span><span data-lang="en">v6 displays only the signed single-step transfer/defect budget here; it does not compute a multiscale RG flow.</span></p>
             </div>
+            <div class="precision-toolbar" data-precision-toolbar="rg">
+              <div class="precision-step-group"><span data-lang="tr">Adım</span><span data-lang="en">Step</span><button class="precision-step active" data-step-scope="rg" data-step="0.001" type="button">0.001</button><button class="precision-step" data-step-scope="rg" data-step="0.01" type="button">0.01</button><button class="precision-step" data-step-scope="rg" data-step="0.05" type="button">0.05</button></div>
+              <button class="btn compact-btn" data-capture-baseline="rg" type="button"><span data-lang="tr">Referans yakala</span><span data-lang="en">Capture baseline</span></button>
+            </div>
+            <div class="controls" data-precision-scope="rg">
+              <div class="precision-control"><label for="z">Z</label><div class="range-row precision-range-row"><input id="z" type="range" min="0" max="1.5" value="0.850" step="0.001"><div class="number-stepper"><button data-nudge-target="z" data-direction="-1" type="button" aria-label="decrease Z">−</button><input id="zNumber" type="number" min="0" max="1.5" value="0.850" step="0.001" inputmode="decimal"><button data-nudge-target="z" data-direction="1" type="button" aria-label="increase Z">+</button></div><output id="zOut" class="sr-only">0.850</output></div></div>
+              <div class="precision-control"><label for="ec">𝔈<sub>c</sub></label><div class="range-row precision-range-row"><input id="ec" type="range" min="0" max="1.5" value="0.800" step="0.001"><div class="number-stepper"><button data-nudge-target="ec" data-direction="-1" type="button" aria-label="decrease E c">−</button><input id="ecNumber" type="number" min="0" max="1.5" value="0.800" step="0.001" inputmode="decimal"><button data-nudge-target="ec" data-direction="1" type="button" aria-label="increase E c">+</button></div><output id="ecOut" class="sr-only">0.800</output></div></div>
+              <div class="precision-control"><label for="epsR">ε<sub>R</sub></label><div class="range-row precision-range-row"><input id="epsR" type="range" min="0" max="1.5" value="0.120" step="0.001"><div class="number-stepper"><button data-nudge-target="epsR" data-direction="-1" type="button" aria-label="decrease epsilon R">−</button><input id="epsRNumber" type="number" min="0" max="1.5" value="0.120" step="0.001" inputmode="decimal"><button data-nudge-target="epsR" data-direction="1" type="button" aria-label="increase epsilon R">+</button></div><output id="epsROut" class="sr-only">0.120</output></div></div>
+            </div>
+            <div class="baseline-readout" id="rgBaselineReadout"><span data-lang="tr">Yerel referans: henüz yakalanmadı.</span><span data-lang="en">Local baseline: not captured yet.</span></div>
             <div class="hero-actions"><button class="btn" id="resetRG" type="button"><span data-lang="tr">Varsayılanlara dön</span><span data-lang="en">Restore defaults</span></button></div>
           </article>
-          <article class="card">
+          <article class="card rg-instrument instrument-result-surface" id="rgResultSurface">
+            <div class="instrument-alert" id="rgAlert" data-tone="positive">
+              <span class="instrument-alert-mark" aria-hidden="true"></span>
+              <div><strong id="rgAlertTitle"></strong><span id="rgAlertText"></span></div>
+            </div>
             <div class="rg-summary">
               <div class="metric"><span>Z·𝔈<sub>c</sub></span><b id="rgGross">0.68</b></div>
               <div class="metric"><span>ε<sub>R</sub></span><b id="rgLoss">0.12</b></div>
               <div class="metric"><span data-lang="tr">Net alt sınır</span><span data-lang="en">Net bound</span><b id="rgNet">0.56</b></div>
-              <div class="metric"><span data-lang="tr">Durum</span><span data-lang="en">Status</span><b id="rgStatus">POS</b></div>
+              <div class="metric"><span data-lang="tr">İşaret</span><span data-lang="en">Sign</span><b id="rgStatus">POSITIVE</b></div>
             </div>
-            <div class="verdict ok" id="rgVerdict" style="margin-top:12px"><h3 data-lang="tr">Tek-adım bütçe yorumu</h3><h3 data-lang="en">Single-step budget interpretation</h3><p class="small muted" id="rgText"></p></div>
+            <div class="regime-console" id="rgRegimeConsole">
+              <div class="regime-head"><span data-lang="tr">Tek-adım rejimi</span><span data-lang="en">Single-step regime</span><b id="rgRegimeLabel">—</b><small id="rgMarginText">—</small></div>
+              <div class="regime-ladder rg-ladder" id="rgRegimeLadder" aria-label="Illustrative RG margin bands"><span data-regime="strong-negative">strong−</span><span data-regime="fragile-negative">fragile−</span><span data-regime="zero">0</span><span data-regime="fragile-positive">fragile+</span><span data-regime="moderate-positive">moderate+</span><span data-regime="robust-positive">robust+</span><span data-regime="structurally-blocked">blocked</span></div>
+              <div class="threshold-disclaimer"><span data-lang="tr">Rejim bantları net marjın tek-adım bütçe ölçeğine oranından türetilen T0 arayüz eşikleridir.</span><span data-lang="en">Regime bands are T0 interface thresholds derived from the net margin relative to the single-step budget scale.</span></div>
+            </div>
+            <div class="rg-budget-viz" id="rgBudgetViz" aria-label="Signed single-step transfer and defect budget">
+              <div class="rg-budget-scale"><span>−</span><span class="zero-label">0</span><span>+</span></div>
+              <div class="rg-budget-row">
+                <span class="rg-budget-name">Z·𝔈<sub>c</sub></span>
+                <div class="rg-track"><i class="rg-zero"></i><span class="rg-value positive" id="rgGrossBar"></span></div>
+                <b id="rgGrossViz">+0.6800</b>
+              </div>
+              <div class="rg-budget-row">
+                <span class="rg-budget-name">−ε<sub>R</sub></span>
+                <div class="rg-track"><i class="rg-zero"></i><span class="rg-value negative" id="rgDefectBar"></span></div>
+                <b id="rgDefectViz">−0.1200</b>
+              </div>
+              <div class="rg-budget-row net-row">
+                <span class="rg-budget-name"><span data-lang="tr">Net</span><span data-lang="en">Net</span></span>
+                <div class="rg-track"><i class="rg-zero"></i><span class="rg-value positive" id="rgNetBar"></span><span class="rg-net-point" id="rgNetPoint"></span></div>
+                <b id="rgNetViz">+0.5600</b>
+              </div>
+            </div>
+            <div class="verdict ok" id="rgVerdict"><h3 data-lang="tr">Tek-adım bütçe yorumu</h3><h3 data-lang="en">Single-step budget interpretation</h3><p class="small muted" id="rgText"></p></div>
             <div class="result-scope"><span data-lang="tr">T0 · İşaretli tek-adım aktarım/kusur bütçesi. Bu görünüm çok-ölçekli bir RG akışı, iterasyon veya continuum kanıtı hesaplamaz.</span><span data-lang="en">T0 · Signed single-step transfer/defect budget. This view does not compute a multiscale RG flow, iteration, or continuum proof.</span></div>
+            <details class="model-lens">
+              <summary><span data-lang="tr">Yapısal okuma</span><span data-lang="en">Structural reading</span><small><span data-lang="tr">Aktarım − kusur = işaretli bütçe</span><span data-lang="en">Transfer − defect = signed budget</span></small></summary>
+              <div class="model-lens-grid">
+                <section><h4 data-lang="tr">Koruduğu</h4><h4 data-lang="en">Preserves</h4><p data-lang="tr">Aktarım katkısı ile kusur katkısını aynı işaretli bütçe içinde ayrı gösterir ve sıfır geçişini açık tutar.</p><p data-lang="en">Keeps transfer and defect contributions distinct inside one signed budget and exposes the zero crossing.</p></section>
+                <section><h4 data-lang="tr">İhmal ettiği</h4><h4 data-lang="en">Ignores</h4><p data-lang="tr">Gerçek çok-ölçekli RG akışını, ölçekler arası yörüngeyi veya continuum limitini hesaplamaz.</p><p data-lang="en">Does not compute a real multiscale RG flow, an inter-scale trajectory, or the continuum limit.</p></section>
+                <section><h4 data-lang="tr">Nasıl okunmalı?</h4><h4 data-lang="en">How to read it</h4><p data-lang="tr">Pozitif tek-adım bütçe, reflection-back varsayımını doğrulamaz; yalnız belirtilen girdiler altında işaret durumunu gösterir.</p><p data-lang="en">A positive single-step budget does not validate reflection-back; it only reports the sign under the declared inputs.</p></section>
+              </div>
+            </details>
           </article>
         </div>
       </section>
@@ -806,13 +985,14 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="assets/js/v6-core.js"></script>
+<script src="assets/js/v6-instrument-engine.js"></script>
 <script>
 (() => {
   const body=document.body;
   const nav=[...document.querySelectorAll('.navbtn')];
   const views=[...document.querySelectorAll('.view')];
   const toast=document.getElementById('toast');
-  let currentView=0,currentNode='n1',currentF=0,suppressURLSync=true;
+  let currentView=0,currentNode='n1',currentF=0,currentGraphMode='spatial',spectrumMode='supplied',suppressURLSync=true;
 
   const text={
     tr:{
@@ -842,13 +1022,96 @@
   const isEn=()=>body.classList.contains('lang-en');
   const langObj=o=>isEn()?o.en:o.tr;
   const showToast=msg=>{toast.textContent=msg;toast.classList.add('show');clearTimeout(showToast.t);showToast.t=setTimeout(()=>toast.classList.remove('show'),2200)};
+  const typesetMath=()=>{if(window.MathJax?.typesetPromise) window.MathJax.typesetPromise(document.querySelectorAll('.math-block')).catch(()=>{});};
+
+  const Instrument=window.YMInstrumentEngine;
+  const precisionState={lab:0.001,spectrum:0.001,rg:0.001};
+  const baselines={lab:null,spectrum:null,rg:null};
+  const previousRegime={lab:null,spectrum:null,rg:null,composition:null};
+  const precisionMap={
+    cG:{number:'cGNumber',scope:'lab'},lambda:{number:'lambdaNumber',scope:'lab'},residual:{number:'residualNumber',scope:'lab'},
+    epsilon:{number:'epsilonNumber',scope:'spectrum'},delta:{number:'deltaNumber',scope:'spectrum'},
+    z:{number:'zNumber',scope:'rg'},ec:{number:'ecNumber',scope:'rg'},epsR:{number:'epsRNumber',scope:'rg'}
+  };
+  const regimeCopy={
+    lab:{
+      'negative':{tr:'Negatif bütçe',en:'Negative budget'},'zero':{tr:'Sıfır sınırı',en:'Zero boundary'},
+      'blocked-positive':{tr:'Pozitif fakat yapısal olarak bloke',en:'Positive but structurally blocked'},
+      'fragile-positive':{tr:'Kırılgan pozitif',en:'Fragile positive'},'moderate-positive':{tr:'Orta pozitif marj',en:'Moderate positive margin'},
+      'robust-positive':{tr:'Güçlü T0 marjı',en:'Robust T0 margin'}
+    },
+    spectrum:{
+      'closed':{tr:'Bant kapalı',en:'Band closed'},'near-zero':{tr:'Kritik derecede dar',en:'Critically narrow'},
+      'narrow':{tr:'Dar açıklık',en:'Narrow opening'},'open':{tr:'Belirgin açıklık',en:'Clear opening'},'wide':{tr:'Geniş açıklık',en:'Wide opening'},
+      'linked-blocked':{tr:'Sayısal bant var, yapısal bağlantı bloke',en:'Numeric band present, structural linkage blocked'}
+    },
+    composition:{
+      'vacuum-strong':{tr:'Vakum-ağırlıklı',en:'Vacuum-weighted'},'vacuum-major':{tr:'Vakum baskın',en:'Vacuum-dominant'},
+      'balanced':{tr:'Dengeli karışım',en:'Balanced mixture'},'orth-major':{tr:'Ortogonal baskın',en:'Orthogonal-dominant'},'orth-strong':{tr:'Güçlü ortogonal ağırlık',en:'Strong orthogonal weight'}
+    },
+    rg:{
+      'strong-negative':{tr:'Güçlü negatif',en:'Strong negative'},'fragile-negative':{tr:'Kırılgan negatif',en:'Fragile negative'},
+      'zero':{tr:'Sıfır geçişi',en:'Zero crossing'},'fragile-positive':{tr:'Kırılgan pozitif',en:'Fragile positive'},
+      'moderate-positive':{tr:'Orta pozitif',en:'Moderate positive'},'robust-positive':{tr:'Güçlü pozitif T0 marjı',en:'Robust positive T0 margin'},
+      'structurally-blocked':{tr:'Yapısal olarak bloke',en:'Structurally blocked'}
+    }
+  };
+  const regimeLabel=(group,key)=>{const item=regimeCopy[group]?.[key];return item?(isEn()?item.en:item.tr):key;};
+  const fmtSigned=(value,digits=6)=>`${value>0?'+':''}${Number(value).toFixed(digits)}`;
+
+  function setRegimeLadder(id,key){
+    const root=document.getElementById(id); if(!root)return;
+    root.querySelectorAll('[data-regime]').forEach(el=>el.classList.toggle('active',el.dataset.regime===key));
+  }
+  function pulseRegime(scope,key,element){
+    if(previousRegime[scope] && previousRegime[scope]!==key && element && !matchMedia('(prefers-reduced-motion: reduce)').matches){
+      element.classList.remove('threshold-flash'); void element.offsetWidth; element.classList.add('threshold-flash');
+      clearTimeout(element._pulseTimer); element._pulseTimer=setTimeout(()=>element.classList.remove('threshold-flash'),700);
+    }
+    previousRegime[scope]=key;
+  }
+  function syncPrecisionInput(rangeId){
+    const meta=precisionMap[rangeId],range=document.getElementById(rangeId); if(!meta||!range)return;
+    const num=document.getElementById(meta.number); if(num && document.activeElement!==num) num.value=Number(range.value).toFixed(3);
+    const out=document.getElementById(rangeId==='lambda'?'lambdaOut':rangeId==='residual'?'residualOut':rangeId==='epsR'?'epsROut':rangeId+'Out');
+    if(out) out.value=Number(range.value).toFixed(3);
+  }
+  function syncAllPrecisionInputs(){Object.keys(precisionMap).forEach(syncPrecisionInput);}
+  function setPrecisionStep(scope,step){
+    precisionState[scope]=Number(step);
+    document.querySelectorAll(`[data-step-scope="${scope}"]`).forEach(b=>b.classList.toggle('active',Number(b.dataset.step)===Number(step)));
+    Object.entries(precisionMap).forEach(([rangeId,meta])=>{if(meta.scope!==scope)return;const range=document.getElementById(rangeId),num=document.getElementById(meta.number);if(range)range.step=step;if(num)num.step=step;});
+  }
+  function bindPrecisionControls(){
+    Object.entries(precisionMap).forEach(([rangeId,meta])=>{
+      const range=document.getElementById(rangeId),num=document.getElementById(meta.number); if(!range||!num)return;
+      range.addEventListener('input',()=>syncPrecisionInput(rangeId));
+      num.addEventListener('input',()=>{if(num.value==='')return;const v=Instrument.clamp(Number(num.value),Number(range.min),Number(range.max));range.value=String(v);range.dispatchEvent(new Event('input',{bubbles:true}));});
+      num.addEventListener('change',()=>{if(num.value==='')num.value=Number(range.value).toFixed(3);});
+    });
+    document.querySelectorAll('.precision-step').forEach(b=>b.addEventListener('click',()=>setPrecisionStep(b.dataset.stepScope,Number(b.dataset.step))));
+    document.querySelectorAll('[data-nudge-target]').forEach(b=>b.addEventListener('click',()=>{
+      const id=b.dataset.nudgeTarget,meta=precisionMap[id],range=document.getElementById(id); if(!meta||!range||range.disabled)return;
+      range.value=String(Instrument.nudge(range.value,Number(b.dataset.direction),precisionState[meta.scope],range.min,range.max));
+      range.dispatchEvent(new Event('input',{bubbles:true}));
+    }));
+    setPrecisionStep('lab',0.001);setPrecisionStep('spectrum',0.001);setPrecisionStep('rg',0.001);syncAllPrecisionInputs();
+  }
+  function updateDisabledPrecision(id,disabled){
+    const range=document.getElementById(id),num=document.getElementById(precisionMap[id]?.number);if(range)range.disabled=disabled;if(num)num.disabled=disabled;
+    document.querySelectorAll(`[data-nudge-target="${id}"]`).forEach(b=>b.disabled=disabled);
+  }
 
   function switchView(idx,scroll=true,historyMode='push'){
     currentView=(idx+views.length)%views.length;
     nav.forEach((b,i)=>{b.classList.toggle('active',i===currentView);b.setAttribute('aria-current',i===currentView?'page':'false');});
     views.forEach((v,i)=>v.classList.toggle('active',i===currentView));
     if(historyMode!=='none') syncURL(historyMode);
-    if(scroll) window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+    if(scroll){
+      const heading=views[currentView].querySelector('h1,h2');
+      if(heading){heading.setAttribute('tabindex','-1');heading.focus({preventScroll:true});}
+      window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+    }
   }
   nav.forEach((b,i)=>b.addEventListener('click',()=>switchView(i,true,'push')));
 
@@ -858,7 +1121,7 @@
     document.getElementById('langBtn').textContent=isEn()?'TR':'EN';
     document.getElementById('mathBtn').textContent=body.classList.contains('math-hidden')?L().mathOff:L().mathOn;
     document.getElementById('presentationBtn').textContent=body.classList.contains('presentation')?L().exitPresent:L().present;
-    renderNode(); renderLab(); renderSpectrum(); renderRG(); renderFalsify();syncURL('replace');
+    renderDependencyAlternatives(); renderNode(); renderLab(); renderSpectrum(); renderRG(); renderFalsify(); typesetMath(); syncURL('replace');
   });
   document.getElementById('mathBtn').addEventListener('click',()=>{
     body.classList.toggle('math-hidden');
@@ -906,30 +1169,53 @@
     est:{tr:'Yerleşik fikir',en:'Established idea'},
     hyp:{tr:'Varsayımsal',en:'Hypothetical'}
   };
-  function renderNode(){
-    const n=nodes[currentNode],d=langObj(n);
-    document.querySelectorAll('.proof-svg .node').forEach(el=>el.classList.toggle('active',el.dataset.node===currentNode));
-    const s=document.getElementById('nodeStatus');s.className='status-chip '+n.status;s.textContent=isEn()?statusNames[n.status].en:statusNames[n.status].tr;
-    document.getElementById('nodeTitle').textContent=d.title;
-    document.getElementById('nodeSummary').textContent=d.summary;
-    document.getElementById('nodeFormula').textContent=n.formula;
-    document.getElementById('nodeFailure').textContent=d.failure;
-    document.getElementById('nodeSource').textContent=d.source;
-    const deps=document.getElementById('nodeDeps');deps.innerHTML='';
-    if(n.deps.length===0){const x=document.createElement('span');x.textContent=isEn()?'root input':'kök girdi';deps.appendChild(x);}
-    else n.deps.forEach(dep=>{const x=document.createElement('span');x.textContent=dep;deps.appendChild(x);});
-    const linear=document.getElementById('dependencyLinear');
-    if(linear){
-      const arrow=' → ';
-      const lines=dependencyEdges.map(e=>`${e.from}${arrow}${e.to}`).join(' · ');
-      linear.textContent=(isEn()?'Authoritative dependency registry: ':'Yetkili bağımlılık kaydı: ')+lines;
-    }
+  function graphRelations(nodeId){
+    const id=nodeId.toUpperCase();
+    const incoming=new Map(),outgoing=new Map();
+    dependencyEdges.forEach(e=>{(incoming.get(e.to)||incoming.set(e.to,[]).get(e.to)).push(e.from);(outgoing.get(e.from)||outgoing.set(e.from,[]).get(e.from)).push(e.to);});
+    const walk=(seed,map)=>{const seen=new Set(),stack=[seed];while(stack.length){const x=stack.pop();(map.get(x)||[]).forEach(y=>{if(!seen.has(y)){seen.add(y);stack.push(y);}});}return seen;};
+    return {upstream:walk(id,incoming),downstream:walk(id,outgoing)};
   }
-  document.querySelectorAll('.proof-svg .node').forEach(el=>{
-    const activate=()=>{currentNode=el.dataset.node;renderNode();syncURL('replace');};
-    el.addEventListener('click',activate);
-    el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();activate();}});
-  });
+  function renderDependencyAlternatives(){
+    const cards=document.getElementById('dependencyCards'),outline=document.getElementById('dependencyOutline');
+    if(!cards||!outline)return;
+    cards.innerHTML='';outline.innerHTML='';
+    Object.entries(YMCore.CLAIMS).forEach(([id,node])=>{
+      const d=langObj(node),deps=node.deps.length?node.deps.join(', '):(isEn()?'root input':'kök girdi');
+      const card=document.createElement('button');card.type='button';card.className='dependency-card';card.dataset.node=id.toLowerCase();
+      card.innerHTML=`<span class="dependency-card-id">${id}</span><strong>${d.title}</strong><span>${d.summary}</span><small>${isEn()?'Depends on':'Bağımlı'}: ${deps}</small>`;
+      card.addEventListener('click',()=>{currentNode=id.toLowerCase();renderNode();setGraphMode('spatial');syncURL('replace');});cards.appendChild(card);
+      const section=document.createElement('section');section.className='outline-node';section.id=`outline-${id.toLowerCase()}`;
+      section.innerHTML=`<h3><button type="button" data-outline-node="${id.toLowerCase()}">${id} — ${d.title}</button></h3><p>${d.summary}</p><dl><div><dt>${isEn()?'Class':'Sınıf'}</dt><dd>${statusNames[node.status][isEn()?'en':'tr']}</dd></div><div><dt>${isEn()?'Dependencies':'Bağımlılıklar'}</dt><dd>${deps}</dd></div><div><dt>${isEn()?'Formula':'Formül'}</dt><dd class="mono">${node.formula}</dd></div></dl>`;
+      outline.appendChild(section);
+    });
+    outline.querySelectorAll('[data-outline-node]').forEach(b=>b.addEventListener('click',()=>{currentNode=b.dataset.outlineNode;renderNode();setGraphMode('spatial');syncURL('replace');}));
+  }
+  function setGraphMode(mode){
+    currentGraphMode=['spatial','linear','outline'].includes(mode)?mode:'spatial';
+    document.querySelectorAll('.graph-mode').forEach(b=>b.classList.toggle('active',b.dataset.graphMode===currentGraphMode));
+    [['spatial','graphSpatialPanel'],['linear','graphLinearPanel'],['outline','graphOutlinePanel']].forEach(([m,id])=>{const el=document.getElementById(id);if(el){el.hidden=m!==currentGraphMode;el.classList.toggle('active',m===currentGraphMode);}});
+  }
+  function renderNode(){
+    const n=nodes[currentNode],d=langObj(n),selected=currentNode.toUpperCase(),rel=graphRelations(selected);
+    document.querySelectorAll('.proof-svg .node').forEach(el=>{
+      const id=el.dataset.node.toUpperCase(),node=YMCore.CLAIMS[id];
+      el.classList.toggle('active',id===selected);el.classList.toggle('upstream',rel.upstream.has(id));el.classList.toggle('downstream',rel.downstream.has(id));
+      el.classList.toggle('dim',id!==selected&&!rel.upstream.has(id)&&!rel.downstream.has(id));
+      el.classList.remove('status-target','status-est','status-hyp');el.classList.add('status-'+node.status);
+    });
+    document.querySelectorAll('.proof-svg .edge').forEach(el=>{const [from,to]=el.dataset.edge.split('>');const hot=to===selected||rel.upstream.has(to)&&rel.upstream.has(from)||from===selected||rel.downstream.has(from)&&rel.downstream.has(to);el.classList.toggle('hot',hot);});
+    const st=document.getElementById('nodeStatus');st.className='status-chip '+n.status;st.textContent=isEn()?statusNames[n.status].en:statusNames[n.status].tr;
+    document.getElementById('nodeTitle').textContent=d.title;document.getElementById('nodeSummary').textContent=d.summary;document.getElementById('nodeFormula').textContent=n.formula;document.getElementById('nodeFailure').textContent=d.failure;document.getElementById('nodeSource').textContent=d.source;
+    const deps=document.getElementById('nodeDeps');deps.innerHTML='';
+    if(n.deps.length===0){const x=document.createElement('span');x.textContent=isEn()?'root input':'kök girdi';deps.appendChild(x);}else n.deps.forEach(dep=>{const x=document.createElement('button');x.type='button';x.className='dependency-jump';x.textContent=dep;x.addEventListener('click',()=>{currentNode=dep.toLowerCase();renderNode();syncURL('replace');});deps.appendChild(x);});
+    const linear=document.getElementById('dependencyLinear');if(linear){const lines=dependencyEdges.map(e=>`${e.from} → ${e.to}`).join('  ·  ');linear.textContent=(isEn()?'Authoritative dependency registry: ':'Yetkili bağımlılık kaydı: ')+lines;}
+    document.querySelectorAll('.dependency-card').forEach(el=>el.classList.toggle('active',el.dataset.node===currentNode));
+  }
+  document.querySelectorAll('.proof-svg .node').forEach(el=>{const activate=()=>{currentNode=el.dataset.node;renderNode();syncURL('replace');};el.addEventListener('click',activate);el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();activate();}});});
+  document.querySelectorAll('.graph-mode').forEach(b=>b.addEventListener('click',()=>setGraphMode(b.dataset.graphMode)));
+  renderDependencyAlternatives();
+
 
   const ids=[...YMCore.ASSUMPTION_IDS];
   const presets={
@@ -957,7 +1243,7 @@
   }
   function renderLab(){
     const s=labState();
-    document.getElementById('cGOut').value=s.g.toFixed(2);document.getElementById('lambdaOut').value=s.l.toFixed(2);document.getElementById('residualOut').value=s.r.toFixed(2);
+    ['cG','lambda','residual'].forEach(syncPrecisionInput);
     document.getElementById('gross').textContent=s.grossText;document.getElementById('loss').textContent=s.rText;document.getElementById('net').textContent=s.netText;
     const reasonsTR=[
       !s.c.aGauge?'A1 — Fiziksel sektör kurulmadı.':null,
@@ -981,38 +1267,58 @@
     ].filter(Boolean);
     const reasons=isEn()?reasonsEN:reasonsTR;
     const v=document.getElementById('verdict');v.className='verdict '+(s.n[5]?'ok':'fail');
-    document.getElementById('verdictTitle').textContent=s.n[5]?(isEn()?'Chain closes in the toy logic model':'Oyuncak mantık modelinde zincir kapanıyor'):(isEn()?'Target conclusion unavailable':'Hedef sonuç çıkarılamıyor');
+    document.getElementById('verdictTitle').textContent=s.n[5]?(isEn()?'Toy-chain condition available':'Oyuncak zincir koşulu mevcut'):(isEn()?'Target conclusion unavailable':'Hedef sonuç çıkarılamıyor');
     document.getElementById('verdictBody').textContent=s.n[5]?(isEn()?`The declared T0 arithmetic is positive: ${s.netText}. This does not establish a uniform continuum lower bound.`:`Beyan edilen T0 aritmetiği pozitiftir: ${s.netText}. Bu, uniform continuum alt sınırı kurmaz.`):L().labBroken;
     const b=document.getElementById('blockers');b.innerHTML='';reasons.slice(0,6).forEach(x=>{const d=document.createElement('div');d.className='blocker';d.textContent=x;b.appendChild(d);});
     const yn=x=>x?(isEn()?'YES':'EVET'):(isEn()?'NO':'HAYIR');
     const lines=isEn()?[
-      `N1 physical sector     = ${yn(s.n[0])}`,
-      `N2 Λ_YM > 0           = ${yn(s.n[1])}`,
-      `N3 coarse gap+bridge   = ${yn(s.n[2])}`,
-      `N4 RG reflection-back  = ${yn(s.n[3])}`,
-      `N5 uniform coercivity  = ${yn(s.n[4])}`,
-      `N6 continuum + OS      = ${yn(s.n[5])}`,
-      ``,
-      `C_GΛ_YM               = ${s.grossText}`,
-      `r(a,L)                = ${s.rText}`,
-      `candidate bound       = ${s.netText}`,
-      ``,
+      `N1 physical sector     = ${yn(s.n[0])}`,`N2 Λ_YM > 0           = ${yn(s.n[1])}`,`N3 coarse gap+bridge   = ${yn(s.n[2])}`,`N4 RG reflection-back  = ${yn(s.n[3])}`,`N5 uniform coercivity  = ${yn(s.n[4])}`,`N6 continuum + OS      = ${yn(s.n[5])}`,'',
+      `C_GΛ_YM               = ${s.grossText}`,`r(a,L)                = ${s.rText}`,`candidate bound       = ${s.netText}`,'',
       s.n[5]?`⇒ T0 model condition: candidate = ${s.netText} > 0  [ILLUSTRATIVE ONLY]`:`⇒ target continuum spectral-gap conclusion not licensed`
     ]:[
-      `N1 fiziksel sektör    = ${yn(s.n[0])}`,
-      `N2 Λ_YM > 0           = ${yn(s.n[1])}`,
-      `N3 kaba gap+köprü     = ${yn(s.n[2])}`,
-      `N4 RG geri-yansıtımı  = ${yn(s.n[3])}`,
-      `N5 uniform koersivite = ${yn(s.n[4])}`,
-      `N6 continuum + OS     = ${yn(s.n[5])}`,
-      ``,
-      `C_GΛ_YM              = ${s.grossText}`,
-      `r(a,L)               = ${s.rText}`,
-      `aday alt sınır        = ${s.netText}`,
-      ``,
+      `N1 fiziksel sektör    = ${yn(s.n[0])}`,`N2 Λ_YM > 0           = ${yn(s.n[1])}`,`N3 kaba gap+köprü     = ${yn(s.n[2])}`,`N4 RG geri-yansıtımı  = ${yn(s.n[3])}`,`N5 uniform koersivite = ${yn(s.n[4])}`,`N6 continuum + OS     = ${yn(s.n[5])}`,'',
+      `C_GΛ_YM              = ${s.grossText}`,`r(a,L)               = ${s.rText}`,`aday alt sınır        = ${s.netText}`,'',
       s.n[5]?`⇒ T0 model koşulu: aday = ${s.netText} > 0  [YALNIZCA AÇIKLAYICI]`:`⇒ hedef continuum spektral gap sonucu lisanslanmadı`
     ];
     document.getElementById('trace').textContent=lines.join('\n');
+    const chain=document.getElementById('labChain');
+    document.querySelectorAll('[data-chain-node]').forEach((el,i)=>{el.classList.toggle('active',!!s.n[i]);el.classList.toggle('blocked',!s.n[i]);});
+    dependencyEdges.forEach(e=>{const el=document.querySelector(`[data-chain-edge="${e.from}>${e.to}"]`);if(el){const from=Number(e.from.slice(1))-1,to=Number(e.to.slice(1))-1;el.classList.toggle('active',!!s.n[from]&&!!s.n[to]);el.classList.toggle('blocked',!s.n[to]);}});
+    ids.forEach(id=>{const input=document.getElementById(id),row=input.closest('.assumption');row.classList.toggle('assumption-on',input.checked);row.classList.toggle('assumption-off',!input.checked);});
+
+    const regime=Instrument.classifyLab({candidate:s.net,gross:s.gross,targetAvailable:s.n[5]});
+    const ratioText=regime.ratio==null?'—':`${(regime.ratio*100).toFixed(1)}%`;
+    document.getElementById('labRegimeLabel').textContent=regimeLabel('lab',regime.key);
+    document.getElementById('labMarginText').textContent=isEn()?`candidate/gross margin: ${ratioText}`:`aday/brüt marj: ${ratioText}`;
+    setRegimeLadder('labRegimeLadder',regime.key);
+    const surface=document.getElementById('labResultSurface');surface.dataset.sign=s.sign;surface.dataset.regime=regime.key;
+    const labRegimeChanged=!!previousRegime.lab && previousRegime.lab!==regime.key;
+    pulseRegime('lab',regime.key,surface);
+    if(labRegimeChanged && chain && !matchMedia('(prefers-reduced-motion: reduce)').matches){chain.classList.remove('state-change');void chain.offsetWidth;chain.classList.add('state-change');clearTimeout(chain._stateTimer);chain._stateTimer=setTimeout(()=>chain.classList.remove('state-change'),600);}
+
+    const labAlert=document.getElementById('labAlert');labAlert.dataset.tone=regime.tone;
+    const title=regimeLabel('lab',regime.key);
+    document.getElementById('labAlertTitle').textContent=title;
+    const alertTR={
+      'negative':` Aday bütçe ${s.netText}; pozitif T0 alt-sınır koşulu yok.`,
+      'zero':` Aday bütçe tam sıfır; pozitif marj yok.`,
+      'blocked-positive':` ${s.netText} > 0 olmasına rağmen en az bir yapısal öncül aşağı-akış çıkarımını bloke ediyor.`,
+      'fragile-positive':` Pozitif marj var fakat brüt bütçenin %10'undan küçük; küçük kusur değişimleri işareti çevirebilir.`,
+      'moderate-positive':` Pozitif T0 marj orta bantta; H1 öncülleri yine çözülmüş değildir.`,
+      'robust-positive':` Pozitif T0 marj güçlü bantta; bu yine uniform continuum kanıtı değildir.`
+    };
+    const alertEN={
+      'negative':` Candidate budget ${s.netText}; no positive T0 lower-bound condition is available.`,
+      'zero':` Candidate budget is exactly zero; there is no positive margin.`,
+      'blocked-positive':` ${s.netText} > 0, but at least one structural premise blocks the downstream inference.`,
+      'fragile-positive':` The positive margin is below 10% of the gross budget; small defect changes can flip the sign.`,
+      'moderate-positive':` The positive T0 margin is in the moderate band; H1 premises remain unresolved.`,
+      'robust-positive':` The positive T0 margin is in the robust band; this is still not a uniform continuum proof.`
+    };
+    document.getElementById('labAlertText').textContent=(isEn()?alertEN:alertTR)[regime.key];
+
+    if(baselines.lab){const delta=s.net-baselines.lab.net;document.getElementById('labBaselineReadout').textContent=isEn()?`Local baseline ${baselines.lab.net.toFixed(6)} · current change ${fmtSigned(delta)}`:`Yerel referans ${baselines.lab.net.toFixed(6)} · güncel değişim ${fmtSigned(delta)}`;}
+    if(spectrumMode==='lab') renderSpectrum();
     syncURL('replace');
   }
   function applyPreset(name){
@@ -1032,9 +1338,9 @@
       view:nav[currentView]?.dataset.view||'overview',
       language:isEn()?'en':'tr', node:currentNode, failure:currentF,
       assumptions:Object.fromEntries(ids.map(id=>[id,document.getElementById(id).checked])),
-      lab:{cg:Number(document.getElementById('cG').value).toFixed(2),lym:Number(document.getElementById('lambda').value).toFixed(2),r:Number(document.getElementById('residual').value).toFixed(2)},
-      spectrum:{epsilon:Number(document.getElementById('epsilon').value).toFixed(2),delta:Number(document.getElementById('delta').value).toFixed(2)},
-      rg:{z:Number(document.getElementById('z').value).toFixed(2),ec:Number(document.getElementById('ec').value).toFixed(2),epsr:Number(document.getElementById('epsR').value).toFixed(2)}
+      lab:{cg:Number(document.getElementById('cG').value).toFixed(3),lym:Number(document.getElementById('lambda').value).toFixed(3),r:Number(document.getElementById('residual').value).toFixed(3)},
+      spectrum:{epsilon:Number(document.getElementById('epsilon').value).toFixed(3),delta:Number(document.getElementById('delta').value).toFixed(3),mode:spectrumMode},
+      rg:{z:Number(document.getElementById('z').value).toFixed(3),ec:Number(document.getElementById('ec').value).toFixed(3),epsr:Number(document.getElementById('epsR').value).toFixed(3)}
     };
   }
   function syncURL(mode='replace'){
@@ -1051,44 +1357,93 @@
     document.getElementById('residual').value=scenario.lab.r;
     document.getElementById('epsilon').value=scenario.spectrum.epsilon;
     document.getElementById('delta').value=scenario.spectrum.delta;
+    spectrumMode=scenario.spectrum.mode||'supplied';
     document.getElementById('z').value=scenario.rg.z;
     document.getElementById('ec').value=scenario.rg.ec;
     document.getElementById('epsR').value=scenario.rg.epsr;
     currentNode=scenario.node; currentF=scenario.failure;
     body.classList.toggle('lang-en',scenario.language==='en');
     document.documentElement.lang=scenario.language;
+    syncAllPrecisionInputs();
     return scenario;
   }
   document.getElementById('copyScenarioBtn').addEventListener('click',async()=>{syncURL('replace');try{await navigator.clipboard.writeText(location.href);showToast(L().copied);}catch{showToast(L().copyFail);}});
   document.getElementById('copyTraceBtn').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(document.getElementById('trace').textContent);showToast(L().copied);}catch{showToast(L().copyFail);}});
 
   function renderSpectrum(){
-    const e=Number(document.getElementById('epsilon').value),d=Number(document.getElementById('delta').value);
-    document.getElementById('epsilonOut').value=e.toFixed(2);document.getElementById('epsilonText').textContent=L().eps(e);
-    document.getElementById('deltaOut').value=d.toFixed(2);document.getElementById('deltaText').textContent=L().delta(d);
-    const pct=Math.max(0,Math.min(86,d*86));document.getElementById('deltaTick').style.left=pct+'%';document.getElementById('deltaLabel').style.left=pct+'%';document.getElementById('forbidden').style.width=pct+'%';
-    document.getElementById('deltaVerdict').className='verdict '+(d>0?'ok':'fail');
+    const e=Number(document.getElementById('epsilon').value);
+    const lab=labState();
+    let d=spectrumMode==='lab'?Math.max(0,lab.net):Number(document.getElementById('delta').value);
+    const deltaInput=document.getElementById('delta');
+    document.querySelectorAll('.spectrum-mode').forEach(b=>b.classList.toggle('active',b.dataset.spectrumMode===spectrumMode));
+    updateDisabledPrecision('delta',spectrumMode==='lab');
+    syncPrecisionInput('epsilon'); if(spectrumMode==='supplied')syncPrecisionInput('delta');
+
+    document.getElementById('epsilonText').textContent=L().eps(e);
+    const vacuum=Math.max(0,1-e*e),orth=Math.min(1,e*e);document.getElementById('mixtureVacuum').style.width=(vacuum*100)+'%';document.getElementById('mixtureOrthogonal').style.width=(orth*100)+'%';document.getElementById('vacuumWeight').textContent=vacuum.toFixed(3);document.getElementById('orthogonalWeight').textContent=orth.toFixed(3);
+    const composition=Instrument.classifyComposition(e);document.getElementById('compositionRegime').textContent=regimeLabel('composition',composition.key);pulseRegime('composition',composition.key,document.getElementById('mixtureMeter'));
+
+    const linkedBlocked=spectrumMode==='lab' && !lab.n[4];
+    const regime=Instrument.classifySpectrum(d,linkedBlocked);
+    document.getElementById('spectrumRegimeLabel').textContent=regimeLabel('spectrum',regime.key);
+    document.getElementById('spectrumThresholdText').textContent=isEn()?`active Δ = ${d.toFixed(6)}`:`etkin Δ = ${d.toFixed(6)}`;
+    setRegimeLadder('spectrumRegimeLadder',regime.key);
+
+    document.getElementById('deltaOut').value=d.toFixed(6);
+    document.getElementById('deltaText').textContent=d>0?(isEn()?`Δ = ${d.toFixed(6)}. The schematic leaves (0, Δ) empty of physical spectral support; no spectrum is computed.`:`Δ = ${d.toFixed(6)}. Şema (0, Δ) aralığını fiziksel spektral destekten boş gösterir; spektrum hesaplanmaz.`):(isEn()?'Δ = 0.000000. The illustrative excluded band collapses.':'Δ = 0.000000. Açıklayıcı yasak bant çöker.');
+    const domain=Math.max(1,d*1.22),pct=Math.max(0,Math.min(88,(d/domain)*88));document.getElementById('deltaTick').style.left=pct+'%';document.getElementById('deltaLabel').style.left=pct+'%';document.getElementById('deltaLabel').textContent=`Δ = ${d.toFixed(6)}`;document.getElementById('forbidden').style.width=pct+'%';document.getElementById('spectrumScaleLabel').textContent=`E / Λ = 0 … ${domain.toFixed(3)}`;
+    const marker=(id,value)=>{const el=document.getElementById(id);const x=Math.min(88,(value/domain)*88);el.style.left=x+'%';el.hidden=value>domain;};marker('spectrumThresholdNear',Instrument.THRESHOLDS.spectrumDelta.nearZero);marker('spectrumThresholdNarrow',Instrument.THRESHOLDS.spectrumDelta.narrow);marker('spectrumThresholdOpen',Instrument.THRESHOLDS.spectrumDelta.open);
+    document.getElementById('deltaOrigin').textContent=spectrumMode==='lab'?(isEn()?'derived · lab-linked':'türetilmiş · lab-bağlı'):(isEn()?'supplied':'sağlanan');document.getElementById('deltaInterval').textContent=`(0, ${d.toFixed(6)})`;document.getElementById('spectrumStatusTag').textContent=spectrumMode==='lab'?'T0 · derived · lab-linked':'T0 · supplied';
+    const stage=document.getElementById('spectrumStage');stage.dataset.state=d>0?'positive':'zero';stage.dataset.regime=regime.key;document.getElementById('spectrumResultSurface').dataset.regime=regime.key;document.getElementById('deltaVerdict').className='verdict '+(d>0?'ok':'fail');pulseRegime('spectrum',regime.key,stage);
+
+    const alert=document.getElementById('spectrumAlert');alert.dataset.tone=regime.tone;document.getElementById('spectrumAlertTitle').textContent=regimeLabel('spectrum',regime.key);
+    const tr={closed:' Yasak bant çökmüş durumda.', 'near-zero':' Δ, görsel kritik bant olan 0.020 altında; küçük değişimler rejimi hızla değiştirebilir.',narrow:' Δ dar T0 bantta; ayrım görünür fakat sınırlı.',open:' Δ belirgin T0 açıklık bandında.',wide:' Δ geniş T0 açıklık bandında; bu yine hesaplanmış spektrum değildir.','linked-blocked':' Sayısal Δ pozitif olsa da lab zincirindeki yapısal koşullar bu bağlantıyı lisanslamıyor.'};
+    const en={closed:' The excluded band has collapsed.','near-zero':' Δ is below the visual critical band 0.020; small changes can quickly change the regime.',narrow:' Δ is in the narrow T0 band; separation is visible but limited.',open:' Δ is in the clear-opening T0 band.',wide:' Δ is in the wide T0 band; this is still not a computed spectrum.','linked-blocked':' Numerical Δ is positive, but the lab chain does not license the structural linkage.'};
+    document.getElementById('spectrumAlertText').textContent=(isEn()?en:tr)[regime.key];
+
+    if(baselines.spectrum){const deltaD=d-baselines.spectrum.delta,epsD=e-baselines.spectrum.epsilon;document.getElementById('spectrumBaselineReadout').textContent=isEn()?`Local baseline Δ=${baselines.spectrum.delta.toFixed(6)}, ε=${baselines.spectrum.epsilon.toFixed(3)} · changes ${fmtSigned(deltaD)}, ${fmtSigned(epsD,3)}`:`Yerel referans Δ=${baselines.spectrum.delta.toFixed(6)}, ε=${baselines.spectrum.epsilon.toFixed(3)} · değişimler ${fmtSigned(deltaD)}, ${fmtSigned(epsD,3)}`;}
   }
   document.getElementById('epsilon').addEventListener('input',()=>{renderSpectrum();syncURL('replace');});
-  document.getElementById('delta').addEventListener('input',()=>{renderSpectrum();syncURL('replace');});
+  document.getElementById('delta').addEventListener('input',()=>{if(spectrumMode==='supplied'){renderSpectrum();syncURL('replace');}});
+  document.querySelectorAll('.spectrum-mode').forEach(b=>b.addEventListener('click',()=>{spectrumMode=b.dataset.spectrumMode;renderSpectrum();syncURL('replace');}));
 
+
+  function setSignedBar(el,value,max){
+    const pct=Math.min(48,Math.abs(value)/max*48);el.classList.toggle('positive',value>=0);el.classList.toggle('negative',value<0);el.style.width=pct+'%';el.style.left=value>=0?'50%':(50-pct)+'%';
+  }
   function renderRG(){
     const model=YMCore.evaluateRG({z:document.getElementById('z').value,ec:document.getElementById('ec').value,epsr:document.getElementById('epsR').value});
-    const z=YMCore.formatFixed(model.inputs.z),ec=YMCore.formatFixed(model.inputs.ec),eps=YMCore.formatFixed(model.inputs.epsr);
-    const gross=YMCore.formatFixed(model.derived.gross),net=YMCore.formatFixed(model.derived.net);
-    document.getElementById('zOut').value=z;document.getElementById('ecOut').value=ec;document.getElementById('epsROut').value=eps;
-    document.getElementById('rgGross').textContent=gross;document.getElementById('rgLoss').textContent=YMCore.formatFixed(model.derived.defect);document.getElementById('rgNet').textContent=net;
-    document.getElementById('rgStatus').textContent=model.derived.sign.toUpperCase();
-    const txt=model.derived.sign==='positive'
-      ?(isEn()?`The declared T0 single-step budget is positive: ${net}. Uniform RG reflection-back/coercivity remains unproved.`:`Beyan edilen T0 tek-adım bütçesi pozitiftir: ${net}. Uniform RG geri-yansıtımı/koersivitesi kanıtlanmış değildir.`)
-      :model.derived.sign==='zero'
-        ?(isEn()?`The declared T0 single-step budget is exactly zero. No positive lower-budget follows.`:`Beyan edilen T0 tek-adım bütçesi tam olarak sıfırdır. Pozitif bir alt bütçe sonucu çıkmaz.`)
-        :(isEn()?`The declared T0 single-step budget is negative: ${net}. This scenario does not support a positive lower-budget.`:`Beyan edilen T0 tek-adım bütçesi negatiftir: ${net}. Bu senaryo pozitif bir alt bütçeyi desteklemez.`);
-    document.getElementById('rgText').textContent=txt;
-    document.getElementById('rgVerdict').className='verdict '+(model.derived.sign==='positive'?'ok':'fail');
+    ['z','ec','epsR'].forEach(syncPrecisionInput);
+    const z=YMCore.formatFixed(model.inputs.z),ec=YMCore.formatFixed(model.inputs.ec),eps=YMCore.formatFixed(model.inputs.epsr),gross=YMCore.formatFixed(model.derived.gross),defect=YMCore.formatFixed(model.derived.defect),net=YMCore.formatFixed(model.derived.net);
+    document.getElementById('rgGross').textContent=gross;document.getElementById('rgLoss').textContent=defect;document.getElementById('rgNet').textContent=net;document.getElementById('rgStatus').textContent=model.derived.sign.toUpperCase();
+    const gv=YMCore.toNumber(model.derived.gross),dv=YMCore.toNumber(model.derived.defect),nv=YMCore.toNumber(model.derived.net),max=Math.max(.001,Math.abs(gv),Math.abs(dv),Math.abs(nv));setSignedBar(document.getElementById('rgGrossBar'),gv,max);setSignedBar(document.getElementById('rgDefectBar'),-dv,max);setSignedBar(document.getElementById('rgNetBar'),nv,max);
+    const point=document.getElementById('rgNetPoint'),pointPct=50+(nv/max)*48;point.style.left=Math.max(2,Math.min(98,pointPct))+'%';point.dataset.sign=model.derived.sign;document.getElementById('rgGrossViz').textContent='+'+gross;document.getElementById('rgDefectViz').textContent='−'+defect;document.getElementById('rgNetViz').textContent=(nv>0?'+':'')+net;
+
+    const lab=labState();const reflectionLicensed=!!lab.n[3];const regime=Instrument.classifyRG({net:nv,gross:gv,defect:dv,reflectionLicensed});
+    document.getElementById('rgRegimeLabel').textContent=regimeLabel('rg',regime.key);document.getElementById('rgMarginText').textContent=regime.ratio==null?(isEn()?'structural gate unavailable':'yapısal kapı mevcut değil'):(isEn()?`normalized margin ${(regime.ratio*100).toFixed(1)}%`:`normalize marj ${(regime.ratio*100).toFixed(1)}%`);setRegimeLadder('rgRegimeLadder',regime.key);
+    const surface=document.getElementById('rgResultSurface');surface.dataset.sign=model.derived.sign;surface.dataset.regime=regime.key;pulseRegime('rg',regime.key,surface);
+
+    const txt=model.derived.sign==='positive'?(isEn()?`The declared T0 single-step budget is positive: ${net}. Uniform RG reflection-back/coercivity remains unproved.`:`Beyan edilen T0 tek-adım bütçesi pozitiftir: ${net}. Uniform RG geri-yansıtımı/koersivitesi kanıtlanmış değildir.`):model.derived.sign==='zero'?(isEn()?`The declared T0 single-step budget is exactly zero. No positive lower-budget follows.`:`Beyan edilen T0 tek-adım bütçesi tam olarak sıfırdır. Pozitif bir alt bütçe sonucu çıkmaz.`):(isEn()?`The declared T0 single-step budget is negative: ${net}. This scenario does not support a positive lower-budget.`:`Beyan edilen T0 tek-adım bütçesi negatiftir: ${net}. Bu senaryo pozitif bir alt bütçeyi desteklemez.`);
+    document.getElementById('rgText').textContent=txt;document.getElementById('rgVerdict').className='verdict '+(model.derived.sign==='positive'?'ok':model.derived.sign==='zero'?'wait':'fail');
+    const alert=document.getElementById('rgAlert');alert.dataset.tone=regime.tone;document.getElementById('rgAlertTitle').textContent=regimeLabel('rg',regime.key);
+    const tr={'structurally-blocked':' Tek-adım aritmetiği hesaplanabilir; ancak N4 geri-yansıtım kapısı yapısal olarak açık değildir.','strong-negative':' Net bütçe belirgin biçimde negatif; kusur aktarımı bastırıyor.','fragile-negative':' Net bütçe hafif negatif; küçük değişimler sıfır geçişi oluşturabilir.','zero':' Net bütçe tam sıfırda; pozitif alt marj yok.','fragile-positive':' Pozitif marj küçük; kusur katkısındaki küçük artış işareti çevirebilir.','moderate-positive':' Pozitif T0 marj orta bantta.','robust-positive':' Pozitif T0 marj güçlü bantta; bu çok-ölçekli RG kanıtı değildir.'};
+    const en={'structurally-blocked':' Single-step arithmetic is available, but the N4 reflection-back gate is structurally unavailable.','strong-negative':' The net budget is clearly negative; the defect dominates the transfer.','fragile-negative':' The net budget is slightly negative; small changes can cross zero.','zero':' The net budget is exactly zero; there is no positive lower margin.','fragile-positive':' The positive margin is small; a small defect increase can flip the sign.','moderate-positive':' The positive T0 margin is in the moderate band.','robust-positive':' The positive T0 margin is in the robust band; this is not a multiscale RG proof.'};
+    document.getElementById('rgAlertText').textContent=(isEn()?en:tr)[regime.key];
+    if(baselines.rg){const delta=nv-baselines.rg.net;document.getElementById('rgBaselineReadout').textContent=isEn()?`Local baseline net ${baselines.rg.net.toFixed(6)} · current change ${fmtSigned(delta)}`:`Yerel referans net ${baselines.rg.net.toFixed(6)} · güncel değişim ${fmtSigned(delta)}`;}
   }
+
   ['z','ec','epsR'].forEach(id=>document.getElementById(id).addEventListener('input',()=>{renderRG();syncURL('replace');}));
   document.getElementById('resetRG').addEventListener('click',()=>{document.getElementById('z').value=YMCore.RG_DEFAULTS.z;document.getElementById('ec').value=YMCore.RG_DEFAULTS.ec;document.getElementById('epsR').value=YMCore.RG_DEFAULTS.epsr;renderRG();syncURL('replace');});
+
+  document.querySelectorAll('[data-capture-baseline]').forEach(btn=>btn.addEventListener('click',()=>{
+    const scope=btn.dataset.captureBaseline;
+    if(scope==='lab'){const s=labState();baselines.lab={net:s.net,gross:s.gross};renderLab();}
+    if(scope==='spectrum'){const lab=labState(),d=spectrumMode==='lab'?Math.max(0,lab.net):Number(document.getElementById('delta').value);baselines.spectrum={delta:d,epsilon:Number(document.getElementById('epsilon').value)};renderSpectrum();}
+    if(scope==='rg'){const m=YMCore.evaluateRG({z:document.getElementById('z').value,ec:document.getElementById('ec').value,epsr:document.getElementById('epsR').value});baselines.rg={net:YMCore.toNumber(m.derived.net)};renderRG();}
+    showToast(isEn()?'Local T0 baseline captured.':'Yerel T0 referansı yakalandı.');
+  }));
+
+  bindPrecisionControls();
 
   const falsify=[
     {tr:{t:'Gap continuum’da çöker',b:'Finite-kafes gap a→0 limitinde sıfıra gidiyorsa kaba ölçekteki pozitif gap continuum teoriye taşınamaz.',c:'Uniform koersivite zinciri kırılır.'},en:{t:'Gap collapses in the continuum',b:'If the finite-lattice gap tends to zero as a→0, the positive coarse-scale gap cannot reach the continuum theory.',c:'The uniform-coercivity chain breaks.'}},
@@ -1125,20 +1480,22 @@
       `A5 Uniform coercivity: ${s.c.aUniform}`,
       `A6 Continuum + OS: ${s.c.aOS}`,
       '',
-      `C_G = ${Number(document.getElementById('cG').value).toFixed(2)}`,
-      `Lambda_YM = ${Number(document.getElementById('lambda').value).toFixed(2)}`,
-      `r(a,L) = ${Number(document.getElementById('residual').value).toFixed(2)}`,
+      `C_G = ${Number(document.getElementById('cG').value).toFixed(3)}`,
+      `Lambda_YM = ${Number(document.getElementById('lambda').value).toFixed(3)}`,
+      `r(a,L) = ${Number(document.getElementById('residual').value).toFixed(3)}`,
       `Candidate bound (exact model display) = ${s.netText}`,
       `Toy downstream condition available = ${s.n[5]}`,
       `Scenario schema = ${YMCore.SCENARIO_SCHEMA}`,
       `Lab model = ${YMCore.MODEL_VERSIONS.lab}`,
       `RG model = ${YMCore.MODEL_VERSIONS.rg}`,
       `Content revision = ${YMCore.CONTENT_REVISION}`,
-      `Spectrum epsilon = ${Number(document.getElementById('epsilon').value).toFixed(2)}`,
-      `Spectrum supplied Delta = ${Number(document.getElementById('delta').value).toFixed(2)}`,
-      `RG Z = ${Number(document.getElementById('z').value).toFixed(2)}`,
-      `RG E_c = ${Number(document.getElementById('ec').value).toFixed(2)}`,
-      `RG epsilon_R = ${Number(document.getElementById('epsR').value).toFixed(2)}`,
+      `Spectrum epsilon = ${Number(document.getElementById('epsilon').value).toFixed(3)}`,
+      `Spectrum mode = ${spectrumMode}`,
+      `Spectrum supplied Delta = ${Number(document.getElementById('delta').value).toFixed(3)}`,
+      `Spectrum active Delta = ${spectrumMode==='lab'?Math.max(0,s.net).toFixed(4):Number(document.getElementById('delta').value).toFixed(4)}`,
+      `RG Z = ${Number(document.getElementById('z').value).toFixed(3)}`,
+      `RG E_c = ${Number(document.getElementById('ec').value).toFixed(3)}`,
+      `RG epsilon_R = ${Number(document.getElementById('epsR').value).toFixed(3)}`,
       `Selected node = ${currentNode.toUpperCase()}`,
       `Failure criterion index = ${currentF}`,
 
@@ -1149,14 +1506,9 @@
     a.href=url;a.download='yang_mills_v6_foundation_status_report.txt';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
   });
 
-  document.addEventListener('keydown',e=>{
-    if(e.target&&/input|textarea|select/i.test(e.target.tagName))return;
-    if(e.key==='ArrowRight')switchView(currentView+1);
-    if(e.key==='ArrowLeft')switchView(currentView-1);
-  });
 
   const initialScenario=loadURLState();
-  renderNode();renderLab();renderSpectrum();renderRG();renderFalsify();
+  renderDependencyAlternatives();renderNode();renderLab();renderSpectrum();renderRG();renderFalsify();typesetMath();
   const initialIndex=nav.findIndex(x=>x.dataset.view===initialScenario.view);
   switchView(initialIndex>=0?initialIndex:0,false,'none');
   document.getElementById('langBtn').textContent=isEn()?'TR':'EN';
@@ -1165,7 +1517,7 @@
   window.addEventListener('popstate',()=>{
     suppressURLSync=true;
     const restored=loadURLState();
-    renderNode();renderLab();renderSpectrum();renderRG();renderFalsify();
+    renderDependencyAlternatives();renderNode();renderLab();renderSpectrum();renderRG();renderFalsify();typesetMath();
     const idx=nav.findIndex(x=>x.dataset.view===restored.view);
     switchView(idx>=0?idx:0,false,'none');
     document.getElementById('langBtn').textContent=isEn()?'TR':'EN';

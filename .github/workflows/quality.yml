@@ -19,5 +19,11 @@ jobs:
           node-version: '22'
       - name: Run v6 model/state regression checks
         run: node scripts/test-v6-core.cjs
+      - name: Validate v6 research shell and math presentation
+        run: node scripts/test-v6-phase3.cjs
+      - name: Validate v6 interactive research instruments
+        run: node scripts/test-v6-phase4.cjs
+      - name: Validate v6 research-grade experiment thresholds
+        run: node scripts/test-v6-phase5.cjs
       - name: Validate publication and audit structure
         run: node scripts/validate.mjs
