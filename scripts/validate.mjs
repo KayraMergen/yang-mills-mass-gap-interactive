@@ -5,8 +5,8 @@ const core = require('../assets/js/v6-core.js');
 
 const html = fs.readFileSync('index.html', 'utf8');
 const required = [
-  'v5.1.2 • Custom Domain & Canonical Layer',
-  '<meta name="version" content="5.1.2" />',
+  'v6.0.0 • Research Instruments & Advanced Analysis',
+  '<meta name="version" content="6.0.0" />',
   'https://www.yangmillsresearch.org/',
   'ORCID: 0009-0001-9217-0917',
   'id="heroCiteBtn"',
@@ -24,11 +24,18 @@ const required = [
   'https://doi.org/10.5281/zenodo.22739745',
   'assets/js/v6-core.js',
   'assets/js/v6-instrument-engine.js',
+  'assets/js/v6-record-engine.js',
+  'assets/js/v6-analysis-engine.js',
+  'assets/js/v6-analysis-ui.js',
   'assets/css/v6-research-shell.css',
   'assets/css/v6-instruments.css',
+  'assets/css/v6-records.css',
+  'assets/css/v6-analysis.css',
   'Failure Modes / Falsification Criteria',
   'Signed single-step transfer/defect budget',
-  'T0 · Derived illustrative result'
+  'T0 · Derived illustrative result',
+  'id="analysisDrawer"',
+  'Two-parameter T0 regime map'
 ];
 
 const missing = required.filter(x => !html.includes(x));
@@ -50,12 +57,19 @@ for (const file of [
   'CNAME',
   'assets/js/v6-core.js',
   'assets/js/v6-instrument-engine.js',
+  'assets/js/v6-record-engine.js',
+  'assets/js/v6-analysis-engine.js',
+  'assets/js/v6-analysis-ui.js',
   'assets/css/v6-research-shell.css',
   'assets/css/v6-instruments.css',
+  'assets/css/v6-records.css',
+  'assets/css/v6-analysis.css',
   'scripts/test-v6-core.cjs',
   'scripts/test-v6-phase3.cjs',
   'scripts/test-v6-phase4.cjs',
   'scripts/test-v6-phase5.cjs',
+  'scripts/test-v6-phase6.cjs',
+  'scripts/test-v6-phase7.cjs',
   'V6_DESIGN_AUDIT.md',
   'V6_INFORMATION_ARCHITECTURE.md',
   'V6_DESIGN_SYSTEM.md',
@@ -64,7 +78,10 @@ for (const file of [
   'V6_MASTER_IMPLEMENTATION_BRIEF.md',
   'V6_PHASE3_NOTES.md',
   'V6_PHASE4_NOTES.md',
-  'V6_PHASE5_NOTES.md'
+  'V6_PHASE5_NOTES.md',
+  'V6_PHASE6_NOTES.md',
+  'V6_PHASE7_NOTES.md',
+  'RELEASE_NOTES_v6.0.0.md'
 ]) {
   if (!fs.existsSync(file)) {
     console.error(`Missing required repository file: ${file}`);
@@ -91,6 +108,17 @@ if (JSON.stringify(renderedEdges) !== JSON.stringify(registryEdges)) {
 
 if (!core.dependencyParity().ok) {
   console.error('Claim dependency data and authoritative edge registry disagree.');
+  process.exit(1);
+}
+
+
+const citation = fs.readFileSync('CITATION.cff', 'utf8');
+if (!citation.includes('version: 5.0.1') || !citation.includes('10.5281/zenodo.22739746')) {
+  console.error('CITATION.cff must retain the exact archived v5.0.1 identity until a new archive is explicitly created.');
+  process.exit(1);
+}
+if (html.includes('10.5281/zenodo.22739746') === false || html.includes('10.5281/zenodo.22739745') === false) {
+  console.error('Live release must preserve exact-archive and Concept DOI references.');
   process.exit(1);
 }
 

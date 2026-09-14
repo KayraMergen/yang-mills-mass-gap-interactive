@@ -25,5 +25,9 @@ jobs:
         run: node scripts/test-v6-phase4.cjs
       - name: Validate v6 research-grade experiment thresholds
         run: node scripts/test-v6-phase5.cjs
+      - name: Validate v6 reproducibility and record ledger
+        run: node scripts/test-v6-phase6.cjs
+      - name: Validate v6 parameter sweeps and regime analysis
+        run: node scripts/test-v6-phase7.cjs
       - name: Validate publication and audit structure
         run: node scripts/validate.mjs

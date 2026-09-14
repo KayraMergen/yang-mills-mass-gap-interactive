@@ -1,6 +1,6 @@
 # Yang–Mills Mass Gap — Interactive Research Console
 
-**Current website/repository version: v5.1.2**
+**Current website/repository version: v6.0.0**
 
 [![DOI](https://zenodo.org/badge/1369033161.svg)](https://doi.org/10.5281/zenodo.22739745)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0001--9217--0917-A6CE39?logo=orcid&logoColor=white)](https://orcid.org/0009-0001-9217-0917)
@@ -95,7 +95,7 @@ not as the preferred public address.
 
 ## v6 foundation work
 
-The repository includes an implementation-ready v6 specification set and a pre-release Phase 1–2 foundation. The current public release identity remains v5.1.2 until the complete v6 design, instrument, accessibility, and release gates are satisfied.
+The public website now runs the v6 research interface, including exact scalar models, research-grade interactive instruments, reproducibility records, and advanced T0 sweep analysis. The exact Zenodo archive remains v5.0.1 until a separately authorized archival release is created; the Concept DOI continues to identify the evolving project.
 
 The foundation adds a single reviewed dependency registry, exact scaled-integer scalar evaluators, complete scenario serialization, truthful single-step RG semantics, persistent result scope, and model/state regression tests. Run:
 

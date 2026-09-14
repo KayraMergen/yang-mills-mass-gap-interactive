@@ -1,6 +1,25 @@
+
+## v6 Phase 7 — local parameter sweep & regime analysis (unreleased)
+
+- Added a local parameter sweep studio for the lab, spectrum, and RG T0 models.
+- Added exact affine sign-boundary reporting, interface-regime transition search, local sensitivity values, and two-parameter T0 regime maps.
+- Added CSV/JSON analysis export and apply-selected-map-point interaction.
+- Regime-map colors are explicitly scoped as interface sensitivity regimes, not physical phase diagrams or proof evidence.
+
 # Changelog
 
 All notable changes to the project are documented here.
+
+
+## [6.0.0] — 2026-09-14
+
+- Rebuilt the public interface as a spacious research-software environment with grouped navigation and publication-grade mathematical presentation.
+- Added exact scaled-integer scalar evaluation and corrected omitted-state, sign-boundary, dependency-graph, RG, table, and responsive defects found in the v6 audit.
+- Rebuilt the assumption, spectrum, and RG surfaces as research-grade T0 instruments with fine controls, threshold-aware warnings, semantic colors, and meaning-bearing motion.
+- Added a single authoritative dependency registry with interactive graph, linear dependency list, and semantic outline views.
+- Added contextual experiment records, A/B comparison, threshold event history, JSON/CSV export, and review-ready reproduction context.
+- Added advanced T0 parameter sweeps, critical-threshold detection, local sensitivity curves, and two-parameter regime maps.
+- Preserved the canonical domain, Concept DOI, ORCID, licenses, and the exact v5.0.1 Zenodo archive identity; no v6 archive DOI is claimed.
 
 ## [Unreleased v6 foundation]
 
@@ -107,3 +126,10 @@ stable project/all-versions DOI remains 10.5281/zenodo.22739745.
 ## [1.0.0] — 2026-09-14
 
 - Initial standalone interactive web application.
+## v6 working branch — Phase 6 reproducibility layer
+
+- Added a session-local experiment record ledger with canonical state digests and distinct observation capture IDs.
+- Added same-instrument A/B comparison, contextual copy, JSON export, and threshold transition history.
+- Added review-packet preparation without changing the existing scientific-review submission workflow.
+- No H1 claim, archive DOI, or proof status is changed by these software records.
+

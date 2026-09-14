@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Yang–Mills kütle aralığı için gauge-indirgenmiş spektral koersivite programının profesyonel etkileşimli araştırma konsolu." />
   <meta name="application-name" content="Yang–Mills Research Console" />
-  <meta name="version" content="5.1.2" />
+  <meta name="version" content="6.0.0" />
   <meta name="author" content="Baran Çolakoğlu" />
   <link rel="canonical" href="https://www.yangmillsresearch.org/" />
   <meta name="theme-color" content="#0B1118" />
@@ -23,7 +23,7 @@
     "name": "Yang–Mills Mass Gap — Interactive Research Console",
     "applicationCategory": "EducationalApplication",
     "operatingSystem": "Web",
-    "softwareVersion": "5.1.2",
+    "softwareVersion": "6.0.0",
     "identifier": [
       {
         "@type": "PropertyValue",
@@ -398,6 +398,8 @@
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml-nofont.js"></script>
   <link rel="stylesheet" href="assets/css/v6-research-shell.css">
   <link rel="stylesheet" href="assets/css/v6-instruments.css">
+  <link rel="stylesheet" href="assets/css/v6-records.css">
+  <link rel="stylesheet" href="assets/css/v6-analysis.css">
 </head>
 <body>
 <a class="skip-link" href="#research-main"><span data-lang="tr">Ana içeriğe geç</span><span data-lang="en">Skip to research content</span></a>
@@ -415,6 +417,8 @@
       <button class="btn ghost optional-mobile" id="mathBtn" type="button"><span data-lang="tr">Matematik: açık</span><span data-lang="en">Math: on</span></button>
       <button class="btn ghost optional-mobile" id="presentationBtn" type="button"><span data-lang="tr">Sunum</span><span data-lang="en">Present</span></button>
       <a class="btn ghost optional-mobile" href="https://github.com/KayraMergen/yang-mills-mass-gap-interactive" target="_blank" rel="noopener">GitHub</a>
+      <button class="btn ghost optional-mobile" id="analysisBtn" type="button"><span data-lang="tr">Analiz</span><span data-lang="en">Analysis</span></button>
+      <button class="btn ghost optional-mobile" id="recordsBtn" type="button"><span data-lang="tr">Kayıtlar</span><span data-lang="en">Records</span></button>
       <button class="btn primary" id="shareBtn" type="button"><span data-lang="tr">Paylaş</span><span data-lang="en">Share</span></button>
     </div>
   </header>
@@ -453,7 +457,7 @@
       <section class="view active overview-refined" id="view-overview">
         <div class="overview-masthead" aria-label="Publication identity">
           <div class="overview-meta">
-            <span class="overview-version">v5.1.2</span><span class="sr-only">v5.1.2 • Custom Domain & Canonical Layer</span>
+            <span class="overview-version">v6.0.0</span><span class="sr-only">v6.0.0 • Research Instruments & Advanced Analysis</span>
             <a href="https://doi.org/10.5281/zenodo.22739745" target="_blank" rel="noopener">Concept DOI ↗</a>
             <a href="https://orcid.org/0009-0001-9217-0917" target="_blank" rel="noopener" aria-label="ORCID: 0009-0001-9217-0917">ORCID ↗</a>
             <a href="https://github.com/KayraMergen/yang-mills-mass-gap-interactive" target="_blank" rel="noopener">GitHub ↗</a>
@@ -622,7 +626,7 @@
 
             <div class="precision-toolbar" data-precision-toolbar="lab">
               <div class="precision-step-group"><span data-lang="tr">Adım</span><span data-lang="en">Step</span><button class="precision-step active" data-step-scope="lab" data-step="0.001" type="button">0.001</button><button class="precision-step" data-step-scope="lab" data-step="0.01" type="button">0.01</button><button class="precision-step" data-step-scope="lab" data-step="0.05" type="button">0.05</button></div>
-              <button class="btn compact-btn" data-capture-baseline="lab" type="button"><span data-lang="tr">Referans yakala</span><span data-lang="en">Capture baseline</span></button>
+              <button class="btn compact-btn" data-capture-baseline="lab" type="button"><span data-lang="tr">Referans yakala</span><span data-lang="en">Capture baseline</span></button><button class="btn compact-btn capture-record-btn" data-capture-record="lab" type="button"><span data-lang="tr">Deney kaydı</span><span data-lang="en">Capture record</span></button><button class="btn compact-btn" data-analysis-open="lab" type="button"><span data-lang="tr">Tarama analizi</span><span data-lang="en">Sweep analysis</span></button>
             </div>
             <div class="controls" data-precision-scope="lab">
               <div class="precision-control"><label for="cG">C<sub>G</sub></label><div class="range-row precision-range-row"><input id="cG" type="range" min="0" max="1.2" value="0.650" step="0.001"><div class="number-stepper"><button data-nudge-target="cG" data-direction="-1" type="button" aria-label="decrease C G">−</button><input id="cGNumber" type="number" min="0" max="1.2" value="0.650" step="0.001" inputmode="decimal"><button data-nudge-target="cG" data-direction="1" type="button" aria-label="increase C G">+</button></div><output id="cGOut" class="sr-only">0.650</output></div></div>
@@ -698,7 +702,7 @@
             </div>
             <div class="precision-toolbar" data-precision-toolbar="spectrum">
               <div class="precision-step-group"><span data-lang="tr">Adım</span><span data-lang="en">Step</span><button class="precision-step active" data-step-scope="spectrum" data-step="0.001" type="button">0.001</button><button class="precision-step" data-step-scope="spectrum" data-step="0.01" type="button">0.01</button><button class="precision-step" data-step-scope="spectrum" data-step="0.05" type="button">0.05</button></div>
-              <button class="btn compact-btn" data-capture-baseline="spectrum" type="button"><span data-lang="tr">Referans yakala</span><span data-lang="en">Capture baseline</span></button>
+              <button class="btn compact-btn" data-capture-baseline="spectrum" type="button"><span data-lang="tr">Referans yakala</span><span data-lang="en">Capture baseline</span></button><button class="btn compact-btn capture-record-btn" data-capture-record="spectrum" type="button"><span data-lang="tr">Deney kaydı</span><span data-lang="en">Capture record</span></button><button class="btn compact-btn" data-analysis-open="spectrum" type="button"><span data-lang="tr">Tarama analizi</span><span data-lang="en">Sweep analysis</span></button>
             </div>
             <div class="controls" data-precision-scope="spectrum">
               <div class="precision-control"><label for="epsilon">ε</label><div class="range-row precision-range-row"><input id="epsilon" type="range" min="0" max="1" value="0.250" step="0.001"><div class="number-stepper"><button data-nudge-target="epsilon" data-direction="-1" type="button" aria-label="decrease epsilon">−</button><input id="epsilonNumber" type="number" min="0" max="1" value="0.250" step="0.001" inputmode="decimal"><button data-nudge-target="epsilon" data-direction="1" type="button" aria-label="increase epsilon">+</button></div><output id="epsilonOut" class="sr-only">0.250</output></div></div>
@@ -779,7 +783,7 @@
             </div>
             <div class="precision-toolbar" data-precision-toolbar="rg">
               <div class="precision-step-group"><span data-lang="tr">Adım</span><span data-lang="en">Step</span><button class="precision-step active" data-step-scope="rg" data-step="0.001" type="button">0.001</button><button class="precision-step" data-step-scope="rg" data-step="0.01" type="button">0.01</button><button class="precision-step" data-step-scope="rg" data-step="0.05" type="button">0.05</button></div>
-              <button class="btn compact-btn" data-capture-baseline="rg" type="button"><span data-lang="tr">Referans yakala</span><span data-lang="en">Capture baseline</span></button>
+              <button class="btn compact-btn" data-capture-baseline="rg" type="button"><span data-lang="tr">Referans yakala</span><span data-lang="en">Capture baseline</span></button><button class="btn compact-btn capture-record-btn" data-capture-record="rg" type="button"><span data-lang="tr">Deney kaydı</span><span data-lang="en">Capture record</span></button><button class="btn compact-btn" data-analysis-open="rg" type="button"><span data-lang="tr">Tarama analizi</span><span data-lang="en">Sweep analysis</span></button>
             </div>
             <div class="controls" data-precision-scope="rg">
               <div class="precision-control"><label for="z">Z</label><div class="range-row precision-range-row"><input id="z" type="range" min="0" max="1.5" value="0.850" step="0.001"><div class="number-stepper"><button data-nudge-target="z" data-direction="-1" type="button" aria-label="decrease Z">−</button><input id="zNumber" type="number" min="0" max="1.5" value="0.850" step="0.001" inputmode="decimal"><button data-nudge-target="z" data-direction="1" type="button" aria-label="increase Z">+</button></div><output id="zOut" class="sr-only">0.850</output></div></div>
@@ -920,7 +924,7 @@
             <span class="status-chip hyp" data-lang="tr">Varsayımsal araştırma hedefi</span><span class="status-chip hyp" data-lang="en">Hypothetical research target</span>
           </div>
           <div class="source-card">
-            <div class="slide">SOFTWARE • v5.1.2</div>
+            <div class="slide">SOFTWARE • v6.0.0</div>
             <strong>Interactive Research Console</strong>
             <p data-lang="tr">Simülatördeki sayıların tamamı düşünme/denetim amacıyla normalize edilmiş oyuncak parametrelerdir.</p><p data-lang="en">All simulator numbers are normalized toy parameters for reasoning and audit, not physical predictions.</p>
             <span class="status-chip hyp" data-lang="tr">Araç katmanı</span><span class="status-chip hyp" data-lang="en">Tooling layer</span><br>
@@ -935,7 +939,7 @@
         <div class="section-title"><div><h2 data-lang="tr">Metodoloji ve epistemik etiketleme</h2><h2 data-lang="en">Methodology and epistemic labeling</h2><p data-lang="tr">Uygulama, resmî problem ifadesi ile varsayımsal araştırma köprülerini aynı epistemik düzeyde göstermemek üzere tasarlanmıştır.</p><p data-lang="en">The app is designed not to place the official problem statement and hypothetical research bridges at the same epistemic level.</p></div></div>
 
         <div class="release-strip">
-          <div><span class="version">v5.1.2</span> <span class="muted small">• academic landing / audit layer</span></div>
+          <div><span class="version">v6.0.0</span> <span class="muted small">• research instruments / analysis / audit layer</span></div>
           <div><a class="ref-link" href="https://github.com/KayraMergen/yang-mills-mass-gap-interactive/blob/main/METHODOLOGY.md" target="_blank" rel="noopener">Full methodology document ↗</a></div>
         </div>
 
@@ -982,10 +986,90 @@
   </div>
 </div>
 
+<div class="analysis-drawer-backdrop" id="analysisDrawerBackdrop" aria-hidden="true"></div>
+<aside class="analysis-drawer" id="analysisDrawer" aria-labelledby="analysisDrawerTitle" aria-hidden="true">
+  <div class="analysis-head">
+    <div><h2 id="analysisDrawerTitle"><span data-lang="tr">Parametre tarama stüdyosu</span><span data-lang="en">Parameter sweep studio</span></h2><p><span data-lang="tr">T0 modelleri boyunca hassas tarama, kritik eşik arama, yerel duyarlılık ve iki-parametreli rejim haritası. Fiziksel faz diyagramı veya continuum hesabı değildir.</span><span data-lang="en">Fine sweeps, critical-threshold search, local sensitivity, and two-parameter regime maps across the T0 models. This is not a physical phase diagram or continuum calculation.</span></p></div>
+    <button class="btn ghost" id="closeAnalysisBtn" type="button" aria-label="Close parameter analysis">×</button>
+  </div>
+  <div class="analysis-body">
+    <div class="analysis-toolbar" role="group" aria-label="Analysis instrument">
+      <span class="analysis-toolbar-label"><span data-lang="tr">Araç</span><span data-lang="en">Instrument</span></span>
+      <button class="segbtn active" data-analysis-instrument="lab" type="button"><span data-lang="tr">Varsayım</span><span data-lang="en">Assumption</span></button>
+      <button class="segbtn" data-analysis-instrument="spectrum" type="button"><span data-lang="tr">Spektrum</span><span data-lang="en">Spectrum</span></button>
+      <button class="segbtn" data-analysis-instrument="rg" type="button">RG</button>
+      <span class="status-chip target" id="analysisInstrumentLabel">Varsayım laboratuvarı</span>
+    </div>
+
+    <div class="analysis-control-grid">
+      <div class="analysis-control"><label for="analysisParam"><span data-lang="tr">Taranan parametre</span><span data-lang="en">Sweep parameter</span></label><select id="analysisParam"></select></div>
+      <div class="analysis-control"><label for="analysisMin"><span data-lang="tr">Minimum</span><span data-lang="en">Minimum</span></label><input id="analysisMin" type="number" step="0.001" value="0"></div>
+      <div class="analysis-control"><label for="analysisMax"><span data-lang="tr">Maksimum</span><span data-lang="en">Maximum</span></label><input id="analysisMax" type="number" step="0.001" value="1"></div>
+      <div class="analysis-control"><label for="analysisSamples"><span data-lang="tr">Örnek</span><span data-lang="en">Samples</span></label><select id="analysisSamples"><option>51</option><option selected>121</option><option>201</option><option>401</option></select></div>
+    </div>
+    <div class="analysis-actions"><button class="btn primary" id="runSweepBtn" type="button"><span data-lang="tr">Taramayı hesapla</span><span data-lang="en">Compute sweep</span></button><button class="btn" id="refreshAnalysisBtn" type="button"><span data-lang="tr">Mevcut aralığı al</span><span data-lang="en">Use current range</span></button><button class="btn" id="exportSweepCsvBtn" type="button">CSV</button><button class="btn" id="exportSweepJsonBtn" type="button">JSON</button></div>
+
+    <div class="analysis-metrics">
+      <div class="analysis-metric"><small id="analysisMetricName">Metric</small><b id="analysisMetricValue">—</b></div>
+      <div class="analysis-metric"><small id="analysisDerivativeName">Sensitivity</small><b id="analysisDerivativeValue">—</b></div>
+      <div class="analysis-metric"><small id="analysisNearestName">Nearest threshold</small><code id="analysisNearestValue">—</code></div>
+      <div class="analysis-metric"><small id="analysisResolutionName">Resolution</small><b id="analysisResolutionValue">—</b></div>
+    </div>
+
+    <div class="analysis-status-band" id="analysisStatus"><strong>T0</strong></div>
+
+    <div class="analysis-grid">
+      <section class="analysis-card">
+        <div class="analysis-card-head"><div><h3><span data-lang="tr">Duyarlılık eğrisi</span><span data-lang="en">Sensitivity sweep</span></h3><p><span data-lang="tr">Tek parametre değiştirilirken diğer girdiler sabit tutulur.</span><span data-lang="en">One parameter varies while the other declared inputs remain fixed.</span></p></div></div>
+        <div class="analysis-card-body"><div class="sweep-frame"><svg id="sweepPlot" class="sweep-plot" viewBox="0 0 720 330" role="img" aria-label="T0 parameter sensitivity sweep"></svg></div><div class="analysis-note"><span data-lang="tr">Çizgi yalnız mevcut T0 modelinin deterministik hesabıdır; fiziksel ölçüm, örneklem dağılımı veya belirsizlik bandı değildir.</span><span data-lang="en">The curve is only the deterministic output of the current T0 model; it is not a physical measurement, sampling distribution, or uncertainty band.</span></div></div>
+      </section>
+      <section class="analysis-card">
+        <div class="analysis-card-head"><div><h3><span data-lang="tr">Kritik eşikler</span><span data-lang="en">Critical thresholds</span></h3><p><span data-lang="tr">İşaret sınırı tam; diğerleri arayüz rejim sınırlarıdır.</span><span data-lang="en">The sign boundary is exact; the rest are interface-regime boundaries.</span></p></div></div>
+        <div class="analysis-card-body"><div class="analysis-thresholds" id="analysisThresholds"></div></div>
+      </section>
+    </div>
+
+    <section class="analysis-card">
+      <div class="analysis-card-head"><div><h3><span data-lang="tr">İki-parametreli T0 rejim haritası</span><span data-lang="en">Two-parameter T0 regime map</span></h3><p><span data-lang="tr">Renkler fiziksel fazları değil, arayüzde tanımlanmış hesap/çıkarım rejimlerini gösterir. Bir hücreyi seçerek girdilere uygulayabilirsin.</span><span data-lang="en">Colors show interface-defined computational/inferential regimes, not physical phases. Select a cell to apply its inputs.</span></p></div><button class="btn" id="applyMapPointBtn" type="button" disabled><span data-lang="tr">Seçili noktayı uygula</span><span data-lang="en">Apply selected point</span></button></div>
+      <div class="analysis-card-body"><div class="regime-map-wrap" id="regimeMapWrap"><svg id="regimeMap" class="regime-map" viewBox="0 0 720 360" role="img" aria-label="T0 two-parameter regime map"></svg><div class="analysis-tooltip" id="analysisTooltip"></div></div><div class="analysis-map-readout"><div><small>X</small><b id="mapXReadout">—</b></div><div><small>Y</small><b id="mapYReadout">—</b></div><div><small><span data-lang="tr">Rejim</span><span data-lang="en">Regime</span></small><b id="mapRegimeReadout">—</b></div></div><div class="analysis-legend"><span class="analysis-legend-item"><i class="analysis-swatch analysis-regime-negative"></i><span data-lang="tr">negatif / kapalı</span><span data-lang="en">negative / closed</span></span><span class="analysis-legend-item"><i class="analysis-swatch analysis-regime-warning"></i><span data-lang="tr">kritik / kırılgan</span><span data-lang="en">critical / fragile</span></span><span class="analysis-legend-item"><i class="analysis-swatch analysis-regime-conditional"></i><span data-lang="tr">yapısal blokaj</span><span data-lang="en">structural block</span></span><span class="analysis-legend-item"><i class="analysis-swatch analysis-regime-positive"></i><span data-lang="tr">pozitif</span><span data-lang="en">positive</span></span></div></div>
+    </section>
+  </div>
+</aside>
+
+<div class="record-drawer-backdrop" id="recordDrawerBackdrop" aria-hidden="true"></div>
+<aside class="record-drawer" id="recordDrawer" aria-labelledby="recordDrawerTitle" aria-hidden="true">
+  <div class="record-drawer-head">
+    <div><h2 id="recordDrawerTitle"><span data-lang="tr">Araştırma kayıt defteri</span><span data-lang="en">Research record ledger</span></h2><p><span data-lang="tr">Kayıtlar yalnız bu tarayıcı oturumunda tutulur. Her kayıt T0 kapsamını ve model kimliğini taşır.</span><span data-lang="en">Records stay in this browser session only. Every record carries its T0 scope and model identity.</span></p></div>
+    <button class="btn ghost" id="closeRecordsBtn" type="button" aria-label="Close research records">×</button>
+  </div>
+  <div class="record-drawer-body">
+    <section class="record-section">
+      <div class="record-section-title"><h3><span data-lang="tr">Kayıtlar</span><span data-lang="en">Records</span></h3><small id="recordCount">0 / 12</small></div>
+      <div class="record-toolbar"><button class="btn" id="exportLedgerBtn" type="button"><span data-lang="tr">JSON dışa aktar</span><span data-lang="en">Export JSON</span></button><button class="btn" id="copyReviewPacketBtn" type="button"><span data-lang="tr">İnceleme paketini kopyala</span><span data-lang="en">Copy review packet</span></button><button class="btn" id="clearLedgerBtn" type="button"><span data-lang="tr">Oturumu temizle</span><span data-lang="en">Clear session</span></button></div>
+      <div class="record-list" id="recordList"></div>
+      <div class="record-local-note"><span data-lang="tr">Kayıt kimliği, zaman damgası hariç kanonik girdiler/model/statü üzerinden üretilir. Aynı bilimsel durum aynı özet kimliğini verir.</span><span data-lang="en">The record identity is derived from canonical inputs/model/status excluding capture time. The same scientific state yields the same digest.</span></div>
+    </section>
+    <section class="record-section">
+      <div class="record-section-title"><h3><span data-lang="tr">A/B karşılaştırma</span><span data-lang="en">A/B comparison</span></h3><small><span data-lang="tr">aynı araç</span><span data-lang="en">same instrument</span></small></div>
+      <div class="compare-deck" id="compareDeck">
+        <div class="compare-head"><div class="compare-slot"><small>A</small><b id="compareA">—</b></div><div class="compare-slot"><small>B</small><b id="compareB">—</b></div></div>
+        <div class="compare-body" id="compareBody"><div class="compare-note"><span data-lang="tr">Karşılaştırmak için iki aynı-araç kaydı seç.</span><span data-lang="en">Select two records from the same instrument to compare.</span></div></div>
+      </div>
+      <div class="record-toolbar"><button class="btn" id="copyComparisonBtn" type="button"><span data-lang="tr">Karşılaştırmayı kopyala</span><span data-lang="en">Copy comparison</span></button></div>
+    </section>
+    <section class="record-section">
+      <div class="record-section-title"><h3><span data-lang="tr">Eşik olay günlüğü</span><span data-lang="en">Threshold event log</span></h3><small id="eventCount">0</small></div>
+      <div class="event-log" id="thresholdEventLog"></div><div class="record-local-note"><span data-lang="tr">Bu günlük fiziksel faz geçişlerini değil, T0 arayüz rejimi/eşik değişimlerini kaydeder.</span><span data-lang="en">This log records T0 interface regime/threshold changes, not physical phase transitions.</span></div>
+    </section>
+  </div>
+</aside>
+
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="assets/js/v6-core.js"></script>
 <script src="assets/js/v6-instrument-engine.js"></script>
+<script src="assets/js/v6-record-engine.js"></script>
+<script src="assets/js/v6-analysis-engine.js"></script>
 <script>
 (() => {
   const body=document.body;
@@ -1025,6 +1109,16 @@
   const typesetMath=()=>{if(window.MathJax?.typesetPromise) window.MathJax.typesetPromise(document.querySelectorAll('.math-block')).catch(()=>{});};
 
   const Instrument=window.YMInstrumentEngine;
+  const RecordEngine=window.YMRecordEngine;
+  const LEDGER_KEY='ym-v6-record-ledger';
+  const EVENTS_KEY='ym-v6-threshold-events';
+  const safeSession={
+    get(key,fallback){try{const raw=sessionStorage.getItem(key);return raw?JSON.parse(raw):fallback;}catch{return fallback;}},
+    set(key,value){try{sessionStorage.setItem(key,JSON.stringify(value));}catch{}}
+  };
+  let recordLedger=safeSession.get(LEDGER_KEY,[]).filter(x=>x&&x.recordSchema===RecordEngine.RECORD_SCHEMA).slice(-RecordEngine.MAX_RECORDS);
+  let thresholdEvents=safeSession.get(EVENTS_KEY,[]).slice(-RecordEngine.MAX_EVENTS);
+  let compareSelection={a:null,b:null};
   const precisionState={lab:0.001,spectrum:0.001,rg:0.001};
   const baselines={lab:null,spectrum:null,rg:null};
   const previousRegime={lab:null,spectrum:null,rg:null,composition:null};
@@ -1063,7 +1157,16 @@
     const root=document.getElementById(id); if(!root)return;
     root.querySelectorAll('[data-regime]').forEach(el=>el.classList.toggle('active',el.dataset.regime===key));
   }
+  function logThresholdTransition(scope,from,to){
+    if(!from || from===to)return;
+    thresholdEvents.push({at:new Date().toISOString(),scope,from,to});
+    thresholdEvents=thresholdEvents.slice(-RecordEngine.MAX_EVENTS);safeSession.set(EVENTS_KEY,thresholdEvents);
+    if(document.getElementById('recordDrawer')?.classList.contains('open')) renderRecordDrawer();
+  }
   function pulseRegime(scope,key,element){
+    if(previousRegime[scope] && previousRegime[scope]!==key){
+      logThresholdTransition(scope,previousRegime[scope],key);
+    }
     if(previousRegime[scope] && previousRegime[scope]!==key && element && !matchMedia('(prefers-reduced-motion: reduce)').matches){
       element.classList.remove('threshold-flash'); void element.offsetWidth; element.classList.add('threshold-flash');
       clearTimeout(element._pulseTimer); element._pulseTimer=setTimeout(()=>element.classList.remove('threshold-flash'),700);
@@ -1121,7 +1224,7 @@
     document.getElementById('langBtn').textContent=isEn()?'TR':'EN';
     document.getElementById('mathBtn').textContent=body.classList.contains('math-hidden')?L().mathOff:L().mathOn;
     document.getElementById('presentationBtn').textContent=body.classList.contains('presentation')?L().exitPresent:L().present;
-    renderDependencyAlternatives(); renderNode(); renderLab(); renderSpectrum(); renderRG(); renderFalsify(); typesetMath(); syncURL('replace');
+    renderDependencyAlternatives(); renderNode(); renderLab(); renderSpectrum(); renderRG(); renderFalsify(); renderRecordDrawer(); typesetMath(); syncURL('replace');
   });
   document.getElementById('mathBtn').addEventListener('click',()=>{
     body.classList.toggle('math-hidden');
@@ -1435,6 +1538,69 @@
   ['z','ec','epsR'].forEach(id=>document.getElementById(id).addEventListener('input',()=>{renderRG();syncURL('replace');}));
   document.getElementById('resetRG').addEventListener('click',()=>{document.getElementById('z').value=YMCore.RG_DEFAULTS.z;document.getElementById('ec').value=YMCore.RG_DEFAULTS.ec;document.getElementById('epsR').value=YMCore.RG_DEFAULTS.epsr;renderRG();syncURL('replace');});
 
+  function buildResearchRecord(scope){
+    const lab=labState();
+    const common={scenarioSchema:YMCore.SCENARIO_SCHEMA,contentRevision:YMCore.CONTENT_REVISION,language:isEn()?'en':'tr',scope:{openProblem:true,proofClaim:false,representation:'T0 illustrative/conditional model'}};
+    if(scope==='lab'){
+      const regime=Instrument.classifyLab({candidate:lab.net,gross:lab.gross,targetAvailable:!!lab.n[5]});
+      return RecordEngine.makeRecord({...common,instrument:'lab',modelVersion:YMCore.MODEL_VERSIONS.lab,epistemic:{class:'T0',representation:'conditional scalar audit',dependencies:['H1 reflection-back','H1 uniform coercivity']},assumptions:lab.c,inputs:{cg:lab.g,lambdaYM:lab.l,residual:lab.r},derived:{gross:lab.gross,candidate:lab.net,sign:lab.sign,targetAvailable:!!lab.n[5]},regime:{key:regime.key,tone:regime.tone,ratio:regime.ratio??null},selection:{node:currentNode,failure:currentF}});
+    }
+    if(scope==='spectrum'){
+      const epsilon=Number(document.getElementById('epsilon').value),suppliedDelta=Number(document.getElementById('delta').value),activeDelta=spectrumMode==='lab'?Math.max(0,lab.net):suppliedDelta;
+      const linkedBlocked=spectrumMode==='lab' && !lab.n[4],regime=Instrument.classifySpectrum(activeDelta,linkedBlocked),composition=Instrument.classifyComposition(epsilon);
+      return RecordEngine.makeRecord({...common,instrument:'spectrum',modelVersion:YMCore.MODEL_VERSIONS.spectrum,epistemic:{class:'T0',representation:'schematic spectral-support display',dependencies:spectrumMode==='lab'?['lab conditional quantity']:[]},assumptions:{normalizedMixture:true,orthogonalComponent:true,labLinkLicensed:!linkedBlocked},inputs:{epsilon,suppliedDelta,mode:spectrumMode},derived:{activeDelta,vacuumWeight:Math.max(0,1-epsilon*epsilon),orthogonalWeight:Math.min(1,epsilon*epsilon),composition:composition.key},regime:{key:regime.key,tone:regime.tone},selection:{node:currentNode}});
+    }
+    const rg=YMCore.evaluateRG({z:document.getElementById('z').value,ec:document.getElementById('ec').value,epsr:document.getElementById('epsR').value});
+    const gross=YMCore.toNumber(rg.derived.gross),defect=YMCore.toNumber(rg.derived.defect),net=YMCore.toNumber(rg.derived.net),reflectionLicensed=!!lab.n[3],regime=Instrument.classifyRG({net,gross,defect,reflectionLicensed});
+    return RecordEngine.makeRecord({...common,instrument:'rg',modelVersion:YMCore.MODEL_VERSIONS.rg,epistemic:{class:'T0',representation:'signed single-step transfer/defect budget',dependencies:['H1 reflection-back']},assumptions:{reflectionLicensed},inputs:{z:YMCore.toNumber(rg.inputs.z),coarseEnergy:YMCore.toNumber(rg.inputs.ec),epsilonR:YMCore.toNumber(rg.inputs.epsr)},derived:{gross,defect,net,sign:rg.derived.sign},regime:{key:regime.key,tone:regime.tone,ratio:regime.ratio??null},selection:{node:currentNode}});
+  }
+  function saveRecordLedger(){recordLedger=recordLedger.slice(-RecordEngine.MAX_RECORDS);safeSession.set(LEDGER_KEY,recordLedger);}
+  function captureResearchRecord(scope){
+    const record=buildResearchRecord(scope);recordLedger.push(record);saveRecordLedger();
+    if(!compareSelection.a)compareSelection.a=record.captureId;else if(!compareSelection.b && recordLedger.find(x=>x.captureId===compareSelection.a)?.instrument===record.instrument)compareSelection.b=record.captureId;
+    renderRecordDrawer();showToast(isEn()?`T0 record captured: ${record.id}`:`T0 kayıt yakalandı: ${record.id}`);openRecordDrawer(true);return record;
+  }
+  function openRecordDrawer(open=true){
+    const drawer=document.getElementById('recordDrawer'),backdrop=document.getElementById('recordDrawerBackdrop');
+    drawer.classList.toggle('open',open);backdrop.classList.toggle('open',open);drawer.setAttribute('aria-hidden',open?'false':'true');backdrop.setAttribute('aria-hidden',open?'false':'true');
+    if(open){renderRecordDrawer();setTimeout(()=>document.getElementById('closeRecordsBtn').focus(),0);}
+  }
+  function downloadJSON(filename,data){const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+  function recordById(id){return recordLedger.find(x=>x.captureId===id)||null;}
+  function renderRecordDrawer(){
+    const list=document.getElementById('recordList');if(!list)return;list.innerHTML='';document.getElementById('recordCount').textContent=`${recordLedger.length} / ${RecordEngine.MAX_RECORDS}`;
+    if(!recordLedger.length){const empty=document.createElement('div');empty.className='record-empty';empty.textContent=isEn()?'No experiment records captured in this session.':'Bu oturumda henüz deney kaydı yakalanmadı.';list.appendChild(empty);}
+    [...recordLedger].reverse().forEach(record=>{
+      const item=document.createElement('article');item.className='record-item';item.classList.toggle('selected-a',compareSelection.a===record.captureId);item.classList.toggle('selected-b',compareSelection.b===record.captureId);
+      const t=new Date(record.capturedAt);item.innerHTML=`<div class="record-item-head"><div><div class="record-item-id">${record.id}</div><div class="record-item-meta"><span class="record-pill">${record.instrument}</span><span class="record-pill">${record.regime?.key||'n/a'}</span><span class="record-pill">${record.epistemic?.class||'T0'}</span></div></div><time>${Number.isNaN(t.getTime())?'':t.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'})}</time></div><div class="record-item-actions"><button class="pick-a ${compareSelection.a===record.id?'active':''}" data-pick-a="${record.captureId}" type="button">A</button><button class="pick-b ${compareSelection.b===record.id?'active':''}" data-pick-b="${record.captureId}" type="button">B</button><button data-copy-record="${record.captureId}" type="button">${isEn()?'Copy':'Kopyala'}</button><button data-export-record="${record.captureId}" type="button">JSON</button><button data-delete-record="${record.captureId}" type="button">×</button></div>`;list.appendChild(item);
+    });
+    list.querySelectorAll('[data-pick-a]').forEach(b=>b.addEventListener('click',()=>{compareSelection.a=b.dataset.pickA;renderRecordDrawer();}));
+    list.querySelectorAll('[data-pick-b]').forEach(b=>b.addEventListener('click',()=>{compareSelection.b=b.dataset.pickB;renderRecordDrawer();}));
+    list.querySelectorAll('[data-copy-record]').forEach(b=>b.addEventListener('click',()=>copyText(RecordEngine.recordSummary(recordById(b.dataset.copyRecord),isEn()?'en':'tr'))));
+    list.querySelectorAll('[data-export-record]').forEach(b=>b.addEventListener('click',()=>{const r=recordById(b.dataset.exportRecord);if(r)downloadJSON(`${r.id}.json`,r);}));
+    list.querySelectorAll('[data-delete-record]').forEach(b=>b.addEventListener('click',()=>{const id=b.dataset.deleteRecord;recordLedger=recordLedger.filter(x=>x.captureId!==id);if(compareSelection.a===id)compareSelection.a=null;if(compareSelection.b===id)compareSelection.b=null;saveRecordLedger();renderRecordDrawer();}));
+    renderComparison();renderThresholdEvents();
+  }
+  function renderComparison(){
+    const a=recordById(compareSelection.a),b=recordById(compareSelection.b),bodyEl=document.getElementById('compareBody');document.getElementById('compareA').textContent=a?.id||'—';document.getElementById('compareB').textContent=b?.id||'—';bodyEl.innerHTML='';
+    const cmp=RecordEngine.compareRecords(a,b);if(!cmp.compatible){const n=document.createElement('div');n.className='compare-note';n.textContent=isEn()?'Select two records from the same instrument to compare.':'Karşılaştırmak için aynı araçtan iki kayıt seç.';bodyEl.appendChild(n);return;}
+    const regime=document.createElement('div');regime.className='compare-note';regime.innerHTML=`<strong>${isEn()?'Regime':'Rejim'}:</strong> ${cmp.regimeA||'n/a'} → ${cmp.regimeB||'n/a'}${cmp.regimeChanged?' · '+(isEn()?'threshold/regime changed':'eşik/rejim değişti'):''}`;bodyEl.appendChild(regime);
+    if(!cmp.changes.length&&!cmp.assumptionChanges.length){const n=document.createElement('div');n.className='compare-note';n.textContent=isEn()?'Canonical numeric/assumption state is unchanged.':'Kanonik sayısal/varsayım durumu değişmedi.';bodyEl.appendChild(n);}
+    cmp.changes.slice(0,12).forEach(c=>{const row=document.createElement('div');row.className='compare-row';const d=c.delta;row.innerHTML=`<code>${c.key}</code><span class="compare-a">${c.a??'—'}</span><span class="compare-b">${c.b??'—'}</span><strong class="compare-delta ${d>0?'pos':d<0?'neg':''}">${d==null?'—':`${d>0?'+':''}${Number(d.toPrecision(7))}`}</strong>`;bodyEl.appendChild(row);});
+    cmp.assumptionChanges.forEach(c=>{const row=document.createElement('div');row.className='compare-row';row.innerHTML=`<code>${c.key}</code><span>${c.a}</span><span>${c.b}</span><strong>state</strong>`;bodyEl.appendChild(row);});
+  }
+  function renderThresholdEvents(){const root=document.getElementById('thresholdEventLog');root.innerHTML='';document.getElementById('eventCount').textContent=String(thresholdEvents.length);if(!thresholdEvents.length){const n=document.createElement('div');n.className='record-empty';n.textContent=isEn()?'No regime crossing recorded yet.':'Henüz rejim geçişi kaydedilmedi.';root.appendChild(n);return;}[...thresholdEvents].reverse().slice(0,12).forEach(e=>{const d=document.createElement('div');d.className='event-item';const t=new Date(e.at);d.innerHTML=`<span class="event-time">${Number.isNaN(t.getTime())?'':t.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'})}</span><span class="event-text"><strong>${e.scope}</strong> · ${e.from} → ${e.to}</span>`;root.appendChild(d);});}
+
+  document.querySelectorAll('[data-capture-record]').forEach(btn=>btn.addEventListener('click',()=>captureResearchRecord(btn.dataset.captureRecord)));
+  document.getElementById('recordsBtn').addEventListener('click',()=>openRecordDrawer(true));
+  document.getElementById('closeRecordsBtn').addEventListener('click',()=>openRecordDrawer(false));
+  document.getElementById('recordDrawerBackdrop').addEventListener('click',()=>openRecordDrawer(false));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.getElementById('recordDrawer').classList.contains('open'))openRecordDrawer(false);});
+  document.getElementById('exportLedgerBtn').addEventListener('click',()=>downloadJSON('yang_mills_v6_session_ledger.json',{schema:RecordEngine.RECORD_SCHEMA,exportedAt:new Date().toISOString(),scientificStatus:'Open problem; T0 records; no proof claim.',records:recordLedger,thresholdEvents}));
+  document.getElementById('clearLedgerBtn').addEventListener('click',()=>{recordLedger=[];thresholdEvents=[];compareSelection={a:null,b:null};saveRecordLedger();safeSession.set(EVENTS_KEY,thresholdEvents);renderRecordDrawer();showToast(isEn()?'Local session ledger cleared.':'Yerel oturum kayıt defteri temizlendi.');});
+  document.getElementById('copyComparisonBtn').addEventListener('click',()=>copyText(RecordEngine.comparisonSummary(recordById(compareSelection.a),recordById(compareSelection.b),isEn()?'en':'tr')));
+  document.getElementById('copyReviewPacketBtn').addEventListener('click',()=>{const r=recordById(compareSelection.b)||recordById(compareSelection.a)||recordLedger[recordLedger.length-1];if(!r){showToast(isEn()?'Capture a record first.':'Önce bir kayıt yakala.');return;}const packet=[RecordEngine.recordSummary(r,isEn()?'en':'tr'),'','Review target: '+(r.selection?.node||'n/a'),'Repository scientific-review form: https://github.com/KayraMergen/yang-mills-mass-gap-interactive/issues/new?template=scientific-review.yml'].join('\n');copyText(packet);});
+
   document.querySelectorAll('[data-capture-baseline]').forEach(btn=>btn.addEventListener('click',()=>{
     const scope=btn.dataset.captureBaseline;
     if(scope==='lab'){const s=labState();baselines.lab={net:s.net,gross:s.gross};renderLab();}
@@ -1469,7 +1635,7 @@
   document.getElementById('exportBtn').addEventListener('click',()=>{
     const s=labState(),lang=isEn()?'EN':'TR';
     const report=[
-      'YANG–MILLS MASS GAP — INTERACTIVE RESEARCH CONSOLE v5.1.2',
+      'YANG–MILLS MASS GAP — INTERACTIVE RESEARCH CONSOLE v6.0.0',
       'Generated locally from current v6-foundation scenario state',
       '',
       `Language: ${lang}`,
@@ -1508,7 +1674,7 @@
 
 
   const initialScenario=loadURLState();
-  renderDependencyAlternatives();renderNode();renderLab();renderSpectrum();renderRG();renderFalsify();typesetMath();
+  renderDependencyAlternatives();renderNode();renderLab();renderSpectrum();renderRG();renderFalsify();renderRecordDrawer();typesetMath();
   const initialIndex=nav.findIndex(x=>x.dataset.view===initialScenario.view);
   switchView(initialIndex>=0?initialIndex:0,false,'none');
   document.getElementById('langBtn').textContent=isEn()?'TR':'EN';
@@ -1517,7 +1683,7 @@
   window.addEventListener('popstate',()=>{
     suppressURLSync=true;
     const restored=loadURLState();
-    renderDependencyAlternatives();renderNode();renderLab();renderSpectrum();renderRG();renderFalsify();typesetMath();
+    renderDependencyAlternatives();renderNode();renderLab();renderSpectrum();renderRG();renderFalsify();renderRecordDrawer();typesetMath();
     const idx=nav.findIndex(x=>x.dataset.view===restored.view);
     switchView(idx>=0?idx:0,false,'none');
     document.getElementById('langBtn').textContent=isEn()?'TR':'EN';
@@ -1526,5 +1692,6 @@
   });
 })();
 </script>
+<script src="assets/js/v6-analysis-ui.js"></script>
 </body>
 </html>
