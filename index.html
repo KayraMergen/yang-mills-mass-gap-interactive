@@ -8,6 +8,7 @@
   <meta property="og:description" content="Gauge invariance, RG, spektral gap ve varsayımsal geri-yansıtım lemması üzerine etkileşimli bilimsel anlatı." />
   <meta property="og:type" content="website" />
   <meta name="theme-color" content="#0a0d12" />
+  <meta name="application-name" content="Yang–Mills Proof Logic v3" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2311161f'/%3E%3Cpath d='M13 18h10l9 14 9-14h10L37 40v10H27V40z' fill='%2386b7ff'/%3E%3C/svg%3E" />
   <title>Yang–Mills Kütle Aralığı — Etkileşimli İspat Programı</title>
   <style>
@@ -136,6 +137,47 @@
     .rg-step{height:120px;border:1px solid var(--line);border-radius:12px;background:var(--panel3);display:flex;align-items:end;padding:6px}
     .rg-fill{width:100%;border-radius:8px;background:linear-gradient(180deg,var(--accent),rgba(134,183,255,.22));height:50%;transition:height .25s ease}
     .rg-step.active{border-color:var(--accent)}
+    .sim-layout{display:grid;grid-template-columns:.86fr 1.14fr;gap:18px}
+    .sim-controls{display:grid;gap:10px}
+    .assumption{
+      display:grid;grid-template-columns:auto 1fr;gap:11px;align-items:start;
+      border:1px solid var(--line);border-radius:14px;padding:13px;background:var(--panel2)
+    }
+    .assumption input{width:20px;height:20px;margin-top:2px;accent-color:var(--accent)}
+    .assumption .a-title{font-weight:760}
+    .assumption .a-desc{font-size:.84rem;color:var(--muted);margin-top:2px}
+    .preset-row{display:flex;flex-wrap:wrap;gap:7px;margin:13px 0 3px}
+    .sim-params{display:grid;gap:12px;margin-top:16px}
+    .logic-graph{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .logic-node{
+      position:relative;min-height:126px;border:1px solid var(--line);border-radius:15px;
+      padding:13px;background:var(--panel3);transition:.18s ease
+    }
+    .logic-node.ok{border-color:rgba(105,211,145,.58);background:rgba(105,211,145,.055)}
+    .logic-node.fail{border-color:rgba(255,127,134,.58);background:rgba(255,127,134,.055)}
+    .logic-node.wait{border-color:rgba(243,191,103,.5);background:rgba(243,191,103,.045)}
+    .logic-node .node-id{font-family:var(--mono);font-size:.76rem;color:var(--muted)}
+    .logic-node .node-title{font-weight:780;margin-top:3px}
+    .logic-node .node-state{font-size:.82rem;margin-top:8px}
+    .logic-node.ok .node-state{color:#a7efc1}
+    .logic-node.fail .node-state{color:#ffadb1}
+    .logic-node.wait .node-state{color:#ffd38a}
+    .logic-arrowline{
+      grid-column:1/-1;display:flex;align-items:center;gap:9px;color:var(--muted);font-size:.82rem;
+      padding:2px 4px
+    }
+    .logic-arrowline:before,.logic-arrowline:after{content:"";height:1px;background:var(--line);flex:1}
+    .sim-verdict{
+      margin-top:14px;border:1px solid var(--line);border-radius:16px;padding:16px;background:var(--panel2)
+    }
+    .sim-verdict.ok{border-color:rgba(105,211,145,.58)}
+    .sim-verdict.fail{border-color:rgba(255,127,134,.58)}
+    .sim-verdict.wait{border-color:rgba(243,191,103,.52)}
+    .verdict-title{font-size:1.12rem;font-weight:800}
+    .blockers{display:grid;gap:7px;margin-top:11px}
+    .blocker{padding:9px 11px;border-left:3px solid var(--red);background:rgba(255,127,134,.04);border-radius:0 10px 10px 0;font-size:.86rem}
+    .trace{margin-top:14px;border:1px solid var(--line);border-radius:14px;background:var(--panel3);padding:13px;font-family:var(--mono);font-size:.82rem;line-height:1.65;white-space:pre-wrap}
+    .sim-note{font-size:.82rem;color:var(--muted);margin-top:11px}
     .falsify-list{display:grid;gap:10px}
     .falsify-btn{text-align:left;color:var(--text);background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:15px}
     .falsify-btn.active{border-color:var(--red);background:rgba(255,127,134,.07)}
@@ -165,8 +207,8 @@
     body:not(.lang-en) [data-lang="en"]{display:none!important}
     .kbd{font-family:var(--mono);border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;padding:1px 6px;font-size:.78rem}
     @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
-    @media (max-width:900px){.hero,.step-layout,.grid2{grid-template-columns:1fr}.grid3{grid-template-columns:1fr}.metric-grid{grid-template-columns:1fr}.presenting .status-grid{grid-template-columns:1fr}.hero-card{padding:25px}.bridge-row{grid-template-columns:1fr}.bridge-arrow{transform:rotate(90deg)}}
-    @media (max-width:640px){.wrap{width:min(100% - 18px,1200px)}.nav{align-items:flex-start;padding:10px 0}.brand-text{display:none}.nav-actions{gap:6px}.btn{padding:7px 9px}.card{padding:17px}.hero-card{padding:21px}main{padding-top:24px}.tabs{display:grid;grid-template-columns:1fr 1fr}.tab{width:100%}.rg-track{grid-template-columns:repeat(7,72px);overflow:auto}.tourbox{left:9px;right:9px;max-width:none}}
+    @media (max-width:900px){.hero,.step-layout,.grid2,.sim-layout{grid-template-columns:1fr}.logic-graph{grid-template-columns:1fr 1fr}.grid3{grid-template-columns:1fr}.metric-grid{grid-template-columns:1fr}.presenting .status-grid{grid-template-columns:1fr}.hero-card{padding:25px}.bridge-row{grid-template-columns:1fr}.bridge-arrow{transform:rotate(90deg)}}
+    @media (max-width:640px){.logic-graph{grid-template-columns:1fr}.wrap{width:min(100% - 18px,1200px)}.nav{align-items:flex-start;padding:10px 0}.brand-text{display:none}.nav-actions{gap:6px}.btn{padding:7px 9px}.card{padding:17px}.hero-card{padding:21px}main{padding-top:24px}.tabs{display:grid;grid-template-columns:1fr 1fr}.tab{width:100%}.rg-track{grid-template-columns:repeat(7,72px);overflow:auto}.tourbox{left:9px;right:9px;max-width:none}}
     @media print{header,.tabs,.section-progress,.nav-actions,.btn,.tourbox{display:none!important}body{background:white;color:#111}.card{box-shadow:none;background:white;border-color:#ccc}.muted{color:#555}.view{display:block!important;break-inside:avoid}.equation,.metric,.spectrum,.gauge-stage,.bridge-box{background:white;color:#111}.flow-node{background:white}.wrap{width:100%}main{padding:0}}
   </style>
 </head>
@@ -226,6 +268,7 @@
 
   <nav class="tabs" aria-label="Uygulama bölümleri">
     <button class="tab active" type="button" data-view="chain"><span data-lang="tr">İspat zinciri</span><span data-lang="en">Proof chain</span></button>
+    <button class="tab" type="button" data-view="sim"><span data-lang="tr">Mantık simülatörü</span><span data-lang="en">Logic simulator</span></button>
     <button class="tab" type="button" data-view="gauge"><span data-lang="tr">Gauge laboratuvarı</span><span data-lang="en">Gauge lab</span></button>
     <button class="tab" type="button" data-view="spectrum"><span data-lang="tr">Spektrum laboratuvarı</span><span data-lang="en">Spectrum lab</span></button>
     <button class="tab" type="button" data-view="bridge"><span data-lang="tr">Λ → gap köprüsü</span><span data-lang="en">Λ → gap bridge</span></button>
@@ -268,6 +311,109 @@
           <div class="flow-node"><b>Continuum</b><span class="small muted">Spec(H) ∩ (0,Δ)=∅</span></div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="view" id="view-sim">
+    <div class="sim-layout">
+      <article class="card">
+        <h2 data-lang="tr">Varsayımsal ispat mantığı simülatörü</h2>
+        <h2 data-lang="en">Hypothetical proof-logic simulator</h2>
+        <p class="muted small" data-lang="tr">Bu bir fizik simülasyonu veya kanıt değildir. Kaynak sunumdaki ispat zincirini mantıksal bağımlılıklar hâlinde oynatır: hangi varsayım düşerse hangi sonuç artık çıkarılamıyor?</p>
+        <p class="muted small" data-lang="en">This is neither a physics simulation nor a proof. It turns the proof chain in the source presentation into logical dependencies: if an assumption fails, which conclusions are no longer licensed?</p>
+
+        <div class="preset-row">
+          <button class="mini-btn active proof-preset" type="button" data-preset="intact"><span data-lang="tr">Zincir sağlam</span><span data-lang="en">Chain intact</span></button>
+          <button class="mini-btn proof-preset" type="button" data-preset="rgfail"><span data-lang="tr">RG modu gizliyor</span><span data-lang="en">RG hides mode</span></button>
+          <button class="mini-btn proof-preset" type="button" data-preset="collapse"><span data-lang="tr">Continuum gap çöküyor</span><span data-lang="en">Gap collapses</span></button>
+          <button class="mini-btn proof-preset" type="button" data-preset="gaugefail"><span data-lang="tr">Gauge artefaktı</span><span data-lang="en">Gauge artefact</span></button>
+          <button class="mini-btn proof-preset" type="button" data-preset="osfail"><span data-lang="tr">OS başarısız</span><span data-lang="en">OS fails</span></button>
+          <button class="mini-btn proof-preset" type="button" data-preset="bridgezero"><span data-lang="tr">Λ var, köprü yok</span><span data-lang="en">Λ, no bridge</span></button>
+        </div>
+
+        <div class="sim-controls" id="proofAssumptions" style="margin-top:14px">
+          <label class="assumption">
+            <input type="checkbox" id="aGauge" checked>
+            <span><span class="a-title">A1 — <span data-lang="tr">Gauge-indirgenmiş fiziksel sektör</span><span data-lang="en">Gauge-reduced physical sector</span></span>
+            <span class="a-desc" data-lang="tr">Gauge tekrarları fiziksel spektrumdan ayrılabiliyor; ℋ_phys ve Ω anlamlı.</span>
+            <span class="a-desc" data-lang="en">Gauge redundancy is separated from the physical spectrum; ℋ_phys and Ω are meaningful.</span></span>
+          </label>
+          <label class="assumption">
+            <input type="checkbox" id="aScale" checked>
+            <span><span class="a-title">A2 — Λ<sub>YM</sub> &gt; 0</span>
+            <span class="a-desc" data-lang="tr">Renormalizasyon akışından pozitif dinamik ölçek mevcut.</span>
+            <span class="a-desc" data-lang="en">A positive dynamical scale is available from the renormalization flow.</span></span>
+          </label>
+          <label class="assumption">
+            <input type="checkbox" id="aCoarse" checked>
+            <span><span class="a-title">A3 — <span data-lang="tr">Kaba-ölçek fiziksel gap</span><span data-lang="en">Coarse-scale physical gap</span></span>
+            <span class="a-desc" data-lang="tr">Gauge-invariant transfer operatöründe başlangıç gap girdisi var.</span>
+            <span class="a-desc" data-lang="en">A starting gap input exists for a gauge-invariant transfer operator.</span></span>
+          </label>
+          <label class="assumption">
+            <input type="checkbox" id="aReflect" checked>
+            <span><span class="a-title">A4 — <span data-lang="tr">RG geri-yansıtımı</span><span data-lang="en">RG reflection-back</span></span>
+            <span class="a-desc" data-lang="tr">Coarse-graining, ince ölçekteki düşük enerjili fiziksel modu örtemiyor.</span>
+            <span class="a-desc" data-lang="en">Coarse-graining cannot hide a low-energy physical mode at fine scale.</span></span>
+          </label>
+          <label class="assumption">
+            <input type="checkbox" id="aUniform" checked>
+            <span><span class="a-title">A5 — <span data-lang="tr">Uniform koersivite / kusur kontrolü</span><span data-lang="en">Uniform coercivity / defect control</span></span>
+            <span class="a-desc" data-lang="tr">r(a,L) ve RG kusurları continuum limitinde pozitif alt sınırı yok etmiyor.</span>
+            <span class="a-desc" data-lang="en">r(a,L) and RG defects do not erase the positive lower bound in the continuum limit.</span></span>
+          </label>
+          <label class="assumption">
+            <input type="checkbox" id="aOS" checked>
+            <span><span class="a-title">A6 — <span data-lang="tr">Continuum + OS yeniden-kurma</span><span data-lang="en">Continuum + OS reconstruction</span></span>
+            <span class="a-desc" data-lang="tr">Limit teori, locality/reflection positivity ile ℋ_phys, Ω ve H'yi veriyor.</span>
+            <span class="a-desc" data-lang="en">The limit theory yields ℋ_phys, Ω and H with locality/reflection positivity.</span></span>
+          </label>
+        </div>
+
+        <div class="sim-params">
+          <div>
+            <label for="simCG">C<sub>G</sub> — <span data-lang="tr">varsayımsal koersivite katsayısı</span><span data-lang="en">hypothetical coercivity coefficient</span></label>
+            <div class="range-row"><input id="simCG" type="range" min="0" max="1.2" value="0.65" step="0.01"><output id="simCGOut">0.65</output></div>
+          </div>
+          <div>
+            <label for="simLambda">Λ<sub>YM</sub> — <span data-lang="tr">normalize edilmiş ölçek</span><span data-lang="en">normalized scale</span></label>
+            <div class="range-row"><input id="simLambda" type="range" min="0" max="1.5" value="1.00" step="0.01"><output id="simLambdaOut">1.00</output></div>
+          </div>
+          <div>
+            <label for="simResidual">r(a,L) — <span data-lang="tr">normalize edilmiş artık/kusur bütçesi</span><span data-lang="en">normalized residual/defect budget</span></label>
+            <div class="range-row"><input id="simResidual" type="range" min="0" max="1.2" value="0.12" step="0.01"><output id="simResidualOut">0.12</output></div>
+          </div>
+        </div>
+        <p class="sim-note" data-lang="tr">Sayısal değerler fiziksel tahmin değildir; yalnızca sunumdaki <span class="math-block">c<sub>G</sub>Λ<sub>YM</sub>−r(a,L)</span> yapısının mantıksal rolünü görünür kılar.</p>
+        <p class="sim-note" data-lang="en">The numerical values are not physical estimates; they only expose the logical role of <span class="math-block">c<sub>G</sub>Λ<sub>YM</sub>−r(a,L)</span> from the presentation.</p>
+      </article>
+
+      <article class="card">
+        <h2 data-lang="tr">Bağımlılık grafiği</h2><h2 data-lang="en">Dependency graph</h2>
+        <div class="logic-graph" id="logicGraph" style="margin-top:14px">
+          <div class="logic-node" data-node="n1"><div class="node-id">N1</div><div class="node-title" data-lang="tr">Fiziksel sektör</div><div class="node-title" data-lang="en">Physical sector</div><div class="node-state"></div></div>
+          <div class="logic-node" data-node="n2"><div class="node-id">N2</div><div class="node-title">Λ<sub>YM</sub> &gt; 0</div><div class="node-state"></div></div>
+          <div class="logic-node" data-node="n3"><div class="node-id">N3</div><div class="node-title" data-lang="tr">Kaba gap + köprü</div><div class="node-title" data-lang="en">Coarse gap + bridge</div><div class="node-state"></div></div>
+          <div class="logic-arrowline"><span data-lang="tr">RG boyunca geri-yansıtım ve uniform taşıma</span><span data-lang="en">Reflection-back and uniform transfer across RG</span></div>
+          <div class="logic-node" data-node="n4"><div class="node-id">N4</div><div class="node-title" data-lang="tr">RG fiziksel engeli örtemiyor</div><div class="node-title" data-lang="en">RG cannot hide physical obstruction</div><div class="node-state"></div></div>
+          <div class="logic-node" data-node="n5"><div class="node-id">N5</div><div class="node-title" data-lang="tr">Uniform pozitif alt sınır</div><div class="node-title" data-lang="en">Uniform positive lower bound</div><div class="node-state"></div></div>
+          <div class="logic-node" data-node="n6"><div class="node-id">N6</div><div class="node-title" data-lang="tr">Continuum spektral gap</div><div class="node-title" data-lang="en">Continuum spectral gap</div><div class="node-state"></div></div>
+        </div>
+
+        <div class="metric-grid">
+          <div class="metric"><span class="small muted">C<sub>G</sub>Λ<sub>YM</sub></span><b id="simGross">0.65</b></div>
+          <div class="metric"><span class="small muted">r(a,L)</span><b id="simLoss">0.12</b></div>
+          <div class="metric"><span class="small muted" data-lang="tr">Aday alt sınır</span><span class="small muted" data-lang="en">Candidate bound</span><b id="simNet">0.53</b></div>
+        </div>
+
+        <div class="sim-verdict" id="simVerdict">
+          <div class="verdict-title" id="simVerdictTitle"></div>
+          <div class="small muted" id="simVerdictBody" style="margin-top:5px"></div>
+          <div class="blockers" id="simBlockers"></div>
+        </div>
+
+        <div class="trace" id="simTrace"></div>
+      </article>
     </div>
   </section>
 
@@ -468,8 +614,8 @@
   </section>
 
   <footer>
-    <div data-lang="tr">Tek dosyalık bağımsız web uygulaması • Sunum içeriğinden türetilmiştir • JavaScript yalnızca yerel etkileşimler için kullanılır.</div>
-    <div data-lang="en">Single-file standalone web app • Derived from the presentation • JavaScript is used only for local interactions.</div>
+    <div data-lang="tr">v3 • Tek dosyalık bağımsız web uygulaması • Sunum içeriğinden türetilmiştir • JavaScript yalnızca yerel etkileşimler için kullanılır.</div>
+    <div data-lang="en">v3 • Single-file standalone web app • Derived from the presentation • JavaScript is used only for local interactions.</div>
     <div style="margin-top:8px" class="small">
       <span data-lang="tr">Kısayollar: <span class="kbd">←</span> <span class="kbd">→</span> bölüm değiştirir.</span>
       <span data-lang="en">Shortcuts: <span class="kbd">←</span> <span class="kbd">→</span> change sections.</span>
@@ -511,7 +657,10 @@
     bridgeGood:(v)=>`κ > 0 olduğunda oyuncak köprü Δ ≥ κΛ biçiminde pozitif bir alt sınır üretiyor: ${v.toFixed(2)}. Gerçek problemde κ'nın pozitif ve uniform olması kanıtlanmalıdır.`,
     bridgeZero:'Λ pozitif olsa bile κ = 0 ise bu oyuncak modelde gap alt sınırı sıfırdır. Bu, “ölçek var” ⇒ “gap var” çıkarımının otomatik olmadığını gösterir.',
     rgGood:(v)=>`Net alt sınır ${v.toFixed(2)} > 0. Oyuncak model koersivite mantığını koruyor; gerçek teori için RG adımları boyunca uniform kontrol gerekir.`,
-    rgBad:(v)=>`Net alt sınır ${v.toFixed(2)} ≤ 0. Kusur terimi alt sınırı yok ediyor; oyuncak model pozitif koersiviteyi koruyamıyor.`
+    rgBad:(v)=>`Net alt sınır ${v.toFixed(2)} ≤ 0. Kusur terimi alt sınırı yok ediyor; oyuncak model pozitif koersiviteyi koruyamıyor.`,
+    simOk:(v)=>`Zincir bu oyuncak mantık modelinde kapanıyor. Aday continuum alt sınırı ${v.toFixed(2)} > 0.`,
+    simBroken:'Zincir kırık: hedef spektral sonuç bu varsayımlar altında çıkarılamıyor.',
+    simIncomplete:'Sayısal alt sınır pozitif görünse bile mantıksal ispat yükümlülüklerinden en az biri eksik.'
   };
   const en={
     copied:'Link copied to clipboard.',
@@ -524,7 +673,10 @@
     bridgeGood:(v)=>`For κ > 0, the toy bridge produces a positive bound Δ ≥ κΛ = ${v.toFixed(2)}. In the real problem, positivity and uniformity of κ must be proved.`,
     bridgeZero:'Even with Λ > 0, κ = 0 gives zero gap bound in this toy model. This shows why “a scale exists” does not automatically imply “a gap exists.”',
     rgGood:(v)=>`The net lower bound is ${v.toFixed(2)} > 0. The toy model preserves the coercivity logic; the real theory needs uniform control across RG steps.`,
-    rgBad:(v)=>`The net lower bound is ${v.toFixed(2)} ≤ 0. The defect term destroys the bound, so the toy model no longer preserves positive coercivity.`
+    rgBad:(v)=>`The net lower bound is ${v.toFixed(2)} ≤ 0. The defect term destroys the bound, so the toy model no longer preserves positive coercivity.`,
+    simOk:(v)=>`The chain closes in this toy logic model. The candidate continuum lower bound is ${v.toFixed(2)} > 0.`,
+    simBroken:'The chain is broken: the target spectral conclusion is not licensed under these assumptions.',
+    simIncomplete:'The numerical bound may look positive, but at least one logical proof obligation is missing.'
   };
   const L=()=>body.classList.contains('lang-en')?en:tr;
   const langObj=o=>body.classList.contains('lang-en')?o.en:o.tr;
@@ -549,13 +701,14 @@
 
   const tourData=[
     {view:0,tr:{t:'1. Problemi doğru yere koy',b:'İlk hedef “kütle nereden geliyor?” değil; vakum-ortogonal fiziksel spektrumda pozitif alt sınır kurmak.'},en:{t:'1. Put the problem in the right place',b:'The first target is not “where mass comes from,” but a positive lower bound in the vacuum-orthogonal physical spectrum.'}},
-    {view:1,tr:{t:'2. Gauge tekrarını fiziksel farktan ayır',b:'Ham konfigürasyon uzayındaki her hareket fiziksel değildir. Gauge laboratuvarında bunu doğrudan gör.'},en:{t:'2. Separate gauge redundancy from physical difference',b:'Not every motion in raw configuration space is physical. The gauge lab makes this distinction explicit.'}},
-    {view:2,tr:{t:'3. Norm yakınlığı ile spektral gap’i karıştırma',b:'Bir durum vakuma normca yaklaşabilir; gap vakum-ortogonal spektral destekte aranır.'},en:{t:'3. Do not confuse norm closeness with a spectral gap',b:'A state can be norm-close to the vacuum; the gap is sought in the vacuum-orthogonal spectral support.'}},
-    {view:3,tr:{t:'4. Λ tek başına yetmez',b:'Dinamik ölçek üretimi ile pozitif spektral alt sınır arasında ayrıca bir koersivite köprüsü gerekir.'},en:{t:'4. Λ alone is not enough',b:'A separate coercivity bridge is needed between dynamical scale generation and a positive spectral lower bound.'}},
-    {view:4,tr:{t:'5. En riskli yeni halka: RG geri-yansıtımı',b:'Coarse-graining düşük enerjili fiziksel modu gizleyememeli; programın varsayımsal yeniliği burada.'},en:{t:'5. Riskiest new link: RG reflection-back',b:'Coarse-graining must not hide a low-energy physical mode; this is the hypothetical novelty of the program.'}},
-    {view:5,tr:{t:'6. İspat borçlarını kapat',b:'Varlık, fiziksel sektör, uniform limit ve OS yeniden-kurma birlikte tamamlanmadan çözüm yok.'},en:{t:'6. Close the proof debts',b:'There is no solution until existence, the physical sector, uniform limits and OS reconstruction are all secured.'}},
-    {view:6,tr:{t:'7. Programı çürütülebilir tut',b:'Gerçek bir araştırma programı hangi durumda çökeceğini açıkça söylemelidir.'},en:{t:'7. Keep the program falsifiable',b:'A real research program must state clearly what would make it fail.'}},
-    {view:7,tr:{t:'8. Statüyü unutma',b:'Bu çalışma Milenyum Problemini çözmüş olduğunu iddia etmiyor; teknik hedefleri açık bir varsayımsal program sunuyor.'},en:{t:'8. Keep the status explicit',b:'This work does not claim to solve the Millennium Problem; it presents a hypothetical program with explicit technical targets.'}}
+    {view:1,tr:{t:'3. Zinciri boz ve sonucu izle',b:'Mantık simülatöründe varsayımları kapat veya artık terimini büyüt. Hangi halkanın continuum gap sonucunu engellediğini canlı gör.'},en:{t:'3. Break the chain and watch the consequence',b:'In the logic simulator, disable assumptions or enlarge the residual term. See which link blocks the continuum-gap conclusion.'}},
+    {view:2,tr:{t:'3. Gauge tekrarını fiziksel farktan ayır',b:'Ham konfigürasyon uzayındaki her hareket fiziksel değildir. Gauge laboratuvarında bunu doğrudan gör.'},en:{t:'3. Separate gauge redundancy from physical difference',b:'Not every motion in raw configuration space is physical. The gauge lab makes this distinction explicit.'}},
+    {view:3,tr:{t:'4. Norm yakınlığı ile spektral gap’i karıştırma',b:'Bir durum vakuma normca yaklaşabilir; gap vakum-ortogonal spektral destekte aranır.'},en:{t:'4. Do not confuse norm closeness with a spectral gap',b:'A state can be norm-close to the vacuum; the gap is sought in the vacuum-orthogonal spectral support.'}},
+    {view:4,tr:{t:'5. Λ tek başına yetmez',b:'Dinamik ölçek üretimi ile pozitif spektral alt sınır arasında ayrıca bir koersivite köprüsü gerekir.'},en:{t:'5. Λ alone is not enough',b:'A separate coercivity bridge is needed between dynamical scale generation and a positive spectral lower bound.'}},
+    {view:5,tr:{t:'6. En riskli yeni halka: RG geri-yansıtımı',b:'Coarse-graining düşük enerjili fiziksel modu gizleyememeli; programın varsayımsal yeniliği burada.'},en:{t:'6. Riskiest new link: RG reflection-back',b:'Coarse-graining must not hide a low-energy physical mode; this is the hypothetical novelty of the program.'}},
+    {view:6,tr:{t:'7. İspat borçlarını kapat',b:'Varlık, fiziksel sektör, uniform limit ve OS yeniden-kurma birlikte tamamlanmadan çözüm yok.'},en:{t:'7. Close the proof debts',b:'There is no solution until existence, the physical sector, uniform limits and OS reconstruction are all secured.'}},
+    {view:7,tr:{t:'8. Programı çürütülebilir tut',b:'Gerçek bir araştırma programı hangi durumda çökeceğini açıkça söylemelidir.'},en:{t:'8. Keep the program falsifiable',b:'A real research program must state clearly what would make it fail.'}},
+    {view:8,tr:{t:'9. Statüyü unutma',b:'Bu çalışma Milenyum Problemini çözmüş olduğunu iddia etmiyor; teknik hedefleri açık bir varsayımsal program sunuyor.'},en:{t:'9. Keep the status explicit',b:'This work does not claim to solve the Millennium Problem; it presents a hypothetical program with explicit technical targets.'}}
   ];
 
   function renderProgress(){
@@ -578,12 +731,129 @@
   tabs.forEach((t,i)=>t.addEventListener('click',()=>switchView(i)));
 
   document.getElementById('langBtn').addEventListener('click',()=>{
-    body.classList.toggle('lang-en');document.documentElement.lang=body.classList.contains('lang-en')?'en':'tr';document.getElementById('langBtn').textContent=body.classList.contains('lang-en')?'TR':'EN';renderSteps();renderStepDetail();renderFalsify();updateGauge();updateEpsilon();updateDelta();updateBridge();updateRG();renderTour();document.getElementById('mathBtn').textContent=body.classList.contains('math-hidden')?L().mathOff:L().mathOn;document.getElementById('presentBtn').textContent=body.classList.contains('presenting')?L().exitPresent:L().present;
+    body.classList.toggle('lang-en');document.documentElement.lang=body.classList.contains('lang-en')?'en':'tr';document.getElementById('langBtn').textContent=body.classList.contains('lang-en')?'TR':'EN';renderSteps();renderStepDetail();renderFalsify();renderProofSim();updateGauge();updateEpsilon();updateDelta();updateBridge();updateRG();renderTour();document.getElementById('mathBtn').textContent=body.classList.contains('math-hidden')?L().mathOff:L().mathOn;document.getElementById('presentBtn').textContent=body.classList.contains('presenting')?L().exitPresent:L().present;
   });
   document.getElementById('mathBtn').addEventListener('click',()=>{body.classList.toggle('math-hidden');document.getElementById('mathBtn').textContent=body.classList.contains('math-hidden')?L().mathOff:L().mathOn;});
   document.getElementById('presentBtn').addEventListener('click',()=>{body.classList.toggle('presenting');document.getElementById('presentBtn').textContent=body.classList.contains('presenting')?L().exitPresent:L().present;});
   document.getElementById('shareBtn').addEventListener('click',async()=>{const data={title:document.title,text:document.querySelector('.lead [data-lang="'+(body.classList.contains('lang-en')?'en':'tr')+'"]').textContent,url:location.href};try{if(navigator.share)await navigator.share(data);else if(navigator.clipboard){await navigator.clipboard.writeText(location.href);showToast(L().copied);}else showToast(L().shareUnavailable);}catch(e){if(e&&e.name!=='AbortError')showToast(L().shareUnavailable);}});
-  document.getElementById('jumpLabsBtn').addEventListener('click',()=>switchView(1));
+  document.getElementById('jumpLabsBtn').addEventListener('click',()=>switchView(2));
+
+  const proofIds=['aGauge','aScale','aCoarse','aReflect','aUniform','aOS'];
+  const proofPresets={
+    intact:{checks:[1,1,1,1,1,1],cG:.65,lambda:1.00,residual:.12},
+    rgfail:{checks:[1,1,1,0,1,1],cG:.65,lambda:1.00,residual:.12},
+    collapse:{checks:[1,1,1,1,1,1],cG:.65,lambda:1.00,residual:.72},
+    gaugefail:{checks:[0,1,1,1,1,1],cG:.65,lambda:1.00,residual:.12},
+    osfail:{checks:[1,1,1,1,1,0],cG:.65,lambda:1.00,residual:.12},
+    bridgezero:{checks:[1,1,1,1,1,1],cG:0,lambda:1.00,residual:0}
+  };
+  function proofState(){
+    const a=Object.fromEntries(proofIds.map(id=>[id,document.getElementById(id).checked]));
+    const cG=Number(document.getElementById('simCG').value),lam=Number(document.getElementById('simLambda').value),r=Number(document.getElementById('simResidual').value);
+    const gross=cG*lam,net=gross-r;
+    const n1=a.aGauge;
+    const n2=a.aScale && lam>0;
+    const n3=n1 && n2 && a.aCoarse && cG>0 && gross>0;
+    const n4=n3 && a.aReflect;
+    const n5=n4 && a.aUniform && net>0;
+    const n6=n5 && a.aOS;
+    return {a,cG,lam,r,gross,net,n:[n1,n2,n3,n4,n5,n6]};
+  }
+  function renderProofSim(){
+    const s=proofState(),isEn=body.classList.contains('lang-en');
+    document.getElementById('simCGOut').value=s.cG.toFixed(2);
+    document.getElementById('simLambdaOut').value=s.lam.toFixed(2);
+    document.getElementById('simResidualOut').value=s.r.toFixed(2);
+    document.getElementById('simGross').textContent=s.gross.toFixed(2);
+    document.getElementById('simLoss').textContent=s.r.toFixed(2);
+    document.getElementById('simNet').textContent=s.net.toFixed(2);
+
+    const failReasonsTR=[
+      !s.a.aGauge?'A1: fiziksel sektör/gauge indirgeme yok.':null,
+      (!s.a.aScale || s.lam<=0)?'A2: pozitif Λ_YM girdisi yok.':null,
+      !s.a.aCoarse?'A3: kaba-ölçek fiziksel gap girdisi yok.':null,
+      s.cG<=0?'Koersivite katsayısı C_G pozitif değil; Λ ile gap arasında köprü kurulamadı.':null,
+      !s.a.aReflect?'A4: RG geri-yansıtım lemması yok; coarse-graining gizli düşük enerjili modu örtebilir.':null,
+      !s.a.aUniform?'A5: uniform kusur/koersivite kontrolü yok.':null,
+      s.net<=0?`c_GΛ_YM−r(a,L) = ${s.net.toFixed(2)} ≤ 0; aday alt sınır continuum'a pozitif taşınmıyor.`:null,
+      !s.a.aOS?'A6: continuum + OS yeniden-kurma yok.':null
+    ].filter(Boolean);
+    const failReasonsEN=[
+      !s.a.aGauge?'A1: no physical-sector / gauge-reduction construction.':null,
+      (!s.a.aScale || s.lam<=0)?'A2: no positive Λ_YM input.':null,
+      !s.a.aCoarse?'A3: no coarse-scale physical gap input.':null,
+      s.cG<=0?'The coercivity coefficient C_G is not positive; there is no bridge from Λ to the gap.':null,
+      !s.a.aReflect?'A4: no RG reflection-back lemma; coarse-graining may hide a low-energy mode.':null,
+      !s.a.aUniform?'A5: no uniform defect/coercivity control.':null,
+      s.net<=0?`c_GΛ_YM−r(a,L) = ${s.net.toFixed(2)} ≤ 0; the candidate lower bound does not remain positive.`:null,
+      !s.a.aOS?'A6: no continuum + OS reconstruction.':null
+    ].filter(Boolean);
+    const reasons=isEn?failReasonsEN:failReasonsTR;
+
+    const nodeLabelsTR=['fiziksel sektör kuruldu','pozitif ölçek mevcut','kaba gap + koersivite köprüsü','RG geri-yansıtımı geçiyor','uniform pozitif alt sınır','continuum gap sonucu lisanslı'];
+    const nodeLabelsEN=['physical sector constructed','positive scale available','coarse gap + coercivity bridge','RG reflection-back passes','uniform positive lower bound','continuum gap conclusion licensed'];
+    const nodeLabels=isEn?nodeLabelsEN:nodeLabelsTR;
+
+    [...document.querySelectorAll('.logic-node')].forEach((el,i)=>{
+      const ok=s.n[i];
+      let blocked=false;
+      if(i>0 && !s.n[i] && s.n.slice(0,i).some(v=>!v)) blocked=true;
+      el.classList.remove('ok','fail','wait');
+      el.classList.add(ok?'ok':(blocked?'wait':'fail'));
+      const state=el.querySelector('.node-state');
+      state.textContent=ok?(isEn?'✓ available':'✓ kullanılabilir'):(blocked?(isEn?'… upstream broken':'… önceki halka kırık'):(isEn?'✕ failed':'✕ başarısız'));
+      el.title=nodeLabels[i];
+    });
+
+    const verdict=document.getElementById('simVerdict'),title=document.getElementById('simVerdictTitle'),bodyEl=document.getElementById('simVerdictBody'),blockers=document.getElementById('simBlockers');
+    verdict.classList.remove('ok','fail','wait');
+    blockers.innerHTML='';
+    if(s.n[5]){
+      verdict.classList.add('ok');
+      title.textContent=isEn?'Chain closes in the toy logic model':'Oyuncak mantık modelinde zincir kapanıyor';
+      bodyEl.textContent=L().simOk(s.net);
+    }else{
+      verdict.classList.add(reasons.length?'fail':'wait');
+      title.textContent=isEn?'Target conclusion unavailable':'Hedef sonuç çıkarılamıyor';
+      bodyEl.textContent=reasons.length?L().simBroken:L().simIncomplete;
+      reasons.slice(0,5).forEach(txt=>{const d=document.createElement('div');d.className='blocker';d.textContent=txt;blockers.appendChild(d);});
+    }
+
+    const yn=x=>x?(isEn?'YES':'EVET'):(isEn?'NO':'HAYIR');
+    const traceTR=[
+      `N1 fiziksel sektör       = ${yn(s.n[0])}`,
+      `N2 Λ_YM > 0             = ${yn(s.n[1])}`,
+      `C_G Λ_YM                = ${s.gross.toFixed(2)}`,
+      `N3 kaba gap + köprü      = ${yn(s.n[2])}`,
+      `N4 RG geri-yansıtımı     = ${yn(s.n[3])}`,
+      `C_GΛ_YM - r(a,L)         = ${s.net.toFixed(2)}`,
+      `N5 uniform koersivite    = ${yn(s.n[4])}`,
+      `N6 continuum + OS        = ${yn(s.n[5])}`,
+      ``,
+      s.n[5]?`⇒ Spec(H) ∩ (0, ${s.net.toFixed(2)}) = ∅  [OYUNCAK MANTIK ÇIKTISI]`:`⇒ Continuum spektral gap sonucu lisanslanmadı.`
+    ];
+    const traceEN=[
+      `N1 physical sector       = ${yn(s.n[0])}`,
+      `N2 Λ_YM > 0             = ${yn(s.n[1])}`,
+      `C_G Λ_YM                = ${s.gross.toFixed(2)}`,
+      `N3 coarse gap + bridge   = ${yn(s.n[2])}`,
+      `N4 RG reflection-back    = ${yn(s.n[3])}`,
+      `C_GΛ_YM - r(a,L)         = ${s.net.toFixed(2)}`,
+      `N5 uniform coercivity    = ${yn(s.n[4])}`,
+      `N6 continuum + OS        = ${yn(s.n[5])}`,
+      ``,
+      s.n[5]?`⇒ Spec(H) ∩ (0, ${s.net.toFixed(2)}) = ∅  [TOY LOGIC OUTPUT]`:`⇒ Continuum spectral-gap conclusion is not licensed.`
+    ];
+    document.getElementById('simTrace').textContent=(isEn?traceEN:traceTR).join('\n');
+  }
+  proofIds.forEach(id=>document.getElementById(id).addEventListener('change',()=>{document.querySelectorAll('.proof-preset').forEach(b=>b.classList.remove('active'));renderProofSim();}));
+  ['simCG','simLambda','simResidual'].forEach(id=>document.getElementById(id).addEventListener('input',()=>{document.querySelectorAll('.proof-preset').forEach(b=>b.classList.remove('active'));renderProofSim();}));
+  document.querySelectorAll('.proof-preset').forEach(btn=>btn.addEventListener('click',()=>{
+    const p=proofPresets[btn.dataset.preset];if(!p)return;
+    proofIds.forEach((id,i)=>document.getElementById(id).checked=!!p.checks[i]);
+    document.getElementById('simCG').value=p.cG;document.getElementById('simLambda').value=p.lambda;document.getElementById('simResidual').value=p.residual;
+    document.querySelectorAll('.proof-preset').forEach(b=>b.classList.toggle('active',b===btn));renderProofSim();
+  }));
 
   function updateGauge(){
     const g=Number(document.getElementById('gaugeMove').value),p=Number(document.getElementById('physicalMove').value),a=g*Math.PI/180;
@@ -635,7 +905,7 @@
 
   document.addEventListener('keydown',e=>{if(e.target&&/input|textarea|select/i.test(e.target.tagName))return;if(e.key==='ArrowRight')switchView(currentView+1);if(e.key==='ArrowLeft')switchView(currentView-1);if(e.key==='Escape')document.getElementById('tourbox').classList.remove('show');});
 
-  buildRGTrack();renderSteps();renderStepDetail();renderFalsify();renderProgress();updateGauge();updateEpsilon();updateDelta();updateBridge();updateRG();paintRG(0);
+  buildRGTrack();renderSteps();renderStepDetail();renderFalsify();renderProofSim();renderProgress();updateGauge();updateEpsilon();updateDelta();updateBridge();updateRG();paintRG(0);
 })();
 </script>
 </body>
