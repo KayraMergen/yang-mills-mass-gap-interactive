@@ -62,6 +62,79 @@ G\preceq M_G Z
 \]
 are proved. \(Z>0\) by itself is not a mass-gap statement.
 
+## Exact vacuum-deflated subspace
+
+The structured-frame route now removes the vacuum component explicitly rather
+than assuming packet orthogonality. Let
+
+\[
+K=H-E_0,\qquad
+P_0=\mathbf 1_{\{0\}}(K),\qquad
+F=(I-P_0)C
+\]
+
+for a raw physical packet synthesis map \(C\). Then
+
+\[
+G_\perp
+=
+F^*F
+=
+G-C^*P_0C
+\]
+
+is the exact vacuum-deflated Gram matrix. If
+
+\[
+\left\|
+G^{-1/2}C^*P_0CG^{-1/2}
+\right\|<1,
+\]
+
+the packets retain full rank and generate the exact structured projector
+
+\[
+P_{\mathcal S}=FG_\perp^{-1}F^*.
+\]
+
+The shifted energy matrix is unchanged:
+
+\[
+E=C^*KC=F^*KF.
+\]
+
+For packets in \(D(K)\), define
+
+\[
+J_{AB}=\langle KF_A,KF_B\rangle.
+\]
+
+The exact leakage to the vacuum-orthogonal remainder is then
+
+\[
+\gamma^2
+=
+\lambda_{\max}
+\left[
+G_\perp^{-1/2}
+\left(
+J-EG_\perp^{-1}E
+\right)
+G_\perp^{-1/2}
+\right].
+\]
+
+Thus \(G,C^*P_0C,E,J\) determine the structured floor and leakage without a
+basis for the full remainder. A global positive lower bound still requires a
+uniform remainder floor and
+\[
+\gamma^2<\Delta_{\mathcal S}\Delta_{\mathcal R}.
+\]
+
+This is an abstract finite-regulator theorem with deterministic matrix checks.
+The Yang–Mills-specific overlap, domain, leakage, remainder and continuum
+estimates remain open.
+
 ## Monster / Moonshine status
 
 Monster/Moonshine remains a **bridge hypothesis**, not an established Yang–Mills symmetry. It can enter the spectral program only if a genuine physical unitary/intertwining action is constructed. In that event, character projectors would provide exact zero-leakage isotypic sectors. No such physical bridge is currently claimed.
