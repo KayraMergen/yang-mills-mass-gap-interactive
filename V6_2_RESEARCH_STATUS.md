@@ -242,6 +242,82 @@ J_r\preceq L_*Z_r.
 This result certifies the selected vacuum-orthogonal packet sector; it does
 not yet control the exact orthogonal remainder or prove the global mass gap.
 
+### Ground-state commutator route to the second moment
+
+The new physical reduction addresses the open bound
+\(J=(KC)^*(KC)\preceq L_*Z\). For
+
+\[
+H=\alpha_E(-\Delta)+V,
+\qquad
+H\Omega=E_0\Omega,
+\]
+
+choose vacuum-relative multiplier packets
+
+\[
+\Psi_A=\Omega f_A,
+\qquad
+d\mu=\Omega^2dU.
+\]
+
+Then
+
+\[
+(H-E_0)(\Omega f)
+=
+\alpha_E\Omega\mathcal L_\mu f,
+\qquad
+\mathcal L_\mu
+=
+-\Delta-2\nabla\log\Omega\cdot\nabla.
+\]
+
+Because the magnetic potential and \(f\) are multiplication operators,
+
+\[
+(H-E_0)M_f\Omega
+=
+[H,M_f]\Omega
+=
+\alpha_E[-\Delta,M_f]\Omega.
+\]
+
+Thus the extensive magnetic multiplier cancels exactly from the commutator.
+Integrated Bochner gives
+
+\[
+J
+=
+\alpha_E^2
+\left(
+\mathsf H_2+\mathsf R_1
+\right).
+\]
+
+Consequently,
+
+\[
+\operatorname{Ric}_\mu\preceq\kappa g,
+\qquad
+\mathsf H_2\preceq hZ,
+\qquad
+D\preceq dZ
+\]
+
+imply
+
+\[
+J
+\preceq
+\alpha_E^2(h+\kappa_+d)Z.
+\]
+
+A direct global magnetic-potential norm estimate instead grows as the square
+of the plaquette count and is not volume-uniform. The remaining concrete
+gates are the vacuum-relative multiplier realization, an upper
+weighted-curvature bound and localized Hessian/Dirichlet frame estimates.
+
 ## Monster / Moonshine status
 
 Monster/Moonshine remains a **bridge hypothesis**, not an established Yang–Mills symmetry. It can enter the spectral program only if a genuine physical unitary/intertwining action is constructed. In that event, character projectors would provide exact zero-leakage isotypic sectors. No such physical bridge is currently claimed.
