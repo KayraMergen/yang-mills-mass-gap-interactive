@@ -172,6 +172,76 @@ This supplies a direct finite-lattice computation route. Uniform
 conditioning, correct ground-energy normalization and the remaining
 leakage/remainder estimates are still open.
 
+### Moment-certified filtered-frame floor
+
+The filtered-frame conditioning problem now has an explicit noncircular
+sufficient criterion. Define
+
+\[
+G=C^*C,
+\qquad
+E=C^*KC,
+\qquad
+J=(KC)^*(KC).
+\]
+
+If one physical witness normalization \(Z>0\) satisfies
+
+\[
+G\preceq MZ,
+\qquad
+E\succeq\mu Z,
+\qquad
+J\preceq LZ
+\]
+
+with \(M,L<\infty\) and \(\mu>0\), then the exact vacuum-deflated frame obeys
+
+\[
+G_\perp
+\succeq
+EJ^{-1}E
+\succeq
+\frac{\mu^2}{L}Z.
+\]
+
+For every \(s>0\) and \(0<\theta<1\), the semigroup-filtered Gram matrix
+satisfies
+
+\[
+G_s
+\succeq
+(1-\theta)^2
+\frac{\mu^2}{L}
+\left(
+1-e^{-s\theta\mu/M}
+\right)^2
+Z.
+\]
+
+The corresponding structured-sector Rayleigh floor has the certified bound
+
+\[
+\Delta_s
+\ge
+(1-\theta)^2\theta
+\frac{\mu^3}{M^2L}
+\left(
+1-e^{-s\theta\mu/M}
+\right)^2.
+\]
+
+Two counterexamples show that neither the first-moment lower bound nor the
+second-moment upper bound can be omitted. The new Yang–Mills obligation is a
+regulator-uniform physical estimate
+
+\[
+J_r\preceq L_*Z_r.
+\]
+
+This result certifies the selected vacuum-orthogonal packet sector; it does
+not yet control the exact orthogonal remainder or prove the global mass gap.
+
 ## Monster / Moonshine status
 
 Monster/Moonshine remains a **bridge hypothesis**, not an established Yang–Mills symmetry. It can enter the spectral program only if a genuine physical unitary/intertwining action is constructed. In that event, character projectors would provide exact zero-leakage isotypic sectors. No such physical bridge is currently claimed.
