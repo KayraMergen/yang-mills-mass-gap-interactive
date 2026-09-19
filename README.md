@@ -14,6 +14,12 @@ problem.
 > **Scientific status:** the Yang–Mills existence and mass-gap problem remains open.
 > This project does **not** claim a proof.
 
+## Current working research program
+
+The archived/public website remains **v6.0.0**, but the active mathematical research program has advanced to a **v6.2 working state** in the private KTO research repository. This is not a new proof claim or public release.
+
+See [`V6_2_RESEARCH_STATUS.md`](V6_2_RESEARCH_STATUS.md) for the synchronized research architecture, current theorem chain and proof debts.
+
 ## Publication layer
 
 - source-linked citation/provenance system
