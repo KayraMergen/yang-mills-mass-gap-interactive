@@ -135,6 +135,43 @@ This is an abstract finite-regulator theorem with deterministic matrix checks.
 The Yang–Mills-specific overlap, domain, leakage, remainder and continuum
 estimates remain open.
 
+### Transfer-correlator realization
+
+The vacuum projector can also be avoided as an input. For every \(s>0\),
+
+\[
+F_s=(I-e^{-sK})C
+\]
+
+is exactly vacuum-orthogonal. If
+
+\[
+M_t=C^*e^{-tK}C,
+\]
+
+then its Gram matrix is the three-time combination
+
+\[
+G_s=M_0-2M_s+M_{2s}.
+\]
+
+Energy and leakage use the same combination of Hamiltonian-inserted
+correlations. With the normalized physical transfer operator
+
+\[
+\widehat{\mathbb T}_a=e^{aE_0}e^{-aH}=e^{-aK},
+\]
+
+the required matrices satisfy
+
+\[
+M_{na}=C^*\widehat{\mathbb T}_a^{\,n}C.
+\]
+
+This supplies a direct finite-lattice computation route. Uniform
+conditioning, correct ground-energy normalization and the remaining
+leakage/remainder estimates are still open.
+
 ## Monster / Moonshine status
 
 Monster/Moonshine remains a **bridge hypothesis**, not an established Yang–Mills symmetry. It can enter the spectral program only if a genuine physical unitary/intertwining action is constructed. In that event, character projectors would provide exact zero-leakage isotypic sectors. No such physical bridge is currently claimed.
