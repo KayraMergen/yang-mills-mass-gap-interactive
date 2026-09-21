@@ -562,3 +562,104 @@ Therefore a first-order common-mode cancellation
 would make the selected structured leakage quadratically smaller than the individual norm, energy and second-moment deformations.
 
 This is now the highest-value soliton-side calculation before applying the KTO witness-residual activation inequality. The Yang–Mills mass-gap problem remains open.
+
+
+## Monster/Moonshine fusion program — 22 September 2026
+
+The private v6.2 research branch now contains a mathematically explicit, falsifiable route for bringing soliton, Monster and Monstrous Moonshine into the gap architecture.
+
+The chain is no longer treated as an analogy:
+\[
+\text{BPST/KTO seed}
+\to
+T_M
+\to
+\text{Griess/Monster}
+\to
+\text{Moonshine grading}
+\to
+\text{topological/soliton sector}
+\to
+Z\leftrightarrow(G,E,J)
+\to
+\text{KSR + Route G}.
+\]
+
+Several negative results sharply constrain the route.
+
+1. The present 4/8-dimensional BPST frame cannot carry a nontrivial Monster representation; the smallest nontrivial complex Monster irreducible has dimension \(196883\).
+
+2. Monster/Moonshine data alone do not imply a mass gap. A Monster-equivariant graded Hamiltonian can assign positive grade energies tending to zero while leaving all Moonshine graded traces unchanged.
+
+3. The current disjoint BPST spectral bank is too algebraically factorized to generate Majorana/Norton-Sakuma fusion.
+
+4. A single \(SU(3)\) Wilson witness enlarged through degree two has nontrivial projected-product idempotents, but their adjoint spectra do not have the Monster/Ising Majorana values.
+
+5. The exact 21-dimensional five-loop depth-two Haar cube algebra rejects the fully permutation-symmetric axis candidate.
+
+The KTO-native fusion rule is now:
+\[
+\operatorname{MinSupp}
+\to
+\operatorname{KDD}
+\to
+\operatorname{Form}^k
+\to
+/\equiv_T^\uparrow
+\to
+\text{projected product}.
+\]
+Witness-Nonerasure prevents deleting a descendant when a higher-composition physical context distinguishes it.
+
+A maximal-tree theorem shows that in the product-Haar reference the five Route-L chord traces are i.i.d., so the full 21D depth-two algebra is determined exactly by the one-variable \(SU(3)\) moments through order six.
+
+However, the actual Route-L support-intersection geometry has only
+\[
+\operatorname{Aut}_{\rm supp}\cong\mathbb Z_2,
+\]
+while the Haar reference creates an accidental \(S_5\) moment symmetry. Therefore the serious Majorana/Monster test must use the interacting physical vacuum/RG measure rather than the bare Haar laboratory.
+
+The algebraic and spectral branches now share one response calculation. For a local density/form deformation, compute
+\[
+\mathfrak R_{\rm joint}
+=
+(\delta G,\delta T,\delta E,\delta J).
+\]
+Then:
+\[
+(\delta G,\delta T)
+\to
+\text{interacting projected algebra / Majorana tests},
+\]
+while
+\[
+(\delta G,\delta E,\delta J)
+\to
+C_{\rm res}-2B_{\rm res}+A_{\rm res}
+\to
+\text{KSR leakage}.
+\]
+
+The same marked-polymer/local RG machinery can supply both sets of tensors.
+
+A dimension-growth theorem also shows that for only five primitive scalar witnesses, all polynomial descendants through total degree \(26\) span at most
+\[
+\binom{31}{5}=169911
+\]
+directions, while degree \(27\) first makes a \(196884\)-dimensional Griess candidate combinatorially possible:
+\[
+\binom{32}{5}=201376.
+\]
+This is only a necessary dimension condition; KTO quotienting can reduce the dimension, and local Majorana/Norton-Sakuma tests must succeed before global growth is attempted.
+
+The immediate nonformal target is now:
+\[
+\boxed{
+\text{derive the interacting 21D }(G,T,E,J)
+\text{ tensors from the actual local Bałaban/KS marked-polymer construction}.
+}
+\]
+
+If that common response simultaneously produces a physical Majorana/Norton-Sakuma fingerprint and preserves the structured/remainder KSR inequality, the Monster/soliton branch becomes proof-active rather than heuristic.
+
+No Yang–Mills mass-gap proof is claimed.
