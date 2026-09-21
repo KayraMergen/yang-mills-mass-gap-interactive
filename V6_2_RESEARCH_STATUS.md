@@ -486,3 +486,79 @@ R=J-EG^{-1}E.
 The current local Fisher/edge-transitivity envelope is still too weak in the ultraviolet, so a sharper local RG/Bochner estimate or direct residual cancellation is required.
 
 The Yang–Mills existence and mass-gap problem remains open.
+
+
+## Genuine overcomplete BPST sector and residual response — 21 September 2026
+
+A subspace audit corrected the first four-seed matched-multiplier construction. If \(B:\mathbb C^4\to\mathcal H_\perp\) is injective and \(W\in GL(4)\), then
+\[
+\operatorname{ran}(BW)=\operatorname{ran}B,
+\]
+so a square BPST coefficient matrix is only a basis change, not a new BPST-specific physical sector.
+
+The corrected private-branch design uses eight link-disjoint local Route-L multiplier seeds at the dual-tetrahedral/cube-corner directions
+\[
+(\pm1,\pm1,\pm1)/\sqrt3.
+\]
+The ambient synthesis is
+\[
+B_8:\mathbb C^8\to\mathcal H_\perp,
+\]
+and the BPST translation/scale Jacobian is
+\[
+W_8\in\mathbb R^{8\times4},
+\qquad
+\operatorname{rank}W_8=4.
+\]
+Hence
+\[
+\mathcal S_{\rm BPST}
+=
+\operatorname{ran}(B_8W_8)
+\]
+is now a genuine four-dimensional proper subspace of the eight-channel bank.
+
+The transported structural metric is
+\[
+Z_{\rm BPST}^{\rm str}=W_8^*W_8.
+\]
+The physical matrices are
+\[
+G=W_8^*G_8W_8,\quad
+E=W_8^*E_8W_8,\quad
+J=W_8^*J_8W_8.
+\]
+The Haar/electric calibration remains exactly zero-leakage:
+\[
+J-EG^{-1}E=0.
+\]
+
+The interacting residual is now analyzed as a perturbation of this reference. After \(Z\)-whitening,
+\[
+\bar G=g_0(I+A),\quad
+\bar E=e_0(I+B),\quad
+\bar J=j_0(I+C),
+\qquad
+j_0=e_0^2/g_0.
+\]
+The exact residual is
+\[
+\bar R
+=
+j_0\left[
+I+C-(I+B)(I+A)^{-1}(I+B)
+\right].
+\]
+Its first-order term is
+\[
+\boxed{
+\mathcal C_{\rm res}=C-2B+A.
+}
+\]
+Therefore a first-order common-mode cancellation
+\[
+\mathcal C_{\rm res}=O(\varepsilon^2)
+\]
+would make the selected structured leakage quadratically smaller than the individual norm, energy and second-moment deformations.
+
+This is now the highest-value soliton-side calculation before applying the KTO witness-residual activation inequality. The Yang–Mills mass-gap problem remains open.
