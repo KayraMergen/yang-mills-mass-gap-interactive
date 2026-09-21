@@ -372,3 +372,34 @@ This lets the BPST-slice packet program test finite-regulator gauge inequivalenc
 The continuum difficulty remains unchanged: the witness/Gram/energy/residual constants and the Route-G remainder floor must be regulator-uniform, and the resulting finite-regulator bound must still pass through the separate continuum Hilbert/form/vacuum convergence gate.
 
 The Yang–Mills existence and mass-gap problem remains open; no proof claim is made.
+
+
+## BPST small-plaquette Wilson witness — 21 September 2026
+
+The private branch now gives the first explicit finite-regulator gauge-nonredundancy test for the BPST-slice packet family.
+
+Under the stated standard \(SU(2)\subset SU(3)\) embedding and normalized Wilson-trace convention, a sufficiently small spatial plaquette has
+\[
+1-w_p
+=
+\frac43 a^4
+\frac{\rho^4}{(|\mathbf x-\mathbf z|^2+\rho^2)^4}
++O(a^5).
+\]
+At the center this becomes
+\[
+1-w_p(z,\rho)
+=
+\frac43 a^4\rho^{-4}
++O(a^5\rho^{-5}).
+\]
+
+Consequently, two fixed distinct scales \(\rho_1\ne\rho_2\) at the same center give different gauge-invariant Wilson witnesses on every sufficiently fine regulator, and therefore cannot lie on the same lattice gauge orbit. Distinct centers are similarly detected by their different local curvature-squared/Wilson profiles, apart from any separately imposed spatial-symmetry identification.
+
+This closes only a qualitative finite-regulator redundancy question. The elementary-plaquette witness difference is \(O(a^4)\), so it does not by itself yield a regulator-uniform coherent-frame bound. The next quantitative target is a richer Route-L witness vector or a direct gauge-orbit estimate controlling
+\[
+\Xi_r=d_{{\rm orb},r}^2/(2B_Gt_r)
+\]
+while retaining uniform energy and residual estimates.
+
+The Yang–Mills mass-gap problem remains open.
