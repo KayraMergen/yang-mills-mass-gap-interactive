@@ -282,3 +282,44 @@ The highest-priority open gates are now:
 - prove form convergence and vacuum-projector convergence.
 
 These remain active proof obligations. The Yang–Mills existence and mass-gap problem remains open.
+
+
+## Analytic polymer shortcut — 21 September 2026
+
+The private research branch now contains a second route from Bałaban-style localized activities to the marked background derivative needed by Route G.
+
+If a localized activity is holomorphic in a complex retained/background tube of radius \(r_{k,\ell}\) and obeys
+\[
+\|\Phi_{k,X}\|
+\le
+A_k e^{-m d_s(X)}
+\]
+throughout that tube, Banach-valued Cauchy estimates give
+\[
+\boxed{
+\|D_{x_\ell}\Phi_{k,X}\|
+\le
+\frac{A_k}{r_{k,\ell}}
+e^{-m d_s(X)}.
+}
+\]
+
+The effective marked amplitude is therefore
+\[
+\widehat A_k
+=
+\sup_{\ell<k}\frac{A_k}{r_{k,\ell}}.
+\]
+
+Combined with a polymer-counting entropy gap \(m>s\), conditional Poincaré control and retained physical-metric bounds, this yields a Route-G scale-block estimate of the form
+\[
+\|K_{jk}\|
+\lesssim
+\widehat A_k e^{-(m-s)(k-j)}.
+\]
+
+This adds an important falsification condition: an \(O(g_k)\) unmarked activity does not give an \(O(g_k)\) marked derivative if the analytic radius simultaneously shrinks like \(r_k\sim g_k\). Quantitative complex-radius bookkeeping is therefore part of the proof debt.
+
+The current source audit locates Bałaban CMP116's localized cluster activity and exponential activity decay as the relevant unmarked-locality anchor. The marked derivative or a regulator-uniform complex analytic radius has not yet been promoted to a source-verified theorem.
+
+The Yang–Mills existence and mass-gap problem remains open; no proof claim is made.
