@@ -1,78 +1,284 @@
 # Yang–Mills Working Research Status — v6.2 program
 
-**Date:** 2026-09-19  
+**Date:** 2026-09-21  
 **Public archived website/release:** v6.0.0  
 **Working research status:** v6.2 program  
 **Scientific status:** open problem; no proof claim.
 
-The public interactive console remains an audit/research interface. The deeper working mathematics is developed in \`KayraMergen/kto-research\` and is not automatically a public release.
+The public interactive console remains an audit/research interface. The deeper working mathematics is developed in \`KayraMergen/kto-research\`; this file is a synchronized status summary, not a new public proof claim or archived release.
 
 ## Current proof architecture
 
-The working program now contains the following conditional theorem chain:
+The active program now separates four logically distinct layers.
 
-1. A regulator-wise physical gap is reduced to a Poincaré/Dirichlet lower bound after the physical ground-state transform.
-2. Retained/fiber decompositions are treated with a **matrix-valued** kinetic form rather than a scalar ansatz. Cross kinetic terms are absorbed through the Schur complement
-   \[
-   S=F-C^{\mathsf T}R^{-1}C.
-   \]
-3. The physical two-scale coupling is measured by a conditional Dirichlet-dual matrix, not by density whitening alone.
-4. Localized background variations plus propagator decay can yield **volume-uniform** Hilbert–Schmidt/dual-norm bounds.
-5. The present unrescaled two-scale inverse-gap recursion cannot tolerate a nonsummable squared coupling such as \(t_j^2\sim c/j\); either an extra ultraviolet power gain or a genuine inter-step physical spectral contraction is required.
-6. The inter-step inverse-gap factor has been identified abstractly as
-   \[
-   \rho_j=d_j/c_j,
-   \]
-   where \(d_j\) is physical excitation-norm distortion and \(c_j\) is the lower physical-form comparison.
-7. A regulator-uniform positive gap persists to a common continuum physical form under suitable form convergence and vacuum-projector convergence.
-8. KTO-derived soliton/topological/high-symmetry structures are assigned a separate role in **structured spectral-sector design**. They may strengthen a proof only through physical projectors/frames, physical Gram and energy matrices, uniform sector floors and controlled spectral leakage.
+1. **Physical ground-state form.** Regulator-wise spectral gap is reduced to a Poincaré/Dirichlet lower bound after the physical ground-state transform.
+2. **Local conditional coupling.** Retained/fiber splitting uses the full physical kinetic form, moving mean and material covariance score. Density whitening does not erase physical coupling; it transfers it to the horizontal connection.
+3. **Global multiscale Route G.** Instead of multiplying a loss at every RG step, the physical excitation space is decomposed into orthogonal scale sectors and all cross-scale couplings are treated simultaneously as a block operator.
+4. **Continuum persistence.** A regulator-uniform physical gap must still be transported to a common continuum Hilbert/form system with form convergence and vacuum-projector convergence.
 
-## Structured-sector route
+## Important corrections in the current branch
 
-For a split
+### Bianchi coordinates are not Wilson-observable rank
+
+A cube has five independent maximal-tree loop coordinates, but this does not imply that its six face Wilson observables span only five dimensions. Bianchi is a coordinate constraint; observable quotienting requires a separate functional/Witness-Nonerasure test.
+
+### UV Wilson frame
+
+For \(U_e=e^{igA_e}\), a real normalized Wilson loop satisfies
 \[
-\mathcal H_\perp=\mathcal S\oplus\mathcal R,
+w_\gamma
+=
+1-\frac{g^2}{2N}\operatorname{tr}S_\gamma^2+O(g^3).
 \]
-with sector floors \(\Delta_{\mathcal S},\Delta_{\mathcal R}\) and leakage \(\gamma\), the working theorem gives
+The weak-coupling observable frame therefore uses the canonical deficit
 \[
-\Delta
-\ge
-\frac{
-\Delta_{\mathcal S}+\Delta_{\mathcal R}
+\Phi_\gamma=(1-w_\gamma)/g^2.
+\]
+The common \(g^4\) scaling of Gram and energy forms cancels from generalized spectral ratios.
+
+### Whitening is not a physical quotient
+
+For a moving fiber coordinate \(y=T_x\xi\),
+\[
+\bar C=T^{-1}CT^{-*},\qquad A=T^{-1}DT.
+\]
+The physical material covariance derivative is
+\[
+D\bar C+A\bar C+\bar C A^*
+=
+T^{-1}(DC)T^{-*}.
+\]
+Thus setting \(D\bar C=0\) by covariance whitening does not remove the score; the symmetric connection carries it.
+
+For a Gaussian conditional fiber \(N(m,C)\), the exact OU dual score is
+\[
+\tau_v^2
+=
+\|C^{-1/2}D_vm\|^2
++
+\frac14
+\|C^{-1/2}(D_vC)C^{-1/2}\|_{\rm HS}^2.
+\]
+
+### Background minimization does not automatically remove the BQQ tensor
+
+For a constrained critical graph \(y=h(r)\) with
+\[
+B(r)=D_y^2\Phi(r,h(r)),
+\]
+one has
+\[
+D_vB
+=
+D_rD_y^2\Phi[v]
 -
-\sqrt{(\Delta_{\mathcal S}-\Delta_{\mathcal R})^2+4\gamma^2}
-}{2}.
+D_y^3\Phi
+\bigl[
+B^{-1}D_rD_y\Phi[v],
+\cdot,\cdot
+\bigr].
 \]
+In an already quadratic-adapted split, the \(RFF\) mixed Hessian therefore survives unless an additional physical cancellation occurs.
 
-A structured sector is therefore useful only when its own floor and its coupling to the remainder are quantitatively controlled.
+This agrees with the standard background-field picture in which the one-background/two-quantum BQQ vertex is generically nonzero.
 
-## Soliton/topology frame candidate
+## Route G — global multiscale block coercivity
 
-On a finite Hamiltonian lattice, the current KTO bridge constructs gauge-invariant heat-kernel packets
+Let
 \[
-\Psi_{[X],t}=\mathsf P_G\Phi_{X,t}
+\mathcal H_\perp
+=
+\bigoplus_j\mathcal H_j
 \]
-and refines them, when a rigorous lattice topological construction is available, by topological projectors. These states provide a concrete candidate frame for physical Gram and energy matrices.
+be an orthogonal proof-scale decomposition and let \(e_j\) be diagonal physical energy forms.
 
-The support-derived KTO witness metric \(Z\) becomes physically relevant only if explicit comparisons such as
+Suppose the cross-scale form blocks satisfy
 \[
-E\succeq\mu Z,
-\qquad
-G\preceq M_G Z
+|\mathcal E(u_j,u_k)|
+\le
+b_{jk}\,
+e_j(u_j)^{1/2}
+e_k(u_k)^{1/2}.
 \]
-are proved. \(Z>0\) by itself is not a mass-gap statement.
 
-## Monster / Moonshine status
+If
+\[
+\kappa
+=
+\sup_j\sum_{k\ne j}b_{jk}
+<1
+\]
+and every scale sector has the same physical lower floor
+\[
+e_j(u)\ge\delta\|u\|^2,
+\]
+then
+\[
+\boxed{
+\mathcal E(f,f)
+\ge
+(1-\kappa)\delta\|f\|^2.
+}
+\]
 
-Monster/Moonshine remains a **bridge hypothesis**, not an established Yang–Mills symmetry. It can enter the spectral program only if a genuine physical unitary/intertwining action is constructed. In that event, character projectors would provide exact zero-leakage isotypic sectors. No such physical bridge is currently claimed.
+This is the main change from the older recursive two-scale route: the proof no longer requires
+\[
+\sum_j t_j^2<\infty.
+\]
+
+For nearest-neighbor scale coupling,
+\[
+\|K\|\le2\sup_jt_j.
+\]
+Thus a marginal coefficient \(t_j=O(j^{-1/2})\) may still produce a uniformly coercive ultraviolet tail even though \(\sum_jt_j^2\) diverges.
+
+## Martingale / triangular-memory realization
+
+For nested gauge-invariant sigma algebras,
+\[
+Q_j=P_j-P_{j-1}
+\]
+gives an exact orthogonal \(L^2\) scale decomposition.
+
+In a triangular conditional measure
+\[
+d\mu_M
+=
+p_1(dx_1)\prod_{k=2}^M p_k(dx_k\mid x_{<k}),
+\]
+the cross-scale block \(j<k\) is controlled by the complete retained-direction score vector
+\[
+\ell_{k,\ell}
+=
+\nabla_{x_\ell}\log p_k,
+\qquad \ell\le j.
+\]
+
+The physical Dirichlet-dual score Gram matrix \(T_{k,\le j}\) yields
+\[
+\|K_{jk}\|
+\le
+t_{jk}.
+\]
+
+Exact Gaussian long-memory models show that
+\[
+t_{jk}
+\lesssim
+k^{-1/2}q^{k-j}
+\]
+can produce a uniform positive gap for every finite chain despite the nonsummable marginal square \(1/k\).
+
+These models are mathematical calibrations, not derivations of \(SU(3)\) Yang–Mills.
+
+## Polymer locality → Route G block decay
+
+The current highest-value source bridge has been reduced to a marked-polymer derivative estimate.
+
+If a conditional interaction has
+\[
+V_k=\sum_X\Phi_{k,X},
+\]
+then
+\[
+\ell_{k,\ell}
+=
+-
+\bigl[
+D_{x_\ell}V_k-p_k(D_{x_\ell}V_k)
+\bigr].
+\]
+
+If marked polymer derivatives obey
+\[
+\|D_{x_\ell}\Phi_{k,X}\|
+\le
+A_k e^{-m d_s(X)},
+\]
+while the number of diameter-\(n\) connecting polymers grows at most like
+\[
+N_n\le N_0e^{sn},
+\qquad m>s,
+\]
+then the score memory decays exponentially:
+\[
+\|\ell_{k,\ell}\|_2
+\le
+C A_k e^{-(m-s)(k-\ell)}.
+\]
+
+A regulator-uniform conditional Poincaré bound and retained physical metric bound then give
+\[
+\boxed{
+\|K_{jk}\|
+\lesssim
+A_k e^{-(m-s)(k-j)}.
+}
+\]
+
+Therefore the most valuable Bałaban source question is no longer simply whether a cluster expansion is local. It is whether **marked background derivatives of localized polymer activities decay faster than polymer-counting entropy grows**.
+
+## Uniform regulator and continuum closure
+
+For a fixed regulator-independent scale \(J\), suppose:
+
+\[
+\Delta_{\rm tail}
+=
+(1-\kappa_{\rm tail})\delta_{\rm tail}>0,
+\]
+the finite/coarse prefix has a uniform floor
+\[
+\Delta_{\rm pre}>0,
+\]
+and prefix–tail energy leakage satisfies
+\[
+\gamma^2
+<
+\Delta_{\rm pre}\Delta_{\rm tail}.
+\]
+
+Then every regulator has the same positive lower bound
+\[
+\boxed{
+\Delta_r
+\ge
+\lambda_{\min}
+\begin{pmatrix}
+\Delta_{\rm pre}&-\gamma\\
+-\gamma&\Delta_{\rm tail}
+\end{pmatrix}
+=:\Delta_*>0.
+}
+\]
+
+If the transported physical forms then converge in a common Hilbert space in the Mosco sense and the vacuum projections converge strongly, the same \(\Delta_*\) persists in the limiting physical Hamiltonian.
+
+This separates two debts that must not be conflated:
+
+- **uniform finite-regulator Route G closure**, and
+- **continuum Hilbert/form/vacuum reconstruction**.
+
+## Structured / soliton sector
+
+A structured or soliton packet family is not currently the global mass-gap mechanism.
+
+It may be used as a controlled low-scale/structured sector only if its Gram, energy, second moment and leakage matrices are uniformly bounded and the remaining prefix/tail sectors have their own positive floors.
+
+The current explicit packet candidate built from a BPST spatial slice is treated only as a gauge-invariant quantum-packet center. A BPST instanton is not a static \(3+1\)-dimensional Yang–Mills soliton or Hamiltonian eigenstate.
 
 ## Current hard debts
 
-The main unresolved gates are:
-- source-level extraction of the actual RG physical norm/form transport constants;
-- source-level ultraviolet power of localized background insertions;
-- regulator-uniform Schur/fiber coercivity and conditional dual-norm control;
-- physical structured-frame construction and energy domination;
-- continuum physical Hilbert-space/form reconstruction and vacuum-sector convergence.
+The highest-priority open gates are now:
 
-These are active research obligations, not completed results.
+- build the actual gauge-invariant Bałaban/KS filtration and prove form-domain stability;
+- extract the **full** conditional material score: projected BQQ, moving mean, Jacobian, moving constraint and kinetic terms;
+- derive marked-polymer retained-background derivative bounds;
+- prove the polymer locality exponent beats polymer-counting entropy;
+- establish a regulator-uniform conditional Poincaré/sector floor;
+- convert those estimates into a uniform Route G block row sum;
+- control a fixed coarse prefix and prefix–tail leakage;
+- construct the common continuum physical Hilbert/form embedding;
+- prove form convergence and vacuum-projector convergence.
+
+These remain active proof obligations. The Yang–Mills existence and mass-gap problem remains open.
