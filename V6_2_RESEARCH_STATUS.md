@@ -403,3 +403,86 @@ This closes only a qualitative finite-regulator redundancy question. The element
 while retaining uniform energy and residual estimates.
 
 The Yang–Mills mass-gap problem remains open.
+
+
+## BPST matched-multiplier tangent frame — 21 September 2026
+
+The private v6.2 branch has moved beyond the standalone narrow configuration-packet realization.
+
+A heat-kernel width audit shows that a normalized compact-group configuration packet has electric moments
+\[
+\langle L\rangle
+=
+\frac{d_G}{4\tau}+O(1),
+\qquad
+\langle L^2\rangle
+=
+\frac{d_G(d_G+2)}{16\tau^2}+O(\tau^{-1}).
+\]
+For \(SU(3)\), these are \(2/\tau+O(1)\) and \(5/\tau^2+O(\tau^{-1})\). The current conjugacy-angle orbit certificate is \(O(a^2)\); using it alone to hold a fixed heat-kernel overlap exponent would drive the packet width toward \(\tau=O(a^4)\), producing a severe raw Kogut–Susskind electric-moment burden. This does not prove the projected physical packet fails, but it makes the required cancellation explicit.
+
+The preferred structured-sector realization is now a **vacuum-relative matched-multiplier frame**.
+
+Four link-disjoint Route-L cubes are placed in the tetrahedral geometry around a nominal BPST center. Each local scalar multiplier uses the four equal-length plaquette Route-L channels; the six-link composite channel remains as an auxiliary witness and is not quotient-erased. Let \(B\) synthesize the four local vacuum-relative seeds and let \(W\) be the explicit BPST translation/scale profile Jacobian. Then
+\[
+F=BW,
+\qquad
+G=W^*G_0W,
+\qquad
+E=W^*E_0W,
+\qquad
+J=W^*J_0W.
+\]
+The transported KTO structural witness form is
+\[
+Z_{\rm tan}^{\rm str}=W^*W.
+\]
+
+In the product-Haar/electric-only calibration,
+\[
+G_0=\frac1{18}I_4,
+\qquad
+E_0=\frac{8\alpha_E}{27}I_4,
+\qquad
+J_0=\frac{128\alpha_E^2}{81}I_4,
+\]
+and therefore
+\[
+J-EG^{-1}E=0.
+\]
+The reference structured floor is
+\[
+\Delta_{\mathcal S}=\frac{16}{3}\alpha_E.
+\]
+This is a calibration model, not a continuum mass-gap result.
+
+A local-ratio theorem also shows that if the joint physical ground-state marginal on the finitely many selected links satisfies
+\[
+m_S\le h_S\le M_S
+\]
+relative to product Haar, then
+\[
+\frac{m_S}{18}I_4\preceq G_0\preceq\frac{M_S}{18}I_4,
+\]
+and exact cross-cube Dirichlet decoupling gives
+\[
+E_0\succeq m_S\frac{8\alpha_E}{27}I_4.
+\]
+Hence
+\[
+\Delta_{\mathcal S}
+\ge
+\frac{m_S}{M_S}\frac{16}{3}\alpha_E.
+\]
+
+The new structured-sector bottleneck is therefore sharply reduced to the interacting-vacuum second moment and exact residual:
+\[
+\boxed{
+J_0
+\quad\text{and}\quad
+R=J-EG^{-1}E.
+}
+\]
+The current local Fisher/edge-transitivity envelope is still too weak in the ultraviolet, so a sharper local RG/Bochner estimate or direct residual cancellation is required.
+
+The Yang–Mills existence and mass-gap problem remains open.
