@@ -382,6 +382,56 @@ sectorwise physical bounds, exhaustion/leakage and continuum transport.
 
 ## Current hard debts
 
+### 21 September 2026: Wilson seed construction and carrier scope
+
+At a fixed finite regulator, a simple Wilson loop gives the nonzero physical
+seed
+\[
+\xi_\gamma=(w_\gamma-\langle w_\gamma\rangle_\mu)\Omega,\qquad
+\|\xi_\gamma\|^2=\operatorname{Var}_\mu(w_\gamma)>0.
+\]
+The full spin-network multiplier family supplies an explicit observable
+algebra and a dense form core. Local link-marginal bounds control the seed
+variance and first moment. For \(\lambda_\gamma=\ell C_F\), the second moment
+has the sufficient local bound
+\[
+\|K\xi_\gamma\|^2\le
+\alpha_E^2(2\lambda_\gamma^2+8\lambda_\gamma I_S),\qquad
+I_S=\int|\nabla_S\log\Omega|^2\,d\mu.
+\]
+For edge-transitive lattices with
+\(V_B=\beta\sum_p(1-w_p)\), the ground-state energy budget proves
+\[
+I_S\le(\beta/\alpha_E)|S|N_p/|E|.
+\]
+On isotropic periodic cubic lattices this yields a ceiling independent of
+total volume for fixed-size loops. With the stated KS coefficients the
+ceiling grows as \(a^{-2}\), leaving the ultraviolet limit open.
+
+The full observable choice also resolves a scope issue:
+\[
+T_{f\bar h}-T_fT_{\bar h}=|qf\rangle\langle qh|,\qquad T_f=qM_fq.
+\]
+The resulting rank-one operators generate all bounded operators on the
+excitation space. Thus every nonzero seed generates all of
+\(\mathcal H_\perp\) for this choice. A proper particle/Monster carrier needs
+a justified restricted algebra.
+
+The inequalities are
+\[
+\Delta_r\le\delta_r(\mathcal C_r(\xi_\gamma))
+\le\frac{\langle\xi_\gamma,K\xi_\gamma\rangle}{\|\xi_\gamma\|^2}.
+\]
+A seed energy estimate does not extend automatically to its algebraic
+closure. Finite Ritz values and illustrative single-cycle calculations
+cannot supply a uniform continuum lower bound.
+
+Seven new finite diagnostics accompany the written proofs. The private
+ground-state theorem also corrects the complex centering convention to
+\(B_{AB}=\overline{\mu f_A}\,\mu f_B\).
+
+### Remaining analytic work
+
 The main unresolved gates are:
 - source-level extraction of the actual RG physical norm/form transport constants;
 - source-level ultraviolet power of localized background insertions;
