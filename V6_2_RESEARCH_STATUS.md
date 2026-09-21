@@ -323,3 +323,52 @@ This adds an important falsification condition: an \(O(g_k)\) unmarked activity 
 The current source audit locates Bałaban CMP116's localized cluster activity and exponential activity decay as the relevant unmarked-locality anchor. The marked derivative or a regulator-uniform complex analytic radius has not yet been promoted to a source-verified theorem.
 
 The Yang–Mills existence and mass-gap problem remains open; no proof claim is made.
+
+
+## KTO witness-residual activation criterion — 21 September 2026
+
+The private v6.2 branch now compresses the structured/soliton proof debt into four witness-normalized finite-matrix constants.
+
+For the filtered physical packet frame,
+\[
+G=F^*F,\qquad E=F^*KF,\qquad
+R=J-EG^{-1}E,
+\]
+and a KTO structural witness matrix \(Z\), define
+\[
+m_Z=\lambda_{\min}(Z^{-1/2}GZ^{-1/2}),\qquad
+M_Z=\lambda_{\max}(Z^{-1/2}GZ^{-1/2}),
+\]
+\[
+\mu_Z=\lambda_{\min}(Z^{-1/2}EZ^{-1/2}),\qquad
+\lambda_Z=\lambda_{\max}(Z^{-1/2}RZ^{-1/2}).
+\]
+
+Then
+\[
+\Delta_{\mathcal S}\ge\mu_Z/M_Z,
+\qquad
+\gamma_{\mathcal S\mathcal R}^2\le\lambda_Z/m_Z.
+\]
+
+If the Route-G-controlled orthogonal remainder has floor \(d_{\mathcal R}>0\), a sufficient global finite-regulator activation condition is
+\[
+\boxed{
+\lambda_ZM_Z<\mu_Zm_Zd_{\mathcal R}.
+}
+\]
+
+A preliminary Safe Quotient gate is also explicit: a structural \(Z\)-null direction may not be silently erased if it has nonzero physical Gram norm. Equality of structural and physical kernels is the strong faithful-bridge condition for the selected frame.
+
+A companion theorem shows that gauge-invariant Wilson/Route-L loop witnesses give lower bounds on lattice gauge-orbit distance. For a closed-loop class-function witness,
+\[
+d_{\rm orb}([X],[Y])
+\ge
+\frac{|W_\gamma(X)-W_\gamma(Y)|}
+{L_\varphi\sqrt{\ell_\gamma}}.
+\]
+This lets the BPST-slice packet program test finite-regulator gauge inequivalence using a finite observable vector before attempting full orbit minimization.
+
+The continuum difficulty remains unchanged: the witness/Gram/energy/residual constants and the Route-G remainder floor must be regulator-uniform, and the resulting finite-regulator bound must still pass through the separate continuum Hilbert/form/vacuum convergence gate.
+
+The Yang–Mills existence and mass-gap problem remains open; no proof claim is made.
