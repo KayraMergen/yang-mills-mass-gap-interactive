@@ -663,3 +663,21 @@ The immediate nonformal target is now:
 If that common response simultaneously produces a physical Majorana/Norton-Sakuma fingerprint and preserves the structured/remainder KSR inequality, the Monster/soliton branch becomes proof-active rather than heuristic.
 
 No Yang–Mills mass-gap proof is claimed.
+
+---
+
+## 27 September 2026 — KTO / Route G ontology bridge
+
+New companion note:
+
+- `KTO_ROUTE_G_ONTOLOGY_BRIDGE.md`
+
+The current public interpretation is deliberately limited:
+
+- Route G supplies an operator model of `constitutive anchor + controlled completion`;
+- `||K||<1` is read as a quantitative noncollapse certificate relative to the strong base;
+- prefix/tail positivity requires a whole-level leakage condition rather than separate part-wise positivity;
+- source/physical coordinate changes must transport the certificate-bearing metric/form data explicitly;
+- structural stability is not identified with temporal longevity.
+
+This is an ontology bridge and research-governance layer. It is not counted as a Yang–Mills mass-gap proof step.
