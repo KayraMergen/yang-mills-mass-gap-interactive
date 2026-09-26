@@ -681,3 +681,31 @@ The current public interpretation is deliberately limited:
 - structural stability is not identified with temporal longevity.
 
 This is an ontology bridge and research-governance layer. It is not counted as a Yang–Mills mass-gap proof step.
+---
+
+## 27 September 2026 — upstream world-construction programme
+
+The research programme now has an explicit upstream reconstruction half in the main `kto-research` repository.
+
+Canonical chain:
+
+`realized finite data`
+`-> constitutive MinSupp/KDD structure`
+`-> derived locality`
+`-> real counting-Hilbert witness geometry`
+`-> C3-derived complex witness geometry`
+`-> preserved tensor structure`
+`-> compact local symmetry`
+`-> gauge scene`
+`-> Route-G spectral programme`.
+
+Important no-go:
+`bare cardinality alone` cannot generate nontrivial locality.
+
+Finite-object WCM-G3 is partially closed:
+`counting data + authorized orthogonal C3 symmetry -> complex Hilbert witness sector`.
+
+Upstream front:
+`derive dim_C V=3 plus a nonzero determinant/alternating cubic witness without assuming SU(3); then SU(3) follows by an exact stabilizer theorem.`
+
+This upstream reconstruction does not replace the Clay existence/mass-gap obligations. It addresses the explanatory question of how the gauge-theoretic physical scene could itself be reconstructed from minimally structured data.
