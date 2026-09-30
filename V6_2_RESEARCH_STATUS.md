@@ -709,3 +709,37 @@ Upstream front:
 `derive dim_C V=3 plus a nonzero determinant/alternating cubic witness without assuming SU(3); then SU(3) follows by an exact stabilizer theorem.`
 
 This upstream reconstruction does not replace the Clay existence/mass-gap obligations. It addresses the explanatory question of how the gauge-theoretic physical scene could itself be reconstructed from minimally structured data.
+
+---
+
+## Shape-operator / \(Z_3\) / KTO integration lane — 30 September 2026
+
+Companion programme:
+
+\`KTO_SHAPE_OPERATORS_SU3_INTEGRATION_PROGRAM_2026-09-30.md\`
+
+This lane imports the two user-authored mathematical sources through a strict status bridge:
+- *Karmaşık Düzlemde Şekil Operatörleri Kuramı*: \(P_n,Q_n,R_\theta,\Omega_n\), \(Q_nP_n=\Omega_n\), orbit/stabilizer copy counts, gcd/lcm symmetry bookkeeping, branch and covering-space structure.
+- *Eğik Çerçevede Simetri, Barış Üçgeni ve Konfigürasyonel Öz Operatörü*: oblique-frame conjugacy, symmetry-enhancement examples, explicit asymptotes, and a Sierpiński-type IFS attractor family.
+
+The exact common algebraic structure is:
+
+\[
+\mu_3\cong Z(SU(3))\cong\mathbb Z_3.
+\]
+
+This authorizes a center/symmetry/quotient/holonomy toy and certificate-development lane, not a gap proof.
+
+\[
+\boxed{
+\mu_3/Z_3\text{ structure}
+\not\Rightarrow
+\text{confinement}
+\not\Rightarrow
+\text{continuum mass gap}.
+}
+\]
+
+Any contribution to the mass-gap architecture must still enter through certificate-bearing Route-G objects, gauge-invariant form estimates, uniform regulator control, and the separate continuum Hilbert/form/vacuum convergence gate.
+
+The open hard debts listed in this status file remain unchanged.
