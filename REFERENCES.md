@@ -25,3 +25,12 @@ The gauge-reduced coercivity inequality, RG reflection-back lemma, and uniform
 continuum-transfer program displayed by this project are research targets
 derived from the source presentation. They are **not** represented here as
 published/proved results.
+
+
+## Project upstream sources — Barış Üçgeni series
+
+The following project-authored sources are tracked as upstream research artifacts. Their presence here does **not** promote their contents to established Yang–Mills results.
+
+- Baran Çolakoğlu. **Eğik Çerçevede Simetri, Barış Üçgeni ve Konfigürasyonel Öz Operatörü**. 2026. Canonical KTO archive: https://github.com/KayraMergen/kto-research/blob/docs/baris-ucgeni-six-paper-integration-2026-10-08/papers/baris-ucgeni/Baris_Ucgeni_Bolum_II_Egik_Cerceve_Simetri_2026-10-08.pdf
+- Baran Çolakoğlu. **Çerçeve-Varyasyonlu Ters-Simetri Analizi**. 2026. Methodological candidate only: https://github.com/KayraMergen/kto-research/blob/docs/baris-ucgeni-six-paper-integration-2026-10-08/papers/baris-ucgeni/TSCA_Cerceve_Varyasyonlu_Ters_Simetri_Analizi_Konsolide_2026-10-08.pdf
+- Baran Çolakoğlu. **Tersinirlik, Potansiyel ve Edim**. 2026. Guardrail / methodology source: https://github.com/KayraMergen/kto-research/blob/docs/baris-ucgeni-six-paper-integration-2026-10-08/papers/baris-ucgeni/Tersinirlik_Potansiyel_ve_Edim_Yayin_Surumu_2026-10-08.pdf
