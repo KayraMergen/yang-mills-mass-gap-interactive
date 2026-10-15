@@ -622,3 +622,21 @@ It does **not** supply:
 The current mass-gap hard debts listed in \`V6_2_RESEARCH_STATUS.md\` remain active.
 
 This programme should therefore be read as a new **symmetry/quotient/holonomy research lane** feeding the existing Route-G proof architecture only when it produces certificate-bearing estimates.
+
+
+---
+
+## XII. Upstream paper archive — 8 October 2026
+
+The oblique-frame source cited in this programme now has a canonical publication-preparation location in the KTO research repository:
+
+- [Barış Üçgeni Bölüm II — Eğik Çerçevede Simetri](https://github.com/KayraMergen/kto-research/blob/docs/baris-ucgeni-six-paper-integration-2026-10-08/papers/baris-ucgeni/Baris_Ucgeni_Bolum_II_Egik_Cerceve_Simetri_2026-10-08.pdf)
+
+Two newer companion works are relevant only as **methodological / audit layers** unless they produce a certified Route-G proof object:
+
+- [TSCA — Çerçeve-Varyasyonlu Ters-Simetri Analizi](https://github.com/KayraMergen/kto-research/blob/docs/baris-ucgeni-six-paper-integration-2026-10-08/papers/baris-ucgeni/TSCA_Cerceve_Varyasyonlu_Ters_Simetri_Analizi_Konsolide_2026-10-08.pdf)
+- [Tersinirlik, Potansiyel ve Edim](https://github.com/KayraMergen/kto-research/blob/docs/baris-ucgeni-six-paper-integration-2026-10-08/papers/baris-ucgeni/Tersinirlik_Potansiyel_ve_Edim_Yayin_Surumu_2026-10-08.pdf)
+
+Admission status is recorded in `upstream/baris-ucgeni/README.md`.
+
+This addition does not modify the programme's hard debts or proof status.
