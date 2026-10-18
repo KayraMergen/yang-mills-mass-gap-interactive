@@ -3,6 +3,9 @@
 **Date:** 27 September 2026
 **Status:** conceptual bridge / interpretation layer. This is not a Yang–Mills mass-gap proof.
 
+> **18 Oct 2026 source-aligned KTO interpretation update:** The author now expressly reads Actual in terms of actual encounter/flow and irreducible occurrence/exposure, rather than static objects, frozen data or a primitive spacetime clock. See [active KTO Actual interpretation](https://github.com/KayraMergen/kto-research/blob/ontology/zone-core-v0.1-2026-10-06/ontology/ACTUAL_AKIS_KARSILASMA_DENEYIM_ZAMAN_REVIZYONU_2026-10-18.md) and [P36/P37/P43 authority application](https://github.com/KayraMergen/kto-research/blob/phenomenology-status-system-v0.1/ontology/KTO_AKTUEL_AKIS_P36_P37_P43_UYGULAMA_NOTU_2026-10-18.md). The positive ontological position is **not** a theorem that a physical regulator, time slice, stable spectrum, structure copy, or numerical certificate equals Actual or an uncopyable subjective experience. Route G's metric/spectral estimates are unaffected; continuum and mass-gap proof debts remain open.
+
+
 ## 1. Why this document exists
 
 The current Route-G programme treats the Yang–Mills finite-regulator problem through a strong positive base plus controlled corrections. This mathematical architecture suggests a precise KTO interpretation without turning ontology into a proof step.
