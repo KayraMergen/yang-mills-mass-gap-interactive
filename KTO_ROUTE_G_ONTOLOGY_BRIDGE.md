@@ -1,5 +1,8 @@
 # KTO × Route G Ontology Bridge
 
+> **18 Oct 2026 KTO pre-rule Noise / symmetry interpretation:** The [KTO author-source audit](https://github.com/KayraMergen/kto-research/blob/ontology/zone-core-v0.1-2026-10-06/ontology/zone/KTO_GURULTU_VERILI_OLAN_SANSUR_UYUMLULUK_KARARI_2026-10-18.md) now foregrounds an intended Noise origin *without presupposed physical time, space, objecthood, dynamics or preselected group action*. The historical Noise Logic Paper N→S→I→T_f→G source architecture is preserved as a **subsequent mathematical/model construction**, not identified as automatically proved constitutive or physical origin. KTO G_given (Given-as-censorship-threshold proposal) is **not** source Noise G_gravity (frame contraction). Neither the existence of an abstract symmetry group nor a finite-regulator gauge quotient supplies a source-World, continuum YM or positive mass-gap theorem. The independent analytic proof debts and Route G estimate statuses below are unchanged.
+
+
 **Date:** 27 September 2026
 **Status:** conceptual bridge / interpretation layer. This is not a Yang–Mills mass-gap proof.
 
